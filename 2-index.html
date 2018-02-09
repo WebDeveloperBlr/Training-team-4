@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Profile</title>
+  <link href="2-styles.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Mukta+Mahee"
+        rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <div class="top">
+      <span class="headliner">
+        CREATE PROFILE
+      </span>
+    </div>
+    <form enctype="multipart/form-data" method="post">
+    <div class="left">
+      <div class="image">
+        <img src="no_photo.png" alt="Нет фото">
+        <label class="imgLabel">
+          <input type="file" name="userPhoto">
+          <div class="uploadBtn">
+            Upload Photo
+          </div>
+        </label>
+      </div>
+
+    </div>
+    <div class="right">
+      <div class="fields clearfix" >
+        <label>
+          <span>
+            Create login
+          </span>
+          <input required class="login" type="text">
+        </label>
+        <label>
+          <span>
+            Enter email
+          </span>
+          <input required class="email" type="email">
+        </label>
+         <label>
+           <span>
+             Create password
+           </span>
+          <input required class="password" type="password">
+         </label>
+      </div>
+    </div>
+      <div class="bottom">
+      <input class="send" type="submit" value="Sign Up">
+      </div>
+    </form>
+  </div>
+
+</body>
+<script> </script>
+</html>

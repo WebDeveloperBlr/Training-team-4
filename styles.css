@@ -91,3 +91,15 @@ border:2px solid red;
     color:black;
     opacity:1;
 }
+.away{
+    display:block;
+    text-align:center;
+    margin-top:15px;
+    text-decoration:none;
+}
+.away:hover{
+    text-decoration:underline;
+}
+.away:active{
+    color:red;
+}
