@@ -1,0 +1,93 @@
+body{
+    background-color:white;
+}
+
+
+.container {
+    width:30%;
+    height:500px;
+    min-width:300px;
+    margin-right:auto;
+    margin-left:auto;
+    margin-top:50px;
+    padding:1px;
+    border-radius:10px;
+    background-color:lightgray;
+    border:1px solid black;
+}
+
+.signInFormHeadline{
+    margin-top:20%;
+    font-size:28px;
+    text-align:center;
+    font-family: 'Mukta Mahee', sans-serif;
+}
+div div:nth-child(n+1){
+    margin-top:35px;
+}
+.login,
+.email,
+.password,
+.submit{
+    font-size:20px;
+    margin-left:40px;
+    border-radius:5px;
+    padding-left:7px;
+}
+div div:last-child{
+    margin-top:80px;
+}
+.submit{
+    display:block;
+    font-size:25px;
+    margin-right:auto;
+    margin-left:auto;
+    background-color:deepskyblue;
+    font-family: 'Mukta Mahee', sans-serif;
+    color:navajowhite;
+}
+.submit:active{
+    background-color:gray;
+}
+
+.signIn :invalid{
+border:2px solid red;
+}
+.signIn :valid:not(.submit){
+    border:2px solid lightgreen;
+}
+.login:focus,
+.email:focus,
+.password:focus,
+.submit:focus{
+    outline:none;
+    border-color:deepskyblue;
+}
+.login:hover,
+.email:hover,
+.password:hover{
+    border-color:deepskyblue;
+}
+.container  .tag{
+    font-size:16px;
+    opacity:0;
+    transition-duration: 0.8s;
+    white-space:nowrap;
+    display:inline-block;
+    width:100px;
+}
+.login:hover+span{
+    visibility:visible;
+    color:black;
+    opacity:1;
+}
+.email:hover+span{
+    visibility:visible;
+    color:black;
+    opacity:1;
+}
+.password:hover+span{
+    visibility:visible;
+    color:black;
+    opacity:1;
+}
