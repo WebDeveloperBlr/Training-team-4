@@ -1,105 +1,120 @@
-body{
-    background-color:white;
+body {
+    background-color: #FFFFFF;
 }
-
 
 .container {
-    width:30%;
-    height:500px;
-    min-width:300px;
-    margin-right:auto;
-    margin-left:auto;
-    margin-top:50px;
-    padding:1px;
-    border-radius:10px;
-    background-color:lightgray;
-    border:1px solid black;
+    width: 30%;
+    height: 500px;
+    min-width: 300px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 50px;
+    padding: 1px;
+    border-radius: 10px;
+    background-color: #BBBBBB;
+    border: 1px solid #000000;
 }
 
-.signInFormHeadline{
-    margin-top:20%;
-    font-size:28px;
-    text-align:center;
+.sign-In-Form-Headline {
+    margin-top: 20%;
+    font-size: 28px;
+    text-align: center;
     font-family: 'Mukta Mahee', sans-serif;
+    text-transform: uppercase;
 }
-div div:nth-child(n+1){
-    margin-top:35px;
+
+div div:nth-child(n+1) {
+    margin-top: 35px;
 }
+
 .login,
 .email,
 .password,
-.submit{
-    font-size:20px;
-    margin-left:40px;
-    border-radius:5px;
-    padding-left:7px;
-}
-div div:last-child{
-    margin-top:80px;
-}
-.submit{
-    display:block;
-    font-size:25px;
-    margin-right:auto;
-    margin-left:auto;
-    background-color:deepskyblue;
-    font-family: 'Mukta Mahee', sans-serif;
-    color:navajowhite;
-}
-.submit:active{
-    background-color:gray;
+.submit {
+    font-size: 20px;
+    margin-left: 40px;
+    border-radius: 5px;
+    padding-left: 7px;
 }
 
-.signIn :invalid{
-border:2px solid red;
+div div:last-child {
+    margin-top: 80px;
 }
-.signIn :valid:not(.submit){
-    border:2px solid lightgreen;
+
+.submit {
+    display: block;
+    font-size: 25px;
+    margin-right: auto;
+    margin-left: auto;
+    background-color: #00BFFF;
+    font-family: 'Mukta Mahee', sans-serif;
+    color: #FFDEAD;
 }
+
+.submit:active {
+    background-color: #808080;
+}
+
+.signIn :invalid {
+    border: 2px solid #FF0000;
+}
+
+.signIn :valid:not(.submit) {
+    border: 2px solid #03C03C;
+}
+
 .login:focus,
 .email:focus,
 .password:focus,
-.submit:focus{
-    outline:none;
-    border-color:deepskyblue;
+.submit:focus {
+    outline: none;
+    border-color: #00BFFF;
 }
+
 .login:hover,
 .email:hover,
-.password:hover{
-    border-color:deepskyblue;
+.password:hover {
+    border-color: #00BFFF;
 }
-.container  .tag{
-    font-size:16px;
-    opacity:0;
+
+.container .tag {
+    font-size: 16px;
+    opacity: 0;
     transition-duration: 0.8s;
-    white-space:nowrap;
-    display:inline-block;
-    width:100px;
+    white-space: nowrap;
+    display: inline-block;
+    width: 100px;
 }
-.login:hover+span{
-    visibility:visible;
-    color:black;
-    opacity:1;
+
+.login:hover + span {
+    visibility: visible;
+    color: #000000;
+    opacity: 1;
 }
-.email:hover+span{
-    visibility:visible;
-    color:black;
-    opacity:1;
+
+.email:hover + span {
+    visibility: visible;
+    color: #000000;
+    opacity: 1;
 }
-.password:hover+span{
-    visibility:visible;
-    color:black;
-    opacity:1;
+
+.password:hover + span {
+    visibility: visible;
+    color: #000000;
+    opacity: 1;
 }
-.away{
-    display:block;
-    text-align:center;
-    margin-top:15px;
-    text-decoration:none;
+
+.away {
+    display: block;
+    text-align: center;
+    margin-top: 15px;
+    text-decoration: none;
 }
-.away:hover{
-    text-decoration:underline;
+
+.away:hover {
+    text-decoration: underline;
 }
-.away:active{
-    color:red;
+
+.away:active {
+    color: #FF0000;
 }
