@@ -1,8 +1,8 @@
-.profile_creation,
-.login_form{
+.profile-creation,
+.login-form{
   display: inline-flex;
   flex-direction: column;
-  background-color: #ffffff;
+  background-color: #fff;
   align-items: center;
   justify-content: space-around;
   margin: auto;
@@ -17,13 +17,13 @@
 body{
   background-color: #e8e8e8;
 }
-.data_container{
+.data-container{
   display: inline-flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-end;
 }
-.form_container{
+.form-container{
   display: inline-flex;
   flex-direction: row;
   margin: auto;
@@ -60,4 +60,7 @@ body{
 }
 .file-upload span {
   line-height: 36px; /* Делаем вертикальное выравнивание текста, который написан на кнопке */
+}
+.page-name{
+  text-transform: uppercase;
 }
