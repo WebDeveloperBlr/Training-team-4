@@ -11,6 +11,12 @@
       $("#phone").mask("+375(99)999-99-99");
     });
   </script>
+  <script>
+    var loadFile = function(event) {
+      var output = document.getElementById('output');
+      output.src = URL.createObjectURL(event.target.files[0]);
+    };
+  </script>
 </head>
 <body>
 <div class="flex-container">
@@ -19,10 +25,11 @@
     <div class="fields">
       <form action="#">
         <div class="form-container">
-          <div>
+          <div class="image-preview">
+            <img id="output" height="150" width="150">
             <div class="file-upload">
               <label>
-                <input type="file" accept="image/*" id="img">
+                <input type="file" accept="image/*" id="img" onchange="loadFile(event)">
                 <span>Upload photo</span>
               </label>
             </div>

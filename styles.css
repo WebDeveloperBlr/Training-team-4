@@ -30,6 +30,13 @@ body{
   align-items: center;
   justify-content: space-between;
 }
+.image-preview{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 15px;
+}
 .file-upload {
   position: relative;
   overflow: hidden;
@@ -59,6 +66,10 @@ body{
 }
 .file-upload span {
   line-height: 36px; /* Делаем вертикальное выравнивание текста, который написан на кнопке */
+}
+#output{
+  border-radius: 50%;
+
 }
 .page-name{
   text-transform: uppercase;
