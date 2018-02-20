@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Profile</title>
+  <link href="assets/css/all-styles.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Mukta+Mahee"
+        rel="stylesheet">
+</head>
+<body class="register-body">
+<div class="register-container">
+  <div class="register-layout-top">
+      <span class="register-headliner">
+        create profile
+      </span>
+  </div>
+  <form enctype="multipart/form-data" method="post">
+    <div class="register-layout-left">
+      <div class="register-image">
+        <img class="register-image-no-photo" src="assets/images/no_photo.png" alt="Нет фото">
+        <label class="register-imgLabel">
+          <input class="register-file-input" type="file" name="userPhoto">
+          <div class="register-uploadBtn">
+            Upload Photo
+          </div>
+        </label>
+      </div>
+
+    </div>
+    <div class="register-layout-right">
+      <div class="register-fields clearfix">
+        <label class="register-layout-right__label">
+          <span>
+            Create login
+          </span>
+          <input required class="login" type="text">
+        </label>
+        <label class="register-layout-right__label">
+          <span>
+            Enter email
+          </span>
+          <input required class="email" type="email">
+        </label>
+        <label class="register-layout-right__label">
+           <span>
+             Create password
+           </span>
+          <input required class="register-password" type="password">
+        </label>
+      </div>
+    </div>
+    <div class="register-layout-bottom">
+      <input class="register-send" type="submit" value="Sign Up">
+    </div>
+  </form>
+</div>
+</body>
+<script> </script>
+</html>
