@@ -1,59 +1,54 @@
-﻿<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="ru-RU">
 <head>
-  <meta charset="UTF-8">
-  <title>Profile</title>
-  <link href="assets/css/all-styles.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Mukta+Mahee"
-        rel="stylesheet">
+    <meta charset="utf-8">
+    <title>Создание профиля</title>
+    <meta http-equiv="X-UA-Compatible" content="IE = edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="keywords" content="">
+    <link rel="stylesheet" type="text/css" href="assets/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/main.css">
 </head>
-<body class="register-body">
-<div class="register-container">
-  <div class="register-layout-top">
-      <span class="register-headliner">
-        create profile
-      </span>
-  </div>
-  <form enctype="multipart/form-data" method="post">
-    <div class="register-layout-left">
-      <div class="register-image">
-        <img class="register-image-no-photo" src="assets/images/no_photo.png" alt="Нет фото">
-        <label class="register-imgLabel">
-          <input class="register-file-input" type="file" name="userPhoto">
-          <div class="register-uploadBtn">
-            Upload Photo
-          </div>
-        </label>
-      </div>
-
-    </div>
-    <div class="register-layout-right">
-      <div class="register-fields clearfix">
-        <label class="register-layout-right__label">
-          <span>
-            Create login
-          </span>
-          <input required class="login" type="text">
-        </label>
-        <label class="register-layout-right__label">
-          <span>
-            Enter email
-          </span>
-          <input required class="email" type="email">
-        </label>
-        <label class="register-layout-right__label">
-           <span>
-             Create password
-           </span>
-          <input required class="register-password" type="password">
-        </label>
-      </div>
-    </div>
-    <div class="register-layout-bottom">
-      <input class="register-send" type="submit" value="Sign Up">
-    </div>
-  </form>
-</div>
+<body>
+<header class="header">
+    <form class="createProfile__form header-form-style" action=""><a class="createProfile__backToMain-link" href="/">
+        <svg class="icon icon-ARROW ">
+            <use xlink:href="assets/images/svg/symbol/sprite.svg#ARROW"></use>
+        </svg>
+    </a>
+        <h4 class="header-4">Создание профиля</h4>
+        <div class="createProfile__edit-block">
+            <div class="createProfile__edit-block__left-col-wrapper">
+                <div class="createProfile__img-wrapper"><img class="createProfile__img" id="profilePreview"></div>
+                <span class="createProfile__filename-preview" id="createProfile__filename-preview"></span>
+                <div class="createProfile__img-button-wrapper">
+                    <label class="button createProfile__img-label" for="photo">Загрузить
+                        <input class="createProfile__input createProfile__input--invisible" type="file"
+                               value="Загрузить" id="photo" accept="image/*" required>
+                    </label>
+                </div>
+            </div>
+            <div class="createProfile__edit-block__right-col-wrapper">
+                <div class="createProfile__field-wrapper">
+                    <label class="createProfile__label" for="name">Ваше имя</label>
+                    <input class="createProfile__input input--valid-check" type="text" id="name" minlength="2" required><span></span>
+                </div>
+                <div class="createProfile__field-wrapper">
+                    <label class="createProfile__label" for="surname">Ваша фамилия</label>
+                    <input class="createProfile__input input--valid-check" type="text" minlength="3" id="surname"
+                           required><span></span>
+                </div>
+                <div class="createProfile__field-wrapper">
+                    <label class="createProfile__label" for="phone">Ваш номер телефона</label>
+                    <input class="createProfile__input input--valid-check" type="tel" id="phone" minlength="9"
+                           maxlength="14" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required><span></span>
+                    <div class="createProfile__notice">Пожайлуйста, используйте формат xxx-xxx-xxxx</div>
+                </div>
+            </div>
+        </div>
+        <input class="button createProfile__submit button--success" type="submit" value="Создать">
+    </form>
+</header>
+<script src="assets/js/main.js"></script>
 </body>
-<script> </script>
 </html>
