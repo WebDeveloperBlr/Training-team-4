@@ -1,54 +1,55 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru-RU">
 <head>
-  <meta charset="UTF-8">
-  <title>Profile</title>
-  <link href="assets/css/styles.css" rel="stylesheet">
-  <script src="assets/js/jquery-1.9.0.min.js"></script>
-  <script src="assets/js/jquery.maskedinput.js" type="text/javascript"></script>
-  <script type="text/javascript">
-    jQuery(function ($) {
-      $("#phone").mask("+375(99)999-99-99");
-    });
-  </script>
-  <script>
-    var loadFile = function(event) {
-      var output = document.getElementById('output');
-      output.src = URL.createObjectURL(event.target.files[0]);
-    };
-  </script>
+  <meta charset="utf-8">
+  <title>Создание профиля</title>
+  <meta http-equiv="X-UA-Compatible" content="IE = edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="keywords" content="">
+  <link rel="stylesheet" type="text/css" href="assets/css/normalize.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/main.css">
 </head>
 <body>
-<div class="flex-container">
-  <div class="profile-creation" align="center">
-    <p class="page-name">Create profile</p>
-    <div class="fields">
-      <form action="#">
-        <div class="form-container">
-          <div class="image-preview">
-            <img id="output" height="150" width="150">
-            <div class="file-upload">
-              <label>
-                <input type="file" accept="image/*" id="img" onchange="loadFile(event)">
-                <span>Upload photo</span>
-              </label>
-            </div>
-          </div>
-          <div class="data-container">
-            <p><input type="text" placeholder="Enter your first name: " title="Enter first name" class="data" required>
-            </p>
-            <p><input type="text" placeholder="Enter your second name: " title="Etner second name" class="data"
-                      required>
-            </p>
-            <p><input type="tel" id="phone" name="phone" pattern="+375([0-9]{2})[0-9]{3}-[0-9]{2}-[0-9]{2}"
-                      placeholder="Enter your phone number:   " title="Enter phone number" class="data" required></p>
-          </div>
-
+<header class="header">
+  <form class="createProfile__form header-form-style" action="">
+    <a class="createProfile__backToMain-link" href="login.html">
+      <svg class="icon icon-ARROW ">
+        <use xlink:href="assets/images/svg/symbol/sprite.svg#ARROW"></use>
+      </svg>
+    </a>
+    <h4 class="header-4">Создание профиля</h4>
+    <div class="createProfile__edit-block">
+      <div class="createProfile__edit-block__left-col-wrapper">
+        <div class="createProfile__img-wrapper"><img class="createProfile__img" id="profilePreview"></div>
+        <span class="createProfile__filename-preview" id="createProfile__filename-preview"></span>
+        <div class="createProfile__img-button-wrapper">
+          <label class="button createProfile__img-label" for="photo">Загрузить
+            <input class="createProfile__input createProfile__input--invisible" type="file"
+                   value="Загрузить" id="photo" accept="image/*" required>
+          </label>
         </div>
-        <p><input type="submit" value="Create!"></p>
-      </form>
+      </div>
+      <div class="createProfile__edit-block__right-col-wrapper">
+        <div class="createProfile__field-wrapper">
+          <label class="createProfile__label" for="name">Ваше имя</label>
+          <input class="createProfile__input input--valid-check" type="text" id="name" minlength="2" required><span></span>
+        </div>
+        <div class="createProfile__field-wrapper">
+          <label class="createProfile__label" for="surname">Ваша фамилия</label>
+          <input class="createProfile__input input--valid-check" type="text" minlength="3" id="surname"
+                 required><span></span>
+        </div>
+        <div class="createProfile__field-wrapper">
+          <label class="createProfile__label" for="phone">Ваш номер телефона</label>
+          <input class="createProfile__input input--valid-check" type="tel" id="phone" minlength="9"
+                 maxlength="14" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required><span></span>
+          <div class="createProfile__notice">Пожайлуйста, используйте формат xxx-xxx-xxxx</div>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
+    <input class="button createProfile__submit button--success" type="submit" value="Создать">
+  </form>
+</header>
+<script src="assets/js/main.js"></script>
 </body>
 </html>
