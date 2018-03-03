@@ -1,104 +1,165 @@
 <!DOCTYPE html>
 <html lang="ru-RU">
 <head>
-    <meta charset="utf-8">
-    <title>HR-app</title>
-    <meta http-equiv="X-UA-Compatible" content="IE = edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="keywords" content="">
-    <link rel="stylesheet" type="text/css" href="assets/css/main.css">
+  <meta charset="utf-8">
+  <title>HR-app</title>
+  <meta http-equiv="X-UA-Compatible" content="IE = edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="keywords" content="">
+  <link rel="stylesheet" type="text/css" href="assets/css/main.css">
 </head>
 <body>
 <section class="hr-app-section">
-    <div class="hr-app-section__sidebar">
-        <div class="hr-app-section__sidebar-wrapper">
-            <h1 class="hr-app-section__sidebar-header">hr app</h1>
-            <ul class="hr-app-section__sidebar-list">
-                <li class="hr-app-section__sidebar-list-item"><a class="hr-app-section__sidebar-item-link" href="#">Interview</a>
-                </li>
-                <li class="hr-app-section__sidebar-list-item active"><a class="hr-app-section__sidebar-item-link"
-                                                                        href="#">Vacancies</a></li>
-                <li class="hr-app-section__sidebar-list-item"><a class="hr-app-section__sidebar-item-link" href="#">Candidates</a>
-                </li>
-                <li class="hr-app-section__sidebar-list-item"><a class="hr-app-section__sidebar-item-link" href="#">Management</a>
-                </li>
-            </ul>
-        </div>
+  <div class="hr-app-section__sidebar">
+    <svg class="icon icon-CLOSE ">
+      <use xlink:href="assets/images/svg/symbol/sprite.svg#CLOSE"></use>
+    </svg>
+    <div class="hr-app-section__sidebar-wrapper">
+      <h1 class="hr-app-section__sidebar-header">hr app</h1>
+      <ul class="hr-app-section__sidebar-list">
+        <li class="hr-app-section__sidebar-list-item"><a class="hr-app-section__sidebar-item-link"
+                                                         href="#">Interview</a></li>
+        <li class="hr-app-section__sidebar-list-item active"><a class="hr-app-section__sidebar-item-link" href="#">Vacancies</a>
+        </li>
+        <li class="hr-app-section__sidebar-list-item"><a class="hr-app-section__sidebar-item-link"
+                                                         href="#">Candidates</a></li>
+        <li class="hr-app-section__sidebar-list-item"><a class="hr-app-section__sidebar-item-link"
+                                                         href="#">Management</a></li>
+        <li class="hr-app-section__sidebar-list-item mobile-item"><a class="hr-app-section__sidebar-item-link" href="#">Notifications
+          <svg class="icon icon-BELL ">
+            <use xlink:href="assets/images/svg/symbol/sprite.svg#BELL"></use>
+          </svg>
+        </a></li>
+      </ul>
+      <a class="hr-app-section__exit-button mobile-item" href="#">Exit
+        <svg class="icon icon-exit ">
+          <use xlink:href="assets/images/svg/symbol/sprite.svg#exit"></use>
+        </svg>
+      </a>
     </div>
-    <section class="hr-app-section__right-bar">
-        <div class="hr-app-section__right-bar-wrap">
-            <div class="hr-app-section__right-bar__search-bar">
-                <div class="hr-app-section__right-bar__search-field-wrap">
-                    <svg class="icon icon-SEARCH ">
-                        <use xlink:href="assets/images/svg/symbol/sprite.svg#SEARCH"></use>
-                    </svg>
-                    <form class="hr-app-section__right-bar__search-form" action="">
-                        <input class="hr-app-section__right-bar__search-input" type="search" id="vacancies-search"
-                               placeholder="Search for vacancies, candidates...">
-                    </form>
-                </div>
-                <div class="hr-app-section__right-bar__icon-panel-wrap">
-                    <svg class="icon icon-BELL ">
-                        <use xlink:href="assets/images/svg/symbol/sprite.svg#BELL"></use>
-                    </svg>
-                    <svg class="icon icon-MAXIMIZE ">
-                        <use xlink:href="assets/images/svg/symbol/sprite.svg#MAXIMIZE"></use>
-                    </svg>
-                </div>
-            </div>
-            <div class="vacancies-block__hr-app__filters-bar">
-                <h3 class="vacancies-block__filters-bar__header">Vacancies</h3>
-                <div class="vacancies-block__filters-bar__wrap">
-                    <div class="vacancies-block__filters-bar__text">Filter by</div>
-                    <select class="vacancies-block__filters-bar__select">
-                        <option class="vacancies-block__filters-bar__select-option">Name</option>
-                        <option class="vacancies-block__filters-bar__select-option">Name</option>
-                        <option class="vacancies-block__filters-bar__select-option">Name</option>
-                    </select>
-                    <div class="vacancies-block__filters-bar__dropdown">Name
-                        <ul class="vacancies-block__filters-bar__dropdown-list">
-                            <li class="vacancies-block__filters-bar__dropdown-list-item"><a
-                                    class="vacancies-block__filters-bar__dropdown-item-link">Nai</a></li>
-                            <li class="vacancies-block__filters-bar__dropdown-list-item">Name</li>
-                            <li class="vacancies-block__filters-bar__dropdown-list-item">Name</li>
-                        </ul>
-                    </div>
-                    <div class="vacancies-block__filters-bar__input-wrap">
-                        <input class="vacancies-block__filters-bar__input" type="text"><span></span>
-                    </div>
-                    <div class="vacancies-block__filters-bar__input-wrap">
-                        <input class="vacancies-block__filters-bar__input" type="text"><span></span>
-                    </div>
-                </div>
-            </div>
-            <div class="vacancies-block__table">
-                <div class="vacancies-block__table__header-row table--row">
-                    <div class="vacancies-block__table-col table--header-col">Position</div>
-                    <div class="vacancies-block__table-col table--header-col">Work experience</div>
-                    <div class="vacancies-block__table-col table--header-col">Salary</div>
-                    <div class="vacancies-block__table-col table--header-col">Candidates</div>
-                </div>
-            </div>
-            <div class="vacancies-block__table-editor">
-                <div class="vacancies-block__table-editor__text">Rows per page:</div>
-                <select class="vacancies-block__table-editor__select">
-                    <option class="vacancies-block__table-editor__select-option">10</option>
-                    <option class="vacancies-block__table-editor__select-option">12</option>
-                </select>
-                <div class="vacancies-block__table-editor__pagination">1-12 of 100</div>
-                <svg class="icon icon-ARROW ">
-                    <use xlink:href="assets/images/svg/symbol/sprite.svg#ARROW"></use>
-                </svg>
-                <svg class="icon icon-ARROW ">
-                    <use xlink:href="assets/images/svg/symbol/sprite.svg#ARROW"></use>
-                </svg>
-            </div>
-            <div class="vacancies-block__fixed-round"><span>+</span></div>
+  </div>
+  <section class="hr-app-section__right-bar">
+    <div class="hr-app-section__right-bar-wrap">
+      <div class="hr-app-section__right-bar__search-bar">
+        <div class="hr-app-section__right-bar__search-bar__hamburger-wrapper">
+          <svg class="icon icon-HAMBURGER ">
+            <use xlink:href="assets/images/svg/symbol/sprite.svg#HAMBURGER"></use>
+          </svg>
         </div>
-    </section>
+        <div class="hr-app-section__right-bar__search-field-wrap">
+          <svg class="icon icon-SEARCH ">
+            <use xlink:href="assets/images/svg/symbol/sprite.svg#SEARCH"></use>
+          </svg>
+          <form class="hr-app-section__right-bar__search-form" action="">
+            <input class="hr-app-section__right-bar__search-input" type="search" id="vacancies-search"
+                   placeholder="Search...">
+          </form>
+        </div>
+        <div class="hr-app-section__right-bar__icon-panel-wrap">
+          <svg class="icon icon-BELL ">
+            <use xlink:href="assets/images/svg/symbol/sprite.svg#BELL"></use>
+          </svg>
+          <svg class="icon icon-exit ">
+            <use xlink:href="assets/images/svg/symbol/sprite.svg#exit"></use>
+          </svg>
+        </div>
+      </div>
+      <section class="vacancies-block" id="vacancies-block">
+        <div class="vacancies-block__hr-app__filters-bar">
+          <div class="vacancies-block__filters-bar__header-wrapper">
+            <h3 class="vacancies-block__filters-bar__header">Vacancies</h3>
+            <button class="vacancies-block__filters-bar__add-profile-button"><span>+</span></button>
+          </div>
+          <div class="vacancies-block__filters-bar__wrap">
+            <div class="vacancies-block__filters-bar__text-wrapper" data-toggle="collapse" data-target="" role="button"
+                 aria-expanded="false" aria-controls="filters-bar-collapse">
+              <div class="vacancies-block__filters-bar__text">Filter by</div>
+              <svg class="icon icon-ARROW ">
+                <use xlink:href="assets/images/svg/symbol/sprite.svg#ARROW"></use>
+              </svg>
+            </div>
+            <div class="vacancies-block__filters-bar__fields-wrapper" id="filters-bar-collapse"
+                 data-parent="#vacancies-block__table">
+              <div class="vacancies-block__filters-bar__filter-item">
+                <div class="vacancies-block__filters-bar__select-text">Profession</div>
+                <div class="vacancies-block__filters-bar__input-wrap">
+                  <input class="vacancies-block__filters-bar__input" type="text">
+                </div>
+              </div>
+              <div class="vacancies-block__filters-bar__filter-item">
+                <div class="vacancies-block__filters-bar__select-text">Salary</div>
+                <div class="vacancies-block__filters-bar__input-wrap justify-content-between"><span
+                    class="vacancies-block__filters-bar__input-wrap__text">from</span>
+                  <input class="vacancies-block__filters-bar__input small--input" type="text" maxlength="2"><span
+                      class="vacancies-block__filters-bar__input-wrap__text">to</span>
+                  <input class="vacancies-block__filters-bar__input small--input" type="text" maxlength="2">
+                </div>
+              </div>
+              <div class="vacancies-block__filters-bar__filter-item">
+                <div class="vacancies-block__filters-bar__select-text">Status</div>
+                <select class="vacancies-block__filters-bar__select">
+                  <option class="vacancies-block__filters-bar__select-option">Rejected CV</option>
+                  <option class="vacancies-block__filters-bar__select-option">Accepted CV</option>
+                  <option class="vacancies-block__filters-bar__select-option">No CV</option>
+                </select>
+              </div>
+              <div class="vacancies-block__filters-bar__dropdown">Name
+                <ul class="vacancies-block__filters-bar__dropdown-list">
+                  <li class="vacancies-block__filters-bar__dropdown-list-item"><a
+                      class="vacancies-block__filters-bar__dropdown-item-link">Nai</a></li>
+                  <li class="vacancies-block__filters-bar__dropdown-list-item">Name</li>
+                  <li class="vacancies-block__filters-bar__dropdown-list-item">Name</li>
+                </ul>
+              </div>
+              <div class="vacancies-block__filters-bar__pagination"><span>1</span><span> of</span><span> 12</span></div>
+              <div class="vacancies-block__filters-bar__sort-button-wrapper">
+                <div class="vacancies-block__filters-bar__sort-button">Filter</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="vacancies-block__table" id="vacancies-block__table">
+          <div class="vacancies-block__table__header-row table--row">
+            <div class="vacancies-block__table-col table--header-col">Profession</div>
+            <div class="vacancies-block__table-col table--header-col">Requirements</div>
+            <div class="vacancies-block__table-col table--header-col">Our advantages</div>
+            <div class="vacancies-block__table-col table--header-col">Contact us</div>
+          </div>
+
+          <div class="vacancies-block__table-editor">
+            <div class="vacancies-block__table-editor__col">
+              <div class="vacancies-block__table-editor__text">Rows per page:</div>
+              <select class="vacancies-block__table-editor__select" id="rows-per-page-vacancies">
+                <option class="vacancies-block__table-editor__select-option">10</option>
+                <option class="vacancies-block__table-editor__select-option">12</option>
+              </select>
+            </div>
+            <div class="vacancies-block__table-editor__col order-2">
+              <div class="vacancies-block__table-editor__pagination">1-12 of 100</div>
+            </div>
+            <div
+                class="vacancies-block__table-editor__page-buttons vacancies-block__table-editor__col order-1 order-lg-2">
+              <div class="vacancies-block__table-editor__page-prev-button">
+                <svg class="icon icon-ARROW ">
+                  <use xlink:href="assets/images/svg/symbol/sprite.svg#ARROW"></use>
+                </svg>
+              </div>
+              <div class="vacancies-block__table-editor__page-next-button">
+                <svg class="icon icon-ARROW ">
+                  <use xlink:href="assets/images/svg/symbol/sprite.svg#ARROW"></use>
+                </svg>
+              </div>
+            </div>
+            <div class="vacancies-block__fixed-round">
+              <div class="vacancies-block__fixed-round__plus">+</div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </section>
 </section>
 <script src="assets/js/libs.min.js"></script>
 <script src="assets/js/main.js"></script>
-<script src="assets/js/addVacancies.js"></script>
 </body>
 </html>
