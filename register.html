@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="ru-RU">
 <head>
-  <meta charset="utf-8">
-  <title>Создание профиля</title>
-  <meta http-equiv="X-UA-Compatible" content="IE = edge">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="keywords" content="">
-  <link rel="stylesheet" type="text/css" href="assets/css/main.css">
+    <meta charset="utf-8">
+    <title>Создание профиля</title>
+    <meta http-equiv="X-UA-Compatible" content="IE = edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="keywords" content="">
+    <link rel="stylesheet" type="text/css" href="assets/css/main.css">
 </head>
 <body>
 <header class="header">
-  <form class="createProfile__form header-form-style" action=""><a class="createProfile__backToMain-link" href="/">
+  <form class="createProfile__form header-form-style" action=""><a class="createProfile__backToMain-link" href="login.html">
     <svg class="icon icon-ARROW ">
       <use xlink:href="assets/images/svg/symbol/sprite.svg#ARROW"></use>
     </svg>
@@ -25,29 +25,28 @@
             <input class="createProfile__input createProfile__input--invisible" type="file"
                    value="Загрузить" id="photo" accept="image/*" required>
           </label>
+                </div>
+            </div>
+            <div class="createProfile__edit-block__right-col-wrapper">
+                <div class="createProfile__field-wrapper">
+                    <label class="createProfile__label" for="name">Ваше имя</label>
+                    <input class="createProfile__input input--valid-check" type="text" id="name" minlength="2" required><span></span>
+                </div>
+                <div class="createProfile__field-wrapper">
+                    <label class="createProfile__label" for="surname">Ваша фамилия</label>
+                    <input class="createProfile__input input--valid-check" type="text" minlength="3" id="surname"
+                           required><span></span>
+                </div>
+                <div class="createProfile__field-wrapper">
+                    <label class="createProfile__label" for="phone">Ваш номер телефона</label>
+                    <input class="createProfile__input input--valid-check" type="tel" id="phone" minlength="9"
+                           maxlength="14" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required><span></span>
+                    <div class="createProfile__notice">Пожайлуйста, используйте формат xxx-xxx-xxxx</div>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="createProfile__edit-block__right-col-wrapper">
-        <div class="createProfile__field-wrapper">
-          <label class="createProfile__label" for="name">Ваше имя</label>
-          <input class="createProfile__input input--valid-check" type="text" id="name" minlength="2"
-                 required><span></span>
-        </div>
-        <div class="createProfile__field-wrapper">
-          <label class="createProfile__label" for="surname">Ваша фамилия</label>
-          <input class="createProfile__input input--valid-check" type="text" minlength="3" id="surname"
-                 required><span></span>
-        </div>
-        <div class="createProfile__field-wrapper">
-          <label class="createProfile__label" for="phone">Ваш номер телефона</label>
-          <input class="createProfile__input input--valid-check" type="tel" id="phone" minlength="9"
-                 maxlength="14" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required><span></span>
-          <div class="createProfile__notice">Пожайлуйста, используйте формат xxx-xxx-xxxx</div>
-        </div>
-      </div>
-    </div>
-    <input class="button createProfile__submit button--success" type="submit" value="Создать">
-  </form>
+        <input class="button createProfile__submit button--success" type="submit" value="Создать">
+    </form>
 </header>
 <script src="assets/js/libs.min.js"></script>
 <script src="assets/js/main.js"></script>
