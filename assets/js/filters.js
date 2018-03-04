@@ -17,7 +17,7 @@ $(document).ready(function () {
       // покажет те ряды, где 3 функции возвращают true;
       return filterPos($(row).find(cols)[0]) && filterExp($(row).find(cols)[1]) && filterSal($(row).find(cols)[2]);
     }).show();
-  }
+  };
 
   //position
   function filterPos(elem) {
@@ -25,7 +25,7 @@ $(document).ready(function () {
       return true;
 
     return elem.innerText.toLowerCase().indexOf(filter.curPos);
-  }
+  };
 
   //work experience
   function filterExp(elem) {
@@ -33,7 +33,7 @@ $(document).ready(function () {
       return true;
 
     return elem.innerText.toLowerCase().indexOf(experiences[filter.curExpIndex]);
-  }
+  };
 
   //salary
   function filterSal(elem) {
@@ -50,9 +50,13 @@ $(document).ready(function () {
       return true;
     else
       return false;
-  }
+  };
 
   $("#vacancies-block__filters-bar__sort-button").bind('click', toFilter());
+
+
+
+
 
 
 
@@ -124,6 +128,4 @@ $(document).ready(function () {
   $('#table--header-col--sal').bind('click', sortTable(2))
 
 });
-
-
 
