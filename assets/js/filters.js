@@ -57,7 +57,7 @@
 
 
 
-  /*** рабочая функция, c $().on() не работает ***/
+ 
   function sortTable(n) {
     let table, rows, switching, i, x, y, shouldSwitch, switchcount = 0;
     let textCurItem, textNextItem;
@@ -121,11 +121,9 @@
   }
 
 
-  /* пока прописан в самом теге хедера*/
-/*
-  $('#table--header-col--pos').on('click', sortTable(0));
-  $('#table--header-col--exp').on('click', sortTable(1));
-  $('#table--header-col--sal').on('click', sortTable(2));
-*/
+  $('#table--header-col--pos').on('click', sortTable.bind(null, 0));
+  $('#table--header-col--exp').on('click', sortTable.bind(null, 1));
+  $('#table--header-col--sal').on('click', sortTable.bind(null, 2));
+
 
 

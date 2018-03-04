@@ -10993,7 +10993,13 @@ input:focus:-ms-input-placeholder {
 
 .table--header-col {
     white-space: nowrap;
+    cursor: pointer;
 }
+
+.table--header-col:not(:last-child):after{
+  content: "▼";
+}
+
 
 .vacancies-block__table-editor {
     color: #9e9e9e;
