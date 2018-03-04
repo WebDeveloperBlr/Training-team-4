@@ -1,5 +1,6 @@
-$(document).ready(function () {
 
+/*
+$(document).ready(function () {
   const rows = $(".vacancies-block__table__row");
   const experiences = ["any", "junior", "middle", "senior"];
   const position =  $(".vacancies-block__table-col__profession");
@@ -14,18 +15,18 @@ $(document).ready(function () {
       curPos: $("#vacancies-block__filters-bar__input--pos").val()
     };
 
-    rows.hide();
-    var reduced = jQuery.grep(rows, function (row) {
+    rows.show();
+    rows.filter(function (row) {
       // покажет те ряды, где 3 функции возвращают true;
-      return filterPos($(row).find(position)[0], filters.curPos) && filterExp($(rows).find(advantages)[0], filters.curExpIndex) && filterSal($(rows).find(advantages)[1], filters.curSalFrom, filters.curSalTo);
-    });
-    reduced.show();
+      return filterPos($(this).find(position)[0], filters.curPos) && filterExp($(this).find(advantages)[0], filters.curExpIndex) && filterSal($(this).find(advantages)[1], filters.curSalFrom, filters.curSalTo);
+    }).hide();
 };
 
   //position
   function filterPos(elem, curPos) {
     if (curPos === "")
-      return true;
+      return false;
+
     return elem.innerText.toLowerCase().indexOf(curPos);
   };
 
@@ -56,6 +57,7 @@ $(document).ready(function () {
   $("#vacancies-block__filters-bar__sort-button").on('click', toFilter);
 });
 
+*/
 
 
 
@@ -64,10 +66,6 @@ $(document).ready(function () {
 
 
 
-
-
-
-//работает
 function sortTable(n) {
   let table, rows, switching, i, x, y, shouldSwitch, switchcount = 0;
   let textCurItem, textNextItem;
