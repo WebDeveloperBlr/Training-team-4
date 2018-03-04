@@ -11184,7 +11184,9 @@ input:focus:-ms-input-placeholder {
 .vacancies-block__filters-bar-2fields-wrapper-tablet{
     display:none;
 }
-@media  (min-device-aspect-ratio: 4/3) and (max-width: 1290px){
+@media  (min-device-aspect-ratio: 4/3) and (max-width: 1290px),
+        (max-width:1290px) and (min-width:750px) {
+
     body{
         width:100%;
     }
