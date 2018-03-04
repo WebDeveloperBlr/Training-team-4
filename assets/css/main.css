@@ -11177,3 +11177,39 @@ input:focus:-ms-input-placeholder {
 .collapse {
     display: none;
 }
+/*   beginning of tablet version           */
+.vacancies-block__filters-bar-2fields-wrapper-tablet{
+    display:none;
+}
+@media  (min-device-aspect-ratio: 4/3) and (max-width: 1290px){
+    body{
+        width:100%;
+    }
+    .vacancies-block__filters-bar__wrap{
+        flex-wrap:wrap;
+    }
+    .vacancies-block__filters-bar__text-wrapper{
+        flex-basis:100%;
+    }
+    .vacancies-block__filters-bar__fields-wrapper{
+        flex-wrap:wrap;
+        justify-content:center;
+    }
+    .vacancies-block__filters-bar__sort-button-wrapper{
+        flex-basis:100%;
+        margin-top:15px;
+    }
+    .vacancies-block__filters-bar__filter-item{
+        margin-bottom:10px;
+    }
+    .vacancies-block__filters-bar__filter-item:first-child{
+        margin-left:10%;
+    }
+    .vacancies-block__table-col__button{
+        text-align:left;
+        display:inline-block;
+        margin-left:35%;
+    }
+}
+
+
