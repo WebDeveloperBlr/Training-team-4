@@ -47,41 +47,94 @@ $(document).ready(function () {
     this.filterBar = this.section.find('.vacancies-block__hr-app__filters-bar');
     this.vacancies = [];
     this.table = $(this.section).find('#vacancies-block__table');
-    this.numbVacancies = +($(this.section).find("#rows-per-page-vacancies option:selected").text());
+    this.itemsCountSelect = $(this.table).find('#rows-per-page-vacancies');
+    this.pagination = $(this.section).find('#pagination');
+    this.itemsPerPage = +($(this.section).find("#rows-per-page-vacancies option:selected").text());
+    this.itemsInformation = $(this.table).find('.vacancies-block__table-editor__pagination');
+    this.data = [];
+    this.defaultOptions = {};
+    this.getData();
 
     if (window.matchMedia('(max-width: 515px)').matches) {
       this.canSlide = true;
       this.collapseElems = $(this.section).find('[data-toggle="collapse"]');
-      this.fillTable();
     } else {
-      this.fillTable();
       this.bindEvents();
     }
+    this.bindCommonEvents();
   }
 
-  Vacancies.prototype.fillTable = function () {
+  Vacancies.prototype.addItemInformation = function (length, page) {
+    var lastItem;
+    if(this.itemsPerPage * page>length){
+      lastItem = length;
+    }else{
+      lastItem = this.itemsPerPage * page;
+    }
+
+    this.itemsInformation.html((this.itemsPerPage * (page - 1) + 1) + ' - ' + lastItem + ' of ' + length);
+  };
+  Vacancies.prototype.clear = function (element) {
+    $(element).each(function (index, el) {
+      el.remove();
+    })
+  };
+  Vacancies.prototype.setPaginationOptions = function (currentPage) {
+    var self = this;
+    this.defaultOptions = {
+      totalPages: Math.ceil(self.data.length / self.itemsPerPage),
+      itemOnPage: self.itemsPerPage,
+      currentPage: currentPage,
+      cssStyle: '',
+      prev: '<svg class="icon icon-prev-ARROW "><use xlink:href="assets/images/svg/symbol/sprite.svg#ARROW"></use></svg>',
+      next: '<svg class="icon icon-ARROW "><use xlink:href="assets/images/svg/symbol/sprite.svg#ARROW"></use></svg>',
+      onPageClick: function (evt, page) {
+        self.addItemInformation(self.data.length, page);
+        self.clear(self.table.find('.vacancies-block__table__row'));
+        self.fillTable(page);
+      }
+    };
+  };
+
+  Vacancies.prototype.sortData = function (data, page) {
+    var newData = [];
+    if (page === undefined) page = 1;
+    for (var i = this.itemsPerPage * (page - 1); i < this.itemsPerPage * page; i++) {
+      if (data[i]) {
+        newData.push(data[i]);
+      }
+    }
+    return newData;
+  };
+  Vacancies.prototype.getData = function () {
     var self = this;
     (function () {
       var URL = "assets/json/vacancies.json";
       $.getJSON(URL, {
-        tags: "mount rainier",
-        tagmode: "any",
         format: "json"
       })
         .done(function (data) {
-          if (self.collapseElems) {
-            self.getMobileTable(data);
-          } else {
-            self.getTable(data);
-          }
-          if (window.matchMedia('(max-width: 515px)').matches) {
-            self.tableCollapseElems = $(self.table).find('[data-toggle="collapse"]');
-            self.bindMobileEvents();
-          }
+          self.data = data;
+          var currentPage = self.pagination.twbsPagination('getCurrentPage');
+          self.setPaginationOptions(currentPage);
+          self.pagination.twbsPagination('destroy');
+          self.pagination.twbsPagination(self.defaultOptions);
         });
     })();
+  };
+  Vacancies.prototype.fillTable = function (page) {
+    var self = this;
 
-
+    var data = self.sortData(self.data, page);
+    if (self.collapseElems) {
+      self.getMobileTable(data);
+    } else {
+      self.getTable(data);
+    }
+    if (window.matchMedia('(max-width: 515px)').matches) {
+      self.tableCollapseElems = $(self.table).find('[data-toggle="collapse"]');
+      self.bindMobileEvents();
+    }
   };
 
 
@@ -89,12 +142,12 @@ $(document).ready(function () {
     var self = this;
     self.vacancies = data;
     var row;
-    for (var i = 0; i < self.numbVacancies; i++) {
+    for (var i = 0; i < data.length; i++) {
       row = '<div class="vacancies-block__table__row table--row table-row--big">\n';
       for (var key in self.vacancies[i]) {
         switch (key) {
           case "position":
-            row += '<div class="vacancies-block__table-col" data-toggle="collapse" data-target="#vacancies-block__table__xs-cols-wrap-"ad role="button" aria-expanded="false" aria-controls="filters-bar-collapse"><div class="vacancies-block__table-col__profession">' + self.vacancies[i][key] + '</div><svg class="icon icon-ARROW "><use xlink:href="assets/images/svg/symbol/sprite.svg#ARROW"></use></svg></div>';
+            row += '<div class="vacancies-block__table-col" data-toggle="collapse" data-target="#vacancies-block__table__xs-cols-wrap-" addrole="button" aria-expanded="false" aria-controls="filters-bar-collapse"><div class="vacancies-block__table-col__profession">' + self.vacancies[i][key] + '</div><svg class="icon icon-ARROW "><use xlink:href="assets/images/svg/symbol/sprite.svg#ARROW"></use></svg></div>';
             break;
           case "viewСandidates":
             row += '<div class="vacancies-block__table-col"><a class="vacancies-block__table-col__button" href="#">' + self.vacancies[i][key] + '</a></div>';
@@ -112,7 +165,7 @@ $(document).ready(function () {
     self.vacancies = data;
     var row;
     var mobileHeaders = ['Status', 'Salary'];
-    for (var i = 0; i < self.numbVacancies; i++) {
+    for (var i = 0; i < data.length; i++) {
       row = '<div class="vacancies-block__table__row table--row table-row--big">\n';
       var j = 0;
       for (var key in self.vacancies[i]) {
@@ -154,6 +207,8 @@ $(document).ready(function () {
       var currentScroll = $(this).scrollTop();
       previousScroll = self.slideFilterBar(previousScroll, currentScroll);
     });
+
+
   };
   HrAppBuilder.prototype.bindMobileEvents = function () {
     var self = this;
@@ -165,6 +220,13 @@ $(document).ready(function () {
     $(this.crossButton).on('click', function () {
       self.hideSidebar();
     });
+  };
+  Vacancies.prototype.bindCommonEvents = function () {
+    var self = this;
+    $(this.itemsCountSelect.on('change', function () {
+      self.itemsPerPage = $(this).find("option:selected").text();
+      self.getData();
+    }));
   };
   Vacancies.prototype.bindMobileEvents = function () {
     var self = this;
@@ -191,15 +253,14 @@ $(document).ready(function () {
     $(this.sidebar).removeClass('slide-in');
   };
   Vacancies.prototype.slideFilterBar = function (previousScroll, currentScroll) {
-    if (currentScroll > previousScroll || currentScroll !== 0) {
+    if (currentScroll > 200) {
       $(this.filterBar).addClass('slide-up');
-    } else {
+    } else if (currentScroll === 0) {
       $(this.filterBar).removeClass('slide-up');
     }
     return previousScroll = currentScroll;
   };
   Vacancies.prototype.slideFilterBarMobile = function (previousScroll, currentScroll) {
-    console.log(previousScroll + " " + currentScroll);
     if (currentScroll < this.table.height() / 2) {
       if (currentScroll >= previousScroll || !this.canSlide) {
         $(this.filterBar).addClass('slide-up');
