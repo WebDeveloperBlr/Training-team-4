@@ -1,6 +1,4 @@
 
-$(document).ready(function () {
-
   let rows = $(".vacancies-block__table__row");
   let cols = $(".vacancies-block__table-col");
   let experiences = ["any", "junior", "middle", "senior"];
@@ -37,23 +35,22 @@ $(document).ready(function () {
 
   //salary
   function filterSal(elem) {
-    if(!filter.curSalFrom && !filter.curSalFrom)
+    if (!filter.curSalFrom && !filter.curSalFrom)
       return true;
 
-    if (filter.curSalFrom === '')  filter.curSalFrom = 0;
-    if (filter.curSalFrom === '')  filter.curSalTo = 0;
+    if (filter.curSalFrom === '') filter.curSalFrom = 0;
+    if (filter.curSalFrom === '') filter.curSalTo = 0;
 
     //cut '$' sign
     let sum = parseInt(elem.innerText.slice(1));
 
-    if(sum >= filter.curSalFrom && sum <= filter.curSalTo)
+    if (sum >= filter.curSalFrom && sum <= filter.curSalTo)
       return true;
     else
       return false;
   };
 
-  $("#vacancies-block__filters-bar__sort-button").bind('click', toFilter());
-
+  $("#vacancies-block__filters-bar__sort-button").on('click', toFilter);
 
 
 
@@ -123,9 +120,12 @@ $(document).ready(function () {
     }
   }
 
-  $('#table--header-col--pos').bind('click', sortTable(0));
-  $('#table--header-col--exp').bind('click', sortTable(1));
-  $('#table--header-col--sal').bind('click', sortTable(2))
 
-});
+  /* пока прописан в самом теге хедера*/
+/*
+  $('#table--header-col--pos').on('click', sortTable(0));
+  $('#table--header-col--exp').on('click', sortTable(1));
+  $('#table--header-col--sal').on('click', sortTable(2));
+*/
+
 
