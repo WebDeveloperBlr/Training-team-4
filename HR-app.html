@@ -81,50 +81,112 @@
             <div class="vacancies-block__filters-bar__fields-wrapper" id="filters-bar-collapse"
                  data-parent="#vacancies-block__table">
               <div class="vacancies-block__filters-bar__filter-item">
-                <div class="vacancies-block__filters-bar__select-text">Profession</div>
+                <div class="vacancies-block__filters-bar__select-text">Position</div>
                 <div class="vacancies-block__filters-bar__input-wrap">
-                  <input class="vacancies-block__filters-bar__input" type="text">
+                  <input class="vacancies-block__filters-bar__input" id="vacancies-block__filters-bar__input--pos" type="text">
                 </div>
+              </div>
+              <div class="vacancies-block__filters-bar__filter-item">
+                <div class="vacancies-block__filters-bar__select-text">Work Experience</div>
+                <select class="vacancies-block__filters-bar__select" id="vacancies-block__filters-bar__select--exp">
+                  <option class="vacancies-block__filters-bar__select-option">Any</option>
+                  <option class="vacancies-block__filters-bar__select-option">Junior</option>
+                  <option class="vacancies-block__filters-bar__select-option">Middle</option>
+                  <option class="vacancies-block__filters-bar__select-option">Senior</option>
+                </select>
               </div>
               <div class="vacancies-block__filters-bar__filter-item">
                 <div class="vacancies-block__filters-bar__select-text">Salary</div>
                 <div class="vacancies-block__filters-bar__input-wrap justify-content-between"><span
                     class="vacancies-block__filters-bar__input-wrap__text">from</span>
-                  <input class="vacancies-block__filters-bar__input small--input" type="text" maxlength="2"><span
+                  <input class="vacancies-block__filters-bar__input small--input" id="vacancies-block__filters-bar__input--salary-from" type="text" maxlength="4"><span
                       class="vacancies-block__filters-bar__input-wrap__text">to</span>
-                  <input class="vacancies-block__filters-bar__input small--input" type="text" maxlength="2">
+                  <input class="vacancies-block__filters-bar__input small--input" id="vacancies-block__filters-bar__input--salary-to" type="text" maxlength="4">
                 </div>
-              </div>
-              <div class="vacancies-block__filters-bar__filter-item">
-                <div class="vacancies-block__filters-bar__select-text">Status</div>
-                <select class="vacancies-block__filters-bar__select">
-                  <option class="vacancies-block__filters-bar__select-option">Rejected CV</option>
-                  <option class="vacancies-block__filters-bar__select-option">Accepted CV</option>
-                  <option class="vacancies-block__filters-bar__select-option">No CV</option>
-                </select>
-              </div>
-              <div class="vacancies-block__filters-bar__dropdown">Name
-                <ul class="vacancies-block__filters-bar__dropdown-list">
-                  <li class="vacancies-block__filters-bar__dropdown-list-item"><a
-                      class="vacancies-block__filters-bar__dropdown-item-link">Nai</a></li>
-                  <li class="vacancies-block__filters-bar__dropdown-list-item">Name</li>
-                  <li class="vacancies-block__filters-bar__dropdown-list-item">Name</li>
-                </ul>
               </div>
               <div class="vacancies-block__filters-bar__pagination"><span>1</span><span> of</span><span> 12</span></div>
               <div class="vacancies-block__filters-bar__sort-button-wrapper">
-                <div class="vacancies-block__filters-bar__sort-button">Filter</div>
+                <div class="vacancies-block__filters-bar__sort-button" id="vacancies-block__filters-bar__sort-button">Filter</div>
               </div>
             </div>
           </div>
         </div>
         <div class="vacancies-block__table" id="vacancies-block__table">
           <div class="vacancies-block__table__header-row table--row">
-            <div class="vacancies-block__table-col table--header-col">Profession</div>
-            <div class="vacancies-block__table-col table--header-col">Requirements</div>
-            <div class="vacancies-block__table-col table--header-col">Our advantages</div>
+            <div class="vacancies-block__table-col table--header-col" id="table--header-col--pos">Position</div>
+            <div class="vacancies-block__table-col table--header-col" id="table--header-col--exp">Work Experience</div>
+            <div class="vacancies-block__table-col table--header-col" id="table--header-col--sal">Salary</div>
             <div class="vacancies-block__table-col table--header-col">Contact us</div>
           </div>
+
+          <div class="vacancies-block__table__row table--row table-row--big">
+            <div class="vacancies-block__table-col">Javascript Developer</div>
+            <div class="vacancies-block__table-col">Junior</div>
+            <div class="vacancies-block__table-col">$200</div>
+            <div class="vacancies-block__table-col"><a href="">View candidates</a></div>
+          </div>
+          <div class="vacancies-block__table__row table--row table-row--big">
+            <div class="vacancies-block__table-col">Javascript Developer</div>
+            <div class="vacancies-block__table-col">Middle</div>
+            <div class="vacancies-block__table-col">$3000</div>
+            <div class="vacancies-block__table-col"><a href="">View candidates</a></div>
+          </div>
+          <div class="vacancies-block__table__row table--row table-row--big">
+            <div class="vacancies-block__table-col">Javascript Developer</div>
+            <div class="vacancies-block__table-col">Senior</div>
+            <div class="vacancies-block__table-col">$2000</div>
+            <div class="vacancies-block__table-col"><a href="">View candidates</a></div>
+          </div>
+          <div class="vacancies-block__table__row table--row table-row--big">
+            <div class="vacancies-block__table-col">Frontend Developer</div>
+            <div class="vacancies-block__table-col">Junior</div>
+            <div class="vacancies-block__table-col">$800</div>
+            <div class="vacancies-block__table-col"><a href="">View candidates</a></div>
+          </div>
+          <div class="vacancies-block__table__row table--row table-row--big">
+            <div class="vacancies-block__table-col">Frontend Developer</div>
+            <div class="vacancies-block__table-col">Middle</div>
+            <div class="vacancies-block__table-col">$1000</div>
+            <div class="vacancies-block__table-col"><a href="">View candidates</a></div>
+          </div>
+          <div class="vacancies-block__table__row table--row table-row--big">
+            <div class="vacancies-block__table-col">Frontend Developer</div>
+            <div class="vacancies-block__table-col">Junior</div>
+            <div class="vacancies-block__table-col">$320</div>
+            <div class="vacancies-block__table-col"><a href="">View candidates</a></div>
+          </div>
+          <div class="vacancies-block__table__row table--row table-row--big">
+            <div class="vacancies-block__table-col">Java Developer</div>
+            <div class="vacancies-block__table-col">Middle</div>
+            <div class="vacancies-block__table-col">$2200</div>
+            <div class="vacancies-block__table-col"><a href="">View candidates</a></div>
+          </div>
+          <div class="vacancies-block__table__row table--row table-row--big">
+            <div class="vacancies-block__table-col">Java Developer</div>
+            <div class="vacancies-block__table-col">Senior</div>
+            <div class="vacancies-block__table-col">$1500</div>
+            <div class="vacancies-block__table-col"><a href="">View candidates</a></div>
+          </div>
+          <div class="vacancies-block__table__row table--row table-row--big">
+            <div class="vacancies-block__table-col">C/C++ Developer</div>
+            <div class="vacancies-block__table-col">Middle</div>
+            <div class="vacancies-block__table-col">$3500</div>
+            <div class="vacancies-block__table-col"><a href="">View candidates</a></div>
+          </div>
+          <div class="vacancies-block__table__row table--row table-row--big">
+            <div class="vacancies-block__table-col">Java Developer</div>
+            <div class="vacancies-block__table-col">Junior</div>
+            <div class="vacancies-block__table-col">$400</div>
+            <div class="vacancies-block__table-col"><a href="">View candidates</a></div>
+          </div>
+          <div class="vacancies-block__table__row table--row table-row--big">
+            <div class="vacancies-block__table-col">Angular/React Developer</div>
+            <div class="vacancies-block__table-col">Middle</div>
+            <div class="vacancies-block__table-col">$500</div>
+            <div class="vacancies-block__table-col"><a href="">View candidates</a></div>
+          </div>
+        </div>
+
 
           <div class="vacancies-block__table-editor">
             <div class="vacancies-block__table-editor__col">
@@ -159,7 +221,8 @@
     </div>
   </section>
 </section>
-<script src="assets/js/libs.min.js"></script>
+<script src="assets/js/jquery-1.9.0.min.js"></script>
 <script src="assets/js/main.js"></script>
+<!-- <script src="assets/js/filters.js"></script> -->
 </body>
 </html>
