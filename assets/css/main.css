@@ -439,21 +439,21 @@ template {
 
 @font-face {
     font-family: 'Ubuntu';
-    src: local("Ubuntu"), url("/assets/fonts/ubuntu.woff2") format("woff2"), url("/assets/fonts/ubuntu.woff") format("woff"), url("/assets/fonts/ubuntu.ttf") format("truetype");
+    src: local("Ubuntu"), url("../fonts/ubuntu.woff2") format("woff2"), url("../fonts/ubuntu.woff") format("woff"), url("../fonts/ubuntu.ttf") format("truetype");
     font-weight: 400;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Ubuntu';
-    src: local("Ubuntu Light"), local("Ubuntu-Light"), url("/assets/fonts/ubuntulight.woff2") format("woff2"), url("/assets/fonts/ubuntulight.woff") format("woff"), url("/assets/fonts/ubuntulight.ttf") format("truetype");
+    src: local("Ubuntu Light"), local("Ubuntu-Light"), url("../fonts/ubuntulight.woff2") format("woff2"), url("../fonts/ubuntulight.woff") format("woff"), url("../fonts/ubuntulight.ttf") format("truetype");
     font-weight: 300;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Ubuntu';
-    src: local("Ubuntu Medium"), local("Ubuntu-Medium"), url("/assets/fonts/ubuntumedium.woff2") format("woff2"), url("/assets/fonts/ubuntumedium.woff") format("woff"), url("/assets/fonts/ubuntumedium.ttf") format("truetype");
+    src: local("Ubuntu Medium"), local("Ubuntu-Medium"), url("../fonts/ubuntumedium.woff2") format("woff2"), url("../fonts/ubuntumedium.woff") format("woff"), url("../fonts/ubuntumedium.ttf") format("truetype");
     font-weight: 500;
     font-style: normal;
 }
@@ -11184,7 +11184,8 @@ input:focus:-ms-input-placeholder {
 .vacancies-block__filters-bar-2fields-wrapper-tablet{
     display:none;
 }
-@media  (min-device-aspect-ratio: 4/3) and (max-width: 1290px),
+@media  (min-device-aspect-ratio: 4/3) and (max-width: 1290px)
+         and (min-width:750px),
         (max-width:1290px) and (min-width:750px) {
 
     body{
@@ -11216,5 +11217,43 @@ input:focus:-ms-input-placeholder {
         margin-left:35%;
     }
 }
+/*changed  paths for fonts*/
+/*fixed a little bug with not very accurate media query for tablets*/
+
+/* .........Candidate EXPERIENCE PART STARTS HERE                 */
+
+.cands-exp{
+    width:50%;
+    display:flex;
+    align-items:flex-start;
+    margin:40px;
+    margin-left:350px;
+    flex-wrap:wrap;
+}
+.cands-border{
+    border:1px solid black
+}
+.cands-exp__header-wrapper{
+    flex-basis:100%;
+}
+.cands-exp__header{
+    display:inline-block;
+    margin-top:30px;
+    margin-left:15%;
+}
+.flex{
+    display:flex;
+}
+.cands-exp__left-column{
+    flex-basis:30%;
+    min-height:300px;
+    flex-direction:column;
+}
+.cands-exp__right-column{
+    flex-basis:70%;
+    min-height:300px;
+    flex-direction:column;
+}
+
 
 
