@@ -10746,7 +10746,7 @@ input:focus:-ms-input-placeholder {
 }
 
 .small--input {
-    width: 40px;
+    width: 60px;
 }
 
 @media (min-width: 515px) {

@@ -68,9 +68,12 @@ $(document).ready(function () {
     this.pagination = $(this.section).find('#pagination');
     this.itemsPerPage = +($(this.section).find("#rows-per-page-vacancies option:selected").text());
     this.itemsInformation = $(this.table).find('.vacancies-block__table-editor__pagination');
+    this.filterItems = $(this.filterBar).find('[data-attr="filter-item"]');
 
     //Data - our data which will be in the table
     this.data = [];
+
+    this.filterObj = [];
     //defaultOptions - it's options for pagination
     this.defaultOptions = {};
     //async initializing data and creating pagination
@@ -89,12 +92,56 @@ $(document).ready(function () {
     this.bindCommonEvents();
   }
 
+  Vacancies.prototype.bindEvents = function () {
+    var self = this;
+
+    var previousScroll = 0;
+    $(this.table).on('scroll', function (event) {
+      var currentScroll = $(this).scrollTop();
+      previousScroll = self.slideFilterBar(previousScroll, currentScroll);
+    });
+
+    $('#table--header-col--pos').on('click', self.sortTable.bind(null, 0));
+    $('#table--header-col--exp').on('click', self.sortTable.bind(null, 1));
+    $('#table--header-col--sal').on('click', self.sortTable.bind(null, 2));
+
+
+    self.filterItems.on('input', function () {
+      self.InitializeFilterObj(self.filterItems);
+      self.getData();
+    });
+  };
+  Vacancies.prototype.filterTable = function () {
+    var self = this;
+    var newData = [];
+    var i = 0;
+    this.data.forEach(function (item) {
+      //if(~item.position.toLowerCase().indexOf(self.filterObj[0]))
+      console.log(self.filterObj[0].toLowerCase());
+      if (
+        (self.filterObj[1].toLowerCase() === "any" || ~item.workExperience.toLowerCase().indexOf(self.filterObj[1].toLowerCase())) &&
+        ~item.position.toLowerCase().indexOf(self.filterObj[0].toLowerCase()) &&
+        (self.filterObj[2] === "" || (+item.salary.slice(1) > +self.filterObj[2])) &&
+        (self.filterObj[3] === "" || (+item.salary.slice(1) < +self.filterObj[3]))
+      )
+        newData.push(item);
+    });
+    self.data = newData;
+  };
+
+  Vacancies.prototype.InitializeFilterObj = function (elem) {
+    var self = this;
+    $(elem).each(function (index, elem) {
+      self.filterObj[index] = elem.value;
+    });
+  };
+
   //change label text like '1-30 of 60' on table-editor
   Vacancies.prototype.addItemInformation = function (length, page) {
     var lastItem;
-    if(this.itemsPerPage * page>length){
+    if (this.itemsPerPage * page > length) {
       lastItem = length;
-    }else{
+    } else {
       lastItem = this.itemsPerPage * page;
     }
     this.itemsInformation.html((this.itemsPerPage * (page - 1) + 1) + ' - ' + lastItem + ' of ' + length);
@@ -146,14 +193,27 @@ $(document).ready(function () {
       })
         .done(function (data) {
           self.data = data;
-          var currentPage = self.pagination.twbsPagination('getCurrentPage');
-          self.setPaginationOptions(currentPage);
-          self.pagination.twbsPagination('destroy');
-          self.pagination.twbsPagination(self.defaultOptions);
+          if (self.isFilter()) {
+            self.filterTable();
+          }
+          if (self.data.length > 0) {
+            var currentPage = self.pagination.twbsPagination('getCurrentPage');
+            self.setPaginationOptions(currentPage);
+            self.pagination.twbsPagination('destroy');
+            self.pagination.twbsPagination(self.defaultOptions);
+          }
         });
     })();
   };
-
+  Vacancies.prototype.isFilter = function () {
+    var f = false;
+    this.filterObj.forEach(function (value) {
+      if (value !== "" && value !== "Any") {
+        f = true;
+      }
+    });
+    return f;
+  };
   // fill table func
   Vacancies.prototype.fillTable = function (page) {
     var self = this;
@@ -236,19 +296,7 @@ $(document).ready(function () {
   HrAppBuilder.prototype.bindEvents = function () {
 
   };
-  Vacancies.prototype.bindEvents = function () {
-    var self = this;
 
-    var previousScroll = 0;
-    $(this.table).on('scroll', function (event) {
-      var currentScroll = $(this).scrollTop();
-      previousScroll = self.slideFilterBar(previousScroll, currentScroll);
-    });
-
-    $('#table--header-col--pos').on('click', self.sortTable.bind(null, 0));
-    $('#table--header-col--exp').on('click', self.sortTable.bind(null, 1));
-    $('#table--header-col--sal').on('click', self.sortTable.bind(null, 2));
-  };
   HrAppBuilder.prototype.bindMobileEvents = function () {
     var self = this;
 
@@ -322,7 +370,7 @@ $(document).ready(function () {
         /* If no switching has been done AND the direction is "asc",
         set the direction to "desc" and run the while loop again. */
 
-        if (switchcount == 0 && dir === "asc") {
+        if (switchcount === 0 && dir === "asc") {
           dir = "desc";
           switching = true;
         }
