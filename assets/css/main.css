@@ -11223,131 +11223,106 @@ input:focus:-ms-input-placeholder {
 /* .........Candidate EXPERIENCE PART STARTS HERE                 */
 
 .cands-exp{
-    width:50%;
     display:flex;
-    align-items:flex-start;
-    margin:40px;
-    margin-left:50px;
+    margin-left:100px;
+    width:50%;
+    margin-top:100px;
     flex-wrap:wrap;
+    margin-bottom:100px;
 }
-.cands-border{
-    border:1px solid black;
-}
-.timeline{
-    border-left:1px solid lightslategray;
-}
-.timeline-dashed{
-    border-left:1px dashed lightslategray;
-}
+
 .cands-exp__header-wrapper{
     flex-basis:100%;
     margin-bottom:30px;
+    opacity:0.8;
 }
 .cands-exp__header{
     display:inline-block;
     margin-top:30px;
-    margin-left:15%;
+    margin-left:16%;
+    font-size:1.5rem;
+
 }
-.flex{
-    display:flex;
-}
-.cands-exp__left-column{
-    flex-basis:30%;
-    min-height:300px;
-    flex-wrap:wrap;
-}
-.cands-exp__right-column{
-    flex-basis:70%;
-    min-height:300px;
-    flex-wrap:wrap;
-}
-.cands-exp__layout-quarter{
+.cands-exp__row{
     flex-basis:100%;
     display:flex;
-    flex-wrap:wrap;
-    justify-content: flex-end;
-    box-sizing:border-box;
-    padding-right:10px;
 }
 
-.cands-exp__right-column-item{
-    width:90%;
-    margin-right:auto;
-    margin-left:auto;
-    border:1px solid gray;
-    border-radius:5px;
-    box-sizing: border-box;
-    padding-left:5%;
-    padding-right:5%;
-    margin-top:-10px;
-    margin-bottom:15px;
+.cands-exp__row-left-part{
+    flex-basis:40%;
+    display:flex;
+    justify-content:flex-end;
 }
-.cands-exp_margin-fix{
+
+.cands-exp__row-right-part{
+    flex-basis:60%;
+    border-left:1px solid #bfb0b0;
+    box-sizing:border-box;
+    padding-left: 3%;
+    padding-right: 5%;
     position:relative;
-    left:1px;
 }
-.cands-exp__right-column-item-header{
+
+.cands-exp__right-part-item-header{
     text-decoration:underline;
     font-weight:bold;
+    font-size:1.1rem;
+}
+
+.cands-exp__right-part-item-description{
+    line-height:1.25rem;
+    font-size:0.97rem;
+}
+
+.cands-exp__left-part-item{
     box-sizing:border-box;
+    padding-right:7%;
+    margin-top:-10px;
+    flex-basis:60%;
 }
-.pos-relative{
-    position:relative;
+
+.cands-exp__right-part-item{
+    margin-top:-10px;
+    border:1px solid gray;
+    border-radius:5px;
+    box-sizing:border-box;
+    padding-left:3%;
+    padding-right:3%;
+    margin-bottom:20px;
+    box-shadow:1px 0px 2px 1px #bfb0b0;
 }
-.cands-exp__first-time-point::before{
+.cands-exp__row-right-part::before{
     content:"";
-    display:block;
-    width:10px;
-    height:10px;
-    box-sizing: border-box;
+    width:9px;
+    height:9px;
     border-radius:50%;
-    border:1px solid green;
     background-color:white;
+    border:3px solid #bfb0b0;
     position:absolute;
     top:-2px;
     left:-5px;
 }
-.cands-exp__middle-time-point::before{
-    content:"";
-    display:block;
-    width:10px;
-    height:10px;
-    box-sizing: border-box;
-    border-radius:50%;
-    border:1px solid green;
-    background-color:white;
-    position:absolute;
-    top:2px;
-    left:-5px;
-}
-.cands-exp__last-time-point{
-    position:relative;
-}
-.cands-exp__last-time-point::before{
-    content:"";
-    display:block;
-    width:10px;
-    height:10px;
-    box-sizing: border-box;
-    border-radius:50%;
-    border:1px solid green;
-    background-color:white;
-    position:absolute;
-    top:-5px;
-    left:-5px;
-}
-.cands-exp__left-column-item{
-    text-align:right;
-    margin-top:-10px;
-    flex-basis:100%;
 
+.cands-exp__left-part-date{
+    border:1px solid gray;
+    border-radius:5px;
+    text-align:center;
+    box-shadow:inset -1px 0px 2px 0px #bfb0b0;
+    font-size:0.9rem;
 }
-.cands-exp__left-column-item-header{
-    border-radius:8px;
-    border:1px solid black;
-    display:inline-block;
-    padding:2px 4px;
+
+.cands-exp__left-part-description{
+    text-align:right;
+    font-size:0.8rem;
+    color:#595959;
+    opacity:0.8;
 }
-.cands-exp__left-column-item-description{
-    font-size:0.85rem;
+
+.dashed-left-border{
+    border-left-style:dashed;
+}
+.no-left-border{
+    border-left:none;
+    position:relative;
+    left:1px;
 }
