@@ -10075,7 +10075,7 @@ input:focus:-ms-input-placeholder {
     flex-basis: 200px;
     text-align: center;
     color: #343434;
-    min-height: 100vh;
+    min-height: 80vh;
     padding: 40px 0;
     -webkit-box-shadow: -2px 0px 10px 1px rgba(0, 0, 0, 0.4);
     box-shadow: -2px 0px 10px 1px rgba(0, 0, 0, 0.4);
@@ -10592,7 +10592,7 @@ input:focus:-ms-input-placeholder {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    min-height: 95vh;
+    min-height: 85vh;
     /*display: inline-block;*/
     /*width: 80%;*/
 }
@@ -10755,4 +10755,30 @@ input:focus:-ms-input-placeholder {
 }
 .cands-exp__textarea-lfet-part-fix{
     height:50%;
+}
+
+.editing-icon{
+    height:55px;
+    width:55px;
+    border-radius:50%;
+    opacity:1;
+    position:fixed;
+    right:100px;
+    bottom:100px;
+    overflow:hidden;
+    background-color:#E3BFBF;
+    text-align:center;
+    padding-top:7px;
+    box-sizing:border-box;
+    box-shadow:2px 1px 1px 2px #E3BFBF;
+    cursor:pointer;
+    padding-left:3px;
+}
+
+.editing-icon__image{
+    z-index:100;
+    width:40px;
+    height:40px;
+    margin-left:auto;
+    margin-right:auto;
 }
