@@ -10782,3 +10782,11 @@ input:focus:-ms-input-placeholder {
     margin-left:auto;
     margin-right:auto;
 }
+
+.cands__submit{
+    z-index:200;
+    padding:0;
+    border:none;
+    color:black;
+    font-size:1.1rem;
+}
