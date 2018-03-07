@@ -11326,3 +11326,8 @@ input:focus:-ms-input-placeholder {
     position:relative;
     left:1px;
 }
+.cands-exp__right-part-item-description textarea{
+    width:100%;
+    border:none;
+    resize:vertical;
+}
