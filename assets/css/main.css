@@ -10087,13 +10087,16 @@ input:focus:-ms-input-placeholder {
     z-index: 999;
     background-color: #ebebeb;
     -ms-flex-preferred-size: 230px;
-    flex-basis: 230px;
+    flex-basis:230px ;
     text-align: center;
     color: #343434;
     height: 100%;
     padding: 40px 0;
     -webkit-box-shadow: -2px 0px 10px 1px rgba(0, 0, 0, 0.4);
     box-shadow: -2px 0px 10px 1px rgba(0, 0, 0, 0.4);
+}
+.cands-sidebar-fix{
+    flex-basis:650px;
 }
 
 .hr-app-section__sidebar .icon-CLOSE {
@@ -11287,6 +11290,7 @@ input:focus:-ms-input-placeholder {
   outline: none;
   font-size: 0.9375rem;
   font-weight: 600;
+    margin-bottom:20px;
 }
 
 .candidate-profile__img-preview{
@@ -11322,6 +11326,8 @@ input:focus:-ms-input-placeholder {
   font-weight:600;
   color: #cccccc;
 }
+
+
 
 .candidate-profile__hr-app__contact-info{
   display: flex;
@@ -11359,6 +11365,8 @@ input:focus:-ms-input-placeholder {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  max-width:1000px;
+    align-items:flex-start;
 }
 
 .candidate-profile__hr-app__experience{
@@ -11411,11 +11419,11 @@ input:focus:-ms-input-placeholder {
 
 .cands-exp{
   display:flex;
-  width:100%;
+  width:110%;
   flex-wrap:wrap;
   min-height: 65vh;
   margin:0;
-  overflow: scroll;
+  overflow-y: scroll;
 }
 
 .cands-exp__header-wrapper{
@@ -11534,7 +11542,7 @@ input:focus:-ms-input-placeholder {
   opacity:1;
   position:fixed;
   right:100px;
-  bottom:100px;
+  bottom:170px;
   overflow:hidden;
   background-color:#E3BFBF;
   text-align:center;
