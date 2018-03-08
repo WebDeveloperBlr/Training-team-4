@@ -9939,6 +9939,7 @@ input:focus:-ms-input-placeholder {
     -ms-flex-preferred-size: 50%;
     flex-basis: 50%;
     text-align: center;
+    z-index:300;
 }
 
 .createProfile__edit-block__right-col-wrapper {
@@ -10249,8 +10250,8 @@ input:focus:-ms-input-placeholder {
 .hr-app-section__right-bar {
     -webkit-box-flex: 1;
     -ms-flex-positive: 1;
-    flex-grow: 1;
-    max-width: 100%;
+    flex-basis:80%;
+
 }
 
 .hr-app-section__right-bar-wrap {
@@ -11264,7 +11265,7 @@ input:focus:-ms-input-placeholder {
 
 .candidate-profile__hr-app__left-part{
   border-right: 1px solid #EBEBEB;
-  min-height: 100vh;
+
 
 }
 
@@ -11279,8 +11280,9 @@ input:focus:-ms-input-placeholder {
   color: #6b6b6b;
 }
 
-.candidate-profile__hr-app__candidate-preview input{
-  display: none;
+.hr-app-section input{
+    outline:none;
+    border-radius:5px;
 }
 
 .candidate-profile__cv-status{
@@ -11339,9 +11341,7 @@ input:focus:-ms-input-placeholder {
   color: #6b6b6b;
 }
 
-.candidate-profile__hr-app__contact-info input{
-  display: none;
-}
+
 
 .contact-info__text{
   margin-bottom: 0.925rem;
@@ -11364,9 +11364,10 @@ input:focus:-ms-input-placeholder {
 .candidate-profile__hr-app__right-part{
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
-  max-width:1000px;
-    align-items:flex-start;
+  width:auto;
+    align-items:center;
+    box-sizing:border-box;
+    padding-left:120px;
 }
 
 .candidate-profile__hr-app__experience{
@@ -11386,7 +11387,6 @@ input:focus:-ms-input-placeholder {
   width: 100%;
   border-top: 1px solid #EBEBEB;
   min-height: 35vh;
-  position: absolute;
   bottom: 0;
 }
 
@@ -11424,6 +11424,8 @@ input:focus:-ms-input-placeholder {
   min-height: 65vh;
   margin:0;
   overflow-y: scroll;
+    box-sizing:border-box;
+    padding-left:30px;
 }
 
 .cands-exp__header-wrapper{
@@ -11569,3 +11571,6 @@ input:focus:-ms-input-placeholder {
   font-size:1.1rem;
 }
 
+.flex-grow-0{
+    flex-grow:0;
+}
