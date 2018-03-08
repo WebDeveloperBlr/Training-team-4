@@ -9,41 +9,60 @@
   <link rel="stylesheet" type="text/css" href="assets/css/main.css">
 </head>
 <body>
-<form>
 <section class="hr-app-section">
   <div class="hr-app-section__sidebar">
+    <svg class="icon icon-CLOSE ">
+      <use xlink:href="assets/images/svg/symbol/sprite.svg#CLOSE"></use>
+    </svg>
     <div class="hr-app-section__sidebar-wrapper">
       <h1 class="hr-app-section__sidebar-header">hr app</h1>
       <ul class="hr-app-section__sidebar-list">
-        <li class="hr-app-section__sidebar-list-item"><a class="hr-app-section__sidebar-item-link" href="#">Interview</a>
-        </li>
+        <li class="hr-app-section__sidebar-list-item"><a class="hr-app-section__sidebar-item-link"
+                                                         href="#">Interview</a></li>
         <li class="hr-app-section__sidebar-list-item active"><a class="hr-app-section__sidebar-item-link"
                                                                 href="#">Vacancies</a></li>
-        <li class="hr-app-section__sidebar-list-item"><a class="hr-app-section__sidebar-item-link" href="#">Candidates</a>
-        </li>
-        <li class="hr-app-section__sidebar-list-item"><a class="hr-app-section__sidebar-item-link" href="#">Management</a>
+        <li class="hr-app-section__sidebar-list-item"><a class="hr-app-section__sidebar-item-link"
+                                                         href="#">Candidates</a></li>
+        <li class="hr-app-section__sidebar-list-item"><a class="hr-app-section__sidebar-item-link"
+                                                         href="#">Management</a></li>
+        <li class="hr-app-section__sidebar-list-item mobile-item">
+          <a class="hr-app-section__sidebar-item-link" href="#">Notifications
+            <svg class="icon icon-BELL ">
+              <use xlink:href="assets/images/svg/symbol/sprite.svg#BELL"></use>
+            </svg>
+          </a>
         </li>
       </ul>
+      <a class="hr-app-section__exit-button mobile-item" href="#">Exit
+        <svg class="icon icon-exit ">
+          <use xlink:href="assets/images/svg/symbol/sprite.svg#exit"></use>
+        </svg>
+      </a>
     </div>
   </div>
   <section class="hr-app-section__right-bar">
     <div class="hr-app-section__right-bar-wrap">
       <div class="hr-app-section__right-bar__search-bar">
+        <div class="hr-app-section__right-bar__search-bar__hamburger-wrapper">
+          <svg class="icon icon-HAMBURGER ">
+            <use xlink:href="assets/images/svg/symbol/sprite.svg#HAMBURGER"></use>
+          </svg>
+        </div>
         <div class="hr-app-section__right-bar__search-field-wrap">
           <svg class="icon icon-SEARCH ">
             <use xlink:href="assets/images/svg/symbol/sprite.svg#SEARCH"></use>
           </svg>
           <form class="hr-app-section__right-bar__search-form" action="">
             <input class="hr-app-section__right-bar__search-input" type="search" id="vacancies-search"
-                   placeholder="Search for vacancies, candidates...">
+                   placeholder="Search...">
           </form>
         </div>
         <div class="hr-app-section__right-bar__icon-panel-wrap">
           <svg class="icon icon-BELL ">
             <use xlink:href="assets/images/svg/symbol/sprite.svg#BELL"></use>
           </svg>
-          <svg class="icon icon-MAXIMIZE ">
-            <use xlink:href="assets/images/svg/symbol/sprite.svg#MAXIMIZE"></use>
+          <svg class="icon icon-exit ">
+            <use xlink:href="assets/images/svg/symbol/sprite.svg#exit"></use>
           </svg>
         </div>
       </div>
@@ -63,7 +82,7 @@
               <option>New</option>
               <option>CV-Rejected</option>
             </select>
-            <div class="candidate-profile__img-preview"><img width="100%" height="100%" src="#"></div>
+            <div class="candidate-profile__img-preview"><img src="http://img.x-hw.by/news/2017/244.jpg"></div>
             <div class="candidate-profile__candidate-position">
               <span>Java Developer</span>
               <input type="text">
@@ -223,7 +242,7 @@ Education
                     Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-
                   </div>
                   <textarea rows="3" class=
-                     "cands-exp__right-part-item-description-textarea
+                    "cands-exp__right-part-item-description-textarea
                   display-none">
 Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-
                   </textarea>
@@ -232,19 +251,30 @@ Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-
             </div>
           </div>
           <div class="candidate-profile__hr-app__skills">
+
+            <div class="skills__text">Skills</div>
+            <div class="skills__elements">
+              <span class="skills__elements__decoration">JavaScript</span>
+              <span class="skills__elements__decoration">Node.js</span>
+              <span class="skills__elements__decoration">Java</span>
+              <span class="skills__elements__decoration">Maven</span>
+              <span class="skills__elements__decoration">JSF</span>
+              <span class="skills__elements__decoration">JPA</span>
+              <span class="skills__elements__decoration">Design Patterns</span>
+            </div>
             <input class="cands__submit editing-icon display-none" value="Save" type="submit">
             <div class="editing-icon">
               <img class="editing-icon__image" src="assets/images/edit.png">
             </div>
-            <div class="skills__text">Skills</div>
-            <div class="skills__elements"><span class="skills__elements__decoration">JavaScript</span> <span class="skills__elements__decoration">Node.js</span> <span class="skills__elements__decoration">Java</span>
-              <span class="skills__elements__decoration">Maven</span> <span class="skills__elements__decoration">JSF</span> <span class="skills__elements__decoration">JPA</span> <span class="skills__elements__decoration">Design Patterns</span></div>
           </div>
         </div>
       </div>
     </div>
   </section>
 </section>
-</form>
+<script src="assets/js/libs.min.js"></script>
+<script src="assets/js/main.js"></script>
+
+
 </body>
 </html>
