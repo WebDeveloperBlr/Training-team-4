@@ -438,5 +438,19 @@ $(document).ready(function () {
 });
 
 
+$( "#cands-editing-icon" ).click(function() {
+    var allInputs=document.getElementsByTagName('input');
+    for( var i=0; i<allInputs.length; i++ ){
+      $(allInputs[i]).removeClass('display-none');
+    }
+    var allTextareas=document.getElementsByTagName('textarea');
+    for( i=0; i<allTextareas.length; i++ ){
+      $(allTextareas[i]).removeClass('display-none');
+    }
+    var hidden=document.getElementsByClassName('to-be-hidden');
+    for( i=0; i<hidden.length; i++ ){
+        $(hidden[i]).addClass('display-none');
+    }
+});
 
 
