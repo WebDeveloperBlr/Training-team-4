@@ -11337,6 +11337,7 @@ input:focus:-ms-input-placeholder {
   .candidate-profile__hr-app__candidate-preview {
     flex-direction: column !important;
     flex-wrap: nowrap;
+    min-width: 320px;
   }
 }
 
