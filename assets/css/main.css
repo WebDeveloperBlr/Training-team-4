@@ -11364,9 +11364,14 @@ input:focus:-ms-input-placeholder {
 }
 
 @media (max-width: 1024px) {
-  .candidate-profile__cv-status {
+  .candidate-profile__cv-wrapper {
     flex-basis: 100%;
-    margin: 0.5rem 0;
+    display: flex;
+    justify-content: center;
+  }
+
+  .candidate-profile__cv-status {
+    width: auto;
   }
 }
 
@@ -11395,6 +11400,10 @@ input:focus:-ms-input-placeholder {
   }
 }
 
+.candidate-profile__candidate-wrapper {
+
+}
+
 .candidate-profile__candidate-position {
   color: #cccccc;
   font-size: 0.9375rem;
@@ -11417,6 +11426,10 @@ input:focus:-ms-input-placeholder {
     font-size: 1.7rem !important;
     margin-bottom: 0.5em;
   }
+
+  .candidate-profile__candidate-wrapper {
+    margin-top: 1em;
+  }
 }
 
 .candidate-profile__cv-term {
@@ -11427,6 +11440,8 @@ input:focus:-ms-input-placeholder {
   font-weight: 600;
   color: #cccccc;
 }
+
+
 
 .candidate-profile__hr-app__contact-info {
   display: flex;
@@ -11475,8 +11490,8 @@ input:focus:-ms-input-placeholder {
 }
 
 @media (max-width: 1024px) {
-  .candidate-profile__hr-app__right-part {
-
+  .col-9.candidate-profile__hr-app__right-part {
+    max-width: 100%;
   }
 }
 
