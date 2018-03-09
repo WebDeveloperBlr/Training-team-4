@@ -9,260 +9,247 @@
   <link rel="stylesheet" type="text/css" href="assets/css/main.css">
 </head>
 <body>
-<section class="hr-app-section">
-  <div class="hr-app-section__sidebar">
-    <svg class="icon icon-CLOSE ">
-      <use xlink:href="assets/images/svg/symbol/sprite.svg#CLOSE"></use>
-    </svg>
-    <div class="hr-app-section__sidebar-wrapper">
-      <h1 class="hr-app-section__sidebar-header">hr app</h1>
-      <ul class="hr-app-section__sidebar-list">
-        <li class="hr-app-section__sidebar-list-item"><a class="hr-app-section__sidebar-item-link"
-                                                         href="#">Interview</a></li>
-        <li class="hr-app-section__sidebar-list-item active"><a class="hr-app-section__sidebar-item-link"
-                                                                href="#">Vacancies</a></li>
-        <li class="hr-app-section__sidebar-list-item"><a class="hr-app-section__sidebar-item-link"
-                                                         href="#">Candidates</a></li>
-        <li class="hr-app-section__sidebar-list-item"><a class="hr-app-section__sidebar-item-link"
-                                                         href="#">Management</a></li>
-        <li class="hr-app-section__sidebar-list-item mobile-item">
-          <a class="hr-app-section__sidebar-item-link" href="#">Notifications
-            <svg class="icon icon-BELL ">
+<form>
+  <section class="hr-app-section">
+    <div class="hr-app-section__sidebar flex-grow-0">
+      <svg class="icon icon-CLOSE ">
+        <use xlink:href="assets/images/svg/symbol/sprite.svg#CLOSE"></use>
+      </svg>
+      <div class="hr-app-section__sidebar-wrapper">
+        <h1 class="hr-app-section__sidebar-header">hr app</h1>
+        <ul class="hr-app-section__sidebar-list">
+          <li class="hr-app-section__sidebar-list-item"><a class="hr-app-section__sidebar-item-link" href="#">Interview</a></li>
+          <li class="hr-app-section__sidebar-list-item"><a class="hr-app-section__sidebar-item-link" href="#">Vacancies</a></li>
+          <li class="hr-app-section__sidebar-list-item active"><a class="hr-app-section__sidebar-item-link" href="#">Candidates</a></li>
+          <li class="hr-app-section__sidebar-list-item"><a class="hr-app-section__sidebar-item-link" href="#">Management</a></li>
+          <li class="hr-app-section__sidebar-list-item mobile-item">
+            <a class="hr-app-section__sidebar-item-link" href="#">Notifications
+              <svg class="icon icon-BELL ">
               <use xlink:href="assets/images/svg/symbol/sprite.svg#BELL"></use>
             </svg>
-          </a>
-        </li>
-      </ul>
-      <a class="hr-app-section__exit-button mobile-item" href="#">Exit
-        <svg class="icon icon-exit ">
-          <use xlink:href="assets/images/svg/symbol/sprite.svg#exit"></use>
-        </svg>
-      </a>
-    </div>
-  </div>
-  <section class="hr-app-section__right-bar">
-    <div class="hr-app-section__right-bar-wrap">
-      <div class="hr-app-section__right-bar__search-bar">
-        <div class="hr-app-section__right-bar__search-bar__hamburger-wrapper">
-          <svg class="icon icon-HAMBURGER ">
-            <use xlink:href="assets/images/svg/symbol/sprite.svg#HAMBURGER"></use>
-          </svg>
-        </div>
-        <div class="hr-app-section__right-bar__search-field-wrap">
-          <svg class="icon icon-SEARCH ">
-            <use xlink:href="assets/images/svg/symbol/sprite.svg#SEARCH"></use>
-          </svg>
-          <form class="hr-app-section__right-bar__search-form" action="">
-            <input class="hr-app-section__right-bar__search-input" type="search" id="vacancies-search"
-                   placeholder="Search...">
-          </form>
-        </div>
-        <div class="hr-app-section__right-bar__icon-panel-wrap">
-          <svg class="icon icon-BELL ">
-            <use xlink:href="assets/images/svg/symbol/sprite.svg#BELL"></use>
-          </svg>
+            </a>
+          </li>
+        </ul>
+        <a class="hr-app-section__exit-button mobile-item" href="#">Exit
           <svg class="icon icon-exit ">
             <use xlink:href="assets/images/svg/symbol/sprite.svg#exit"></use>
           </svg>
-        </div>
+        </a>
       </div>
-      <section class="candidate-profile-block">
-        <div class="candidate-profile__hr-app__nav-bar">
-          <nav aria-label="breadcrumb">
-            <ol class="profile-breadcrumb">
-              <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Candidates</a></li>
-              <li class="breadcrumb-item active">Jimmy Carr</li>
-            </ol>
-          </nav>
+    </div>
+    <section class="hr-app-section__right-bar">
+      <div class="hr-app-section__right-bar-wrap">
+        <div class="hr-app-section__right-bar__search-bar">
+          <div class="hr-app-section__right-bar__search-bar__hamburger-wrapper">
+            <svg class="icon icon-HAMBURGER ">
+              <use xlink:href="assets/images/svg/symbol/sprite.svg#HAMBURGER"></use>
+            </svg>
+          </div>
+          <div class="hr-app-section__right-bar__search-field-wrap">
+            <svg class="icon icon-SEARCH ">
+              <use xlink:href="assets/images/svg/symbol/sprite.svg#SEARCH"></use>
+            </svg>
+            <form class="hr-app-section__right-bar__search-form" action="">
+              <input class="hr-app-section__right-bar__search-input" type="search" id="vacancies-search" placeholder="Search...">
+            </form>
+          </div>
+          <div class="hr-app-section__right-bar__icon-panel-wrap">
+            <svg class="icon icon-BELL ">
+              <use xlink:href="assets/images/svg/symbol/sprite.svg#BELL"></use>
+            </svg>
+            <svg class="icon icon-exit ">
+              <use xlink:href="assets/images/svg/symbol/sprite.svg#exit"></use>
+            </svg>
+          </div>
         </div>
-        <div class="candidate-profile__hr-app__container-row row no-gutters">
-          <div class="candidate-profile__hr-app__left-part col-3">
-            <div class="candidate-profile__hr-app__candidate-preview">
-              <select class="candidate-profile__cv-status">
-                <option>Accepted for interview</option>
-                <option>New</option>
-                <option>CV-Rejected</option>
-              </select>
-              <div class="candidate-profile__img-preview">
-                <img width="100%" height="100%" src="http://img.x-hw.by/news/2017/244.jpg">
-              </div>
-              <div>
-                <div class="candidate-profile__candidate-position">
-                  <span>Java Developer</span>
-                  <input type="text">
+        <section class="candidate-profile-block">
+          <div class="candidate-profile__hr-app__nav-bar">
+            <nav aria-label="breadcrumb">
+              <ol class="profile-breadcrumb">
+                <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Candidates</a></li>
+                <li class="breadcrumb-item active">Jimmy Carr</li>
+              </ol>
+            </nav>
+          </div>
+          <div class="candidate-profile__hr-app__container-row row no-gutters">
+            <div class="candidate-profile__hr-app__left-part col-3">
+              <div class="candidate-profile__hr-app__candidate-preview">
+                <select class="candidate-profile__cv-status">
+                  <option>Accepted for interview</option>
+                  <option>New</option>
+                  <option>CV-Rejected</option>
+                </select>
+                <div class="candidate-profile__img-preview">
+                  <img width="100%" height="100%" src="http://img.x-hw.by/news/2017/244.jpg">
                 </div>
-                <div class="candidate-profile__candidate-name">
-                  <span>Jimmy Carr</span>
-                  <input type="text">
+                <div class="candidate-profile__candidate-position">
+                  <span class="to-be-hidden">Java Developer</span>
+                  <input class="cands-input-properties display-none" type="text">
+                </div>
+                <div class=" candidate-profile__candidate-name">
+                  <span class="to-be-hidden">Jimmy Carr</span>
+                  <input class="cands-input-properties display-none" type="text">
                 </div>
                 <div class="candidate-profile__candidate-salary">
-                  <span>800$</span>
-                  <input type="text">
+                  <span class="to-be-hidden">800$</span>
+                  <input class="cands-input-properties display-none" type="text">
+                </div>
+                <div class="candidate-profile__cv-term">
+                  1 day later
                 </div>
               </div>
-
-              <div class="candidate-profile__cv-term">
-                1 day later
+              <div class="candidate-profile__hr-app__contact-info">
+                <div class="contact-info__text">
+                  Contact Information
+                </div>
+                <div class="contact-info__telephone">
+                  Telephone:
+                  <p class="contact-info__data to-be-hidden">+44-7500-667-433</p>
+                  <input class="cands-input-properties display-none" type="number">
+                </div>
+                <div class="contact-info__email">
+                  Email:
+                  <p class="to-be-hidden contact-info__data">jimmy-carr@contact.com</p>
+                  <input class="cands-input-properties display-none" type="email">
+                </div>
+                <div class="contact-info__address">
+                  Address:
+                  <p class="to-be-hidden contact-info__data">735 High Road, N12 OUS, Lonn, UK</p>
+                  <input class="cands-input-properties display-none" type="text">
+                </div>
               </div>
             </div>
-            <div class="candidate-profile__hr-app__contact-info">
-              <div class="contact-info__text">
-                Contact Information
-              </div>
-              <div class="contact-info__telephone">
-                Telephone:
-                <p class="contact-info__data">+44-7500-667-433</p>
-                <input type="number">
-              </div>
-              <div class="contact-info__email">
-                Email:
-                <p class="contact-info__data">jimmy-carr@contact.com</p>
-                <input type="email">
-              </div>
-              <div class="contact-info__address">
-                Address:
-                <p class="contact-info__data">735 High Road, N12 OUS, Lonn, UK</p>
-                <input type="text">
-              </div>
-            </div>
-          </div>
-          <div class="candidate-profile__hr-app__right-part col-9">
-            <div class="cands-exp">
-              <div class="cands-exp__header-wrapper ">
-                <div class="cands-exp__header">Experience</div>
-              </div>
-              <div class="cands-exp__rows-wrapper">
-                <div class="cands-exp__row">
-                  <div class="cands-exp__row-left-part">
-                    <div class="cands-exp__left-part-item">
-                      <div class="cands-exp__left-part-date ">
+            <div class="candidate-profile__hr-app__right-part col-9">
+              <div class="cands-exp">
+                <div class="cands-exp__header-wrapper ">
+                  <div class="cands-exp__header">Experience</div>
+                </div>
+                <div class="cands-exp__rows-wrapper">
+                  <div class="cands-exp__row">
+                    <div class="cands-exp__row-left-part">
+                      <div class="cands-exp__left-part-item">
+                        <div class="to-be-hidden cands-exp__left-part-date ">
+                          Apr 2015 - Now
+                        </div>
+                        <textarea rows="1" class="cands-exp__right-part-item-description-textarea cands-exp__textarea-lfet-part-fix display-none">
                         Apr 2015 - Now
-                      </div>
-                      <textarea rows="1"
-                                class="cands-exp__right-part-item-description-textarea cands-exp__textarea-lfet-part-fix display-none">
-Apr 2015 - Now
-                    </textarea>
-                      <div class="cands-exp__left-part-description">
-                        Learn Java Developer<br>
+                      </textarea>
+                        <div class="to-be-hidden cands-exp__left-part-description ">
+                          Learn Java Developer<br>
+                          London, UK
+                        </div>
+                        <textarea rows="1" class="cands-exp__right-part-item-description-textarea cands-exp__textarea-lfet-part-fix display-none">
+                        Learn Java Developer
                         London, UK
-                      </div>
-                      <textarea rows="1"
-                                class="cands-exp__right-part-item-description-textarea cands-exp__textarea-lfet-part-fix display-none">
-Learn Java Developer
-London, UK
-                    </textarea>
-                    </div>
-                  </div>
-                  <div class="cands-exp__row-right-part">
-                    <div class="cands-exp__right-part-item">
-                      <div class="cands-exp__right-part-item-header">
-                        Itransition
-                      </div>
-                      <div class="cands-exp__right-part-item-description ">
-                        vBla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-
-                      </div>
-                      <textarea rows="3" class="cands-exp__right-part-item-description-textarea display-none">
-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-
-                    </textarea>
-                    </div>
-                  </div>
-                </div>
-                <div class="cands-exp__row">
-                  <div class="cands-exp__row-left-part">
-                    <div class="cands-exp__left-part-item">
-                      <div class="cands-exp__left-part-date">
-                        <div class="">Oct 2012 - Mar 2015</div>
-                        <div class="">( 2 years 7 months )</div>
-                        <textarea rows="1"
-                                  class="cands-exp__right-part-item-description-textarea  cands-exp__textarea-lfet-part-fix display-none                  ">
-Oct 2012 - Mar 2015
-( 2 years 7 months )
                       </textarea>
                       </div>
-                      <div class="cands-exp__left-part-description ">
-                        Senior Java Developer<br>
-                        London, UK
-                      </div>
-                      <textarea rows="1"
-                                class="cands-exp__right-part-item-description-textarea cands-exp__textarea-lfet-part-fix display-none">
-Senior Java Developer
-London, UK
-                    </textarea>
                     </div>
-                  </div>
-                  <div class="cands-exp__row-right-part dashed-left-border">
-                    <div class="cands-exp__right-part-item">
-                      <div class="cands-exp__right-part-item-header">
-                        Itransition
-                      </div>
-                      <div class="cands-exp__right-part-item-description ">
+                    <div class="cands-exp__row-right-part">
+                      <div class="cands-exp__right-part-item">
+                        <div class="to-be-hidden cands-exp__right-part-item-header">
+                          Itransition
+                        </div>
+                        <div class="to-be-hidden cands-exp__right-part-item-description ">
+                          vBla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-
+                        </div>
+                        <textarea rows="3" class="cands-exp__right-part-item-description-textarea display-none">
                         Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-
-                        Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-
-                        vBla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-
-                        vBla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-
-                      </div>
-                      <textarea rows="3" class="cands-exp__right-part-item-description-textarea display-none">
-                      Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-
-                      Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-
-                      Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-
-                    </textarea>
-                    </div>
-                  </div>
-                </div>
-                <div class="cands-exp__row">
-                  <div class="cands-exp__row-left-part">
-                    <div class="cands-exp__left-part-item">
-                      <div class="cands-exp__left-part-date ">
-                        <div class="">Education</div>
-                        <div class="">2007-2012</div>
-                        <textarea rows="1"
-                                  class="cands-exp__right-part-item-description-textarea cands-exp__textarea-lfet-part-fix                  display-none                  ">
-Education
-2007-2012
                       </textarea>
                       </div>
                     </div>
                   </div>
-                  <div class="cands-exp__row-right-part no-left-border">
-                    <div class="cands-exp__right-part-item">
-                      <div class="cands-exp__right-part-item-header">
-                        Itransition
+                  <div class="cands-exp__row">
+                    <div class="cands-exp__row-left-part">
+                      <div class="cands-exp__left-part-item">
+                        <div class="cands-exp__left-part-date">
+                          <div class="to-be-hidden">Oct 2012 - Mar 2015</div>
+                          <div class="to-be-hidden">( 2 years 7 months )</div>
+                          <textarea rows="2" class="cands-exp__right-part-item-description-textarea cands-exp__textarea-lfet-part-fix display-none">
+                          Oct 2012 - Mar 2015
+                          ( 2 years 7 months )
+                        </textarea>
+                        </div>
+                        <div class="cands-exp__left-part-description to-be-hidden">
+                          Senior Java Developer<br>
+                          London, UK
+                        </div>
+                        <textarea rows="1" class="cands-exp__right-part-item-description-textarea cands-exp__textarea-lfet-part-fix display-none">
+                        Senior Java Developer
+                        London, UK
+                      </textarea>
                       </div>
-                      <div class="cands-exp__right-part-item-description">
+                    </div>
+                    <div class="cands-exp__row-right-part dashed-left-border">
+                      <div class="cands-exp__right-part-item">
+                        <div class="cands-exp__right-part-item-header">
+                          Itransition
+                        </div>
+                        <div class="to-be-hidden cands-exp__right-part-item-description ">
+                          Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-
+                          Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-
+                          vBla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-
+                          vBla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-
+                        </div>
+                        <textarea rows="3" class="cands-exp__right-part-item-description-textarea display-none">
                         Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-
+                        Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-
+                        Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-
+                      </textarea>
                       </div>
-                      <textarea rows="3" class=
-                        "cands-exp__right-part-item-description-textarea
-                  display-none">
-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-
-                  </textarea>
+                    </div>
+                  </div>
+                  <div class="cands-exp__row">
+                    <div class="cands-exp__row-left-part">
+                      <div class="cands-exp__left-part-item">
+                        <div class="cands-exp__left-part-date ">
+                          <div class="to-be-hidden">Education</div>
+                          <div class="to-be-hidden">2007-2012</div>
+                          <textarea rows="2" class=" cands-exp__right-part-item-description-textarea cands-exp__textarea-lfet-part-fix display-none">
+                          Education
+                          2007-2012
+                        </textarea>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="cands-exp__row-right-part no-left-border">
+                      <div class="cands-exp__right-part-item">
+                        <div class="cands-exp__right-part-item-header">
+                          Itransition
+                        </div>
+                        <div class="to-be-hidden cands-exp__right-part-item-description">
+                          Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-
+                        </div>
+                        <textarea rows="3" class="cands-exp__right-part-item-description-textarea display-none">
+                        Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-
+                      </textarea>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="candidate-profile__hr-app__skills">
-              <div class="skills__text">Skills</div>
-              <div class="skills__elements">
-                <span class="skills__elements__decoration">JavaScript</span>
-                <span class="skills__elements__decoration">Node.js</span>
-                <span class="skills__elements__decoration">Java</span>
-                <span class="skills__elements__decoration">Maven</span>
-                <span class="skills__elements__decoration">JSF</span>
-                <span class="skills__elements__decoration">JPA</span>
-                <span class="skills__elements__decoration">Design Patterns</span>
+              <div class="candidate-profile__hr-app__skills">
+                <div class="skills__text">Skills</div>
+                <div class="skills__elements">
+                  <span class="skills__elements__decoration">JavaScript</span>
+                  <span class="skills__elements__decoration">Node.js</span>
+                  <span class="skills__elements__decoration">Java</span>
+                  <span class="skills__elements__decoration">Maven</span>
+                  <span class="skills__elements__decoration">JSF</span>
+                  <span class="skills__elements__decoration">JPA</span>
+                  <span class="skills__elements__decoration">Design Patterns</span>
+                </div>
               </div>
-            </div>
-            <input class="cands__submit editing-icon__input display-none" value="Save" type="submit">
-            <div class="editing-icon">
-              <img class="editing-icon__image" src="assets/images/edit.png">
+              <input class="cands__submit editing-icon display-none" id="" value="Save" type="submit">
+              <div class="editing-icon" id="cands-editing-icon">
+                <img class="editing-icon__image" src="assets/images/edit.png">
+              </div>
             </div>
           </div>
-        </div>
-      </section>
-    </div>
+        </section>
+      </div>
+    </section>
   </section>
-</section>
+</form>
 <script src="assets/js/libs.min.js"></script>
 <script src="assets/js/main.js"></script>
 </body>

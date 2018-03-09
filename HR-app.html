@@ -7,6 +7,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="keywords" content="">
   <link rel="stylesheet" type="text/css" href="assets/css/main.css">
+
 </head>
 <body>
 <section class="hr-app-section">
@@ -22,7 +23,7 @@
         <li class="hr-app-section__sidebar-list-item active"><a class="hr-app-section__sidebar-item-link" href="#">Vacancies</a>
         </li>
         <li class="hr-app-section__sidebar-list-item"><a class="hr-app-section__sidebar-item-link"
-                                                         href="#">Candidates</a></li>
+                                                         href="Candidates.html">Candidates</a></li>
         <li class="hr-app-section__sidebar-list-item"><a class="hr-app-section__sidebar-item-link"
                                                          href="#">Management</a></li>
         <li class="hr-app-section__sidebar-list-item mobile-item"><a class="hr-app-section__sidebar-item-link" href="#">Notifications
@@ -81,51 +82,48 @@
             <div class="vacancies-block__filters-bar__fields-wrapper" id="filters-bar-collapse"
                  data-parent="#vacancies-block__table">
               <div class="vacancies-block__filters-bar__filter-item">
-                <div class="vacancies-block__filters-bar__select-text">Profession</div>
+                <div class="vacancies-block__filters-bar__select-text">Position</div>
                 <div class="vacancies-block__filters-bar__input-wrap">
-                  <input class="vacancies-block__filters-bar__input" type="text">
+                  <input class="vacancies-block__filters-bar__input" data-attr="filter-item" id="vacancies-block__filters-bar__input--pos"
+                         type="text">
                 </div>
+              </div>
+              <div class="vacancies-block__filters-bar__filter-item">
+                <div class="vacancies-block__filters-bar__select-text">Work Experience</div>
+                <select class="vacancies-block__filters-bar__select" data-attr="filter-item" id="vacancies-block__filters-bar__select--exp">
+                  <option class="vacancies-block__filters-bar__select-option">Any</option>
+                  <option class="vacancies-block__filters-bar__select-option">Junior</option>
+                  <option class="vacancies-block__filters-bar__select-option">Middle</option>
+                  <option class="vacancies-block__filters-bar__select-option">Senior</option>
+                </select>
               </div>
               <div class="vacancies-block__filters-bar__filter-item">
                 <div class="vacancies-block__filters-bar__select-text">Salary</div>
                 <div class="vacancies-block__filters-bar__input-wrap justify-content-between"><span
                     class="vacancies-block__filters-bar__input-wrap__text">from</span>
-                  <input class="vacancies-block__filters-bar__input small--input" type="text" maxlength="2"><span
+                  <input class="vacancies-block__filters-bar__input small--input"
+                         id="vacancies-block__filters-bar__input--salary-from" data-attr="filter-item" type="text" maxlength="4"><span
                       class="vacancies-block__filters-bar__input-wrap__text">to</span>
-                  <input class="vacancies-block__filters-bar__input small--input" type="text" maxlength="2">
+                  <input class="vacancies-block__filters-bar__input small--input"
+                         id="vacancies-block__filters-bar__input--salary-to" data-attr="filter-item" type="text" maxlength="4">
                 </div>
-              </div>
-              <div class="vacancies-block__filters-bar__filter-item">
-                <div class="vacancies-block__filters-bar__select-text">Status</div>
-                <select class="vacancies-block__filters-bar__select">
-                  <option class="vacancies-block__filters-bar__select-option">Rejected CV</option>
-                  <option class="vacancies-block__filters-bar__select-option">Accepted CV</option>
-                  <option class="vacancies-block__filters-bar__select-option">No CV</option>
-                </select>
-              </div>
-              <div class="vacancies-block__filters-bar__dropdown">Name
-                <ul class="vacancies-block__filters-bar__dropdown-list">
-                  <li class="vacancies-block__filters-bar__dropdown-list-item"><a
-                      class="vacancies-block__filters-bar__dropdown-item-link">Nai</a></li>
-                  <li class="vacancies-block__filters-bar__dropdown-list-item">Name</li>
-                  <li class="vacancies-block__filters-bar__dropdown-list-item">Name</li>
-                </ul>
               </div>
               <div class="vacancies-block__filters-bar__pagination"><span>1</span><span> of</span><span> 12</span></div>
               <div class="vacancies-block__filters-bar__sort-button-wrapper">
-                <div class="vacancies-block__filters-bar__sort-button">Filter</div>
+                <div class="vacancies-block__filters-bar__sort-button" id="vacancies-block__filters-bar__sort-button">
+                  Filter
+                </div>
               </div>
             </div>
           </div>
         </div>
         <div class="vacancies-block__table" id="vacancies-block__table">
           <div class="vacancies-block__table__header-row table--row">
-            <div class="vacancies-block__table-col table--header-col">Position</div>
-            <div class="vacancies-block__table-col table--header-col">Work experience</div>
-            <div class="vacancies-block__table-col table--header-col">Salary</div>
+            <div class="vacancies-block__table-col table--header-col" id="table--header-col--pos">Position</div>
+            <div class="vacancies-block__table-col table--header-col" id="table--header-col--exp">Work Experience</div>
+            <div class="vacancies-block__table-col table--header-col" id="table--header-col--sal">Salary</div>
             <div class="vacancies-block__table-col table--header-col">View candidates</div>
           </div>
-
           <div class="vacancies-block__table-editor">
             <div class="vacancies-block__table-editor__col">
               <div class="vacancies-block__table-editor__text">Rows per page:</div>
@@ -156,5 +154,7 @@
 </section>
 <script src="assets/js/libs.min.js"></script>
 <script src="assets/js/main.js"></script>
+
+
 </body>
 </html>
