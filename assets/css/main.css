@@ -11100,6 +11100,7 @@ hr-app__candidates-item-link{
     -webkit-transform: rotate(180deg);
     transform: rotate(180deg);
 }
+
 @media (max-width: 515px) {
     .pagination .page-item:not(.prev):not(.next) {
         display: none;
@@ -11247,12 +11248,14 @@ hr-app__candidates-item-link{
 .collapse {
     display: none;
 }
+
 /*   beginning of tablet version           */
 .hr-app__filters-bar-2fields-wrapper-tablet {
     display: none;
 }
-@media  (min-device-aspect-ratio: 4/3) and (max-width: 1290px),
-        (max-width:1290px) and (min-width:750px) {
+
+@media (min-device-aspect-ratio: 4/3) and (max-width: 1290px),
+(max-width: 1290px) and (min-width: 750px) {
 
     body {
         width: 100%;
