@@ -11358,7 +11358,9 @@ hr-app__candidates-item-link {
 
 .candidate-profile__hr-app__left-part {
     border-right: 1px solid #EBEBEB;
-    min-height: 100vh;
+    displae:flex;
+    flex-direction:column;
+    justify-content:space-between;
 }
 
 @media (max-width: 1024px) {
@@ -11553,7 +11555,6 @@ hr-app__candidates-item-link {
     flex-direction: column;
     width: 100%;
     border-top: 1px solid #EBEBEB;
-    min-height: 35vh;
     bottom: 0;
 }
 
