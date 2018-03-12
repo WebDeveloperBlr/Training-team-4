@@ -10247,7 +10247,7 @@ input:focus:-ms-input-placeholder {
     -webkit-box-flex: 1;
     -ms-flex-positive: 1;
     flex-grow: 1;
-    max-width: 100%;
+    flex-basis: 80%;
 }
 
 .hr-app-section__right-bar-wrap {
@@ -10400,7 +10400,8 @@ input:focus:-ms-input-placeholder {
 .hr-app-section__right-bar__search-input:-moz-placeholder {
     color: #929292;
 }
-.hr-app__candidates-item-cv-text{
+
+.hr-app__candidates-item-cv-text {
     background-color: #fff;
     padding: 5px 20px;
     position: absolute;
@@ -10408,9 +10409,11 @@ input:focus:-ms-input-placeholder {
     left: 20px;
     font-size: 15px;
 }
-.hr-app__candidates-section{
+
+.hr-app__candidates-section {
     display: flex;
 }
+
 .hr-app__candidates-item__img-wrap {
     text-align: center;
     position: relative;
@@ -10435,12 +10438,12 @@ input:focus:-ms-input-placeholder {
     padding: 5px 0;
 }
 
-
 .hr-app__candidates-item {
     -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
 }
-hr-app__candidates-item-link{
+
+hr-app__candidates-item-link {
     display: block;
 }
 
@@ -11295,153 +11298,155 @@ hr-app__candidates-item-link{
 }
 
 .candidate-profile-block {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: start;
-  -ms-flex-pack: start;
-  justify-content: flex-start;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: column;
-  flex-direction: column;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
 }
 
 .candidate-profile__hr-app__nav-bar {
-  padding: 0 40px;
-  border-bottom: 1px solid #EBEBEB;
+    padding: 0 40px;
+    border-bottom: 1px solid #EBEBEB;
 }
 
 @media (max-width: 1024px) {
-  .candidate-profile__hr-app__container-row {
-    overflow: scroll;
-    overflow-x: hidden;
-    flex-flow: column nowrap;
-    box-sizing: border-box;
-    min-width: 320px;
-    width: 100%;
-  }
+    .candidate-profile__hr-app__container-row {
+        overflow: scroll;
+        overflow-x: hidden;
+        flex-flow: column nowrap;
+        box-sizing: border-box;
+        min-width: 320px;
+        width: 100%;
+    }
 
-  .candidate-profile__hr-app__container-row > * {
-    align-content: space-around;
-    justify-content: space-around;
-  }
+    .candidate-profile__hr-app__container-row > * {
+        align-content: space-around;
+        justify-content: space-around;
+    }
 }
 
 @media (max-width: 1024px) {
-  ::-webkit-scrollbar {
-    width: 0px; /* remove scrollbar space */
-    background: transparent;
-  }
+    ::-webkit-scrollbar {
+        width: 0px; /* remove scrollbar space */
+        background: transparent;
+    }
 }
 
 .profile-breadcrumb {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-  font-size: 0.7375rem;
-  color: #6b6b6b;
-  padding: .75rem;
-  list-style: none;
-  background-color: transparent;
-  max-height: 30px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    font-size: 0.7375rem;
+    color: #6b6b6b;
+    padding: .75rem;
+    list-style: none;
+    background-color: transparent;
+    max-height: 30px;
 }
 
 .breadcrumb-link {
-  color: #6b6b6b;
+    color: #6b6b6b;
 }
 
 .candidate-profile__hr-app__left-part {
-  border-right: 1px solid #EBEBEB;
-  min-height: 100vh;
+    border-right: 1px solid #EBEBEB;
+    displae:flex;
+    flex-direction:column;
+    justify-content:space-between;
 }
 
 @media (max-width: 1024px) {
-  .candidate-profile__hr-app__left-part {
-    min-height: 0;
-  }
+    .candidate-profile__hr-app__left-part {
+        min-height: 0;
+    }
 
-  .col-3.candidate-profile__hr-app__left-part {
-    max-width: none;
-  }
+    .col-3.candidate-profile__hr-app__left-part {
+        max-width: none;
+    }
 }
 
 .candidate-profile__hr-app__candidate-preview {
-  display: flex;
-  flex-direction: column;
-  height: 50%;
-  border-bottom: 1px solid #EBEBEB;
-  padding: 10px 30px;
-  align-items: flex-start;
-  justify-content: flex-start;
-  color: #6b6b6b;
+    display: flex;
+    flex-direction: column;
+    height: 50%;
+    border-bottom: 1px solid #EBEBEB;
+    padding: 10px 30px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    color: #6b6b6b;
 }
 
 @media (max-width: 1024px) {
-  .candidate-profile__hr-app__candidate-preview {
-    justify-content: space-around !important;
-    flex-direction: row !important;
-    flex-wrap: wrap;
-    min-width: 515px;
-  }
+    .candidate-profile__hr-app__candidate-preview {
+        justify-content: space-around !important;
+        flex-direction: row !important;
+        flex-wrap: wrap;
+        min-width: 515px;
+    }
 }
 
 @media (max-width: 515px) {
-  .candidate-profile__hr-app__candidate-preview {
-    flex-direction: column !important;
-    flex-wrap: nowrap;
-    min-width: 320px;
-  }
+    .candidate-profile__hr-app__candidate-preview {
+        flex-direction: column !important;
+        flex-wrap: nowrap;
+        min-width: 320px;
+    }
 }
 
 .candidate-profile__cv-status {
-  min-width: 183px;
-  width: 100%;
-  color: #6b6b6b;
-  border: none;
-  outline: none;
-  font-size: 0.9375rem;
-  font-weight: 600;
-  margin-bottom: 1em;
+    min-width: 183px;
+    width: 100%;
+    color: #6b6b6b;
+    border: none;
+    outline: none;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    margin-bottom: 1em;
 }
 
 @media (max-width: 1024px) {
-  .candidate-profile__cv-wrapper {
-    flex-basis: 100%;
-    display: flex;
-    justify-content: center;
-  }
+    .candidate-profile__cv-wrapper {
+        flex-basis: 100%;
+        display: flex;
+        justify-content: center;
+    }
 
-  .candidate-profile__cv-status {
-    width: auto;
-  }
+    .candidate-profile__cv-status {
+        width: auto;
+    }
 }
 
 .candidate-profile__img-preview {
-  max-width: 150px;
-  height: auto;
-  align-self: center;
-  border: 1px solid #EBEBEB;
-  margin: 0.5em;
-  margin-bottom: 1em;
+    max-width: 150px;
+    height: auto;
+    align-self: center;
+    border: 1px solid #EBEBEB;
+    margin: 0.5em;
+    margin-bottom: 1em;
 }
 
 @media (max-width: 1024px) {
-  .candidate-profile__img-preview {
-    display: flex;
-    align-self: center;
-    justify-content: center;
-    border: none !important;
-  }
+    .candidate-profile__img-preview {
+        display: flex;
+        align-self: center;
+        justify-content: center;
+        border: none !important;
+    }
 
-  .candidate-profile__img-preview > img {
-    height: 180px;
-    max-height: 100% !important;
-    width: auto;
-    border-radius: 50%;
-  }
+    .candidate-profile__img-preview > img {
+        height: 180px;
+        max-height: 100% !important;
+        width: auto;
+        border-radius: 50%;
+    }
 }
 
 .candidate-profile__candidate-wrapper {
@@ -11449,375 +11454,450 @@ hr-app__candidates-item-link{
 }
 
 .candidate-profile__candidate-position {
-  color: #cccccc;
-  font-size: 0.9375rem;
-  font-weight: 600;
+    color: #cccccc;
+    font-size: 0.9375rem;
+    font-weight: 600;
 }
 
 .candidate-profile__candidate-name {
-  color: #000;
-  font-weight: 800;
-  font-size: 1.2rem;
+    color: #000;
+    font-weight: 800;
+    font-size: 1.2rem;
 }
 
 .candidate-profile__candidate-salary {
-  color: #6b6b6b;
-  font-size: 1.5rem;
+    color: #6b6b6b;
+    font-size: 1.5rem;
 }
 
 @media (max-width: 1024px) {
-  [class*=candidate-profile__candidate-] {
-    font-size: 1.7rem !important;
-    margin-bottom: 0.5em;
-  }
+    [class*=candidate-profile__candidate-] {
+        font-size: 1.7rem !important;
+        margin-bottom: 0.5em;
+    }
 
-  .candidate-profile__candidate-wrapper {
-    margin-top: 1em;
-  }
+    .candidate-profile__candidate-wrapper {
+        margin-top: 1em;
+    }
 }
 
 .candidate-profile__cv-term {
-  display: flex;
-  justify-content: flex-end;
-  width: 100%;
-  font-size: 0.7rem;
-  font-weight: 600;
-  color: #cccccc;
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: #cccccc;
 }
 
-
-
 .candidate-profile__hr-app__contact-info {
-  display: flex;
-  flex-direction: column;
-  height: 40%;
-  padding: 20px 30px;
-  align-items: flex-start;
-  justify-content: flex-start;
-  color: #6b6b6b;
+    display: flex;
+    flex-direction: column;
+    height: 40%;
+    padding: 20px 30px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    color: #6b6b6b;
 }
 
 @media (max-width: 1024px) {
-  .candidate-profile__hr-app__contact-info {
-    border-bottom: 1px solid #EBEBEB;
-  }
+    .candidate-profile__hr-app__contact-info {
+        border-bottom: 1px solid #EBEBEB;
+    }
 }
 
 .contact-info__text {
-  margin-bottom: 0.925rem;
-  font-weight: 600;
-  font-size: 1.1rem;
-  color: #6b6b6b;
+    margin-bottom: 0.925rem;
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: #6b6b6b;
 }
 
 .contact-info__telephone, .contact-info__email, .contact-info__address {
-  color: #cccccc;
-  font-size: 0.85rem;
-  margin-bottom: 0.625rem;
+    color: #cccccc;
+    font-size: 0.85rem;
+    margin-bottom: 0.625rem;
 }
 
 .contact-info__data {
-  color: #000;
-  font-weight: 600;
+    color: #000;
+    font-weight: 600;
 }
 
 .candidate-profile__hr-app__right-part {
-  display: flex;
-  flex-direction: column;
-  width: auto;
-  align-items: center;
-  box-sizing: border-box;
-  padding-left: 120px;
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    align-items: center;
+    box-sizing: border-box;
+    padding-left: 120px;
 }
 
 @media (max-width: 1024px) {
-  .col-9.candidate-profile__hr-app__right-part {
-    max-width: 100%;
-  }
+    .col-9.candidate-profile__hr-app__right-part {
+        max-width: 100%;
+    }
 }
 
 .candidate-profile__hr-app__experience {
-  height: 70%;
+    height: 70%;
 }
 
 .exp-text {
-  margin-left: 2.3rem;
-  margin-top: 1.3rem;
-  font-size: 1.4rem;
-  color: #6b6b6b;
+    margin-left: 2.3rem;
+    margin-top: 1.3rem;
+    font-size: 1.4rem;
+    color: #6b6b6b;
 }
 
 .candidate-profile__hr-app__skills {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  border-top: 1px solid #EBEBEB;
-  min-height: 35vh;
-  bottom: 0;
-  overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border-top: 1px solid #EBEBEB;
+    bottom: 0;
 }
 
 @media (max-width: 1024px) {
-  .candidate-profile__hr-app__skills {
-    order: 0;
-    position: relative !important;
-    min-height: 0 !important;
-    border-top: none;
-    border-bottom: 1px solid #EBEBEB;
+    .candidate-profile__hr-app__skills {
+        order: 0;
+        position: relative !important;
+        min-height: 0 !important;
+        border-top: none;
+        border-bottom: 1px solid #EBEBEB;
 
-  }
+    }
 }
 
 @media (max-width: 515px) {
-  .candidate-profile__hr-app__skills {
-    order: 1;
-    border-bottom: none;
-    border-top: 1px solid #EBEBEB;
-  }
+    .candidate-profile__hr-app__skills {
+        order: 1;
+        border-bottom: none;
+        border-top: 1px solid #EBEBEB;
+    }
 }
 
 .skills__text {
-  margin-left: 2.3rem;
-  margin-top: 1.3rem;
-  font-size: 1.4rem;
-  color: #6b6b6b;
+    margin-left: 2.3rem;
+    margin-top: 1.3rem;
+    font-size: 1.4rem;
+    color: #6b6b6b;
 }
 
 .skills__elements {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  margin-left: 2.3rem;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  height: 30%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-left: 2.3rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    height: 30%;
 }
 
 @media (max-width: 1024px) {
 
-  .skills__elements {
-    flex-flow: row wrap;
-    display: flex;
-    margin: 1em 2em 1.5em 2em;
-  }
+    .skills__elements {
+        flex-flow: row wrap;
+        display: flex;
+        margin: 1em 2em 1.5em 2em;
+    }
 }
 
 .skills__elements__decoration {
-  border: 2px solid #EBEBEB;
-  border-radius: 10px;
-  padding: 0.3875rem;
-  margin: 10px;
+    border: 2px solid #EBEBEB;
+    border-radius: 10px;
+    padding: 0.3875rem;
+    margin: 10px;
 }
 
 /* .........Candidate EXPERIENCE PART STARTS HERE                 */
 /* qqqq */
 .cands-exp {
-  display: flex;
-  /*width: 110%;*/
-  flex-wrap: wrap;
-  min-height: 65vh;
-  margin: 0;
-  overflow-y: scroll;
-  /*padding-left: 30px;*/
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    min-height: 65vh;
+    margin: 0;
+    overflow-y: scroll;
 }
 
-
 @media (max-width: 1024px) {
-  .cands-exp__rows-wrapper {
-    padding: 1em 0;
-  }
+    .cands-exp__rows-wrapper {
+        padding: 1em 0;
+    }
 
-  .cands-exp {
-    order: 1;
-    align-content: flex-start;
-    min-height: 0;
-  }
+    .cands-exp {
+        order: 1;
+        align-content: flex-start;
+        min-height: 0;
+    }
 }
 
 @media (max-width: 515px) {
-  .cands-exp {
-    order: 0;
-  }
+    .cands-exp {
+        order: 0;
+    }
 }
 
 .cands-exp__header-wrapper {
-  flex-basis: 100%;
-  margin-bottom: 30px;
-  opacity: 0.8;
+    flex-basis: 100%;
+    margin-bottom: 30px;
+    opacity: 0.8;
 }
 
 .cands-exp__header {
-  display: inline-block;
-  margin-left: 2.3rem;
-  margin-top: 1.3rem;
-  font-size: 1.4rem;
-  color: #6b6b6b;
+    display: inline-block;
+    margin-left: 2.3rem;
+    margin-top: 1.3rem;
+    font-size: 1.4rem;
+    color: #6b6b6b;
 }
 
 @media (max-width: 1024px) {
-  .cands-exp__header, .skills__text {
-    margin: 0 !important;
-    padding: 2rem 0 0 2rem !important;
-    font-size: 1.7rem !important;
-  }
+    .cands-exp__header, .skills__text {
+        margin: 0 !important;
+        padding: 2rem 0 0 2rem !important;
+        font-size: 1.7rem !important;
+    }
 }
 
 @media (max-width: 515px) {
-  .cands-exp__header, .skills__text {
-    font-size: 1.5rem !important;
-  }
+    .cands-exp__header, .skills__text {
+        font-size: 1.5rem !important;
+    }
 }
 
 .cands-exp__row {
-  flex-basis: 100%;
-  display: flex;
+    flex-basis: 100%;
+    display: flex;
 }
 
 .cands-exp__row-left-part {
-  flex-basis: 30%;
-  display: flex;
-  justify-content: flex-end;
+    flex-basis: 30%;
+    display: flex;
+    justify-content: flex-end;
 }
 
 .cands-exp__row-right-part {
-  flex-basis: 60%;
-  border-left: 1px solid #bfb0b0;
-  box-sizing: border-box;
-  padding-left: 3%;
-  padding-right: 5%;
-  position: relative;
+    flex-basis: 60%;
+    border-left: 1px solid #bfb0b0;
+    box-sizing: border-box;
+    padding-left: 3%;
+    padding-right: 5%;
+    position: relative;
 }
 
 .cands-exp__right-part-item-header {
-  text-decoration: underline;
-  font-weight: bold;
-  font-size: 1.1rem;
+    text-decoration: underline;
+    font-weight: bold;
+    font-size: 1.1rem;
 }
 
 .cands-exp__right-part-item-description {
-  line-height: 1.25rem;
-  font-size: 0.97rem;
+    line-height: 1.25rem;
+    font-size: 0.97rem;
 }
 
 .cands-exp__left-part-item {
-  box-sizing: border-box;
-  padding-right: 7%;
-  margin-top: -10px;
-  flex-basis: 70%;
-  margin-bottom: 20px;
+    box-sizing: border-box;
+    padding-right: 7%;
+    margin-top: -10px;
+    flex-basis: 70%;
+    margin-bottom: 20px;
 }
 
 .cands-exp__right-part-item {
-  margin-top: -10px;
-  border: 1px solid gray;
-  border-radius: 5px;
-  box-sizing: border-box;
-  padding-left: 3%;
-  padding-right: 3%;
-  margin-bottom: 20px;
-  box-shadow: 1px 0px 2px 1px #bfb0b0;
+    margin-top: -10px;
+    border: 1px solid gray;
+    border-radius: 5px;
+    box-sizing: border-box;
+    padding-left: 3%;
+    padding-right: 3%;
+    margin-bottom: 20px;
+    box-shadow: 1px 0px 2px 1px #bfb0b0;
 }
 
 .cands-exp__row-right-part::before {
-  content: "";
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background-color: white;
-  border: 3px solid #bfb0b0;
-  position: absolute;
-  top: -2px;
-  left: -5px;
+    content: "";
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background-color: white;
+    border: 3px solid #bfb0b0;
+    position: absolute;
+    top: -2px;
+    left: -5px;
 }
 
 .cands-exp__left-part-date {
-  border: 1px solid gray;
-  border-radius: 5px;
-  text-align: center;
-  box-shadow: inset -1px 0px 2px 0px #bfb0b0;
-  font-size: 0.9rem;
+    border: 1px solid gray;
+    border-radius: 5px;
+    text-align: center;
+    box-shadow: inset -1px 0px 2px 0px #bfb0b0;
+    font-size: 0.9rem;
 }
 
 .cands-exp__left-part-description {
-  text-align: right;
-  font-size: 0.8rem;
-  color: #595959;
-  opacity: 0.8;
-}
-
-.cands-input-properties {
-  max-width: 200px;
-  width: 100%;
-  box-sizing: border-box;
-  padding-left: 7px;
-  font-size: 1rem;
+    text-align: right;
+    font-size: 0.8rem;
+    color: #595959;
+    opacity: 0.8;
 }
 
 .dashed-left-border {
-  border-left-style: dashed;
+    border-left-style: dashed;
 }
 
 .no-left-border {
-  border-left: none;
-  position: relative;
-  left: 1px;
+    border-left: none;
+    position: relative;
+    left: 1px;
 }
 
 .cands-exp__right-part-item-description-textarea {
-  width: 100%;
-  height: 100%;
-  border: none;
-  line-height: 0.9rem;
+    width: 100%;
+    height: 100%;
+    border: none;
+    line-height: 0.9rem;
 }
 
 .display-none {
-  display: none;
+    display: none;
 }
 
 .cands-exp__textarea-lfet-part-fix {
-  height: 50%;
-}
-
-.editing-icon {
-  height: 55px;
-  width: 55px;
-  border-radius: 50%;
-  opacity: 1;
-  position: fixed;
-  right: 100px;
-  bottom: 70px;
-  overflow: hidden;
-  background-color: #E3BFBF;
-  text-align: center;
-  padding-top: 7px;
-  box-sizing: border-box;
-  box-shadow: 2px 1px 1px 2px #E3BFBF;
-  cursor: pointer;
-  padding-left: 3px;
+    height: 50%;
 }
 
 @media (max-width: 1024px) {
-  .editing-icon {
-    position: static !important;
-    display: flex;
-    align-self: flex-end;
-    margin: 0 2em 2em 0;
-    order: 3;
-  }
+    .editing-icon {
+        position: static !important;
+        display: flex;
+        align-self: flex-end;
+        margin: 0 2em 2em 0;
+        order: 3;
+    }
+}
+
+.editing-icon {
+    height: 55px;
+    width: 55px;
+    border-radius: 50%;
+    opacity: 1;
+    position: fixed;
+    right: 100px;
+    bottom: 170px;
+    overflow: hidden;
+    background-color: #E3BFBF;
+    text-align: center;
+    padding-top: 7px;
+    box-sizing: border-box;
+    box-shadow: 2px 1px 1px 2px #E3BFBF;
+    cursor: pointer;
+    padding-left: 3px;
+}
+
+.hr-app-section input,
+.hr-app-section textarea {
+    outline: none;
+}
+
+textarea {
+    width: 100%;
 }
 
 .editing-icon__image {
-  z-index: 100;
-  width: 40px;
-  height: 40px;
-  margin-left: auto;
-  margin-right: auto;
+    z-index: 100;
+    width: 40px;
+    height: 40px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .cands__submit {
-  z-index: 200;
-  padding: 0;
-  border: none;
-  color: black;
-  font-size: 1.1rem;
+    z-index: 200;
+    padding: 0;
+    border: none;
+    color: black;
+    font-size: 1.1rem;
+}
+
+.flex-grow-0 {
+    flex-grow: 0;
+}
+
+.cands-input-properties {
+    max-width: 200px;
+    width: 100%;
+    box-sizing: border-box;
+    padding-left: 7px;
+    font-size: 1rem;
+    border-radius: 5px;
+}
+
+@media (min-width: 516px) {
+    .vacancies-block__filters-bar__sort-button-wrapper {
+        display: none;
+    }
+}
+
+.skills-editing-input {
+    box-sizing: border-box;
+    padding-left: 7px;
+    max-width: 100px;
+    border: none;
+}
+
+.overflow-y-scroll {
+    overflow-y: scroll;
+}
+
+.height-auto {
+    height: auto;
+}
+
+.cands-form {
+    height: auto;
+}
+
+input::-webkit-input-placeholder {
+    color: black;
+    opacity: 0.7;
+}
+
+input::-moz-placeholder {
+    color: black;
+    opacity: 0.7;
+}
+
+/* Firefox 19+ */
+input:-moz-placeholder {
+    color: black;
+    opacity: 0.7;
+}
+
+/* Firefox 18- */
+input:-ms-input-placeholder {
+    color: black;
+    opacity: 0.7;
+}
+
+.add-skill {
+    margin-left: 10px;
+    display: inline-block;
+    background-color: #068049;
+    color: #eec3ac;
+    border-radius: 7px;
+    box-sizing: border-radius;
+    padding: 1px 5px;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.cands-exp__rows-wrapper {
+    width: 100%;
+}
+
+.cands-exp__row-left-part textarea {
+    font-size: 0.85rem;
 }

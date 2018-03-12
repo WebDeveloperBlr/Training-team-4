@@ -772,19 +772,64 @@ $(document).ready(function () {
 });
 
 
+
+//cand profile editing function
+
+
 $( "#cands-editing-icon" ).click(function() {
     var allInputs=document.getElementsByTagName('input');
     for( var i=0; i<allInputs.length; i++ ){
-      $(allInputs[i]).removeClass('display-none');
+        $(allInputs[i]).removeClass('display-none');
+        $(allInputs[i]).attr('placeholder' , $(allInputs[i]).prev().text());
     }
     var allTextareas=document.getElementsByTagName('textarea');
+    var descriptions=document.getElementsByClassName("exp-description");
     for( i=0; i<allTextareas.length; i++ ){
-      $(allTextareas[i]).removeClass('display-none');
+        $(allTextareas[i]).removeClass('display-none');
+        $(allTextareas[i]).text($(descriptions[i]).text().match(/\w+|\d+|-|[()]/gm).join(" ") );
+
     }
+    $(".not-delete").removeClass("display-none");
     var hidden=document.getElementsByClassName('to-be-hidden');
     for( i=0; i<hidden.length; i++ ){
         $(hidden[i]).addClass('display-none');
     }
+    $(".skills-editing-input").attr("placeholder","Add skill");
+
+
+    //described functions for hover. described it here in oder to add it to new skills,
+    //which will be created by user
+    function mouseOn() {
+        if(!($(this).hasClass("not-delete"))) {
+            skillName = $(this).text();
+            $(this).css("opacity", "0.5").text("Delete");
+        }
+    }
+
+    function mouseOut() {
+        if(!($(this).hasClass("not-delete"))) {
+            $(this).css("opacity", "1").text(skillName);
+        }
+    }
+
+    var skillName;
+    $(".skills__elements__decoration").hover(mouseOn,mouseOut);
+
+    $(".skills__elements__decoration").click(function(){
+        if(!($(this).hasClass("not-delete"))){
+            $(this).remove();
+        }});
+
+    $(".add-skill").click(function(){
+        $(".skills__elements").prepend("<span class='skills__elements__decoration'></span>");
+        $(".skills__elements__decoration:first-child").text($(".skills-editing-input").val());
+        $(".skills-editing-input").val("");
+        $(".skills__elements__decoration").click(function(){
+            if(!($(this).hasClass("not-delete"))){
+                $(this).remove();
+            }});
+        $(".skills__elements__decoration").unbind('mouseenter mouseleave');
+        $(".skills__elements__decoration").hover(mouseOn,mouseOut);
+    });
+    $(".cands__submit").attr("placeholder","");
 });
-
-
