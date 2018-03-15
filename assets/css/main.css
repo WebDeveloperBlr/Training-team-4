@@ -11627,6 +11627,7 @@ hr-app__candidates-item-link {
   min-height: 65vh;
   margin: 0;
   overflow-y: scroll;
+  width:100%;
 }
 
 .cands-exp__rows-wrapper {
@@ -11775,7 +11776,7 @@ hr-app__candidates-item-link {
 }
 
 .display-none {
-  display: none;
+  display: none !important;
 }
 
 .cands-exp__textarea-lfet-part-fix {
@@ -11918,4 +11919,35 @@ input:-ms-input-placeholder {
 
 .cands-exp__row-left-part textarea {
   font-size: 0.85rem;
+}
+
+.cands-exp__editing-button{
+  display:inline-block;
+  font-size:0.85rem;
+  border: 2px solid #EBEBEB;
+  border-radius: 10px;
+  padding: 0.3875rem;
+  margin: 10px;
+  transition-duration:0.5s;
+}
+.cands-exp__add-row:hover{
+  color:black;
+  background-color: #0eff63;
+  cursor:pointer;
+}
+
+.cands-exp__delete-row:hover{
+  color:black;
+  background-color: #ff3419;
+  cursor:pointer;
+}
+
+.cands-exp__editing-button-wrapper{
+  float:right;
+  display:inline-block;
+}
+@media (max-width:700px){
+  .cands-exp__editing-button-wrapper{
+    float:left;
+  }
 }

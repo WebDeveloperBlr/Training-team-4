@@ -832,4 +832,14 @@ $( "#cands-editing-icon" ).click(function() {
         $(".skills__elements__decoration").hover(mouseOn,mouseOut);
     });
     $(".cands__submit").attr("placeholder","");
+    $(".cands-exp__editing-button").removeClass("display-none");
+    $( ".cands-exp__add-row" ).click(function(){
+      var timeLineRow;
+      timeLineRow=$(".cands-exp__row").html();
+      $(".cands-exp__rows-wrapper").prepend("<div class='cands-exp__row'>"+timeLineRow+"</div>");
+      $(".cands-exp__row:first-child textarea").text("");
+    });
+    $( ".cands-exp__delete-row" ).click(function(){
+      $(".cands-exp__row:first-child").remove();
+    });
 });
