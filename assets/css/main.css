@@ -11951,3 +11951,112 @@ input:-ms-input-placeholder {
     float:left;
   }
 }
+
+.vacancies-schedule__pagination{
+  display:flex;
+  justify-content: flex-end;
+  font-size:1.1rem;
+}
+.vacancies-schedule__pagination-wrapper {
+  display: flex;
+  margin-right:10%;
+  box-sizing:border-box;
+  flex-wrap:wrap;
+}
+
+.vacancies-schedule__pagination-item{
+  box-sizing:border-box;
+  border-radius:10px;
+  transition-duration:0.5s;
+  padding:3px 10px;
+  cursor:pointer;
+}
+
+.vacancies-schedule__pagination-item:hover{
+  background-color:#EBEBEB;
+}
+#vacancies-tab{
+  min-height:90px;
+  overflow:hidden;
+}
+
+#calendar{
+  width:90%;
+  box-sizing:border-box;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+.scroll{
+  overflow-y:scroll;
+}
+
+.calendar__input{
+  border-radius:10px;
+  box-sizing:border-box;
+  padding-left:10px;
+  float:right;
+  margin-bottom:20px;
+  max-width:150px;
+  margin-top:20px;
+  margin-left:auto;
+}
+
+.fc-button-group{
+  margin-bottom:0px;
+}
+
+@media (max-width:700px){
+  .fc-button-group{
+    float:left;
+  }
+  .fc-today-button{
+    margin-left:50px;
+  }
+}
+
+
+.height-120vh{
+  height:120vh;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

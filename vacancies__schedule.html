@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ru-RU">
+<head>
+  <meta charset="utf-8">
+  <title>HR-app</title>
+  <meta http-equiv="X-UA-Compatible" content="IE = edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="keywords" content="">
+  <link rel="icon" href="assets/images/icon.png">
+  <link rel="stylesheet" type="text/css" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/fullcalendar.css">
+  <script src="assets/js/moment.min.js"></script>
+</head>
+<body>
+<section class="hr-app-section scroll">
+  <div class="hr-app-section__sidebar height-120vh">
+    <svg class="icon icon-CLOSE ">
+      <use xlink:href="assets/images/svg/symbol/sprite.svg#CLOSE"></use>
+    </svg>
+    <div class="hr-app-section__sidebar-wrapper">
+      <h1 class="hr-app-section__sidebar-header">hr app</h1>
+      <ul class="hr-app-section__sidebar-list">
+        <li class="hr-app-section__sidebar-list-item"><a class="hr-app-section__sidebar-item-link"
+                                                         href="#">Interview</a></li>
+        <li class="hr-app-section__sidebar-list-item active"><a class="hr-app-section__sidebar-item-link" data-target="#vacancies-tab" href="#">Vacancies</a>
+        </li>
+        <li class="hr-app-section__sidebar-list-item"><a data-target="#candidates-tab" class="hr-app-section__sidebar-item-link"
+                                                         href="#">Candidates</a></li>
+        <li class="hr-app-section__sidebar-list-item"><a class="hr-app-section__sidebar-item-link"
+                                                         href="#">Management</a></li>
+        <li class="hr-app-section__sidebar-list-item mobile-item"><a class="hr-app-section__sidebar-item-link" href="#">Notifications
+          <svg class="icon icon-BELL ">
+            <use xlink:href="assets/images/svg/symbol/sprite.svg#BELL"></use>
+          </svg>
+        </a></li>
+      </ul>
+      <a class="hr-app-section__exit-button mobile-item" href="#">Exit
+        <svg class="icon icon-exit ">
+          <use xlink:href="assets/images/svg/symbol/sprite.svg#exit"></use>
+        </svg>
+      </a>
+    </div>
+  </div>
+  <section class="hr-app-section__right-bar">
+    <div class="hr-app-section__right-bar-wrap">
+      <div class="hr-app-section__right-bar__search-bar">
+        <div class="hr-app-section__right-bar__search-bar__hamburger-wrapper">
+          <svg class="icon icon-HAMBURGER ">
+            <use xlink:href="assets/images/svg/symbol/sprite.svg#HAMBURGER"></use>
+          </svg>
+        </div>
+        <div class="hr-app-section__right-bar__search-field-wrap">
+          <svg class="icon icon-SEARCH ">
+            <use xlink:href="assets/images/svg/symbol/sprite.svg#SEARCH"></use>
+          </svg>
+          <form class="hr-app-section__right-bar__search-form" action="">
+            <input class="hr-app-section__right-bar__search-input" type="search" id="vacancies-search"
+                   placeholder="Search...">
+          </form>
+        </div>
+        <div class="hr-app-section__right-bar__icon-panel-wrap">
+          <svg class="icon icon-BELL ">
+            <use xlink:href="assets/images/svg/symbol/sprite.svg#BELL"></use>
+          </svg>
+          <svg class="icon icon-exit ">
+            <use xlink:href="assets/images/svg/symbol/sprite.svg#exit"></use>
+          </svg>
+        </div>
+      </div>
+      <section class="vacancies-tab" id="vacancies-tab">
+        <div class="hr-app__filters-bar">
+          <div class="hr-app__filters-bar__header-wrapper">
+            <h3 class="hr-app__filters-bar__header">Interview</h3>
+            <button class="hr-app__filters-bar__add-profile-button"><span>+</span></button>
+          </div>
+        </div>
+      </section>
+        <div class="calendar-wrapper">
+          <div id='calendar'></div>
+        </div>
+    </div>
+  </section>
+</section>
+<script src="assets/js/libs.min.js"></script>
+<script src="assets/js/fullcalendar.js"></script>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/full_calendar.js"></script>
+</body>
+</html>
