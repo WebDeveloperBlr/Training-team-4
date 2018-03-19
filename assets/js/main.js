@@ -777,6 +777,7 @@ $(document).ready(function () {
 
 
 $( "#cands-editing-icon" ).click(function() {
+    $("#cands-editing-icon").unbind();
     var allInputs=document.getElementsByClassName('inp');
     for( var i=0; i<allInputs.length; i++ ){
         $(allInputs[i]).removeClass('display-none');
