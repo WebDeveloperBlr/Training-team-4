@@ -777,6 +777,7 @@ $(document).ready(function () {
 
 
 $( "#cands-editing-icon" ).click(function() {
+    $("#cands-editing-icon").unbind();
     var allInputs=document.getElementsByClassName('inp');
     for( var i=0; i<allInputs.length; i++ ){
         $(allInputs[i]).removeClass('display-none');
@@ -844,4 +845,50 @@ $( "#cands-editing-icon" ).click(function() {
     });
 });
 
+//PopUp Opening/Closing function
+$(function() {
+//----- OPEN
+  $('[data-popup-open]').on('click', function(e)  {
+    var targeted_popup_class = jQuery(this).attr('data-popup-open');
+    $('[data-popup="' + targeted_popup_class + '"]').fadeIn(350);
+    e.preventDefault();
+  });
+//----- CLOSE
+  $('[data-popup-close]').on('click', function(e)  {
+    var targeted_popup_class = jQuery(this).attr('data-popup-close');
+    $('[data-popup="' + targeted_popup_class + '"]').fadeOut(350);
+    e.preventDefault();
+  });
+});
 
+
+//PopUp Editing function
+$("#review-editing").click(function(){
+  var allInputs = document.getElementsByClassName('review-input');
+  for(var i=0; i<allInputs.length; i++){
+    $(allInputs[i]).removeClass('display-none');
+  }
+  var hidden = document.getElementsByClassName('review-to-be-hidden');
+  for(i=0; i<hidden.length; i++){
+    $(hidden[i]).addClass('display-none');
+  }
+  var editButton = document.getElementsByClassName('edit-btn');
+  $(editButton).addClass('display-none');
+  var saveButton = document.getElementsByClassName('save-btn');
+  $(saveButton).removeClass('display-none');
+});
+
+$("#review-saving").click(function () {
+  var allInputs = document.getElementsByClassName('review-input');
+  for(var i=0; i<allInputs.length; i++){
+    $(allInputs[i]).addClass('display-none');
+  }
+  var hidden = document.getElementsByClassName('review-to-be-hidden');
+  for(i=0; i<hidden.length; i++){
+    $(hidden[i]).removeClass('display-none');
+  }
+  var editButton = document.getElementsByClassName('edit-btn');
+  $(editButton).removeClass('display-none');
+  var saveButton = document.getElementsByClassName('save-btn');
+  $(saveButton).addClass('display-none');
+});

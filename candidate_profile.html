@@ -112,6 +112,41 @@
                 <div class="candidate-profile__cv-term">
                   1 day later
                 </div>
+
+                <a class="btn cands-review-btn" data-popup-open="popup-1" href="#">Review</a>
+                <div class="popup" data-popup="popup-1">
+                  <div class="popup-inner cands-review-wrapper">
+                    <form action="#">
+                      <div class="review-block__header">
+                        <span class="review-block__header__cand-name review-to-be-hidden">Candidate's Name</span>
+                        <input type="text" placeholder="Candidate's Name" class="review-input display-none">
+                        <span class="review-block__header__date review-to-be-hidden">16.03.2018</span>
+                        <input type="date" class="review-input display-none">
+                        <a class="popup-close" data-popup-close="popup-1" href="#">x</a>
+                      </div>
+                      <span class="review-block__reviewer-name review-to-be-hidden">Reviewer's Name</span>
+                      <input type="text" placeholder="Reviewer's Name" class="review-input display-none">
+
+                      <div class="review-block__body">
+                        <p>Donec in volutpat nisi. In quam lectus, aliquet rhoncus cursus a, congue et arcu. Vestibulum tincidunt neque id nisi pulvinar aliquam. Nulla luctus luctus ipsum at ultricies. Nullam nec velit dui. Nullam sem eros, pulvinar sed pellentesque ac, feugiat et turpis. Donec gravida ipsum cursus massa malesuada tincidunt. Nullam finibus nunc mauris, quis semper neque ultrices in. Ut ac risus eget eros imperdiet posuere nec eu lectus.</p>
+                        <ul class="list-inline">
+                          <li class="list-inline-item review-block__inline-list-active">Form</li>
+                          <li class="list-inline-item review-block__inline-list">Form</li>
+                          <li class="list-inline-item review-block__inline-list">Form</li>
+                        </ul>
+                        <textarea rows="8" placeholder="Text of the review"></textarea>
+                      </div>
+
+                      <div class="review-block__footer">
+                        <input type="submit" value="Send" data-popup-close="popup-1" href="#" class="cands-review-send btn"></input>
+                        <button type="button" class="btn edit-btn" id="review-editing">Edit review</button>
+                        <button type="button" class="btn save-btn display-none" id="review-saving">Save changes</button>
+                      </div>
+                    </form>
+
+                  </div>
+                </div>
+
               </div>
               <div class="candidate-profile__hr-app__contact-info">
                 <div class="contact-info__text">
