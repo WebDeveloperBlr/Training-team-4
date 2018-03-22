@@ -6,6 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE = edge">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="keywords" content="">
+  <link rel="stylesheet" type="text/css" href="assets/css/libs.css">
   <link rel="stylesheet" type="text/css" href="assets/css/main.css">
 
 </head>
@@ -66,7 +67,7 @@
         </div>
       </div>
       <section class="vacancies-tab d-none" id="vacancies-tab">
-        <div class="hr-app__filters-bar">
+        <div class="hr-app__filters-bar" id="vacancies-filters-bar">
           <div class="hr-app__filters-bar__header-wrapper">
             <h3 class="hr-app__filters-bar__header">Vacancies</h3>
             <button class="hr-app__filters-bar__add-profile-button"><span>+</span></button>
@@ -118,12 +119,7 @@
           </div>
         </div>
         <div class="hr-app__table" id="hr-app__table">
-          <div class="hr-app__table__header-row table--row">
-            <div class="hr-app__table-col table--header-col" id="table--header-col--pos">Position</div>
-            <div class="hr-app__table-col table--header-col" id="table--header-col--exp">Work Experience</div>
-            <div class="hr-app__table-col table--header-col" id="table--header-col--sal">Salary</div>
-            <div class="hr-app__table-col table--header-col">View candidates</div>
-          </div>
+
           <div class="hr-app__table-editor">
             <div class="hr-app__table-editor__col">
               <div class="hr-app__table-editor__text">Rows per page:</div>
@@ -149,10 +145,10 @@
           </div>
         </div>
       </section>
-      <section class="hr-app__candidates-section flex-column d-none" id="candidates-tab">
+      <section class="vacancies-tab d-none" id="candidates-tab">
         <div class="hr-app__filters-bar" id="candidates-filters-bar">
           <div class="hr-app__filters-bar__header-wrapper">
-            <h3 class="hr-app__filters-bar__header hr-app-section--header">Candidates</h3>
+            <h3 class="hr-app__filters-bar__header hr-app-section&#45;&#45;header">Candidates</h3>
             <button class="hr-app__filters-bar__add-profile-button"><span>+</span></button>
           </div>
           <div class="hr-app__filters-bar__wrap">
@@ -174,9 +170,91 @@
                 <div class="hr-app__filters-bar__select-text">Age</div>
                 <div class="hr-app__filters-bar__input-wrap justify-content-between"><span
                     class="hr-app__filters-bar__input-wrap__text">from</span>
-                  <input class="hr-app__filters-bar__input small--input" type="text" maxlength="2"/><span
+                  <input class="hr-app__filters-bar__input small&#45;&#45;input" type="text" maxlength="2"/><span
                       class="hr-app__filters-bar__input-wrap__text">to</span>
-                  <input class="hr-app__filters-bar__input small--input" type="text" maxlength="2"/>
+                  <input class="hr-app__filters-bar__input small&#45;&#45;input" type="text" maxlength="2"/>
+                </div>
+              </div>
+              <div class="hr-app__filters-bar__filter-item">
+                <div class="hr-app__filters-bar__select-text">Status</div>
+                <select class="hr-app__filters-bar__select" data-attr="filter-item">
+                  <option class="hr-app__filters-bar__select-option">Any</option>
+                  <option class="hr-app__filters-bar__select-option">CV-rejected</option>
+                  <option class="hr-app__filters-bar__select-option">CV-accepted</option>
+                  <option class="hr-app__filters-bar__select-option">Accepted for interview</option>
+                </select>
+              </div>
+              <div class="hr-app__filters-bar__dropdown">Name
+                <ul class="hr-app__filters-bar__dropdown-list">
+                  <li class="hr-app__filters-bar__dropdown-list-item"><a
+                      class="hr-app__filters-bar__dropdown-item-link">Nai</a>
+                  </li>
+                  <li class="hr-app__filters-bar__dropdown-list-item">Name</li>
+                  <li class="hr-app__filters-bar__dropdown-list-item">Name</li>
+                </ul>
+              </div>
+              <div class="hr-app__filters-bar__pagination"><span>1</span><span> of</span><span> 12</span></div>
+              <div class="hr-app__filters-bar__sort-button-wrapper">
+                <div class="hr-app__filters-bar__sort-button">Filter</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="hr-app__table" id="hr-app__table">
+
+          <div class="hr-app__table-editor">
+            <div class="hr-app__table-editor__col">
+              <div class="hr-app__table-editor__text">Rows per page:</div>
+              <select class="hr-app__table-editor__select" id="rows-per-page-vacancies">
+                <option class="hr-app__table-editor__select-option">10</option>
+                <option class="hr-app__table-editor__select-option">20</option>
+                <option class="hr-app__table-editor__select-option">50</option>
+              </select>
+            </div>
+            <div class="hr-app__table-editor__col order-2">
+              <div class="hr-app__table-editor__pagination"></div>
+            </div>
+            <div
+                class="hr-app__table-editor__page-buttons hr-app__table-editor__col order-1 order-lg-2">
+
+              <ul class="pagination-sm pagination" id="pagination">
+
+              </ul>
+            </div>
+            <div class="hr-app__fixed-round">
+              <div class="hr-app__fixed-round__plus">+</div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!--<section class="hr-app__candidates-section flex-column d-none" id="candidates-tab">
+        <div class="hr-app__filters-bar" id="candidates-filters-bar">
+          <div class="hr-app__filters-bar__header-wrapper">
+            <h3 class="hr-app__filters-bar__header hr-app-section&#45;&#45;header">Candidates</h3>
+            <button class="hr-app__filters-bar__add-profile-button"><span>+</span></button>
+          </div>
+          <div class="hr-app__filters-bar__wrap">
+            <div class="hr-app__filters-bar__text-wrapper" data-toggle="collapse" data-target="" role="button"
+                 aria-expanded="false" aria-controls="filters-bar-collapse">
+              <div class="hr-app__filters-bar__text">Filter by</div>
+              <svg class="icon icon-ARROW ">
+                <use xlink:href="assets/images/svg/symbol/sprite.svg#ARROW"></use>
+              </svg>
+            </div>
+            <div class="hr-app__filters-bar__fields-wrapper" id="candidates-filters-bar-collapse" data-parent="#hr-app__table">
+              <div class="hr-app__filters-bar__filter-item">
+                <div class="hr-app__filters-bar__select-text">Name</div>
+                <div class="hr-app__filters-bar__input-wrap">
+                  <input class="hr-app__filters-bar__input" type="text"/>
+                </div>
+              </div>
+              <div class="hr-app__filters-bar__filter-item">
+                <div class="hr-app__filters-bar__select-text">Age</div>
+                <div class="hr-app__filters-bar__input-wrap justify-content-between"><span
+                    class="hr-app__filters-bar__input-wrap__text">from</span>
+                  <input class="hr-app__filters-bar__input small&#45;&#45;input" type="text" maxlength="2"/><span
+                      class="hr-app__filters-bar__input-wrap__text">to</span>
+                  <input class="hr-app__filters-bar__input small&#45;&#45;input" type="text" maxlength="2"/>
                 </div>
               </div>
               <div class="hr-app__filters-bar__filter-item">
@@ -216,7 +294,7 @@
                     <div class="hr-app__candidates-item-cv-text"></div>
                   </div>
                   <div class="hr-app__candidates-item-text-wrapper"><span
-                      class="hr-app__candidates-item--profession-text">Java Developer</span>
+                      class="hr-app__candidates-item&#45;&#45;profession-text">Java Developer</span>
                     <h5 class="hr-app__candidates-item-name-text">Artem Badaev</h5><span
                         class="hr-app__candidates-item-salary-text">800$</span>
                   </div>
@@ -250,7 +328,7 @@
             </div>
           </div>
         </div>
-      </section>
+      </section>-->
 
     </div>
   </section>
