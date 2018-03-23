@@ -1,17 +1,27 @@
+$( "#datepicker" ).datepicker({
+    dateFormat: "yy-mm-dd"
+});
 
+function eventCreator (date, jsEvent, view) {
+    alert("u have clicked!!");
+}
+
+
+var addedEvents=[
+    {
+        title:"HUI",
+        start:"2018-04-30",
+        end:"2018-04-30"
+    }
+];
 $(function() {
     $('#calendar').fullCalendar({
+
         firstDay:1,
         selectable:"true",
         selectHelper:"true",
         eventLimit:"true",
         hiddenDays: [0],
-        validRange: function(nowDate) {
-            return {
-                start: nowDate.clone().add(-3,'days'),
-                end: nowDate.clone().add(5, 'months')
-            };
-        },
         buttonText: {
             prev: 'prev',
             next: 'next',
@@ -33,16 +43,25 @@ $(function() {
             right: 'today prev,next month,agendaWeek,agendaDay, listWeek,listDay'
         },
         displayEventTime: "true",
-        events:"assets/json/candidates.json",
+        eventSources:[
+            {
+                events:addedEvents
+            },
+            {
+                url:"assets/json/candidates.json"
+            }
+        ],
         editable:"true",
         navLinks:"true",
-        eventClick: function(event, element) {
-
-            event.title = "CLICKED!";
-
-            $('#calendar').fullCalendar('updateEvent', event);
-
+        dayClick:eventCreator,
+        validRange: function(nowDate) {
+            return {
+                start: nowDate,
+                end: nowDate.clone().add(1, 'months')
+            };
         }
     });
-    $('div.fc-toolbar').append("<input class='calendar__input'  type='text' placeholder='jump to date'>");
 });
+$( function() {
+    $( "#datepicker" ).datepicker();
+} );
