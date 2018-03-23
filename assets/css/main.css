@@ -7829,7 +7829,7 @@ a.bg-dark:focus, a.bg-dark:hover, button.bg-dark:focus, button.bg-dark:hover {
 }
 
 .float-right {
-  float: right !important;
+  float: right;
 }
 
 .float-none {
@@ -12039,7 +12039,7 @@ input:-ms-input-placeholder {
   max-width:700px;
   width:90%;
   padding:40px;
-  position:absolute;
+  position:fixed;
   top:50%;
   left:50%;
   -webkit-transform:translate(-50%, -50%);
@@ -12047,6 +12047,7 @@ input:-ms-input-placeholder {
   box-shadow:0px 0px 10px rgba(0,0,0,0.8);
   border-radius:3px;
   background:#ebebeb;
+  z-index:500;
 }
 /* Close Button */
 .popup-close {
@@ -12067,6 +12068,7 @@ input:-ms-input-placeholder {
   text-align:center;
   line-height:100%;
   color:#fff;
+  cursor:pointer;
 }
 
 .cands-review-btn{
@@ -12127,9 +12129,57 @@ input:-ms-input-placeholder {
 }
 
 
+/*popup for schedule starts here*/
 
 
 
+.schedule__popup-header{
+  text-align:center;
+  font-size:1.3rem;
+}
+
+.border-box{
+  box-sizing:border-box;
+}
+
+.margin-50{
+  margin-right:30%;
+}
+.schedule__popup-field{
+  outline:none;
+  border:none;
+  margin-top:15px;
+  font-size:1.05rem;
+  box-sizing:border-box;
+  padding-left:5px;
+  padding-right:5px;
+  border-radius:10px;
+  font-family: Ubuntu, Arial, sans-serif;
+}
+
+.schedule__popup-person-field{
+  width:50%;
+  margin-bottom:10px;
+}
+
+@media all and (max-width:1000px){
+    .size-responsive{
+        max-width:500px;
+        left:550px;
+        float:left;
+        margin-left:0px;
+        margin-right:0px;
+    }
+    .schedule__popup-field{
+        width:60%;
+    }
+    .float-right{
+        float:left;
+    }
+    #saveEvent{
+        float:right;
+    }
+}
 
 
 

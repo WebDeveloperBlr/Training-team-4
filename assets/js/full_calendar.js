@@ -1,20 +1,14 @@
-$( "#datepicker" ).datepicker({
-    dateFormat: "yy-mm-dd"
+
+
+$( ".datepicker" ).datepicker({
+    dateFormat: "yy-mm-dd",
+    showAnim: "clip"
 });
 
-function eventCreator (date, jsEvent, view) {
-    alert("u have clicked!!");
-}
+var eventStart;
+var eventEnd;
 
-
-var addedEvents=[
-    {
-        title:"HUI",
-        start:"2018-04-30",
-        end:"2018-04-30"
-    }
-];
-$(function() {
+$(function () {
     $('#calendar').fullCalendar({
 
         firstDay:1,
@@ -53,7 +47,8 @@ $(function() {
         ],
         editable:"true",
         navLinks:"true",
-        dayClick:eventCreator,
+        allDay:true,
+        dayClick:popup,
         validRange: function(nowDate) {
             return {
                 start: nowDate,
@@ -62,6 +57,42 @@ $(function() {
         }
     });
 });
-$( function() {
-    $( "#datepicker" ).datepicker();
-} );
+
+function popup (date, jsEvent, view) {
+    $(".schedule__pop-up").removeClass("display-none");
+    eventStart=date.format();
+    eventEnd=date.format();
+    $("#eventStart").val(eventStart);
+    $("#eventEnd").val(eventEnd);
+}
+
+$(".schedule-popup-close").click(function(){
+    $(".schedule__pop-up").addClass("display-none");
+});
+
+$("#saveEvent").click(function(){
+    var title=$("#eventTitle").val();
+    var newEvent=new EventCreator(eventStart,eventEnd,title);
+    addedEvents.push(newEvent);
+    $(".schedule__pop-up").addClass("display-none");
+    $("#eventTitle").val("");
+    $("#eventStart").val("");
+    $("#eventEnd").val("");
+    $(".schedule__pop-up").addClass("display-none");
+});
+
+
+function EventCreator(start,end,title){
+    this.title=title;
+    this.start=start;
+    this.end=end;
+}
+
+var addedEvents=[
+    {
+        title:"HUI",
+        start:"2018-04-30",
+        end:"2018-04-30"
+
+    }
+];
