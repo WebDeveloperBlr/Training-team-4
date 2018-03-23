@@ -1259,3 +1259,54 @@ be a descendant of the grid when it is being dragged.
 	border-top-color: transparent;
 	border-bottom-color: transparent;
 }
+
+
+/*popup for schedule starts here*/
+
+.schedule__popup-header{
+	text-align:center;
+	font-size:1.3rem;
+}
+
+.border-box{
+	box-sizing:border-box;
+}
+
+.margin-50{
+	margin-right:30%;
+}
+.schedule__popup-field{
+	outline:none;
+	border:none;
+	margin-top:15px;
+	font-size:1.05rem;
+	box-sizing:border-box;
+	padding-left:5px;
+	padding-right:5px;
+	border-radius:10px;
+	font-family: Ubuntu, Arial, sans-serif;
+}
+
+.schedule__popup-person-field{
+	width:50%;
+	margin-bottom:10px;
+}
+
+@media all and (max-width:1000px){
+	.size-responsive{
+		max-width:500px;
+		left:550px;
+		float:left;
+		margin-left:0px;
+		margin-right:0px;
+	}
+	.schedule__popup-field{
+		width:60%;
+	}
+	.float-right{
+		float:left;
+	}
+	#saveEvent{
+		float:right;
+	}
+}

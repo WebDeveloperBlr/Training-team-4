@@ -1,17 +1,21 @@
 
-$(function() {
+
+$( ".datepicker" ).datepicker({
+    dateFormat: "yy-mm-dd",
+    showAnim: "clip"
+});
+
+var eventStart;
+var eventEnd;
+
+$(function () {
     $('#calendar').fullCalendar({
+
         firstDay:1,
         selectable:"true",
         selectHelper:"true",
         eventLimit:"true",
         hiddenDays: [0],
-        validRange: function(nowDate) {
-            return {
-                start: nowDate.clone().add(-3,'days'),
-                end: nowDate.clone().add(5, 'months')
-            };
-        },
         buttonText: {
             prev: 'prev',
             next: 'next',
@@ -33,16 +37,62 @@ $(function() {
             right: 'today prev,next month,agendaWeek,agendaDay, listWeek,listDay'
         },
         displayEventTime: "true",
-        events:"assets/json/candidates.json",
+        eventSources:[
+            {
+                events:addedEvents
+            },
+            {
+                url:"assets/json/candidates.json"
+            }
+        ],
         editable:"true",
         navLinks:"true",
-        eventClick: function(event, element) {
-
-            event.title = "CLICKED!";
-
-            $('#calendar').fullCalendar('updateEvent', event);
-
+        allDay:true,
+        dayClick:popup,
+        validRange: function(nowDate) {
+            return {
+                start: nowDate,
+                end: nowDate.clone().add(1, 'months')
+            };
         }
     });
-    $('div.fc-toolbar').append("<input class='calendar__input'  type='text' placeholder='jump to date'>");
 });
+
+function popup (date, jsEvent, view) {
+    $(".schedule__pop-up").removeClass("display-none");
+    eventStart=date.format();
+    eventEnd=date.format();
+    $("#eventStart").val(eventStart);
+    $("#eventEnd").val(eventEnd);
+}
+
+$(".schedule-popup-close").click(function(){
+    $(".schedule__pop-up").addClass("display-none");
+});
+
+$("#saveEvent").click(function(){
+    var title=$("#eventTitle").val();
+    var newEvent=new EventCreator(eventStart,eventEnd,title);
+    addedEvents.push(newEvent);
+    $(".schedule__pop-up").addClass("display-none");
+    $("#eventTitle").val("");
+    $("#eventStart").val("");
+    $("#eventEnd").val("");
+    $(".schedule__pop-up").addClass("display-none");
+});
+
+
+function EventCreator(start,end,title){
+    this.title=title;
+    this.start=start;
+    this.end=end;
+}
+
+var addedEvents=[
+    {
+        title:"HUI",
+        start:"2018-04-30",
+        end:"2018-04-30"
+
+    }
+];

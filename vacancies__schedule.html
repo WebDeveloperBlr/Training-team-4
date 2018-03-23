@@ -9,6 +9,7 @@
   <link rel="icon" href="assets/images/icon.png">
   <link rel="stylesheet" type="text/css" href="assets/css/main.css">
   <link rel="stylesheet" href="assets/css/fullcalendar.css">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <script src="assets/js/moment.min.js"></script>
 </head>
 <body>
@@ -79,9 +80,35 @@
           <div id='calendar'></div>
         </div>
     </div>
+    <div  class="display-none schedule__pop-up border-box ">
+      <form class="popup-inner size-responsive">
+        <div class="schedule__popup-header ">Add title and time</div>
+        <div>
+          <span class="btn btn-primary">
+          Event
+        </span>
+        </div>
+        <div>
+          <input id="eventStart" class="schedule__popup-field datepicker " placeholder="enter start of event" type="text"/>
+          <input class="schedule__popup-field float-right margin-50"  placeholder="enter start time (hh:mm)"/>
+        </div>
+        <div>
+          <input id="eventEnd" class="schedule__popup-field datepicker " placeholder="enter end of event" type="text"/>
+          <input class="schedule__popup-field float-right margin-50" placeholder="enter end time (hh:mm)"/>
+        </div>
+        <div>
+           <input id="eventTitle" class="schedule__popup-person-field schedule__popup-field" placeholder="add title" type="text"/>
+        </div>
+        <div id="saveEvent" class="btn btn-primary float-right">
+          Save
+        </div>
+        <span class="popup-close schedule-popup-close">x</span>
+      </form>
+    </div>
   </section>
 </section>
 <script src="assets/js/libs.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="assets/js/fullcalendar.js"></script>
 <script src="assets/js/main.js"></script>
 <script src="assets/js/full_calendar.js"></script>
