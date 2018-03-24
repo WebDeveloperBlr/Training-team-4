@@ -1,5 +1,5 @@
 {
-  "name": "training-team-3",
+  "name": "hr-app",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -19,6 +19,6 @@
   "homepage": "https://github.com/AlexKolonitsky/Training-team-3#readme",
   "dependencies": {
     "mysql": "^2.15.0",
-    "restify": "^6.3.4"
+    "restify": "^7.0.0"
   }
 }

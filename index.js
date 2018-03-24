@@ -5,10 +5,6 @@ var candidatesController = require('./controllers/candidates');
 var vacanciesController = require('./controllers/vacancies');
 var fs = require('fs');
 
-
-
-
-//var connection = config.db.get;
 var data = [];
 
 const server = restify.createServer({
@@ -23,12 +19,14 @@ server.use(restify.plugins.queryParser());
 server.use(restify.plugins.bodyParser());
 
 
+
 server.listen(8080, function () {
   console.log('%s listening at %s', server.name, server.url);
 });
 
+
 //rest api to get all results
-server.get(/\/assets\/(.*)?.*/, restify.plugins.serveStatic({
+server.get('/assets/*.*', restify.plugins.serveStatic({
   directory: __dirname
 }));
 
@@ -44,13 +42,14 @@ server.get('/', function handler (req, res, next) {
       next();
     });
 });
-server.get('candidates', candidatesController.all);
-server.get('vacancies', vacanciesController.all);
-server.get('candidates/:id', candidatesController.getById);
+server.get('/candidates', candidatesController.all);
+server.get('/vacancies', vacanciesController.all);
+server.get('/candidates/:id', candidatesController.getById);
 
 
 //rest api to create a new record into mysql database
 server.post('/',candidatesController.create);
 server.put('/:id', candidatesController.update);
 server.del('/:id', candidatesController.delete);
+
 
