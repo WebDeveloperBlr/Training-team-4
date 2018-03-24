@@ -16,7 +16,7 @@ const server = restify.createServer({
   version : config.version,
   url : config.hostname
 });
-var io = require('socket.io')(server);
+
 
 server.use(restify.plugins.acceptParser(server.acceptable));
 server.use(restify.plugins.queryParser());
