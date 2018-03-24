@@ -8,6 +8,7 @@
   <meta name="keywords" content="">
   <link rel="icon" href="assets/images/icon.png">
   <link rel="stylesheet" type="text/css" href="assets/css/main.css">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 </head>
 <body>
 <form class="cands-form">
@@ -118,32 +119,18 @@
                   <div class="popup-inner cands-review-wrapper">
                     <form action="#">
                       <div class="review-block__header">
-                        <span class="review-block__header__cand-name review-to-be-hidden">Candidate's Name</span>
-                        <input type="text" placeholder="Candidate's Name" class="review-input display-none">
-                        <span class="review-block__header__date review-to-be-hidden">16.03.2018</span>
-                        <input type="date" class="review-input display-none">
+                        <span class="review-block__header__cand-name">Candidate's Name</span>
                         <a class="popup-close" data-popup-close="popup-1" href="#">x</a>
                       </div>
-                      <span class="review-block__reviewer-name review-to-be-hidden">Reviewer's Name</span>
-                      <input type="text" placeholder="Reviewer's Name" class="review-input display-none">
-
-                      <div class="review-block__body">
-                        <p>Donec in volutpat nisi. In quam lectus, aliquet rhoncus cursus a, congue et arcu. Vestibulum tincidunt neque id nisi pulvinar aliquam. Nulla luctus luctus ipsum at ultricies. Nullam nec velit dui. Nullam sem eros, pulvinar sed pellentesque ac, feugiat et turpis. Donec gravida ipsum cursus massa malesuada tincidunt. Nullam finibus nunc mauris, quis semper neque ultrices in. Ut ac risus eget eros imperdiet posuere nec eu lectus.</p>
-                        <ul class="list-inline">
-                          <li class="list-inline-item review-block__inline-list-active">Form</li>
-                          <li class="list-inline-item review-block__inline-list">Form</li>
-                          <li class="list-inline-item review-block__inline-list">Form</li>
-                        </ul>
-                        <textarea rows="8" placeholder="Text of the review"></textarea>
+                      <div class="review-block__body" id="rev-body">
                       </div>
-
                       <div class="review-block__footer">
-                        <input type="submit" value="Send" data-popup-close="popup-1" href="#" class="cands-review-send btn"></input>
-                        <button type="button" class="btn edit-btn" id="review-editing">Edit review</button>
+                        <input type="submit" value="Send" data-popup-close="popup-1" href="#" class="cands-review-send btn">
+                        <button type="button" class="btn create-btn" id="review-creating">Create review</button>
+                        <button type="button" class="btn edit-btn " id="review-editing">Edit review</button>
                         <button type="button" class="btn save-btn display-none" id="review-saving">Save changes</button>
                       </div>
                     </form>
-
                   </div>
                 </div>
 
@@ -342,5 +329,6 @@
 </form>
 <script src="assets/js/libs.min.js"></script>
 <script src="assets/js/main.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </body>
 </html>
