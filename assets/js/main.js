@@ -845,7 +845,7 @@ $( "#cands-editing-icon" ).click(function() {
     });
 });
 
-//PopUp Opening/Closing function
+// Review PopUp Opening/Closing function
 $(function() {
 //----- OPEN
   $('[data-popup-open]').on('click', function(e)  {
@@ -861,8 +861,33 @@ $(function() {
   });
 });
 
+// Review Creating function
+$("#review-creating").click(function () {
+  var body = document.getElementsByClassName('review-block__body');
+  var bodyElem = document.createElement('div');
+  $(bodyElem).addClass('review-block__body-elem row');
+  bodyElem.innerHTML = '<div class=\"review-block__reviewer-name review-to-be-hidden col-3 display-none\">Reviewer Name</div>\n' +
+    '                         <input type=\"text\" placeholder=\"Reviewer Name\" class=\"review-input reviewer-name-inp col-3\">\n' +
+    '                         <div class=\"review-block__review-text review-to-be-hidden col-6 display-none\">Review Text</div>\n' +
+    '                         <input type=\"text\" placeholder=\"Text of the review\" class=\"review-input review-text-inp col-6\">\n' +
+    '                         <div class=\"review-block__date review-to-be-hidden col-3 display-none\" id=\"date-out\">16.03.2018</div>\n' +
+    '                        <input type=\"text\" placeholder="Choose date" class=\"review-input datepicker col-3\">';
 
-//PopUp Editing function
+  document.getElementById('rev-body').appendChild(bodyElem);
+  var editButton = document.getElementsByClassName('edit-btn');
+  $(editButton).addClass('display-none');
+  var saveButton = document.getElementsByClassName('save-btn');
+  $(saveButton).removeClass('display-none');
+  var dateId = document.getElementsByClassName('review-block__date');
+  for (var i = 0; i < dateId.length; i++){
+    dateId[i].id = 'date-out-'+(i+1);
+  }
+  $( function() {
+    $( ".datepicker" ).datepicker({dateFormat: 'dd.mm.yy'});
+  } );
+});
+
+//Review PopUp Editing function
 $("#review-editing").click(function(){
   var allInputs = document.getElementsByClassName('review-input');
   for(var i=0; i<allInputs.length; i++){
@@ -876,6 +901,9 @@ $("#review-editing").click(function(){
   $(editButton).addClass('display-none');
   var saveButton = document.getElementsByClassName('save-btn');
   $(saveButton).removeClass('display-none');
+  $( function() {
+    $( ".datepicker" ).datepicker({dateFormat: 'dd.mm.yy'});
+  } );
 });
 
 $("#review-saving").click(function () {
@@ -891,4 +919,18 @@ $("#review-saving").click(function () {
   $(editButton).removeClass('display-none');
   var saveButton = document.getElementsByClassName('save-btn');
   $(saveButton).addClass('display-none');
+  var dateInpElem = document.getElementsByClassName('datepicker');
+  for (var i=0; i<dateInpElem.length; i++){
+    var dateInp = document.getElementsByClassName('datepicker');
+    var dateOut = document.getElementsByClassName('review-block__date');
+    dateOut[i].innerHTML = dateInp[i].value;
+
+    var nameInp = document.getElementsByClassName('reviewer-name-inp');
+    var nameOut = document.getElementsByClassName('review-block__reviewer-name')
+    nameOut[i].innerHTML = nameInp[i].value;
+
+    var textInp = document.getElementsByClassName('review-text-inp');
+    var textOut = document.getElementsByClassName('review-block__review-text');
+    textOut[i].innerHTML = textInp[i].value;
+  }
 });

@@ -12081,7 +12081,7 @@ input:-ms-input-placeholder {
 .cands-review-wrapper{
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: stretch;
   justify-content: center;
 }
 
@@ -12097,29 +12097,29 @@ input:-ms-input-placeholder {
   color: #6b6b6b;
 }
 
-.review-block__header__date{
+.review-block__body{
+  display: flex;
+  flex-direction: column;
+  max-height: 10rem;
+  overflow-y: scroll;
+}
+
+.review-block__body-elem{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 10px;
+  word-wrap: break-word;
+}
+
+.review-block__date{
   color: #6b6b6b;
+  min-height: 1rem;
 }
 
 .review-block__reviewer-name{
-  font-size: 0.975rem;
-  color:#a6a6a6;
-}
-
-.review-block__inline-list{
-  padding: 15px;
-  font-size: 1.1rem;
-
-}
-
-.review-block__inline-list-active{
-  padding: 15px;
-  font-size: 1.1rem;
-  background-color:#cccccc;
-}
-
-.review-block__inline-list:hover{
-  background-color:#cccccc;
+  min-height: 1rem;
+  color: #6b6b6b;
 }
 
 .review-block__footer{
@@ -12128,6 +12128,9 @@ input:-ms-input-placeholder {
   justify-content: space-between;
 }
 
+.review-input{
+  height: 2.2rem;
+}
 
 
 
