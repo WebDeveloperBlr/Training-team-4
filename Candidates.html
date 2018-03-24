@@ -6,8 +6,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE = edge">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="keywords" content="">
-  <link rel="stylesheet" type="text/css" href="assets/css/libs.css">
-  <link rel="stylesheet" type="text/css" href="assets/css/main.css">
+  <link rel="stylesheet" type="text/css" href="/assets/css/libs.css">
+  <link rel="stylesheet" type="text/css" href="/assets/css/main.css">
 </head>
 <body>
 <form>
@@ -21,19 +21,17 @@
         <ul class="hr-app-section__sidebar-list">
           <li class="hr-app-section__sidebar-list-item"><a class="hr-app-section__sidebar-item-link"
                                                            href="#">Interview</a></li>
-          <li class="hr-app-section__sidebar-list-item"><a class="hr-app-section__sidebar-item-link"
-                                                           href="HR-app.html">Vacancies</a></li>
-          <li class="hr-app-section__sidebar-list-item active"><a class="hr-app-section__sidebar-item-link" href="#">Candidates</a>
+          <li class="hr-app-section__sidebar-list-item"><a class="hr-app-section__sidebar-item-link" data-target="#vacancies-tab" href="#">Vacancies</a>
           </li>
+          <li class="hr-app-section__sidebar-list-item"><a data-target="#candidates-tab" class="hr-app-section__sidebar-item-link"
+                                                           href="#">Candidates</a></li>
           <li class="hr-app-section__sidebar-list-item"><a class="hr-app-section__sidebar-item-link"
                                                            href="#">Management</a></li>
-          <li class="hr-app-section__sidebar-list-item mobile-item">
-            <a class="hr-app-section__sidebar-item-link" href="#">Notifications
-              <svg class="icon icon-BELL ">
-                <use xlink:href="assets/images/svg/symbol/sprite.svg#BELL"></use>
-              </svg>
-            </a>
-          </li>
+          <li class="hr-app-section__sidebar-list-item mobile-item"><a class="hr-app-section__sidebar-item-link" href="#">Notifications
+            <svg class="icon icon-BELL ">
+              <use xlink:href="assets/images/svg/symbol/sprite.svg#BELL"></use>
+            </svg>
+          </a></li>
         </ul>
         <a class="hr-app-section__exit-button mobile-item" href="#">Exit
           <svg class="icon icon-exit ">
@@ -68,7 +66,7 @@
             </svg>
           </div>
         </div>
-        <section class="candidate-profile-block">
+        <section class="candidate-profile-block" id="candidate-profile-block">
           <div class="candidate-profile__hr-app__nav-bar">
             <nav aria-label="breadcrumb">
               <ol class="profile-breadcrumb">
@@ -92,15 +90,15 @@
                 </div>
                 <div class="candidate-profile__candidate-wrapper">
                   <div class="candidate-profile__candidate-position">
-                    <span class="to-be-hidden">Java Developer</span>
+                    <span class="to-be-hidden" id="candidate-position"></span>
                     <input class="cands-input-properties display-none" type="text">
                   </div>
                   <div class="candidate-profile__candidate-name">
-                    <span class="to-be-hidden">Jimmy Carr</span>
+                    <span class="to-be-hidden" id="candidate-name"></span>
                     <input class="cands-input-properties display-none" type="text">
                   </div>
                   <div class="candidate-profile__candidate-salary">
-                    <span class="to-be-hidden">800$</span>
+                    <span class="to-be-hidden" id="candidate-salary">800$</span>
                     <input class="cands-input-properties display-none" type="text">
                   </div>
                 </div>
@@ -260,7 +258,7 @@
     </section>
   </section>
 </form>
-<script src="assets/js/libs.min.js"></script>
-<script src="assets/js/main.js"></script>
+<script src="/assets/js/libs.min.js"></script>
+<script src="/assets/js/main.js"></script>
 </body>
 </html>

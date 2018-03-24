@@ -1,15 +1,59 @@
 $(document).ready(function () {
 
-  function HrAppBuilder(elem) {
-    //initialize DOM elements which we will working with
+  function HrAppBuilder(elem, activeSection) {
+    var self = this;
     this.section = elem;
     this.sidebar = $(this.section).find('.hr-app-section__sidebar');
-    this.tabLinks = $(this.section).find('.hr-app-section__sidebar-item-link');
-    var self = this;
+    this.tabLinks = $(this.section).find('[data-attr="tab-link"]');
+    this.vacanciesSection = $(this.section.find('#vacancies-tab'));
+    this.candidatesSection = $(this.section.find('#candidates-tab'));
+    this.candidateProfile =  $(this.section.find('#candidate-profile-block'));
     this.application;
-    //if we on page vacancies we initializing vacancies object which described below
-    this.bindEvents();
-    //if we're working on smart-phone, initialize some special variables and bind mobile events
+
+    this.initialize = function(){
+      if (self.vacanciesSection.hasClass('active')) {
+        self.application = new Vacancies(self.vacanciesSection);
+      }else{
+        self.vacanciesSection.addClass('d-none');
+      }
+      if ($(self.candidatesSection).hasClass('active')) {
+        self.application = new Candidates(self.candidatesSection);
+      }else{
+        self.candidatesSection.addClass('d-none');
+      }
+      if($(self.candidateProfile).hasClass('active')){
+        self.application = new Person(self.candidateProfile,activeSection.id);
+      }else{
+        self.candidateProfile.addClass('d-none');
+      }
+    };
+    this.showSidebar = function () {
+      $(this.sidebar).addClass('slide-in');
+    };
+    this.hideSidebar = function () {
+      $(this.sidebar).removeClass('slide-in');
+    };
+    this.disableTabs =function () {
+      self.tabLinks.removeClass("active");
+      self.candidateProfile.addClass("d-none").removeClass("active");
+      self.clear();
+      $(self.tabLinks).each(function (index, elem) {
+        $($(elem).attr('data-target')).removeClass("active").addClass("d-none");
+      });
+    };
+    this.clear = function () {
+      $(this.section).find('.table--row').each(function (index, el) {
+        $(el).remove();
+      });
+    };
+    this.bindEvents = function () {
+      $(self.tabLinks).on('click', function (e) {
+        e.preventDefault();
+        self.disableTabs();
+        $($(this).attr('data-target')).removeClass("d-none").addClass("active");
+        self.initialize();
+      });
+    };
     this.bindMobileEvents = function () {
       $(this.toggleButton).on('click', function () {
         self.showSidebar();
@@ -18,11 +62,14 @@ $(document).ready(function () {
         self.hideSidebar();
       });
     };
-    this.clear = function () {
-      $(this.section).find('.table--row').each(function (index, el) {
-        $(el).remove();
-      });
-    };
+
+    this.disableTabs();
+    if(activeSection&&$(activeSection.section).length>0){
+      $(activeSection.section).removeClass('d-none');
+      $(activeSection.section).addClass('active');
+    }
+    this.initialize();
+    this.bindEvents();
 
     if (window.matchMedia('(max-width: 515px)').matches) {
       this.toggleButton = $(this.section).find('.icon-HAMBURGER');
@@ -41,20 +88,16 @@ $(document).ready(function () {
     this.itemsPerPage = +($(this.section).find("#rows-per-page-vacancies option:selected").text());
     this.itemsInformation = $(this.table).find('.hr-app__table-editor__pagination');
     this.filterItems = $(this.filterBar).find('[data-attr="filter-item"]');
-
-    //Data - our data which will be in the table
     this.data = [];
     this.filterObj = [];
-
-    //defaultOptions - it's options for pagination
     this.defaultOptions = {};
   }
 
   Object.setPrototypeOf(Candidates.prototype, Section.prototype);
 
   function Candidates(element) {
+    var self = this;
     Section.call(this, element, "#hr-app__table", "#candidates-filters-bar");
-
     this.InitializeFilterObj();
     this.URL = "/candidates";
     this.filterItems = $(this.filterBar).find('[data-attr="filter-item"]');
@@ -62,11 +105,29 @@ $(document).ready(function () {
       Photo: "",
       Name: "name",
       Position: "position",
-      Status: "status"
+      Status: "status",
+      "View Candidate": "id_candidate"
     };
+    this.getData = function () {
+      var gettingData = new Promise(function (resolve, reject) {
+        self.getDataFromServer(resolve);
+      });
+      gettingData.then(function () {
+        self.bindLinksHandler();
+      });
+    };
+    this.getData();
 
-    this.getDataFromServer();
 
+
+    this.bindLinksHandler = function(){
+      var self = this;
+      var links = $(this.section).find('[data-attr="tab-link"]');
+      links.on('click', function (e) {
+        e.preventDefault();
+        new HrAppBuilder($(document).find(".hr-app-section"),{section: $(document).find("#candidate-profile-block"), id: $(this).attr('data-link')});
+      });
+    };
     /*this.getTable = function (data) {
       var self = this;
       var row;
@@ -90,7 +151,6 @@ $(document).ready(function () {
     };*/
 
     if (window.matchMedia('(max-width: 515px)').matches) {
-      //this is for sliding filter-panel
       $('.hr-app__table-editor__text').html('Rows');
       this.canSlide = true;
       this.collapseElems = $(this.section).find('[data-toggle="collapse"]');
@@ -108,12 +168,20 @@ $(document).ready(function () {
     Section.call(this, element, "#hr-app__table", "#vacancies-filters-bar");
     this.InitializeFilterObj();
     this.URL = "/vacancies";
-    this.getDataFromServer(this.URL);
+    var self =this;
+    this.getData = function () {
+      var gettingData = new Promise(function (resolve, reject) {
+        self.getDataFromServer(resolve);
+      });
+      gettingData.then(function () {
+      });
+    };
+    this.getData();
     this.tableFields = {
       Position: "position",
       Requirements: "requirements",
       "Work Experience": "workExperienceName",
-      "View Candidates": "link"
+      "View Candidates": "id_vacancy"
     };
     if (window.matchMedia('(max-width: 515px)').matches) {
       //this is for sliding filter-panel
@@ -128,6 +196,33 @@ $(document).ready(function () {
     }
     //common events
     this.bindCommonEvents();
+  }
+
+  function Person(element, id) {
+    this.data = [];
+    this.URL  = '/candidates/'+id;
+    this.section = element;
+    var self = this;
+
+    this.getData = function (res) {
+      $.get(self.URL, {json: "true"},function (data) {
+        self.data = data;
+        res();
+      });
+    };
+    var gettingData = new Promise(function(res, rej){
+      self.getData(res);
+    });
+    gettingData.then(function () {
+      self.fillFields();
+    });
+
+    this.fillFields = function () {
+      $(self.section).find('#candidate-position').html(self.data[0].position);
+      $(self.section).find('#candidate-name').html(self.data[0].name);
+      $(self.section).find('#candidate-salary').html(self.data[0].salary);
+    }
+
   }
 
   Section.prototype.bindEvents = function () {
@@ -146,7 +241,7 @@ $(document).ready(function () {
 
     self.filterItems.on('input', function () {
       self.InitializeFilterObj(self.filterItems);
-      self.getDataFromServer(self.URL);
+      self.getData(self.URL);
     });
   };
 
@@ -226,7 +321,7 @@ $(document).ready(function () {
       prev: '<svg class="icon icon-prev-ARROW "><use xlink:href="assets/images/svg/symbol/sprite.svg#ARROW"></use></svg>',
       next: '<svg class="icon icon-ARROW "><use xlink:href="assets/images/svg/symbol/sprite.svg#ARROW"></use></svg>',
       onPageClick: function (evt, page) {
-        self.getDataFromServer();
+        self.getData();
       }
     };
   };
@@ -245,10 +340,9 @@ $(document).ready(function () {
   };
 
   //async get data and set pagination
-  Section.prototype.getDataFromServer = function () {
+  Section.prototype.getDataFromServer = function (resolve) {
     var self = this;
     var currentPage = self.pagination.twbsPagination('getCurrentPage');
-    console.log(self.filterObj);
 
     (function () {
       $.get(self.URL, {currentPage: currentPage, limit: self.itemsPerPage, filter: self.filterObj}, function (data) {
@@ -266,6 +360,7 @@ $(document).ready(function () {
           self.clear(self.table.find('.hr-app__table__row'));
         }
         self.firstInit = false;
+        resolve();
       });
     })();
   };
@@ -298,29 +393,34 @@ $(document).ready(function () {
     headerRow += '</div>';
     $(self.table).append(headerRow);
     for (var i = 0; i < self.data.docs.length; i++) {
-      row = '<div class="hr-app__table__row table--row table-row--big">\n';
+      row = '<div class="hr-app__table__row table--row table-row--big">';
       j = 0;
       for (var key in self.tableFields) {
         j++;
-        if (key === "Photo") {
-          row += '<div class="hr-app__table-col col--' + key.toLowerCase() + '" data-toggle="collapse" data-target="" role="button" aria-expanded="false" aria-controls="filters-bar-collapse">' +
-            '<div class="hr-app__table-col__photo"><img class="hr-app__table-col__photo-img" src="/assets/images/profiles/profile.jpg" alt=""></div></div>';
-        } else if (key === "View Candidates") {
-          row += '<div class="hr-app__table-col"><a class="hr-app__table-col__button" href="#">View candidates</a></div>';
-          break;
-        }
-        else {
-          switch (j) {
-            case 0:
-              row += '<div class="hr-app__table-col" data-toggle="collapse" data-target="#hr-app__table__xs-cols-wrap-" addrole="button" aria-expanded="false" aria-controls="filters-bar-collapse"><div class="hr-app__table-col__profession">' + self.data.docs[i][self.tableFields[key]] + '</div><svg class="icon icon-ARROW "><use xlink:href="assets/images/svg/symbol/sprite.svg#ARROW"></use></svg></div>';
-              break;
-            default:
-              row += '<div class="hr-app__table-col"><div class="hr-app__table-col__advantages">' + self.data.docs[i][self.tableFields[key]] + '</div></div>';
+        switch (key){
+          case "Photo":
+            row += '<div class="hr-app__table-col col--' + key.toLowerCase() + '" data-toggle="collapse" data-target="" role="button" aria-expanded="false" aria-controls="filters-bar-collapse">' +
+              '<div class="hr-app__table-col__photo"><img class="hr-app__table-col__photo-img" src="/assets/images/profiles/profile.jpg" alt=""></div></div>';
+            break;
+          case "View Candidate":
+            row += '<div class="hr-app__table-col"><a class="hr-app__table-col__button" data-link="'+self.data.docs[i][self.tableFields[key]]+'" data-attr="tab-link" href="">View Candidate</a></div>';
+            break;
+          case "View Candidates":
+            row += '<div class="hr-app__table-col"><a class="hr-app__table-col__button" href="vacancies/'+self.data.docs[i][self.tableFields[key]]+'">View Candidates</a></div>';
+            break;
+          default:
+            switch (j) {
+              case 0:
+                row += '<div class="hr-app__table-col" data-toggle="collapse" data-target="#hr-app__table__xs-cols-wrap-" addrole="button" aria-expanded="false" aria-controls="filters-bar-collapse"><div class="hr-app__table-col__profession">' + self.data.docs[i][self.tableFields[key]] + '</div><svg class="icon icon-ARROW "><use xlink:href="assets/images/svg/symbol/sprite.svg#ARROW"></use></svg></div>';
+                break;
+              default:
+                row += '<div class="hr-app__table-col"><div class="hr-app__table-col__advantages">' + self.data.docs[i][self.tableFields[key]] + '</div></div>';
+            }
+            break;
           }
         }
-      }
       $(self.table).append(row);
-    }
+      }
   };
 
   Section.prototype.getMobileTable = function () {
@@ -362,23 +462,11 @@ $(document).ready(function () {
     });
   };
 
-  HrAppBuilder.prototype.bindEvents = function () {
-    var self = this;
-    $(self.tabLinks).on('click', function (e) {
-      e.preventDefault();
-      self.tabLinks.removeClass("active");
-      self.clear();
-      $(self.tabLinks).each(function (index, elem) {
-        $($(elem).attr('data-target')).removeClass("active").addClass("d-none");
-      });
-      $($(this).attr('data-target')).removeClass("d-none").addClass("active");
-      if ($(self.section.find('#vacancies-tab')).hasClass('active')) {
-        self.application = new Vacancies(self.section.find('#vacancies-tab'));
-      }
-      if ($(self.section.find('#candidates-tab')).hasClass('active')) {
-        self.application = new Candidates(self.section.find('#candidates-tab'));
-      }
-    });
+
+  var getUrlParameter = function getUrlParameter() {
+    var vhref = $(location).attr('href');
+    vhref = vhref.substr(vhref.lastIndexOf('/') + 1);
+    return vhref;
   };
 
 
@@ -503,12 +591,7 @@ $(document).ready(function () {
   };
 
 
-  HrAppBuilder.prototype.showSidebar = function () {
-    $(this.sidebar).addClass('slide-in');
-  };
-  HrAppBuilder.prototype.hideSidebar = function () {
-    $(this.sidebar).removeClass('slide-in');
-  };
+
 
   Section.prototype.slideFilterBarMobile = function (previousScroll, currentScroll) {
     switch (true){
@@ -520,16 +603,6 @@ $(document).ready(function () {
         break;
     }
     return currentScroll;
-    /*if (currentScroll < this.table.height() / 2) {
-      if (currentScroll >= previousScroll || !this.canSlide) {
-        $(this.filterBar).addClass('slide-up');
-      } else {
-        $(this.filterBar).removeClass('slide-up');
-      }
-    } else {
-      return 0;
-    }*/
-
   };
 
   var hrAppWrapper = $(document).find(".hr-app-section");
