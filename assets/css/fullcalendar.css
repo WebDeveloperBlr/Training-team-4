@@ -474,7 +474,7 @@ temporary rendered events).
 	border-color: transparent;
 
 	/* don't put a border between events and/or the day number */
-	border-bottom: 0;
+
 }
 
 .fc-row .fc-content-skeleton tbody td, /* cells with events inside (so NOT the day number cell) */
@@ -1265,7 +1265,17 @@ be a descendant of the grid when it is being dragged.
 
 .schedule__popup-header{
 	text-align:center;
-	font-size:1.3rem;
+	font-size:1.5rem;
+	color:#bdbdbd;
+}
+
+.bg-color-white{
+	background-color:white;
+}
+
+.border-radius-10{
+	border-radius:10px !important;
+	cursor:text !important;
 }
 
 .border-box{
@@ -1285,6 +1295,7 @@ be a descendant of the grid when it is being dragged.
 	padding-right:5px;
 	border-radius:10px;
 	font-family: Ubuntu, Arial, sans-serif;
+	width:80% !important;
 }
 
 .schedule__popup-person-field{
@@ -1310,3 +1321,42 @@ be a descendant of the grid when it is being dragged.
 		float:right;
 	}
 }
+.field-tag{
+	position:relative;
+	right:40px;
+	background-color:#b2dfdb;
+	border-radius:10px;
+	box-sizing:border-box;
+	padding:3px 8px;
+}
+
+.experiment{
+	text-align:justify;
+}
+
+#calendar::-webkit-scrollbar { width: 0; }
+
+.hr-app-section__right-bar__search-input{
+	border:none !important;
+	height:30px !important;
+}
+.hr-app-section__right-bar__search-input:focus{
+	box-shadow:none !important;
+}
+
+.fc-state-hover{
+	background:none;
+}
+
+.schedule__tag-wrapper{
+	text-align:left;
+	width:60%;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+.lineheight{
+	position:relative;
+	top:8px;
+}
+
