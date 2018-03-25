@@ -1,5 +1,12 @@
-idea
+# Node build artifacts
 node_modules
-modules.xml
-Training-team-3.iml
-vcs.xml
+npm-debug.log
+
+# Local development
+*.env
+*.dev
+.DS_Store
+.idea/
+# Docker
+Dockerfile
+docker-compose.yml
