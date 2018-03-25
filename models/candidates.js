@@ -30,7 +30,7 @@ exports.all = function (limit, filter, cb) {
 
 };
 exports.getByID = function (id, cb) {
-  var query = 'SELECT candidate.id_candidate,concat(per.firstName,per.secondName) "name",candidate.salary, pos.name "position", statusName.name "status" ' +
+  var query = 'SELECT candidate.id_candidate,candidate.telephone,candidate.email,candidate.address,concat(per.firstName,\' \',per.secondName) "name",candidate.salary, pos.name "position", statusName.name "status" ' +
     '    FROM `hr-app`.candidate ' +
     '    INNER JOIN candidateStatus cs ON cs.id_candidate=candidate.id_candidate ' +
     '    INNER JOIN statusName ON statusName.id_status = cs.id_status ' +

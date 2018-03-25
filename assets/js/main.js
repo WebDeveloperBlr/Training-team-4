@@ -81,7 +81,6 @@ $(document).ready(function () {
   function Section(element, tableName, filterBarId) {
     this.section = element;
     this.filterBar = this.section.find(filterBarId);
-    this.vacancies = [];
     this.table = $(this.section).find(tableName);
     this.itemsCountSelect = $(this.table).find('#rows-per-page-vacancies');
     this.pagination = $(this.section).find('#pagination');
@@ -118,8 +117,6 @@ $(document).ready(function () {
     };
     this.getData();
 
-
-
     this.bindLinksHandler = function(){
       var self = this;
       var links = $(this.section).find('[data-attr="tab-link"]');
@@ -128,27 +125,6 @@ $(document).ready(function () {
         new HrAppBuilder($(document).find(".hr-app-section"),{section: $(document).find("#candidate-profile-block"), id: $(this).attr('data-link')});
       });
     };
-    /*this.getTable = function (data) {
-      var self = this;
-      var row;
-      var col;
-      var j = 0;
-      row = '';
-      for (var i = 0; i < data.length; i++) {
-        if (j === 0) {
-          row = '<div class="row">';
-        }
-        j++;
-        col = '<div class="col-lg-3"><div class="hr-app__candidates-item d-flex flex-column"><a href="#" class="hr-app__candidates-item-link"><div class="hr-app__candidates-item__img-wrap"><img class="hr-app__candidates-item__img" src="assets/images/profiles/profile.jpg" alt="profile"><div class="hr-app__candidates-item-cv-text">'+data[i].status+'</div></div> <div class="hr-app__candidates-item-text-wrapper"><span class="hr-app__candidates-item--profession-text">'+data[i].position+'</span><h5 class="hr-app__candidates-item-name-text">'+data[i].firstName+" "+data[i].secondName+'</h5><span class="hr-app__candidates-item-salary-text">'+data[i].salary+'</span></div></a></div></div>';
-        row += col;
-        if (j === 4||i===data.length-1) {
-          row += '</div>';
-          j = 0;
-          $(self.table).append(row);
-        }
-
-      }
-    };*/
 
     if (window.matchMedia('(max-width: 515px)').matches) {
       $('.hr-app__table-editor__text').html('Rows');
@@ -203,6 +179,12 @@ $(document).ready(function () {
     this.URL  = '/candidates/'+id;
     this.section = element;
     var self = this;
+    this.nameField = $(this.section).find('#candidate-name');
+    this.positionField = $(this.section).find('#candidate-position');
+    this.salaryField = $(this.section).find('#candidate-salary');
+    this.telephoneField = $(this.section).find('#telephoneField');
+    this.emailField = $(this.section).find('#salaryField');
+    this.addressField = $(this.section).find('#addressField');
 
     this.getData = function (res) {
       $.get(self.URL, {json: "true"},function (data) {
@@ -218,9 +200,12 @@ $(document).ready(function () {
     });
 
     this.fillFields = function () {
-      $(self.section).find('#candidate-position').html(self.data[0].position);
-      $(self.section).find('#candidate-name').html(self.data[0].name);
-      $(self.section).find('#candidate-salary').html(self.data[0].salary);
+      $(this.positionField).html(self.data[0].position);
+      $(this.nameField).html(self.data[0].name);
+      $(this.salaryField).html(self.data[0].salary);
+      $(this.telephoneField).html(self.data[0].telephone);
+      $(this.emailField).html(self.data[0].email);
+      $(this.addressField).html(self.data[0].address);
     }
 
   }
@@ -616,31 +601,28 @@ $(document).ready(function () {
   if (createProfileWrapper.length > 0) {
     new ProfileBuilder(createProfileWrapper);
   }
-});
+
+  //cand profile editing function
 
 
-
-//cand profile editing function
-
-
-$( "#cands-editing-icon" ).click(function() {
+  $( "#cands-editing-icon" ).click(function() {
     $("#cands-editing-icon").unbind();
     var allInputs=document.getElementsByClassName('inp');
     for( var i=0; i<allInputs.length; i++ ){
-        $(allInputs[i]).removeClass('display-none');
-        $(allInputs[i]).attr('placeholder' , $(allInputs[i]).prev().text());
+      $(allInputs[i]).removeClass('display-none');
+      $(allInputs[i]).attr('placeholder' , $(allInputs[i]).prev().text());
     }
     var allTextareas=document.getElementsByClassName('txt');
     var descriptions=document.getElementsByClassName("exp-description");
     for( i=0; i<allTextareas.length; i++ ){
-        $(allTextareas[i]).removeClass('display-none');
-        $(allTextareas[i]).text($(descriptions[i]).text().match(/\w+|\d+|-|[()]/gm).join(" ") );
+      $(allTextareas[i]).removeClass('display-none');
+      $(allTextareas[i]).text($(descriptions[i]).text().match(/\w+|\d+|-|[()]/gm).join(" ") );
 
     }
     $(".not-delete").removeClass("display-none");
     var hidden=document.getElementsByClassName('to-be-hidden');
     for( i=0; i<hidden.length; i++ ){
-        $(hidden[i]).addClass('display-none');
+      $(hidden[i]).addClass('display-none');
     }
     $(".skills-editing-input").attr("placeholder","Add skill");
 
@@ -648,36 +630,36 @@ $( "#cands-editing-icon" ).click(function() {
     //described functions for hover. described it here in oder to add it to new skills,
     //which will be created by user
     function mouseOn() {
-        if(!($(this).hasClass("not-delete"))) {
-            skillName = $(this).text();
-            $(this).css("opacity", "0.5").text("Delete");
-        }
+      if(!($(this).hasClass("not-delete"))) {
+        skillName = $(this).text();
+        $(this).css("opacity", "0.5").text("Delete");
+      }
     }
 
     function mouseOut() {
-        if(!($(this).hasClass("not-delete"))) {
-            $(this).css("opacity", "1").text(skillName);
-        }
+      if(!($(this).hasClass("not-delete"))) {
+        $(this).css("opacity", "1").text(skillName);
+      }
     }
 
     var skillName;
     $(".skills__elements__decoration").hover(mouseOn,mouseOut);
 
     $(".skills__elements__decoration").click(function(){
-        if(!($(this).hasClass("not-delete"))){
-            $(this).remove();
-        }});
+      if(!($(this).hasClass("not-delete"))){
+        $(this).remove();
+      }});
 
     $(".add-skill").click(function(){
-        $(".skills__elements").prepend("<span class='skills__elements__decoration'></span>");
-        $(".skills__elements__decoration:first-child").text($(".skills-editing-input").val());
-        $(".skills-editing-input").val("");
-        $(".skills__elements__decoration").click(function(){
-            if(!($(this).hasClass("not-delete"))){
-                $(this).remove();
-            }});
-        $(".skills__elements__decoration").unbind('mouseenter mouseleave');
-        $(".skills__elements__decoration").hover(mouseOn,mouseOut);
+      $(".skills__elements").prepend("<span class='skills__elements__decoration'></span>");
+      $(".skills__elements__decoration:first-child").text($(".skills-editing-input").val());
+      $(".skills-editing-input").val("");
+      $(".skills__elements__decoration").click(function(){
+        if(!($(this).hasClass("not-delete"))){
+          $(this).remove();
+        }});
+      $(".skills__elements__decoration").unbind('mouseenter mouseleave');
+      $(".skills__elements__decoration").hover(mouseOn,mouseOut);
     });
     $(".cands__submit").attr("placeholder","");
     $(".cands-exp__editing-button").removeClass("display-none");
@@ -690,97 +672,102 @@ $( "#cands-editing-icon" ).click(function() {
     $( ".cands-exp__delete-row" ).click(function(){
       $(".cands-exp__row:first-child").remove();
     });
-});
+  });
 
 // Review PopUp Opening/Closing function
-$(function() {
+  $(function() {
 //----- OPEN
-  $('[data-popup-open]').on('click', function(e)  {
-    var targeted_popup_class = jQuery(this).attr('data-popup-open');
-    $('[data-popup="' + targeted_popup_class + '"]').fadeIn(350);
-    e.preventDefault();
-  });
+    $('[data-popup-open]').on('click', function(e)  {
+      var targeted_popup_class = jQuery(this).attr('data-popup-open');
+      $('[data-popup="' + targeted_popup_class + '"]').fadeIn(350);
+      e.preventDefault();
+    });
 //----- CLOSE
-  $('[data-popup-close]').on('click', function(e)  {
-    var targeted_popup_class = jQuery(this).attr('data-popup-close');
-    $('[data-popup="' + targeted_popup_class + '"]').fadeOut(350);
-    e.preventDefault();
+    $('[data-popup-close]').on('click', function(e)  {
+      var targeted_popup_class = jQuery(this).attr('data-popup-close');
+      $('[data-popup="' + targeted_popup_class + '"]').fadeOut(350);
+      e.preventDefault();
+    });
   });
-});
 
 // Review Creating function
-$("#review-creating").click(function () {
-  var body = document.getElementsByClassName('review-block__body');
-  var bodyElem = document.createElement('div');
-  $(bodyElem).addClass('review-block__body-elem row');
-  bodyElem.innerHTML = '<div class=\"review-block__reviewer-name review-to-be-hidden col-3 display-none\">Reviewer Name</div>\n' +
-    '                         <input type=\"text\" placeholder=\"Reviewer Name\" class=\"review-input reviewer-name-inp col-3\">\n' +
-    '                         <div class=\"review-block__review-text review-to-be-hidden col-6 display-none\">Review Text</div>\n' +
-    '                         <input type=\"text\" placeholder=\"Text of the review\" class=\"review-input review-text-inp col-6\">\n' +
-    '                         <div class=\"review-block__date review-to-be-hidden col-3 display-none\" id=\"date-out\">16.03.2018</div>\n' +
-    '                        <input type=\"text\" placeholder="Choose date" class=\"review-input datepicker col-3\">';
+  $("#review-creating").click(function () {
+    var body = document.getElementsByClassName('review-block__body');
+    var bodyElem = document.createElement('div');
+    $(bodyElem).addClass('review-block__body-elem row');
+    bodyElem.innerHTML = '<div class=\"review-block__reviewer-name review-to-be-hidden col-3 display-none\">Reviewer Name</div>\n' +
+      '                         <input type=\"text\" placeholder=\"Reviewer Name\" class=\"review-input reviewer-name-inp col-3\">\n' +
+      '                         <div class=\"review-block__review-text review-to-be-hidden col-6 display-none\">Review Text</div>\n' +
+      '                         <input type=\"text\" placeholder=\"Text of the review\" class=\"review-input review-text-inp col-6\">\n' +
+      '                         <div class=\"review-block__date review-to-be-hidden col-3 display-none\" id=\"date-out\">16.03.2018</div>\n' +
+      '                        <input type=\"text\" placeholder="Choose date" class=\"review-input datepicker col-3\">';
 
-  document.getElementById('rev-body').appendChild(bodyElem);
-  var editButton = document.getElementsByClassName('edit-btn');
-  $(editButton).addClass('display-none');
-  var saveButton = document.getElementsByClassName('save-btn');
-  $(saveButton).removeClass('display-none');
-  var dateId = document.getElementsByClassName('review-block__date');
-  for (var i = 0; i < dateId.length; i++){
-    dateId[i].id = 'date-out-'+(i+1);
-  }
-  $( function() {
-    $( ".datepicker" ).datepicker({dateFormat: 'dd.mm.yy'});
-  } );
-});
+    document.getElementById('rev-body').appendChild(bodyElem);
+    var editButton = document.getElementsByClassName('edit-btn');
+    $(editButton).addClass('display-none');
+    var saveButton = document.getElementsByClassName('save-btn');
+    $(saveButton).removeClass('display-none');
+    var dateId = document.getElementsByClassName('review-block__date');
+    for (var i = 0; i < dateId.length; i++){
+      dateId[i].id = 'date-out-'+(i+1);
+    }
+    $( function() {
+      $( ".datepicker" ).datepicker({dateFormat: 'dd.mm.yy'});
+    } );
+  });
 
 //Review PopUp Editing function
-$("#review-editing").click(function(){
-  var allInputs = document.getElementsByClassName('review-input');
-  for(var i=0; i<allInputs.length; i++){
-    $(allInputs[i]).removeClass('display-none');
-  }
-  var hidden = document.getElementsByClassName('review-to-be-hidden');
-  for(i=0; i<hidden.length; i++){
-    $(hidden[i]).addClass('display-none');
-  }
-  var editButton = document.getElementsByClassName('edit-btn');
-  $(editButton).addClass('display-none');
-  var saveButton = document.getElementsByClassName('save-btn');
-  $(saveButton).removeClass('display-none');
-  $( function() {
-    $( ".datepicker" ).datepicker({dateFormat: 'dd.mm.yy'});
-  } );
+  $("#review-editing").click(function(){
+    var allInputs = document.getElementsByClassName('review-input');
+    for(var i=0; i<allInputs.length; i++){
+      $(allInputs[i]).removeClass('display-none');
+    }
+    var hidden = document.getElementsByClassName('review-to-be-hidden');
+    for(i=0; i<hidden.length; i++){
+      $(hidden[i]).addClass('display-none');
+    }
+    var editButton = document.getElementsByClassName('edit-btn');
+    $(editButton).addClass('display-none');
+    var saveButton = document.getElementsByClassName('save-btn');
+    $(saveButton).removeClass('display-none');
+    $( function() {
+      $( ".datepicker" ).datepicker({dateFormat: 'dd.mm.yy'});
+    } );
+  });
+
+
+
+
+  $("#review-saving").click(function () {
+    var allInputs = document.getElementsByClassName('review-input');
+    for(var i=0; i<allInputs.length; i++){
+      $(allInputs[i]).addClass('display-none');
+    }
+    var hidden = document.getElementsByClassName('review-to-be-hidden');
+    for(i=0; i<hidden.length; i++){
+      $(hidden[i]).removeClass('display-none');
+    }
+    var editButton = document.getElementsByClassName('edit-btn');
+    $(editButton).removeClass('display-none');
+    var saveButton = document.getElementsByClassName('save-btn');
+    $(saveButton).addClass('display-none');
+    var dateInpElem = document.getElementsByClassName('datepicker');
+    for (var i=0; i<dateInpElem.length; i++){
+      var dateInp = document.getElementsByClassName('datepicker');
+      var dateOut = document.getElementsByClassName('review-block__date');
+      dateOut[i].innerHTML = dateInp[i].value;
+
+      var nameInp = document.getElementsByClassName('reviewer-name-inp');
+      var nameOut = document.getElementsByClassName('review-block__reviewer-name')
+      nameOut[i].innerHTML = nameInp[i].value;
+
+      var textInp = document.getElementsByClassName('review-text-inp');
+      var textOut = document.getElementsByClassName('review-block__review-text');
+      textOut[i].innerHTML = textInp[i].value;
+    }
+  });
 });
 
 
 
 
-$("#review-saving").click(function () {
-  var allInputs = document.getElementsByClassName('review-input');
-  for(var i=0; i<allInputs.length; i++){
-    $(allInputs[i]).addClass('display-none');
-  }
-  var hidden = document.getElementsByClassName('review-to-be-hidden');
-  for(i=0; i<hidden.length; i++){
-    $(hidden[i]).removeClass('display-none');
-  }
-  var editButton = document.getElementsByClassName('edit-btn');
-  $(editButton).removeClass('display-none');
-  var saveButton = document.getElementsByClassName('save-btn');
-  $(saveButton).addClass('display-none');
-  var dateInpElem = document.getElementsByClassName('datepicker');
-  for (var i=0; i<dateInpElem.length; i++){
-    var dateInp = document.getElementsByClassName('datepicker');
-    var dateOut = document.getElementsByClassName('review-block__date');
-    dateOut[i].innerHTML = dateInp[i].value;
-
-    var nameInp = document.getElementsByClassName('reviewer-name-inp');
-    var nameOut = document.getElementsByClassName('review-block__reviewer-name')
-    nameOut[i].innerHTML = nameInp[i].value;
-
-    var textInp = document.getElementsByClassName('review-text-inp');
-    var textOut = document.getElementsByClassName('review-block__review-text');
-    textOut[i].innerHTML = textInp[i].value;
-  }
-});

@@ -355,19 +355,52 @@
               <div class="candidate-profile__candidate-wrapper">
                 <div class="candidate-profile__candidate-position">
                   <span class="to-be-hidden" id="candidate-position"></span>
-                  <input class="cands-input-properties display-none" type="text">
+                  <input class="inp cands-input-properties display-none" type="text">
                 </div>
                 <div class="candidate-profile__candidate-name">
                   <span class="to-be-hidden" id="candidate-name"></span>
-                  <input class="cands-input-properties display-none" type="text">
+                  <input class="inp cands-input-properties display-none" type="text">
                 </div>
                 <div class="candidate-profile__candidate-salary">
-                  <span class="to-be-hidden" id="candidate-salary">800$</span>
-                  <input class="cands-input-properties display-none" type="text">
+                  <span class="to-be-hidden" id="candidate-salary"></span>
+                  <input class="inp cands-input-properties display-none" type="text">
                 </div>
               </div>
               <div class="candidate-profile__cv-term">
                 1 day later
+              </div>
+              <a class="btn cands-review-btn" data-popup-open="popup-1" href="#">Review</a>
+              <div class="popup" data-popup="popup-1">
+                <div class="popup-inner cands-review-wrapper">
+                  <form action="#">
+                    <div class="review-block__header">
+                      <span class="review-block__header__cand-name review-to-be-hidden">Candidate's Name</span>
+                      <input type="text" placeholder="Candidate's Name" class="review-input display-none">
+                      <span class="review-block__header__date review-to-be-hidden">16.03.2018</span>
+                      <input type="date" class="review-input display-none">
+                      <a class="popup-close" data-popup-close="popup-1" href="#">x</a>
+                    </div>
+                    <span class="review-block__reviewer-name review-to-be-hidden">Reviewer's Name</span>
+                    <input type="text" placeholder="Reviewer's Name" class="review-input display-none">
+
+                    <div class="review-block__body">
+                      <p>Donec in volutpat nisi. In quam lectus, aliquet rhoncus cursus a, congue et arcu. Vestibulum tincidunt neque id nisi pulvinar aliquam. Nulla luctus luctus ipsum at ultricies. Nullam nec velit dui. Nullam sem eros, pulvinar sed pellentesque ac, feugiat et turpis. Donec gravida ipsum cursus massa malesuada tincidunt. Nullam finibus nunc mauris, quis semper neque ultrices in. Ut ac risus eget eros imperdiet posuere nec eu lectus.</p>
+                      <ul class="list-inline">
+                        <li class="list-inline-item review-block__inline-list-active">Form</li>
+                        <li class="list-inline-item review-block__inline-list">Form</li>
+                        <li class="list-inline-item review-block__inline-list">Form</li>
+                      </ul>
+                      <textarea rows="8" placeholder="Text of the review"></textarea>
+                    </div>
+
+                    <div class="review-block__footer">
+                      <input type="submit" value="Send" data-popup-close="popup-1" href="#" class="cands-review-send btn"></input>
+                      <button type="button" class="btn edit-btn" id="review-editing">Edit review</button>
+                      <button type="button" class="btn save-btn display-none" id="review-saving">Save changes</button>
+                    </div>
+                  </form>
+
+                </div>
               </div>
             </div>
             <div class="candidate-profile__hr-app__contact-info">
@@ -377,42 +410,56 @@
               <div class="contact-info__telephone">
                 Telephone:
                 <p class="contact-info__data to-be-hidden">+44-7500-667-433</p>
-                <input class="cands-input-properties display-none" type="number">
+                <input class="inp cands-input-properties display-none" type="number">
               </div>
               <div class="contact-info__email">
                 Email:
                 <p class="to-be-hidden contact-info__data">jimmy-carr@contact.com</p>
-                <input class="cands-input-properties display-none" type="email">
+                <input class="inp cands-input-properties display-none" type="email">
               </div>
               <div class="contact-info__address">
                 Address:
                 <p class="to-be-hidden contact-info__data">735 High Road, N12 OUS, Lonn, UK</p>
-                <input class="cands-input-properties display-none" type="text">
+                <input class="inp cands-input-properties display-none" type="text">
               </div>
             </div>
           </div>
           <div class="candidate-profile__hr-app__right-part col-9">
             <div class="cands-exp">
               <div class="cands-exp__header-wrapper ">
-                <div class="cands-exp__header">Experience</div>
+                <div class="cands-exp__header">Experience
+                  <div class="cands-exp__editing-button-wrapper">
+                    <div class="display-none cands-exp__editing-button cands-exp__add-row">
+                      Add timepoint
+                    </div><div class="display-none cands-exp__editing-button cands-exp__delete-row">
+                    Delete timepoint
+                  </div>
+                  </div>
+                </div>
               </div>
               <div class="cands-exp__rows-wrapper">
                 <div class="cands-exp__row">
                   <div class="cands-exp__row-left-part">
                     <div class="cands-exp__left-part-item">
-                      <div class="to-be-hidden cands-exp__left-part-date ">
-                        Apr 2015 - Now
-                      </div>
-                      <textarea rows="1" class="cands-exp__right-part-item-description-textarea cands-exp__textarea-lfet-part-fix display-none">
+                      <div class="cands-exp__left-part-date">
+                        <div class="exp-description to-be-hidden  ">
                           Apr 2015 - Now
+                        </div>
+                        <textarea rows="2" class="
+                     txt cands-exp__right-part-item-description-textarea
+                    cands-exp__textarea-lfet-part-fix
+                    display-none
+                    ">
                         </textarea>
-                      <div class="to-be-hidden cands-exp__left-part-description ">
+                      </div>
+                      <div class="exp-description to-be-hidden cands-exp__left-part-description ">
                         Learn Java Developer<br>
                         London, UK
                       </div>
-                      <textarea rows="1" class="cands-exp__right-part-item-description-textarea cands-exp__textarea-lfet-part-fix display-none">
-                          Learn Java Developer
-                          London, UK
+                      <textarea rows="2" class="
+                     txt cands-exp__right-part-item-description-textarea
+                    cands-exp__textarea-lfet-part-fix display-none
+                    ">
                        </textarea>
                     </div>
                   </div>
@@ -421,11 +468,12 @@
                       <div class="to-be-hidden cands-exp__right-part-item-header">
                         Itransition
                       </div>
-                      <div class="to-be-hidden cands-exp__right-part-item-description ">
-                        vBla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-
+                      <div class="exp-description to-be-hidden cands-exp__right-part-item-description ">
+                        No the rationally pursues expound occur human circumstances born
+                        must
                       </div>
-                      <textarea rows="3" class="cands-exp__right-part-item-description-textarea display-none">
-                          Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-
+                      <textarea rows="3" class="
+                     txt cands-exp__right-part-item-description-textarea  display-none">
                         </textarea>
                     </div>
                   </div>
@@ -433,21 +481,30 @@
                 <div class="cands-exp__row">
                   <div class="cands-exp__row-left-part">
                     <div class="cands-exp__left-part-item">
-                      <div class="cands-exp__left-part-date">
+                      <div class="cands-exp__left-part-date exp-description">
                         <div class="to-be-hidden">Oct 2012 - Mar 2015</div>
                         <div class="to-be-hidden">( 2 years 7 months )</div>
-                        <textarea rows="2" class="cands-exp__right-part-item-description-textarea cands-exp__textarea-lfet-part-fix display-none">
-                            Oct 2012 - Mar 2015
-                            ( 2 years 7 months )
+                        <textarea rows="2" class="
+                     txt cands-exp__right-part-item-description-textarea
+                    cands-exp__textarea-lfet-part-fix
+                    display-none
+                    ">
+
+
                           </textarea>
                       </div>
-                      <div class="cands-exp__left-part-description to-be-hidden">
+                      <div class="cands-exp__left-part-description
+                    to-be-hidden exp-description">
                         Senior Java Developer<br>
                         London, UK
                       </div>
-                      <textarea rows="1" class="cands-exp__right-part-item-description-textarea cands-exp__textarea-lfet-part-fix display-none">
-                          Senior Java Developer
-                          London, UK
+                      <textarea rows="2" class="
+                     txt cands-exp__right-part-item-description-textarea
+                    cands-exp__textarea-lfet-part-fix
+                    display-none
+                    ">
+
+
                         </textarea>
                     </div>
                   </div>
@@ -456,16 +513,18 @@
                       <div class="cands-exp__right-part-item-header">
                         Itransition
                       </div>
-                      <div class="to-be-hidden cands-exp__right-part-item-description ">
-                        Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-
-                        Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-
-                        vBla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-
-                        vBla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-
+                      <div class="to-be-hidden
+                    cands-exp__right-part-item-description exp-description">
+                        Explorer man enjoy denouncing to born are complete expound pursue
+                        occur avoids how example has occasionally which there produces truth
+                        the extremely exercise happiness are example can it the a
                       </div>
-                      <textarea rows="3" class="cands-exp__right-part-item-description-textarea display-none">
-                          Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-
-                          Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-
-                          Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-
+                      <textarea rows="3" class="
+                     txt cands-exp__right-part-item-description-textarea
+                    display-none">
+
+
+
                         </textarea>
                     </div>
                   </div>
@@ -473,12 +532,16 @@
                 <div class="cands-exp__row">
                   <div class="cands-exp__row-left-part">
                     <div class="cands-exp__left-part-item">
-                      <div class="cands-exp__left-part-date ">
+                      <div class="cands-exp__left-part-date exp-description">
                         <div class="to-be-hidden">Education</div>
                         <div class="to-be-hidden">2007-2012</div>
-                        <textarea rows="2" class=" cands-exp__right-part-item-description-textarea cands-exp__textarea-lfet-part-fix display-none">
-                            Education
-                            2007-2012
+                        <textarea rows="2" class="
+                     txt cands-exp__right-part-item-description-textarea
+                    cands-exp__textarea-lfet-part-fix
+                    display-none
+                    ">
+
+
                           </textarea>
                       </div>
                     </div>
@@ -488,11 +551,15 @@
                       <div class="cands-exp__right-part-item-header">
                         Itransition
                       </div>
-                      <div class="to-be-hidden cands-exp__right-part-item-description">
-                        Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-
+                      <div class=" exp-description
+                    to-be-hidden cands-exp__right-part-item-description">
+                        Give can trivial pursues fault undertakes born procure to pursues
+                        pleasure it pain
                       </div>
-                      <textarea rows="3" class="cands-exp__right-part-item-description-textarea display-none">
-                          Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-Bla-
+                      <textarea rows="3" class=
+                          " txt cands-exp__right-part-item-description-textarea
+                    display-none">
+
                         </textarea>
                     </div>
                   </div>
@@ -509,11 +576,17 @@
                 <span class="skills__elements__decoration">JSF</span>
                 <span class="skills__elements__decoration">JPA</span>
                 <span class="skills__elements__decoration">Design Patterns</span>
+                <span class="skills__elements__decoration not-delete display-none">
+                <input class="inp skills-editing-input ">
+                  <div class="add-skill">Add</div>
+                </span>
               </div>
             </div>
-            <input class="cands__submit editing-icon__input display-none" id="" value="Save" type="submit">
-            <div class="editing-icon" id="cands-editing-icon">
-              <img class="editing-icon__image" src="assets/images/edit.png">
+            <div class="editing-icon__wrapper">
+              <div class="editing-icon" id="cands-editing-icon">
+                <input class="inp cands__submit editing-icon display-none" id="" value="Save" type="submit">
+                <img class="editing-icon__image" src="assets/images/edit.png">
+              </div>
             </div>
           </div>
         </div>
