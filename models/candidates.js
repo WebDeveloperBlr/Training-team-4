@@ -30,6 +30,7 @@ exports.all = function (limit, filter, cb) {
 
 };
 exports.getByID = function (id, cb) {
+  var data = {};
   var query = 'SELECT candidate.id_candidate,candidate.telephone,candidate.email,candidate.address,concat(per.firstName,\' \',per.secondName) "name",candidate.salary, pos.name "position", statusName.name "status" ' +
     '    FROM `hr-app`.candidate ' +
     '    INNER JOIN candidateStatus cs ON cs.id_candidate=candidate.id_candidate ' +
@@ -38,9 +39,19 @@ exports.getByID = function (id, cb) {
     '    INNER JOIN position pos ON pos.id_position = cp.id_position ' +
     '    INNER JOIN person per ON per.id_person = candidate.id_person ' +
     ' WHERE candidate.id_candidate ='+id;
-  console.log(query+id);
+  var query2 = 'SELECT * FROM `hr-app`.experience\n' +
+    'inner join candidate on candidate.id_candidate = experience.id_candidate\n' +
+    'where experience.id_candidate ='+id +
+    ' group by id_experience order by experience.dateStart\n' +
+    ';';
+  console.log(query2);
+
   connection.query(query, [id], function (error, results) {
-    cb(error, results);
+    data.docs = results;
+    connection.query(query2, [id], function (error, results) {
+      data.exp = results;
+      cb(error, data);
+    });
   });
 };
 exports.create = function (candidate, cb) {

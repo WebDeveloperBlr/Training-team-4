@@ -23,19 +23,6 @@ exports.getById = function (req, res) {
       console.log(err);
       return res.sendStatus(500);
     }
-    /*if(typeof req.query.json==='undefined'){
-      fs.readFile('Candidates.html',
-        function (err, data) {
-          if (err) {
-            console.log(err);
-            return;
-          }
-          res.write(data);
-          res.end();
-        });
-    }else{
-      res.send(docs);
-    }*/
     res.send(docs);
   })
 };
