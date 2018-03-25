@@ -1,5 +1,5 @@
 
-
+var addedEvents=[];
 $( ".datepicker" ).datepicker({
     dateFormat: "yy-mm-dd",
     showAnim: "clip"
@@ -37,9 +37,12 @@ $(function () {
             right: 'today prev,next month,agendaWeek,agendaDay, listWeek,listDay'
         },
         displayEventTime: "true",
+
         eventSources:[
             {
-                events:addedEvents
+                /* events:addedEvents*/
+                events: function(start, end, timezone, callback){
+                    callback(addedEvents);}
             },
             {
                 url:"assets/json/candidates.json"
@@ -78,7 +81,7 @@ $("#saveEvent").click(function(){
     $("#eventTitle").val("");
     $("#eventStart").val("");
     $("#eventEnd").val("");
-    $(".schedule__pop-up").addClass("display-none");
+    $("#calendar").fullCalendar( 'refetchEvents' );
 });
 
 
@@ -87,12 +90,3 @@ function EventCreator(start,end,title){
     this.start=start;
     this.end=end;
 }
-
-var addedEvents=[
-    {
-        title:"HUI",
-        start:"2018-04-30",
-        end:"2018-04-30"
-
-    }
-];
