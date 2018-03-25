@@ -7,23 +7,24 @@ $(document).ready(function () {
     this.tabLinks = $(this.section).find('[data-attr="tab-link"]');
     this.vacanciesSection = $(this.section.find('#vacancies-tab'));
     this.candidatesSection = $(this.section.find('#candidates-tab'));
-    this.candidateProfile =  $(this.section.find('#candidate-profile-block'));
-    this.application;
+    this.candidateProfile = $(this.section.find('#candidate-profile-block'));
+    this.toggleButton = $(this.section).find('.icon-HAMBURGER');
+    this.crossButton = $(this.sidebar).find('.icon-CLOSE');
 
-    this.initialize = function(){
+    this.initialize = function () {
       if (self.vacanciesSection.hasClass('active')) {
         self.application = new Vacancies(self.vacanciesSection);
-      }else{
+      } else {
         self.vacanciesSection.addClass('d-none');
       }
       if ($(self.candidatesSection).hasClass('active')) {
         self.application = new Candidates(self.candidatesSection);
-      }else{
+      } else {
         self.candidatesSection.addClass('d-none');
       }
-      if($(self.candidateProfile).hasClass('active')){
-        self.application = new Person(self.candidateProfile,activeSection.id);
-      }else{
+      if ($(self.candidateProfile).hasClass('active')) {
+        self.application = new Person(self.candidateProfile, activeSection.id);
+      } else {
         self.candidateProfile.addClass('d-none');
       }
     };
@@ -33,7 +34,7 @@ $(document).ready(function () {
     this.hideSidebar = function () {
       $(this.sidebar).removeClass('slide-in');
     };
-    this.disableTabs =function () {
+    this.disableTabs = function () {
       self.tabLinks.removeClass("active");
       self.candidateProfile.addClass("d-none").removeClass("active");
       self.clear();
@@ -53,8 +54,6 @@ $(document).ready(function () {
         $($(this).attr('data-target')).removeClass("d-none").addClass("active");
         self.initialize();
       });
-    };
-    this.bindMobileEvents = function () {
       $(this.toggleButton).on('click', function () {
         self.showSidebar();
       });
@@ -64,18 +63,12 @@ $(document).ready(function () {
     };
 
     this.disableTabs();
-    if(activeSection&&$(activeSection.section).length>0){
+    if (activeSection && $(activeSection.section).length > 0) {
       $(activeSection.section).removeClass('d-none');
       $(activeSection.section).addClass('active');
     }
     this.initialize();
     this.bindEvents();
-
-    if (window.matchMedia('(max-width: 515px)').matches) {
-      this.toggleButton = $(this.section).find('.icon-HAMBURGER');
-      this.crossButton = $(this.sidebar).find('.icon-CLOSE');
-      this.bindMobileEvents();
-    }
   }
 
   function Section(element, tableName, filterBarId) {
@@ -117,12 +110,15 @@ $(document).ready(function () {
     };
     this.getData();
 
-    this.bindLinksHandler = function(){
+    this.bindLinksHandler = function () {
       var self = this;
       var links = $(this.section).find('[data-attr="tab-link"]');
       links.on('click', function (e) {
         e.preventDefault();
-        new HrAppBuilder($(document).find(".hr-app-section"),{section: $(document).find("#candidate-profile-block"), id: $(this).attr('data-link')});
+        new HrAppBuilder($(document).find(".hr-app-section"), {
+          section: $(document).find("#candidate-profile-block"),
+          id: $(this).attr('data-link')
+        });
       });
     };
 
@@ -135,7 +131,6 @@ $(document).ready(function () {
     } else {
       this.bindEvents();
     }
-    this.bindCommonEvents();
   }
 
   Object.setPrototypeOf(Vacancies.prototype, Section.prototype);
@@ -144,12 +139,12 @@ $(document).ready(function () {
     Section.call(this, element, "#hr-app__table", "#vacancies-filters-bar");
     this.InitializeFilterObj();
     this.URL = "/vacancies";
-    var self =this;
+    var self = this;
     this.getData = function () {
       var gettingData = new Promise(function (resolve, reject) {
         self.getDataFromServer(resolve);
       });
-        gettingData.then(function () {
+      gettingData.then(function () {
       });
     };
     this.getData();
@@ -170,13 +165,11 @@ $(document).ready(function () {
       //not mobile events
       this.bindEvents();
     }
-    //common events
-    this.bindCommonEvents();
   }
 
   function Person(element, id) {
     this.data = [];
-    this.URL  = '/candidates/'+id;
+    this.URL = '/candidates/' + id;
     this.section = element;
     var self = this;
     this.nameField = $(this.section).find('#candidate-name');
@@ -185,14 +178,57 @@ $(document).ready(function () {
     this.telephoneField = $(this.section).find('#telephoneField');
     this.emailField = $(this.section).find('#emailField');
     this.addressField = $(this.section).find('#addressField');
-
+    this.breadcrumbField = $(this.section).find('#breadcrumbField');
+    this.rowsWrapper = $(this.section).find('.cands-exp__rows-wrapper');
     this.getData = function (res) {
-      $.get(self.URL, {json: "true"},function (data) {
+      $.get(self.URL, {json: "true"}, function (data) {
         self.data = data;
         res();
       });
     };
-    var gettingData = new Promise(function(res, rej){
+    this.fillExperience = function () {
+      var row = '';
+      this.data.exp.forEach(function (el) {
+        row += '<div class="cands-exp__row">\n' +
+          '                  <div class="cands-exp__row-left-part">\n' +
+          '                    <div class="cands-exp__left-part-item">\n' +
+          '                      <div class="cands-exp__left-part-date">\n' +
+          '                        <div class="exp-description to-be-hidden  ">\n' +
+          sqlToJsDate(el.dateStart) + ' - ' + sqlToJsDate(el.dateEnd) +
+          '                        </div>\n' +
+          '                        <textarea rows="2" class="\n' +
+          '                     txt cands-exp__right-part-item-description-textarea\n' +
+          '                    cands-exp__textarea-lfet-part-fix\n' +
+          '                    display-none\n' +
+          '                    ">                        </textarea>\n' +
+          '                      </div>\n' +
+          '                      <div class="exp-description to-be-hidden cands-exp__left-part-description ">\n' +
+          el.position +
+          '                      </div>\n' +
+          '                      <textarea rows="2" class="\n' +
+          '                     txt cands-exp__right-part-item-description-textarea\n' +
+          '                    cands-exp__textarea-lfet-part-fix display-none\n' +
+          '                    ">                       </textarea>\n' +
+          '                    </div>\n' +
+          '                  </div>\n' +
+          '                  <div class="cands-exp__row-right-part">\n' +
+          '                    <div class="cands-exp__right-part-item">\n' +
+          '                      <div class="to-be-hidden cands-exp__right-part-item-header">\n' +
+          el.company +
+          '                      </div>\n' +
+          '                      <div class="exp-description to-be-hidden cands-exp__right-part-item-description ">\n' +
+          el.info +
+          '                      </div>\n' +
+          '                      <textarea rows="3" class="\n' +
+          '                     txt cands-exp__right-part-item-description-textarea  display-none">                        </textarea>\n' +
+          '                    </div>\n' +
+          '                  </div>\n' +
+          '                </div>';
+      });
+      $(this.rowsWrapper).html(row);
+    };
+
+    var gettingData = new Promise(function (res, rej) {
       self.getData(res);
     });
     gettingData.then(function () {
@@ -200,12 +236,14 @@ $(document).ready(function () {
     });
 
     this.fillFields = function () {
-      $(this.positionField).html(self.data[0].position);
-      $(this.nameField).html(self.data[0].name);
-      $(this.salaryField).html(self.data[0].salary);
-      $(this.telephoneField).html(self.data[0].telephone);
-      $(this.emailField).html(self.data[0].email);
-      $(this.addressField).html(self.data[0].address);
+      $(this.positionField).html(self.data.docs[0].position);
+      $(this.nameField).html(self.data.docs[0].name);
+      $(this.breadcrumbField).html(self.data.docs[0].name);
+      $(this.salaryField).html(self.data.docs[0].salary+"$");
+      $(this.telephoneField).html(self.data.docs[0].telephone);
+      $(this.emailField).html(self.data.docs[0].email);
+      $(this.addressField).html(self.data.docs[0].address);
+      this.fillExperience();
     }
 
   }
@@ -223,23 +261,26 @@ $(document).ready(function () {
     $('#table--header-col--exp').on('click', self.sortTable.bind(null, 1));
     $('#table--header-col--sal').on('click', self.sortTable.bind(null, 2));
 
-
     self.filterItems.on('input', function () {
       self.InitializeFilterObj(self.filterItems);
       self.getData(self.URL);
     });
+    $(this.itemsCountSelect.on('change', function () {
+      self.itemsPerPage = $(this).find("option:selected").text();
+      self.getData(self.URL);
+    }));
   };
 
   Section.prototype.reformatData = function () {
-    for(var key in this.data.docs){
-      switch (true){
-        case (this.data.docs[key].workExperience<1):
+    for (var key in this.data.docs) {
+      switch (true) {
+        case (this.data.docs[key].workExperience < 1):
           this.data.docs[key].workExperienceName = "junior";
           break;
-        case (this.data.docs[key].workExperience>=1&&this.data.docs[key].workExperience<3):
+        case (this.data.docs[key].workExperience >= 1 && this.data.docs[key].workExperience < 3):
           this.data.docs[key].workExperienceName = "middle";
           break;
-        case (this.data.docs[key].workExperience>=3&&this.data.docs[key].workExperience<10):
+        case (this.data.docs[key].workExperience >= 3 && this.data.docs[key].workExperience < 10):
           this.data.docs[key].workExperienceName = "senior";
           break;
         default:
@@ -254,22 +295,22 @@ $(document).ready(function () {
 
     var self = this;
     $(self.filterItems).each(function (index, elem) {
-      switch (elem.value){
+      switch (elem.value) {
         case "Any":
           self.filterObj[index] = [];
           self.filterObj[index].push('');
           break;
         case "Junior":
-          self.filterObj[index] = [0,1];
+          self.filterObj[index] = [0, 1];
           break;
         case "Middle":
-          self.filterObj[index] = [1,3];
+          self.filterObj[index] = [1, 3];
           break;
         case "Senior":
-          self.filterObj[index] = [3,10];
+          self.filterObj[index] = [3, 10];
           break;
         default:
-          self.filterObj[index]=[];
+          self.filterObj[index] = [];
           self.filterObj[index].push(elem.value);
           break;
       }
@@ -364,6 +405,20 @@ $(document).ready(function () {
       this.bindMobileEvents();
     }
   };
+  function sqlToJsDate(sqlDate){
+    if(sqlDate){
+      //sqlDate in SQL DATETIME format ("yyyy-mm-dd hh:mm:ss.ms")
+      var sqlDateWithoutTime = sqlDate.substring(0,sqlDate.indexOf("T"));
+      var sqlDateArr1 = sqlDateWithoutTime.split("-");
+      //format of sqlDateArr1[] = ['yyyy','mm','dd hh:mm:ms']
+      var sYear = sqlDateArr1[0];
+      var sMonth = sqlDateArr1[1];
+      var sDay = sqlDateArr1[2];
+      //format of sqlDateArr2[] = ['dd', 'hh:mm:ss.ms']
+      return sYear + '.' + sMonth + '.' + sDay;
+    }else return "Now"
+
+  }
 
   Section.prototype.getTable = function () {
     var self = this;
@@ -382,16 +437,16 @@ $(document).ready(function () {
       j = 0;
       for (var key in self.tableFields) {
         j++;
-        switch (key){
+        switch (key) {
           case "Photo":
             row += '<div class="hr-app__table-col col--' + key.toLowerCase() + '" data-toggle="collapse" data-target="" role="button" aria-expanded="false" aria-controls="filters-bar-collapse">' +
               '<div class="hr-app__table-col__photo"><img class="hr-app__table-col__photo-img" src="/assets/images/profiles/profile.jpg" alt=""></div></div>';
             break;
           case "View Candidate":
-            row += '<div class="hr-app__table-col"><a class="hr-app__table-col__button" data-link="'+self.data.docs[i][self.tableFields[key]]+'" data-attr="tab-link" href="">View Candidate</a></div>';
+            row += '<div class="hr-app__table-col"><a class="hr-app__table-col__button" data-link="' + self.data.docs[i][self.tableFields[key]] + '" data-attr="tab-link" href="">View Candidate</a></div>';
             break;
           case "View Candidates":
-            row += '<div class="hr-app__table-col"><a class="hr-app__table-col__button" href="vacancies/'+self.data.docs[i][self.tableFields[key]]+'">View Candidates</a></div>';
+            row += '<div class="hr-app__table-col"><a class="hr-app__table-col__button" href="vacancies/' + self.data.docs[i][self.tableFields[key]] + '">View Candidates</a></div>';
             break;
           default:
             switch (j) {
@@ -402,10 +457,10 @@ $(document).ready(function () {
                 row += '<div class="hr-app__table-col"><div class="hr-app__table-col__advantages">' + self.data.docs[i][self.tableFields[key]] + '</div></div>';
             }
             break;
-          }
         }
-      $(self.table).append(row);
       }
+      $(self.table).append(row);
+    }
   };
 
   Section.prototype.getMobileTable = function () {
@@ -415,7 +470,7 @@ $(document).ready(function () {
       row += '<div class="hr-app__table-col" data-toggle="collapse" data-target="#hr-app__table__xs-cols-wrap-' + i + '"addrole="button" aria-expanded="false" aria-controls="filters-bar-collapse"><div class="hr-app__table-col__profession">' + this.data.docs[i].position + '</div><svg class="icon icon-ARROW "><use xlink:href="assets/images/svg/symbol/sprite.svg#ARROW"></use></svg></div><div class="hr-app__table__xs-cols-wrap collapse" style="width: 100%;" data-parent="#hr-app__table" id="hr-app__table__xs-cols-wrap-' + i + '">';
 
       for (var key in this.tableFields) {
-        switch (key){
+        switch (key) {
           case "Position":
             break;
           case "View Candidates":
@@ -452,15 +507,6 @@ $(document).ready(function () {
     var vhref = $(location).attr('href');
     vhref = vhref.substr(vhref.lastIndexOf('/') + 1);
     return vhref;
-  };
-
-
-  Section.prototype.bindCommonEvents = function () {
-    var self = this;
-    $(this.itemsCountSelect.on('change', function () {
-      self.itemsPerPage = $(this).find("option:selected").text();
-      self.getDataFromServer(self.URL);
-    }));
   };
 
 
@@ -538,19 +584,19 @@ $(document).ready(function () {
       });
       $(self.tableCollapseElems.next()).on('hide.bs.collapse', function (e) {
         $(this).prev().find('.icon-ARROW').removeClass('rotate270');
-        if($(self.table).children().length<9){
-          self.canSlide=false;
-        }else {
-          self.canSlide=true;
+        if ($(self.table).children().length < 9) {
+          self.canSlide = false;
+        } else {
+          self.canSlide = true;
         }
       });
     }
 
     var previousScroll = 0;
-    if($(self.table).children().length<9){
-      self.canSlide=false;
-    }else {
-      self.canSlide=true;
+    if ($(self.table).children().length < 9) {
+      self.canSlide = false;
+    } else {
+      self.canSlide = true;
     }
     $(this.table).on('scroll', function (event) {
       var currentScroll = $(this).scrollTop();
@@ -576,10 +622,8 @@ $(document).ready(function () {
   };
 
 
-
-
   Section.prototype.slideFilterBarMobile = function (previousScroll, currentScroll) {
-    switch (true){
+    switch (true) {
       case (currentScroll >= previousScroll && this.canSlide):
         $(this.filterBar).addClass('slide-up');
         break;
@@ -605,85 +649,87 @@ $(document).ready(function () {
   //cand profile editing function
 
 
-  $( "#cands-editing-icon" ).click(function() {
+  $("#cands-editing-icon").click(function () {
     $("#cands-editing-icon").unbind();
-    var allInputs=document.getElementsByClassName('inp');
-    for( var i=0; i<allInputs.length; i++ ){
+    var allInputs = document.getElementsByClassName('inp');
+    for (var i = 0; i < allInputs.length; i++) {
       $(allInputs[i]).removeClass('display-none');
-      $(allInputs[i]).attr('placeholder' , $(allInputs[i]).prev().text());
+      $(allInputs[i]).attr('placeholder', $(allInputs[i]).prev().text());
     }
-    var allTextareas=document.getElementsByClassName('txt');
-    var descriptions=document.getElementsByClassName("exp-description");
-    for( i=0; i<allTextareas.length; i++ ){
+    var allTextareas = document.getElementsByClassName('txt');
+    var descriptions = document.getElementsByClassName("exp-description");
+    for (i = 0; i < allTextareas.length; i++) {
       $(allTextareas[i]).removeClass('display-none');
-      $(allTextareas[i]).text($(descriptions[i]).text().match(/\w+|\d+|-|[()]/gm).join(" ") );
+      $(allTextareas[i]).text($(descriptions[i]).text().match(/\w+|\d+|-|[()]/gm).join(" "));
 
     }
     $(".not-delete").removeClass("display-none");
-    var hidden=document.getElementsByClassName('to-be-hidden');
-    for( i=0; i<hidden.length; i++ ){
+    var hidden = document.getElementsByClassName('to-be-hidden');
+    for (i = 0; i < hidden.length; i++) {
       $(hidden[i]).addClass('display-none');
     }
-    $(".skills-editing-input").attr("placeholder","Add skill");
+    $(".skills-editing-input").attr("placeholder", "Add skill");
 
 
     //described functions for hover. described it here in oder to add it to new skills,
     //which will be created by user
     function mouseOn() {
-      if(!($(this).hasClass("not-delete"))) {
+      if (!($(this).hasClass("not-delete"))) {
         skillName = $(this).text();
         $(this).css("opacity", "0.5").text("Delete");
       }
     }
 
     function mouseOut() {
-      if(!($(this).hasClass("not-delete"))) {
+      if (!($(this).hasClass("not-delete"))) {
         $(this).css("opacity", "1").text(skillName);
       }
     }
 
     var skillName;
-    $(".skills__elements__decoration").hover(mouseOn,mouseOut);
+    $(".skills__elements__decoration").hover(mouseOn, mouseOut);
 
-    $(".skills__elements__decoration").click(function(){
-      if(!($(this).hasClass("not-delete"))){
+    $(".skills__elements__decoration").click(function () {
+      if (!($(this).hasClass("not-delete"))) {
         $(this).remove();
-      }});
+      }
+    });
 
-    $(".add-skill").click(function(){
+    $(".add-skill").click(function () {
       $(".skills__elements").prepend("<span class='skills__elements__decoration'></span>");
       $(".skills__elements__decoration:first-child").text($(".skills-editing-input").val());
       $(".skills-editing-input").val("");
-      $(".skills__elements__decoration").click(function(){
-        if(!($(this).hasClass("not-delete"))){
+      $(".skills__elements__decoration").click(function () {
+        if (!($(this).hasClass("not-delete"))) {
           $(this).remove();
-        }});
+        }
+      });
       $(".skills__elements__decoration").unbind('mouseenter mouseleave');
-      $(".skills__elements__decoration").hover(mouseOn,mouseOut);
+      $(".skills__elements__decoration").hover(mouseOn, mouseOut);
     });
-    $(".cands__submit").attr("placeholder","");
+    $(".cands__submit").attr("placeholder", "");
     $(".cands-exp__editing-button").removeClass("display-none");
-    $( ".cands-exp__add-row" ).click(function(){
+    $(".cands-exp__add-row").click(function () {
       var timeLineRow;
-      timeLineRow=$(".cands-exp__row").html();
-      $(".cands-exp__rows-wrapper").prepend("<div class='cands-exp__row'>"+timeLineRow+"</div>");
+      timeLineRow = $(".cands-exp__row").html();
+      $(".cands-exp__rows-wrapper").prepend("<div class='cands-exp__row'>" + timeLineRow + "</div>");
       $(".cands-exp__row:first-child textarea").text("");
     });
-    $( ".cands-exp__delete-row" ).click(function(){
+    $(".cands-exp__delete-row").click(function () {
       $(".cands-exp__row:first-child").remove();
     });
   });
 
 // Review PopUp Opening/Closing function
-  $(function() {
+  $(function () {
 //----- OPEN
-    $('[data-popup-open]').on('click', function(e)  {
+    $('[data-popup-open]').on('click', function (e) {
       var targeted_popup_class = jQuery(this).attr('data-popup-open');
       $('[data-popup="' + targeted_popup_class + '"]').fadeIn(350);
       e.preventDefault();
     });
 //----- CLOSE
-    $('[data-popup-close]').on('click', function(e)  {
+    $('[data-popup-close]').on('click', function (e) {
       var targeted_popup_class = jQuery(this).attr('data-popup-close');
       $('[data-popup="' + targeted_popup_class + '"]').fadeOut(350);
       e.preventDefault();
@@ -708,43 +754,41 @@ $(document).ready(function () {
     var saveButton = document.getElementsByClassName('save-btn');
     $(saveButton).removeClass('display-none');
     var dateId = document.getElementsByClassName('review-block__date');
-    for (var i = 0; i < dateId.length; i++){
-      dateId[i].id = 'date-out-'+(i+1);
+    for (var i = 0; i < dateId.length; i++) {
+      dateId[i].id = 'date-out-' + (i + 1);
     }
-    $( function() {
-      $( ".datepicker" ).datepicker({dateFormat: 'dd.mm.yy'});
-    } );
+    $(function () {
+      $(".datepicker").datepicker({dateFormat: 'dd.mm.yy'});
+    });
   });
 
 //Review PopUp Editing function
-  $("#review-editing").click(function(){
+  $("#review-editing").click(function () {
     var allInputs = document.getElementsByClassName('review-input');
-    for(var i=0; i<allInputs.length; i++){
+    for (var i = 0; i < allInputs.length; i++) {
       $(allInputs[i]).removeClass('display-none');
     }
     var hidden = document.getElementsByClassName('review-to-be-hidden');
-    for(i=0; i<hidden.length; i++){
+    for (i = 0; i < hidden.length; i++) {
       $(hidden[i]).addClass('display-none');
     }
     var editButton = document.getElementsByClassName('edit-btn');
     $(editButton).addClass('display-none');
     var saveButton = document.getElementsByClassName('save-btn');
     $(saveButton).removeClass('display-none');
-    $( function() {
-      $( ".datepicker" ).datepicker({dateFormat: 'dd.mm.yy'});
-    } );
+    $(function () {
+      $(".datepicker").datepicker({dateFormat: 'dd.mm.yy'});
+    });
   });
-
-
 
 
   $("#review-saving").click(function () {
     var allInputs = document.getElementsByClassName('review-input');
-    for(var i=0; i<allInputs.length; i++){
+    for (var i = 0; i < allInputs.length; i++) {
       $(allInputs[i]).addClass('display-none');
     }
     var hidden = document.getElementsByClassName('review-to-be-hidden');
-    for(i=0; i<hidden.length; i++){
+    for (i = 0; i < hidden.length; i++) {
       $(hidden[i]).removeClass('display-none');
     }
     var editButton = document.getElementsByClassName('edit-btn');
@@ -752,7 +796,7 @@ $(document).ready(function () {
     var saveButton = document.getElementsByClassName('save-btn');
     $(saveButton).addClass('display-none');
     var dateInpElem = document.getElementsByClassName('datepicker');
-    for (var i=0; i<dateInpElem.length; i++){
+    for (var i = 0; i < dateInpElem.length; i++) {
       var dateInp = document.getElementsByClassName('datepicker');
       var dateOut = document.getElementsByClassName('review-block__date');
       dateOut[i].innerHTML = dateInp[i].value;
