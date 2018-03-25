@@ -149,7 +149,7 @@ $(document).ready(function () {
       var gettingData = new Promise(function (resolve, reject) {
         self.getDataFromServer(resolve);
       });
-      gettingData.then(function () {
+        gettingData.then(function () {
       });
     };
     this.getData();
@@ -183,7 +183,7 @@ $(document).ready(function () {
     this.positionField = $(this.section).find('#candidate-position');
     this.salaryField = $(this.section).find('#candidate-salary');
     this.telephoneField = $(this.section).find('#telephoneField');
-    this.emailField = $(this.section).find('#salaryField');
+    this.emailField = $(this.section).find('#emailField');
     this.addressField = $(this.section).find('#addressField');
 
     this.getData = function (res) {
