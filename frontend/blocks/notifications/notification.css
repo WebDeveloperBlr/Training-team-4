@@ -1,0 +1,74 @@
+.notifications {
+  padding: 0 20px;
+  margin-bottom: 45px;
+  position: relative;
+  overflow: auto;
+
+  &__show-more {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    display: block;
+    text-align: left;
+    padding: 5px 0 13px 20px;
+    border-bottom: 1px solid #dedede;
+  }
+}
+
+.notification {
+  padding-left: 65px;
+  position: relative;
+  margin-bottom: 20px;
+
+  &__title {
+    display: block;
+  }
+
+  &__salary {
+    font-size: 13px;
+    color: #7a7a7a;
+    display: block;
+  }
+
+  &__position {
+    font-size: 13px;
+    display: block;
+  }
+
+  &__name {
+    font-size: 16px;
+    font-weight: bold;
+    display: block;
+  }
+
+  &__img {
+    position: absolute;
+    left: 0;
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    object-fit: cover;
+  }
+
+  &__close {
+    cursor: pointer;
+    padding: 0;
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    background: none;
+    border: none;
+    font-size: 12px;
+    color: #dedede;
+    transition: opacity 0.3s;
+  }
+
+  &:hover &__close {
+    opacity: 1;
+    color: #bfbfbf;
+  }
+}
+

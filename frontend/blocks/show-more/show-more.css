@@ -1,0 +1,11 @@
+.show-more {
+  color: #878787;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+
+  &:hover {
+    color: #575757;
+  }
+}
