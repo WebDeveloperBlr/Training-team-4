@@ -75,6 +75,7 @@ $(function () {
         //for event double click
         eventRender:function(event, element) {
           element.bind('dblclick', function() {
+            console.log(event.allDay);
             $('#calendar-modal').modal("open");
             $("#modal-event-name").val(event.title);
             $('#modal-allDay')[0].checked = event.allDay;
