@@ -688,6 +688,7 @@ $(document).ready(function () {
       $('[data-popup="' + targeted_popup_class + '"]').fadeOut(350);
       e.preventDefault();
     });
+    
   });
 
 // Review Creating function
