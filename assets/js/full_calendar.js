@@ -7,10 +7,8 @@ $(".datepicker").datepicker({
 
 var eventStart;
 var eventEnd;
-var clickTime = [];
+//var clickTime = [];
 var toolbarOptions = [['image'], ['bold'], ['italic'], ['underline'], [{ 'list': 'ordered'}], [{ 'list': 'bullet' }], ['link'], ['clean']];
-
-
 
 $(function () {
   $('#calendar').fullCalendar({
@@ -32,7 +30,7 @@ $(function () {
             listWeek:'week list',
             listDay:'day list'
         },
-        height:550,
+        height: 550,
         defaultView: 'month',
         header: {
             left: 'title ',
@@ -57,38 +55,40 @@ $(function () {
         dayClick: popup,
         /*
          function(date, jsEvent, view) {
-            clickTime.push(jsEvent.timeStamp);
-            if(clickTime.length === 1) {
-              setTimeout(function () {
-                if(clickTime.length === 1) {
-                  clickTime.splice(0, clickTime.length);
-                  popup();
-                }
-              }, 500);
-            }
-            else {
-              modalWide();
-              clickTime.splice(0, clickTime.length);
-            }
+           clickTime.push(jsEvent.timeStamp);
+           if (clickTime.length === 1) {
+             setTimeout(function () {
+               if (clickTime.length === 1) {
+                 clickTime.splice(0, clickTime.length);
+                 popup();
+               }
+             }, 500);
+           }
+           else {
+             console.log(jsEvent);
+             clickTime.splice(0, clickTime.length);
+           }
+         },
          */
         
-        //for event double click
+        //for event double click (editing)
         eventRender:function(event, element) {
           element.bind('dblclick', function() {
-            console.log(event.allDay);
             $('#calendar-modal').modal("open");
             $("#modal-event-name").val(event.title);
-            $('#modal-allDay')[0].checked = event.allDay;
+            $('#checkbox-all-day')[0].checked = event.allDay;
             $('#start_date').val(event.start._i);
             $('#end_date').val(event.start._i);
             
-            $("#modal-submit-lower, #modal-submit").click(function() {
-              
+            $("#modal-submit").click(function() {
               event.title = $("#modal-event-name").val();
               event.start = $("#start_date").val();
               event.end = $("#end_date").val();
-              event.allDay = $('#modal-allDay')[0].checked;
+              event.allDay = $('#checkbox-all-day')[0].checked;
+              event.color =  $("#colorpicker").data('ddslick').selectedData.value;
+              addedEvents.push(event);
               $('#calendar').fullCalendar('updateEvent', event);
+              $("#calendar").fullCalendar('refetchEvents');
             });
           });
         },
@@ -141,8 +141,6 @@ $("#saveEvent").click(function(){
     $("#eventEnd").val("");
     $("#calendar").fullCalendar('refetchEvents');
 });
-
-
 
 function EventCreator(start, end, title) {
     this.title = title;
