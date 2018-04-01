@@ -53,6 +53,7 @@ $(function () {
         navLinks:"true",
         allDay:true,
         dayClick: popup,
+        //old version of double click
         /*
          function(date, jsEvent, view) {
            clickTime.push(jsEvent.timeStamp);
@@ -73,25 +74,42 @@ $(function () {
         
         //for event double click (editing)
         eventRender:function(event, element) {
-          element.bind('dblclick', function() {
-            $('#calendar-modal').modal("open");
-            $("#modal-event-name").val(event.title);
-            $('#checkbox-all-day')[0].checked = event.allDay;
-            $('#start_date').val(event.start._i);
-            $('#end_date').val(event.start._i);
-            
-            $("#modal-submit").click(function() {
-              event.title = $("#modal-event-name").val();
-              event.start = $("#start_date").val();
-              event.end = $("#end_date").val();
-              event.allDay = $('#checkbox-all-day')[0].checked;
-              event.color =  $("#colorpicker").data('ddslick').selectedData.value;
-              addedEvents.push(event);
-              $('#calendar').fullCalendar('updateEvent', event);
-              $("#calendar").fullCalendar('refetchEvents');
-            });
-          });
-        },
+      element.bind('dblclick', function() {
+        $('#calendar-modal').modal("open"); //open modal window
+        
+        //setting event values into the modal
+        $("#modal-event-name").val(event.title);
+        $('#start_date').val(event.start._i);
+        $('#end_date').val(event.start._i);
+        $('#checkbox-all-day')[0].checked = event.allDay;
+        $("#event-place").val(event.place);
+        $("#select-interviewer").val(event.interviewer);
+        $("#colorpicker").data('ddslick').selectedData.value = event.color;
+        $("#select-privacy").val(event.privacy);
+        $("#select-video").val(event.isVideoConf);
+        $("#select-vacant").val(event.isVacant);
+        quill.setContents(event.msgText);
+      
+        //for both submit buttons
+        $("#modal-submit, #modal-submit-lower").click(function() {
+          event.title = $("#modal-event-name").val();
+          event.start = $("#start_date").val();
+          //event.end = $("#start_end").val();
+          event.allDay = $('#checkbox-all-day')[0].checked;
+          event.place = $("#event-place").val();
+          event.interviewer =  $("#select-interviewer").val();
+          event.color =  $("#colorpicker").data('ddslick').selectedData.value;
+          event.privacy =  $("#select-privacy").val();
+          event.isVideoConf =  $("#select-video").val();
+          event.isVacant =  $("#select-vacant").val();
+          event.msgText = quill.getContents();
+        
+          $("#calendar").fullCalendar('updateEvent', event);
+          
+          quill.setContents('');
+        });
+      });
+    },
         validRange: function(nowDate) {
             return {
                 start: nowDate,
@@ -103,19 +121,19 @@ $(function () {
     dismissible: true, // Modal can be dismissed by clicking outside of the modal
     endingTop: '5%' // Ending top style attribute
   });
-  $("select[class*='select-'], select[class^='select-']").material_select();
-  $('ul.tabs').tabs();
+  $("select[class*='select-'], select[class^='select-']").material_select(); //initializing selects
+  $('ul.tabs').tabs(); //initializing material tabs
   var quill = new Quill('#editor', {
     theme: 'snow',
     placeholder: 'Добавьте описание',
     modules: {
       toolbar: toolbarOptions
     }
-  });
-  $('#event-time-start, #event-time-end').timepicker({});
+  }); //initializing wysiwyg window for texteditor
+  $('#modal-time-start, #modal-time-end').timepicker({}); //initializing timepicker
   $('#colorpicker').ddslick({
     width: '55px'
-  });
+  }); //initializing select for colorpicker
   
 });
 
@@ -146,4 +164,5 @@ function EventCreator(start, end, title) {
     this.title = title;
     this.start = start;
     this.end = end;
+    
 }

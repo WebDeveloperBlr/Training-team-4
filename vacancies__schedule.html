@@ -128,7 +128,7 @@
                      id='event-name'/>
             </div>
             <div class="col valign-wrapper">
-              <button type="submit" id="modal-submit" class="modal-submit modal-action center-align waves-effect blue btn">Создать</button>
+              <button type="button" id="modal-submit" class="hide-on-med-and-down  center-align modal-close waves-effect blue btn">Изменить</button>
             </div>
           </div>
           <div class="row ">
@@ -175,10 +175,9 @@
                 </div>
                 <div class="col s12 m8 grey lighten-3  ">
                   <select id="select-video" class="select-video no-border">
-                    <option value="" disabled selected>Добавить видео-конференцию</option>
-                    <option value="1">Ivan Ivanov</option>
-                    <option value="2">Peter Petrov</option>
-                    <option value="3">John Jones</option>
+                    <option value="0" disabled selected>Добавить видео-конференцию</option>
+                    <option value="1">Нет</option>
+                    <option value="2">Да</option>
                   </select>
                 </div>
               </div>
@@ -187,7 +186,7 @@
                 <div class="col ">
                   <i class="material-icons">add_alert</i>
                 </div>
-                <div class="col s9 m6 btn-flat truncate">
+                <div class="col s9 m6 waves-effect btn-flat truncate">
                   Добавить уведомление
                 </div>
               </div>
@@ -197,7 +196,7 @@
                   <i class="material-icons">today</i>
                 </div>
                 <div class="col s5  grey lighten-3  ">
-                  <select id="select-interviewee" class="select-interviewee no-border">
+                  <select id="select-interviewer" class="select-interviewer no-border">
                     <option value="1" selected>Ivan Ivanov</option>
                     <option value="2">Peter Petrov</option>
                     <option value="3">John Jones</option>
@@ -205,7 +204,7 @@
                 </div>
                 <div class="col grey lighten-3 colorpicker-wrapper margin-left">
                   <select id="colorpicker" class="colorpicker no-border">
-                    <option value="blue" selected="selected" data-imagesrc="assets/images/svg/colors/blue.svg"></option>
+                    <option value="#3a87ad" selected="selected" data-imagesrc="assets/images/svg/colors/blue.svg"></option>
                     <option value="red" data-imagesrc="assets/images/svg/colors/red.svg"></option>
                     <option value="green" data-imagesrc="assets/images/svg/colors/green.svg"></option>
                   </select>
@@ -218,14 +217,14 @@
                 </div>
                 <div class="col s5 m4 grey lighten-3">
                   <select id="select-vacant" class="select-vacant no-border">
-                    <option value="1"selected>Свободен/свободна</option>
-                    <option value="2">Не свободен/свободна</option>
+                    <option value="0">Не свободен/свободна</option>
+                    <option value="1" selected>Свободен/свободна</option>
                   </select>
                 </div>
                 <div class="col m5 s5 margin-left grey lighten-3">
                   <select id="select-privacy" class="select-privacy no-border">
                     <option value="1" selected >Настройки приватности по умолчанию</option>
-                    <option value="2">Другие</option>
+                    <option value="0">Другие</option>
                   </select>
                 </div>
                 <div class="col hide-on-med-and-down">
@@ -251,16 +250,17 @@
               </div>
               <div class="col s3">
                 <div class="row">
-                  <input id="modal-time-start" placeholder="Начало" type="text" class="col timepicker no-border input--small grey lighten-3">
+                  <input id="modal-time-start" placeholder="Начало"  class="col timepicker no-border input--small grey lighten-3">
                 </div>
                 <div class="row">
-                  <input id="modal-time-end" placeholder="Конец" type="text" class="col timepicker no-border input--small grey lighten-3">
+                  <input id="modal-time-end" placeholder="Конец"  class="col timepicker no-border input--small grey lighten-3">
                 </div>
               </div>
             </div>
-          <div class="row modal-submit-lower show-on-medium-and-down">
+          <div class="row modal-submit-lower">
             <div class="col right">
-              <button type="submit" id="modal-submit-lower" class="modal-action waves-effect blue btn">Создать</button>
+              <!--<button type="submit" id="modal-submit-lower" class="modal-action waves-effect blue btn">Создать</button>-->
+              <button type="button" id="modal-submit-lower" class=" show-on-medium-and-down modal-close waves-effect blue btn">Изменить</button>
             </div>
           </div>
         </div>
