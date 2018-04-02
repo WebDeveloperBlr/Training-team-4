@@ -73,8 +73,14 @@ $(function () {
          */
         
         //for event double click (editing)
-        eventRender:function(event, element) {
-      element.bind('dblclick', function() {
+      /*  eventRender:function(event1, element) {
+
+        element.bind('dblclick', function() {
+            var event;
+            for(var count=0;count<addedEvents.length;count++){
+                if(event1.title==addedEvents[count].title&& event1.start==addedEvents[count].start)
+                    event=addedEvents[count];
+            }
         $('#calendar-modal').modal("open"); //open modal window
         
         //setting event values into the modal
@@ -103,13 +109,59 @@ $(function () {
           event.isVideoConf =  $("#select-video").val();
           event.isVacant =  $("#select-vacant").val();
           event.msgText = quill.getContents();
-        
-          $("#calendar").fullCalendar('updateEvent', event);
+
+            $("#calendar").fullCalendar('refetchEvents');
           
           quill.setContents('');
         });
       });
-    },
+    },*/
+      eventClick: function(calEvent, jsEvent, view) {
+          var firstClick=new Date();
+          this.addEventListener("click",function(){
+          var secondClick=new Date();
+          if((secondClick-firstClick)>500)
+              return;
+          var event;
+          for(var p=0;p<addedEvents.length;p++){
+              if(addedEvents[p].title==calEvent.title)
+                  event=addedEvents[p];
+          }
+         $('#calendar-modal').modal("open"); //open modal window
+         $("#modal-event-name").val(event.title);
+         $('#start_date').val(event.start);
+         $('#end_date').val(event.start);
+         $('#checkbox-all-day')[0].checked = event.allDay;
+         $("#event-place").val(event.place);
+         $("#select-interviewer").val(event.interviewer);
+         $("#colorpicker").data('ddslick').selectedData.value = event.color;
+         $("#select-privacy").val(event.privacy);
+         $("#select-video").val(event.isVideoConf);
+         $("#select-vacant").val(event.isVacant);
+         quill.setContents(event.msgText);
+
+
+
+         $("#modal-submit, #modal-submit-lower").click(function(k) {
+             event.title = $("#modal-event-name").val();
+             event.start = $("#start_date").val();
+             //event.end = $("#start_end").val();
+             event.allDay = $('#checkbox-all-day')[0].checked;
+             event.place = $("#event-place").val();
+             event.interviewer =  $("#select-interviewer").val();
+             event.color =  $("#colorpicker").data('ddslick').selectedData.value;
+             event.privacy =  $("#select-privacy").val();
+             event.isVideoConf =  $("#select-video").val();
+             event.isVacant =  $("#select-vacant").val();
+             event.msgText = quill.getContents();
+
+                  $("#calendar").fullCalendar('refetchEvents');
+
+                  quill.setContents('');
+              });
+          $("#calendar").fullCalendar('refetchEvents');
+          });
+      },
         validRange: function(nowDate) {
             return {
                 start: nowDate,
