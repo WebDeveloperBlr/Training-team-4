@@ -25,12 +25,12 @@
       <ul class="hr-app-section__sidebar-list">
         <li class="hr-app-section__sidebar-list-item"><a class="hr-app-section__sidebar-item-link"
                                                          href="#">Interview</a></li>
-        <li class="hr-app-section__sidebar-list-item active"><a class="hr-app-section__sidebar-item-link" data-target="#vacancies-tab" href="#">Vacancies</a>
+        <li class="hr-app-section__sidebar-list-item"><a class="hr-app-section__sidebar-item-link" data-target="#vacancies-tab" href="HR-app.html">Vacancies</a>
         </li>
         <li class="hr-app-section__sidebar-list-item"><a data-target="#candidates-tab" class="hr-app-section__sidebar-item-link"
                                                          href="#">Candidates</a></li>
-        <li class="hr-app-section__sidebar-list-item"><a class="hr-app-section__sidebar-item-link"
-                                                         href="#">Management</a></li>
+        <li class="hr-app-section__sidebar-list-item active"><a class="hr-app-section__sidebar-item-link"
+                                                        data-notPreventDefault="true" href="#">Management</a></li>
         <li class="hr-app-section__sidebar-list-item mobile-item"><a class="hr-app-section__sidebar-item-link" href="#">Notifications
           <svg class="icon icon-BELL ">
             <use xlink:href="assets/images/svg/symbol/sprite.svg#BELL"></use>
@@ -71,22 +71,16 @@
         </div>
       </div>
       <section class="vacancies-tab" id="vacancies-tab">
-        <div class="hr-app__filters-bar">
-          <div class="hr-app__filters-bar__header-wrapper">
-            <h3 class="hr-app__filters-bar__header">Interview</h3>
-            <button class="hr-app__filters-bar__add-profile-button"><span>+</span></button>
-          </div>
-        </div>
       </section>
         <div class="calendar-wrapper">
           <div id='calendar'></div>
         </div>
     </div>
-    <div  class="display-none schedule__pop-up border-box ">
+    <div data-popup-open class="display-none schedule__pop-up border-box ">
       <form class="popup-inner bg-color-white size-responsive">
         <div class="schedule__popup-header ">Add title and time</div>
         <div class="schedule__tag-wrapper">
-          <span class="btn btn-primary border-radius-10">
+          <span class="btn btn-primary border-radius-10 select-none">
           Event
         </span>
         </div>
@@ -104,11 +98,10 @@
            <span class="lineheight material-icons ">assignment</span>
            <input id="eventTitle" class="schedule__popup-person-field schedule__popup-field" placeholder="add title" type="text"/>
         </div>
-        <div id="saveEvent" class="btn btn-primary float-right">
+        <div id="saveEvent" class="btn btn-primary float-right select-none">
           Save
         </div>
-        <span class="popup-close schedule-popup-close">x</span>
-
+        <a class="popup-close schedule-popup-close" data-popup-close="popup-1" href="#">x</a>
       </form>
     </div>
   </section>
