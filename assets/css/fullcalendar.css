@@ -1298,12 +1298,12 @@ be a descendant of the grid when it is being dragged.
 	width:80% !important;
 }
 
-.schedule__popup-person-field{
+.schedule__popup-person-field {
 	width:50%;
 	margin-bottom:10px;
 }
 
-@media all and (max-width:1000px){
+@media all and (max-width:1000px) {
 	.size-responsive{
 		max-width:500px;
 		left:550px;
@@ -1311,17 +1311,17 @@ be a descendant of the grid when it is being dragged.
 		margin-left:0px;
 		margin-right:0px;
 	}
-	.schedule__popup-field{
+	.schedule__popup-field {
 		width:60%;
 	}
-	.float-right{
+	.float-right {
 		float:left;
 	}
-	#saveEvent{
+	#saveEvent {
 		float:right;
 	}
 }
-.field-tag{
+.field-tag {
 	position:relative;
 	right:40px;
 	background-color:#b2dfdb;
@@ -1330,11 +1330,11 @@ be a descendant of the grid when it is being dragged.
 	padding:3px 8px;
 }
 
-.experiment{
+.experiment {
 	text-align:justify;
 }
 
-#calendar::-webkit-scrollbar { width: 0; }
+#calendar::-webkit-scrollbar { width: 0;}
 
 .hr-app-section__right-bar__search-input{
 	border:none !important;
