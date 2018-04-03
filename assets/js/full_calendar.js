@@ -53,114 +53,47 @@ $(function () {
         navLinks:"true",
         allDay:true,
         dayClick: popup,
-        //old version of double click
-        /*
-         function(date, jsEvent, view) {
-           clickTime.push(jsEvent.timeStamp);
-           if (clickTime.length === 1) {
-             setTimeout(function () {
-               if (clickTime.length === 1) {
-                 clickTime.splice(0, clickTime.length);
-                 popup();
-               }
-             }, 500);
-           }
-           else {
-             console.log(jsEvent);
-             clickTime.splice(0, clickTime.length);
-           }
-         },
-         */
-        
-        //for event double click (editing)
-      /*  eventRender:function(event1, element) {
-
-        element.bind('dblclick', function() {
-            var event;
-            for(var count=0;count<addedEvents.length;count++){
-                if(event1.title==addedEvents[count].title&& event1.start==addedEvents[count].start)
-                    event=addedEvents[count];
-            }
-        $('#calendar-modal').modal("open"); //open modal window
-        
-        //setting event values into the modal
-        $("#modal-event-name").val(event.title);
-        $('#start_date').val(event.start._i);
-        $('#end_date').val(event.start._i);
-        $('#checkbox-all-day')[0].checked = event.allDay;
-        $("#event-place").val(event.place);
-        $("#select-interviewer").val(event.interviewer);
-        $("#colorpicker").data('ddslick').selectedData.value = event.color;
-        $("#select-privacy").val(event.privacy);
-        $("#select-video").val(event.isVideoConf);
-        $("#select-vacant").val(event.isVacant);
-        quill.setContents(event.msgText);
-      
-        //for both submit buttons
-        $("#modal-submit, #modal-submit-lower").click(function() {
-          event.title = $("#modal-event-name").val();
-          event.start = $("#start_date").val();
-          //event.end = $("#start_end").val();
-          event.allDay = $('#checkbox-all-day')[0].checked;
-          event.place = $("#event-place").val();
-          event.interviewer =  $("#select-interviewer").val();
-          event.color =  $("#colorpicker").data('ddslick').selectedData.value;
-          event.privacy =  $("#select-privacy").val();
-          event.isVideoConf =  $("#select-video").val();
-          event.isVacant =  $("#select-vacant").val();
-          event.msgText = quill.getContents();
-
-            $("#calendar").fullCalendar('refetchEvents');
-          
-          quill.setContents('');
-        });
-      });
-    },*/
       eventClick: function(calEvent, jsEvent, view) {
           var firstClick=new Date();
-          this.addEventListener("click",function(){
-          var secondClick=new Date();
-          if((secondClick-firstClick)>500)
-              return;
-          var event;
-          for(var p=0;p<addedEvents.length;p++){
+          this.onclick=function(){
+            var secondClick=new Date();
+            if((secondClick-firstClick)>500)
+                return;
+          var srcEvent;
+          for(let p=0;p<addedEvents.length;p++){
               if(addedEvents[p].title==calEvent.title)
-                  event=addedEvents[p];
+                  srcEvent=addedEvents[p];
           }
          $('#calendar-modal').modal("open"); //open modal window
-         $("#modal-event-name").val(event.title);
-         $('#start_date').val(event.start);
-         $('#end_date').val(event.start);
-         $('#checkbox-all-day')[0].checked = event.allDay;
-         $("#event-place").val(event.place);
-         $("#select-interviewer").val(event.interviewer);
-         $("#colorpicker").data('ddslick').selectedData.value = event.color;
-         $("#select-privacy").val(event.privacy);
-         $("#select-video").val(event.isVideoConf);
+         $("#modal-event-name").val(srcEvent.title);
+         $('#start_date').val(srcEvent.start);
+         $('#end_date').val(srcEvent.start);
+         $('#checkbox-all-day')[0].checked = srcEvent.allDay;
+         $("#event-place").val(srcEvent.place);
+         $("#select-interviewer").val(srcEvent.interviewer);
+         $("#colorpicker").data('ddslick').selectedData.value = srcEvent.color;
+         $("#select-privacy").val(srcEvent.privacy);
+         $("#select-video").val(srcEvent.isVideoConf);
          $("#select-vacant").val(event.isVacant);
-         quill.setContents(event.msgText);
+         quill.setContents(srcEvent.msgText);
 
-
-
-         $("#modal-submit, #modal-submit-lower").click(function(k) {
-             event.title = $("#modal-event-name").val();
-             event.start = $("#start_date").val();
-             //event.end = $("#start_end").val();
-             event.allDay = $('#checkbox-all-day')[0].checked;
-             event.place = $("#event-place").val();
-             event.interviewer =  $("#select-interviewer").val();
-             event.color =  $("#colorpicker").data('ddslick').selectedData.value;
-             event.privacy =  $("#select-privacy").val();
-             event.isVideoConf =  $("#select-video").val();
-             event.isVacant =  $("#select-vacant").val();
-             event.msgText = quill.getContents();
-
-                  $("#calendar").fullCalendar('refetchEvents');
-
-                  quill.setContents('');
-              });
+        var submitBtn=document.getElementById("modal-submit");
+          submitBtn.onclick=function() {
+          srcEvent.title = $("#modal-event-name").val();
+          srcEvent.start = $("#start_date").val();
+          srcEvent.allDay = $('#checkbox-all-day')[0].checked;
+          srcEvent.place = $("#event-place").val();
+          srcEvent.interviewer = $("#select-interviewer").val();
+          srcEvent.color = $("#colorpicker").data('ddslick').selectedData.value;
+          srcEvent.privacy = $("#select-privacy").val();
+          srcEvent.isVideoConf = $("#select-video").val();
+          srcEvent.isVacant = $("#select-vacant").val();
+          srcEvent.msgText = quill.getContents();
           $("#calendar").fullCalendar('refetchEvents');
-          });
+          quill.setContents('');
+          }
+       };
+
       },
         validRange: function(nowDate) {
             return {
