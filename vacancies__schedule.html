@@ -7,12 +7,16 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="keywords" content="">
   <link rel="icon" href="assets/images/icon.png">
-  <link rel="stylesheet" type="text/css" href="assets/css/main.css">
+  <link rel="stylesheet"  href="assets/css/main.css">
   <link rel="stylesheet" href="assets/css/fullcalendar.css">
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <link rel="stylesheet" href="assets/css/materialize.min.css"/>
+  <link rel="stylesheet" href="assets/css/materialize.css"/>
+  <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+  <link href="assets/css/jquery.timepicker.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/modal-window.css">
   <script src="assets/js/moment.min.js"></script>
+
 </head>
 <body>
 <section class="hr-app-section scroll">
@@ -29,8 +33,8 @@
         </li>
         <li class="hr-app-section__sidebar-list-item"><a data-target="#candidates-tab" class="hr-app-section__sidebar-item-link"
                                                          href="#">Candidates</a></li>
-        <li class="hr-app-section__sidebar-list-item active"><a class="hr-app-section__sidebar-item-link"
-                                                        data-notPreventDefault="true" href="#">Management</a></li>
+        <li class="hr-app-section__sidebar-list-item"><a class="hr-app-section__sidebar-item-link"
+                                                         href="#">Management</a></li>
         <li class="hr-app-section__sidebar-list-item mobile-item"><a class="hr-app-section__sidebar-item-link" href="#">Notifications
           <svg class="icon icon-BELL ">
             <use xlink:href="assets/images/svg/symbol/sprite.svg#BELL"></use>
@@ -102,14 +106,171 @@
           Save
         </div>
         <a class="popup-close schedule-popup-close" data-popup-close="popup-1" href="#">x</a>
+        <span class="popup-close schedule-popup-close">x</span>
+      </form>
+    </div>
+
+    <div id="calendar-modal" class="calendar-modal modal">
+      <form action="">
+        <div class="modal-content">
+          <div class="row event-name-wrapper">
+            <div class="col no-padding right">
+              <i id="modal-close" class="no-padding modal-close modal-close-icon material-icons">close</i>
+            </div>
+            <div class="col m7 s12">
+              <input required type="text" id="modal-event-name" class='no-border grey lighten-3 input--small' placeholder='Добавьте название'
+                     id='event-name'/>
+            </div>
+            <div class="col valign-wrapper">
+              <button type="button" id="modal-submit" class="hide-on-med-and-down  center-align modal-close waves-effect blue btn">Изменить</button>
+            </div>
+          </div>
+          <div class="row ">
+            <div class="col m3 s6">
+              <input required id="start_date" class="datepicker no-border input--small grey lighten-3"/>
+            </div>
+            <div class="col m3 s6">
+              <input required id="end_date" class="datepicker no-border input--small grey lighten-3"/>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col s4 m3 checkbox-day valign-wrapper">
+              <input type="checkbox" id="checkbox-all-day"/>
+              <label for="checkbox-all-day">Весь день</label>
+            </div>
+            <div class="col s7  m4 grey lighten-3">
+              <select id="select-repeat" class="select-repeat no-border">
+                <option value="1" selected>Не повторять</option>
+                <option value="2">Повторять</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="tabs-wrapper col s12 no-padding">
+              <ul class="tabs">
+                <li class="tab col m6 s10"><a class="active" href="#event-data">Сведения о мероприятии</a></li>
+                <li class="tab col m2 s3"><a href="#event-time">Время</a></li>
+              </ul>
+            </div>
+            <div id="event-data" class="col s12">
+              <div class="row">
+                <div class="col">
+                  <i class="material-icons">location_on</i>
+                </div>
+                <div class="col s9 m8">
+                  <input type="text" class='truncate input--small no-border grey lighten-3' placeholder='Укажите место проведения'
+                         id='event-place'/>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col ">
+                  <i class="material-icons hide-on-small-and-down">video_call</i>
+                </div>
+                <div class="col s12 m8 grey lighten-3  ">
+                  <select id="select-video" class="select-video no-border">
+                    <option value="0" disabled selected>Добавить видео-конференцию</option>
+                    <option value="1">Нет</option>
+                    <option value="2">Да</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col ">
+                  <i class="material-icons">add_alert</i>
+                </div>
+                <div class="col s9 m6 waves-effect btn-flat truncate">
+                  Добавить уведомление
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col">
+                  <i class="material-icons">today</i>
+                </div>
+                <div class="col s5  grey lighten-3  ">
+                  <select id="select-interviewer" class="select-interviewer no-border">
+                    <option value="1" selected>Ivan Ivanov</option>
+                    <option value="2">Peter Petrov</option>
+                    <option value="3">John Jones</option>
+                  </select>
+                </div>
+                <div class="col grey lighten-3 colorpicker-wrapper margin-left">
+                  <select id="colorpicker" class="colorpicker no-border">
+                    <option value="#3a87ad" selected="selected" data-imagesrc="assets/images/svg/colors/blue.svg"></option>
+                    <option value="red" data-imagesrc="assets/images/svg/colors/red.svg"></option>
+                    <option value="green" data-imagesrc="assets/images/svg/colors/green.svg"></option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col ">
+                  <i class="material-icons hide-on-small-and-down">work</i>
+                </div>
+                <div class="col s5 m4 grey lighten-3">
+                  <select id="select-vacant" class="select-vacant no-border">
+                    <option value="0">Не свободен/свободна</option>
+                    <option value="1" selected>Свободен/свободна</option>
+                  </select>
+                </div>
+                <div class="col m5 s5 margin-left grey lighten-3">
+                  <select id="select-privacy" class="select-privacy no-border">
+                    <option value="1" selected >Настройки приватности по умолчанию</option>
+                    <option value="0">Другие</option>
+                  </select>
+                </div>
+                <div class="col hide-on-med-and-down">
+                  <i class="material-icons">info</i>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col hide-on-small-and-down">
+                  <i class="material-icons">subject</i>
+                </div>
+                <div class="col m10 s12 editor-wrapper">
+                  <div class="editor">
+                    <div id="editor"></div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <div class="row" id="event-time">
+              <div class="col m1 s2">
+                <i class="material-icons">access_time</i>
+              </div>
+              <div class="col s3">
+                <div class="row">
+                  <input id="modal-time-start" placeholder="Начало"  class="col timepicker no-border input--small grey lighten-3">
+                </div>
+                <div class="row">
+                  <input id="modal-time-end" placeholder="Конец"  class="col timepicker no-border input--small grey lighten-3">
+                </div>
+              </div>
+            </div>
+          <div class="row modal-submit-lower">
+            <div class="col right">
+              <!--<button type="submit" id="modal-submit-lower" class="modal-action waves-effect blue btn">Создать</button>-->
+              <button type="button" id="modal-submit-lower" class=" show-on-medium-and-down modal-close waves-effect blue btn">Изменить</button>
+            </div>
+          </div>
+        </div>
+        </div>
       </form>
     </div>
   </section>
 </section>
-<script src="assets/js/libs.min.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script src="assets/js/fullcalendar.js"></script>
-<script src="assets/js/main.js"></script>
-<script src="assets/js/full_calendar.js"></script>
+<script type="text/javascript" src="assets/js/libs.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript" src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+<script type="text/javascript" src="assets/js/materialize.min.js"></script>
+<script type="text/javascript" src="assets/js/fullcalendar.js"></script>
+<script type="text/javascript" src="assets/js/main.js"></script>
+<script type="text/javascript" src="assets/js/ddslick.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.timepicker.min.js"></script>
+<script type="text/javascript" src="assets/js/full_calendar.js"></script>
 </body>
 </html>
