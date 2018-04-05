@@ -950,6 +950,7 @@ hr-app__candidates-item-link{
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  justify-content: space-between;
 }
 
 .hr-app__filters-bar__add-profile-button {
@@ -2607,7 +2608,12 @@ input:-ms-input-placeholder {
   -webkit-user-select:none;
 }
 
-
+.see-schedule-btn{
+  color:white;
+}
+.see-schedule-btn:hover{
+  color:white;
+}
 
 
 
