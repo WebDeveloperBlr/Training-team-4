@@ -48,7 +48,7 @@ server.get('/candidates/:id', candidatesController.getById);
 
 //rest api to create a new record into mysql database
 server.post('/', candidatesController.create);
-server.put('/:id', candidatesController.update);
+server.put('/candidates/:id', candidatesController.update);
 server.del('/:id', candidatesController.delete);
 
 
