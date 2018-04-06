@@ -59,6 +59,10 @@
   border: none !important;
 }
 
+.modal-content {
+  height: 100% !important;
+}
+
 .modal-content .row {
   margin-bottom: 0.6rem !important;
 }
@@ -85,7 +89,7 @@
 
 @media (max-width: 875px) {
   .modal {
-    height: 100%;
+    height: 93%;
     overflow-y: scroll !important;
   }
 }
@@ -120,7 +124,14 @@
 
 .editor-wrapper {
   margin-top: 0.5em;
-  height: 12rem;
+}
+
+
+
+@media (max-width: 600px) {
+  .editor-wrapper {
+    height: 10rem;
+  }
 }
 
 @media (min-height: 824px) {
