@@ -396,6 +396,12 @@ $(document).ready(function () {
       }else{
         $(this.statusInput).removeClass('border-danger');
       }
+      if(!this.positionInput.jqxComboBox('getSelectedItem')){
+        $(this.positionInput).addClass('border-danger');
+        f1 = false;
+      }else{
+        $(this.statusInput).removeClass('border-danger');
+      }
       return f1;
     };
     this.bindEvents = function () {
@@ -502,9 +508,12 @@ $(document).ready(function () {
         });
       });
     };
+
+
     var gettingData = new Promise(function (res, rej) {
       self.getData(res);
     });
+
     gettingData.then(function () {
       self.fillFields();
       self.fillDropdown();
