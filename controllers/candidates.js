@@ -1,5 +1,6 @@
 var Candidates = require("./../models/candidates");
 var fs = require('fs');
+console.log(__dirname);
 
 exports.all = function (req, res) {
   var limit;
