@@ -1,4 +1,4 @@
-var Candidates = require("../models/candidates");
+var Candidates = require("./../models/candidates");
 var fs = require('fs');
 
 exports.all = function (req, res) {
