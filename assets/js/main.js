@@ -48,11 +48,14 @@ $(document).ready(function () {
       });
     };
     this.bindEvents = function () {
-      $(self.tabLinks).on('click', function (e) {
-        e.preventDefault();
+      $(self.tabLinks).on('click', function () {
+        if(typeof self.application!=='undefined'&&typeof self.application.clearPerson!=='undefined'){
+          self.application.clearPerson();
+        }
         self.disableTabs();
         $($(this).attr('data-target')).removeClass("d-none").addClass("active");
         self.initialize();
+        return false;
       });
       $(this.toggleButton).on('click', function () {
         self.showSidebar();
@@ -169,6 +172,7 @@ $(document).ready(function () {
 
   function Person(element, id) {
     this.data = [];
+    this.id = id;
     this.URL = '/candidates/' + id;
     this.section = element;
     var self = this;
@@ -178,13 +182,133 @@ $(document).ready(function () {
     this.telephoneField = $(this.section).find('#telephoneField');
     this.emailField = $(this.section).find('#emailField');
     this.addressField = $(this.section).find('#addressField');
+    this.statusField = $(this.section).find('#statusField');
     this.breadcrumbField = $(this.section).find('#breadcrumbField');
+    this.nameInput = $(this.section).find('#nameInput');
+    this.positionInput = $(this.section).find('#positionInput');
+    this.salaryInput = $(this.section).find('#salaryInput');
+    this.addressInput = $(this.section).find('#addressInput');
+    this.telephoneInput = $(this.section).find('#telephoneInput');
+    this.emailInput = $(this.section).find('#emailInput');
+    this.statusInput = $(this.section).find('#statusInput');
+    this.statusInputActiveValue = $(this.statusInput).find('.hr-app__filters-bar__dropdown-active-value span');
     this.rowsWrapper = $(this.section).find('.cands-exp__rows-wrapper');
+    this.skillsWrapper = $(this.section).find('.skills__elements');
+    this.editButton = $(this.section).find("#cands-editing-button");
+    this.saveButton = $(this.section).find("#cands-save-button");
+    this.successButton = $(this.section).find('.success-button-wrap');
+    this.errorButton = $(this.section).find('#cands-error-button');
+    this.reviewButton = $(this.section).find('#reviewButton');
+    this.modalStatus = $(this.section).find('#addSkillModal');
+    this.modalItemsWrapper = $(this.modalStatus).find('.skills-modal__items-wrapper');
+    this.addSkillButton = $(this.section).find('#addSkillButton');
+
+    this.clearPerson = function () {
+      $(this.editButton).removeClass('d-none');
+      $(this.saveButton).addClass('d-none');
+      this.hideInputs();
+      this.unbindAll();
+    };
+
+    this.unbindAll = function () {
+      $(this.saveButton).unbind();
+      $(this.editButton).unbind();
+    };
+
     this.getData = function (res) {
       $.get(self.URL, {json: "true"}, function (data) {
         self.data = data;
         res();
       });
+    };
+
+    this.saveData = function () {
+      $(this.nameField).text($(this.nameInput).val());
+      $(this.positionField).text($(this.positionInput).val());
+      $(this.salaryField).text($(this.salaryInput).val());
+      $(this.telephoneField).text($(this.telephoneInput).val());
+      $(this.emailField).text($(this.emailInput).val());
+      $(this.addressField).text($(this.addressInput).val());
+      $(this.statusField).html($(this.statusInput).find('.hr-app__filters-bar__dropdown-active-value').text());
+    };
+
+    this.getSkills = function () {
+      self.data.newSkills = [];
+      self.data.oldSkills = [];
+      $(self.skillsWrapper).find('.skills__elements__decoration').each(function (index, el) {
+        var hasSkill=false;
+        self.data.skills.forEach(function (item) {
+          if($(el).text()===item.name){
+            hasSkill=true;
+          }
+        });
+        if(!hasSkill){
+          self.data.newSkills.push($(el).text());
+        }
+      });
+      self.data.skills.forEach(function (item) {
+        var hasSkill=false;
+        $(self.skillsWrapper).find('.skills__elements__decoration').each(function (index, el) {
+          if($(el).text()===item.name){
+            hasSkill=true;
+          }
+        });
+        if(!hasSkill){
+          self.data.oldSkills.push(item.name);
+        }
+      });
+
+    };
+    this.getDataFromFields = function () {
+      self.data.docs[0].position = $(this.positionField).text();
+      self.data.docs[0].name = $(this.nameField).text();
+      self.data.docs[0].telephone = $(this.telephoneField).text();
+      self.data.docs[0].email = $(this.emailField).text();
+      self.data.docs[0].address = $(this.addressField).text();
+      self.data.docs[0].status = $(this.statusInputActiveValue).text();
+      self.data.docs[0].salary = $(this.salaryField).html().slice(0,$(this.salaryField).html().indexOf('$'));
+      var trimName = self.data.docs[0].name.split(" ");
+      self.data.docs[0].firstName = trimName[0];
+      self.data.docs[0].lastName = trimName[1];
+      //this.getExperience();
+      this.getSkills();
+    };
+    this.hideInputs = function () {
+
+      for (var i = 0; i < self.allInputs.length; i++) {
+        $(self.allInputs[i]).addClass('d-none');
+        $(self.allInputs[i]).removeClass('border-danger');
+        $(self.allInputs[i]).val("");
+      }
+      for (i = 0; i < self.allTextareas.length; i++) {
+        $(self.allTextareas[i]).addClass('d-none');
+        $(self.allTextareas[i]).addClass('border-danger');
+        $(self.allTextareas[i]).val("");
+      }
+      $(self.candFields).each(function (ind, el) {
+        $(el).removeClass('d-none');
+      });
+      $(".cands-exp__editing-button").removeClass("d-none");
+      $(self.reviewButton).removeClass('d-none');
+      $('.candidate-profile__candidate-label').addClass('d-none');
+      $(self.addSkillButton).addClass('d-none');
+    };
+    this.showInputs = function () {
+      for (var i = 0; i < self.allInputs.length; i++) {
+        $(self.allInputs[i]).removeClass('d-none');
+        $(self.allInputs[i]).val($(self.allInputs[i]).prev().text());
+      }
+      $(self.statusInputActiveValue).text($(self.statusField).text());
+      for (i = 0; i < self.allTextareas.length; i++) {
+        $(self.allTextareas[i]).removeClass('d-none');
+        $(self.allTextareas[i]).val($(self.allTextareas[i]).prev().text());
+      }
+      $(self.candFields).each(function (ind, el) {
+        $(el).addClass('d-none');
+      });
+      $(self.reviewButton).addClass('d-none');
+      $('.candidate-profile__candidate-label').removeClass('d-none');
+      $(self.addSkillButton).removeClass('d-none');
     };
     this.fillExperience = function () {
       var row = '';
@@ -193,48 +317,140 @@ $(document).ready(function () {
           '                  <div class="cands-exp__row-left-part">\n' +
           '                    <div class="cands-exp__left-part-item">\n' +
           '                      <div class="cands-exp__left-part-date">\n' +
-          '                        <div class="exp-description to-be-hidden  ">\n' +
+          '                        <div class="exp-description" data-attr = "to-be-hidden">' +
           sqlToJsDate(el.dateStart) + ' - ' + sqlToJsDate(el.dateEnd) +
-          '                        </div>\n' +
-          '                        <textarea rows="2" class="\n' +
-          '                     txt cands-exp__right-part-item-description-textarea\n' +
-          '                    cands-exp__textarea-lfet-part-fix\n' +
-          '                    display-none\n' +
-          '                    ">                        </textarea>\n' +
-          '                      </div>\n' +
-          '                      <div class="exp-description to-be-hidden cands-exp__left-part-description ">\n' +
+          '                        </div>' +
+          '                        <textarea rows="2" data-attr="expFieldInput" class="txt cands-exp__right-part-item-description-textarea cands-exp__textarea-lfet-part-fix d-none"></textarea>' +
+          '                      </div>' +
+          '                      <div class="exp-description cands-exp__left-part-description " data-attr = "to-be-hidden">' +
           el.position +
-          '                      </div>\n' +
-          '                      <textarea rows="2" class="\n' +
-          '                     txt cands-exp__right-part-item-description-textarea\n' +
-          '                    cands-exp__textarea-lfet-part-fix display-none\n' +
-          '                    ">                       </textarea>\n' +
-          '                    </div>\n' +
-          '                  </div>\n' +
-          '                  <div class="cands-exp__row-right-part">\n' +
-          '                    <div class="cands-exp__right-part-item">\n' +
-          '                      <div class="to-be-hidden cands-exp__right-part-item-header">\n' +
+          '                      </div>' +
+          '                      <textarea rows="2" class="txt cands-exp__right-part-item-description-textarea' +
+          '                    cands-exp__textarea-lfet-part-fix d-none"></textarea>' +
+          '                    </div>' +
+          '                  </div>' +
+          '                  <div class="cands-exp__row-right-part">' +
+          '                    <div class="cands-exp__right-part-item">' +
+          '                      <div class="cands-exp__right-part-item-header" data-attr = "to-be-hidden">' +
           el.company +
-          '                      </div>\n' +
-          '                      <div class="exp-description to-be-hidden cands-exp__right-part-item-description ">\n' +
+          '                      </div><input class="txt cands-exp__right-part-item-description-textarea d-none" type="text"/>' +
+          '                      <div class="exp-description cands-exp__right-part-item-description " data-attr = "to-be-hidden">' +
           el.info +
-          '                      </div>\n' +
-          '                      <textarea rows="3" class="\n' +
-          '                     txt cands-exp__right-part-item-description-textarea  display-none">                        </textarea>\n' +
+          '                      </div>' +
+          '                      <textarea rows="3" class="txt cands-exp__right-part-item-description-textarea d-none">                        </textarea>' +
           '                    </div>\n' +
           '                  </div>\n' +
           '                </div>';
       });
       $(this.rowsWrapper).html(row);
     };
+    this.postDataToServer = function () {
+      $.ajax({
+        url: self.URL,
+        data: self.data,
+        method: "PUT"
+      }).done(function () {
+        self.data.newSkills.forEach(function (item) {
+          self.data.skills.push({name: item});
+        });
+        $(self.successButton).addClass('animate--bounce');
+        setTimeout(function () {
+          $(self.editButton).removeClass('d-none');
+          $(self.successButton).removeClass('animate--bounce');
+        }, 1000);
 
-    var gettingData = new Promise(function (res, rej) {
-      self.getData(res);
-    });
-    gettingData.then(function () {
-      self.fillFields();
-    });
-
+        console.log("Person is going to be updated!");
+      }).fail(function () {
+        console.log("Something going wrong with putting data to server!");
+      });
+    };
+    this.validate = function () {
+      var f1 = true;
+      if(!$(this.nameInput).val().match(/[a-zA-Z]{2,}\s+[a-zA-Z]{2,}/)){
+        $(this.nameInput).addClass('border-danger');
+        f1 = false;
+      }else{
+        $(this.nameInput).removeClass('border-danger');
+      }
+      if(!$(this.salaryInput).val().match(/[0-9]{2,}\$/)){
+        $(this.salaryInput).addClass('border-danger');
+        f1 = false;
+      }else{
+        $(this.salaryInput).removeClass('border-danger');
+      }
+      if(!$(this.telephoneInput).val().match(/\+[0-9]{5,}/)){
+        $(this.telephoneInput).addClass('border-danger');
+        f1 = false;
+      }else{
+        $(this.telephoneInput).removeClass('border-danger');
+      }
+      if(!$(this.emailInput).val().match(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)){
+        $(this.emailInput).addClass('border-danger');
+        f1 = false;
+      }else{
+        $(this.emailInput).removeClass('border-danger');
+      }
+      if(!contains(this.data.allStatuses,this.statusInputActiveValue.text())){
+        $(this.statusInput).addClass('border-danger');
+        f1 = false;
+      }else{
+        $(this.statusInput).removeClass('border-danger');
+      }
+      return f1;
+    };
+    this.bindEvents = function () {
+      $(this.saveButton).on('click', function (e) {
+        e.preventDefault();
+        if(self.validate()){
+          self.saveData();
+          self.getDataFromFields();
+          console.log(self.data);
+          self.postDataToServer();
+          self.hideInputs();
+          $(this).addClass('d-none');
+        }else{
+          $(self.saveButton).addClass('d-none');
+          $(self.errorButton).addClass('animate--bounce');
+          setTimeout(function () {
+            $(self.errorButton).removeClass('animate--bounce');
+            $(self.saveButton).removeClass('d-none');
+          }, 1000);
+          console.log("please, check the data!");
+        }
+        return false;
+      });
+      $(this.editButton).click(function () {
+        self.bindSkillDelete();
+        self.showInputs();
+        $(this).addClass('d-none');
+        $(self.saveButton).removeClass('d-none');
+        return false;
+      });
+    };
+    this.fillDropdown = function () {
+      var rows = '';
+        self.data.allStatuses.forEach(function (elem) {
+          rows+='<li class="hr-app__filters-bar__dropdown-list-item"><a class="hr-app__filters-bar__dropdown-item-link">'+elem.name+'</a></li>';
+        });
+      $(self.statusInput).find('.hr-app__filters-bar__dropdown-list').html("");
+      $(self.statusInput).find('.hr-app__filters-bar__dropdown-list').append(rows);
+    };
+    this.fillSkills = function () {
+      var row='';
+      this.data.skills.forEach(function (el) {
+        row+='<span class="skills__elements__decoration">'+el.name+'</span>';
+      });
+      $(this.skillsWrapper).html(row);
+    };
+    this.fillPosition = function () {
+      var row='';
+      var arr = [];
+      this.data.allPositions.forEach(function (el) {
+        arr.push(el.name);
+      });
+      console.log(arr);
+      self.positionInput.jqxComboBox({ source: arr, selectedIndex: 0, width: '180px', height: '25px',itemHeight: 30,dropDownWidth: 180, dropDownHeight: '150px' });
+    };
     this.fillFields = function () {
       $(this.positionField).html(self.data.docs[0].position);
       $(this.nameField).html(self.data.docs[0].name);
@@ -243,10 +459,81 @@ $(document).ready(function () {
       $(this.telephoneField).html(self.data.docs[0].telephone);
       $(this.emailField).html(self.data.docs[0].email);
       $(this.addressField).html(self.data.docs[0].address);
+      $(this.statusField).html(self.data.docs[0].status);
       this.fillExperience();
-    }
+      this.fillSkills();
+    };
+    this.fillAddSkill = function () {
+      $(self.modalItemsWrapper).html('');
+      var row;
+      self.data.allSkills.forEach(function (el) {
+        var hasSkill = false;
+        $(self.skillsWrapper).find('.skills__elements__decoration').each(function (index,skill) {
+          if(el.name===$(skill).text()){
+            hasSkill = true;
+          }
+        });
+        if(!hasSkill){
+          row='<div class="skills-modal__item">\n' +
+            '                          <span class="skills-modal__item-text">'+el.name+'</span>\n' +
+            '                        </div>';
+          $(self.modalItemsWrapper).append(row);
+        }
+      });
+    };
+    this.bindSkillAdd = function () {
+      var row;
+      $(self.modalItemsWrapper).find('.skills-modal__item').each(function (index, el) {
+        $(el).on('click',function () {
+          row ='<span class="skills__elements__decoration">'+$(el).find('.skills-modal__item-text').text()+'</span>';
+          $(el).remove();
+          $(self.skillsWrapper).append(row);
+          self.bindSkillDelete();
+        })
+      })
+    };
+    this.bindSkillDelete = function () {
+      $(self.skillsWrapper).find('.skills__elements__decoration').each(function (ind,el) {
+        $(el).addClass('skill--deletable');
+        $(el).on('click',function () {
+          $(el).remove();
+          self.fillAddSkill();
+          self.bindSkillAdd();
+        });
+      });
+    };
+    var gettingData = new Promise(function (res, rej) {
+      self.getData(res);
+    });
+    gettingData.then(function () {
+      self.fillFields();
+      self.fillDropdown();
+      self.fillPosition();
+      self.fillAddSkill();
+      self.bindSkillAdd();
+      new CustomDropdown(self.statusInput);
+    }).then(function () {
+      self.allTextareas = $(self.section).find('.txt');
+      self.allInputs = $(self.section).find('.inp');
+      self.descriptions = $(self.section).find(".exp-description");
+      self.candFields = $('[data-attr = "to-be-hidden"]');
+    });
+
+    this.bindEvents();
 
   }
+  function contains(arr, val) {
+    var f1 = false;
+    arr.forEach(function (item) {
+      for (var key in item){
+        if(item[key]===val){
+          f1 = true;
+          return f1;
+        }
+      }
+    });
+    return f1;
+  };
 
   Section.prototype.bindEvents = function () {
     var self = this;
@@ -646,79 +933,6 @@ $(document).ready(function () {
     new ProfileBuilder(createProfileWrapper);
   }
 
-  //cand profile editing function
-
-
-  $("#cands-editing-icon").click(function () {
-    $("#cands-editing-icon").unbind();
-    var allInputs = document.getElementsByClassName('inp');
-    for (var i = 0; i < allInputs.length; i++) {
-      $(allInputs[i]).removeClass('display-none');
-      $(allInputs[i]).attr('placeholder', $(allInputs[i]).prev().text());
-    }
-    var allTextareas = document.getElementsByClassName('txt');
-    var descriptions = document.getElementsByClassName("exp-description");
-    for (i = 0; i < allTextareas.length; i++) {
-      $(allTextareas[i]).removeClass('display-none');
-      $(allTextareas[i]).text($(descriptions[i]).text().match(/\w+|\d+|-|[()]/gm).join(" "));
-
-    }
-    $(".not-delete").removeClass("display-none");
-    var hidden = document.getElementsByClassName('to-be-hidden');
-    for (i = 0; i < hidden.length; i++) {
-      $(hidden[i]).addClass('display-none');
-    }
-    $(".skills-editing-input").attr("placeholder", "Add skill");
-
-
-    //described functions for hover. described it here in oder to add it to new skills,
-    //which will be created by user
-    function mouseOn() {
-      if (!($(this).hasClass("not-delete"))) {
-        skillName = $(this).text();
-        $(this).css("opacity", "0.5").text("Delete");
-      }
-    }
-
-    function mouseOut() {
-      if (!($(this).hasClass("not-delete"))) {
-        $(this).css("opacity", "1").text(skillName);
-      }
-    }
-
-    var skillName;
-    $(".skills__elements__decoration").hover(mouseOn, mouseOut);
-
-    $(".skills__elements__decoration").click(function () {
-      if (!($(this).hasClass("not-delete"))) {
-        $(this).remove();
-      }
-    });
-
-    $(".add-skill").click(function () {
-      $(".skills__elements").prepend("<span class='skills__elements__decoration'></span>");
-      $(".skills__elements__decoration:first-child").text($(".skills-editing-input").val());
-      $(".skills-editing-input").val("");
-      $(".skills__elements__decoration").click(function () {
-        if (!($(this).hasClass("not-delete"))) {
-          $(this).remove();
-        }
-      });
-      $(".skills__elements__decoration").unbind('mouseenter mouseleave');
-      $(".skills__elements__decoration").hover(mouseOn, mouseOut);
-    });
-    $(".cands__submit").attr("placeholder", "");
-    $(".cands-exp__editing-button").removeClass("display-none");
-    $(".cands-exp__add-row").click(function () {
-      var timeLineRow;
-      timeLineRow = $(".cands-exp__row").html();
-      $(".cands-exp__rows-wrapper").prepend("<div class='cands-exp__row'>" + timeLineRow + "</div>");
-      $(".cands-exp__row:first-child textarea").text("");
-    });
-    $(".cands-exp__delete-row").click(function () {
-      $(".cands-exp__row:first-child").remove();
-    });
-  });
 
 // Review PopUp Opening/Closing function
   $(function () {
@@ -810,6 +1024,20 @@ $(document).ready(function () {
       textOut[i].innerHTML = textInp[i].value;
     }
   });
+
+  function CustomDropdown(dropDown) {
+    this.dropDown = dropDown;
+    this.dropDownLink = $(this.dropDown).find('.hr-app__filters-bar__dropdown-item-link');
+    this.activeItem = $(this.dropDown).find('.hr-app__filters-bar__dropdown-active-value') ;
+    var self = this;
+    this.bindEvents = function () {
+      this.dropDownLink.on('click',function () {
+        $(self.activeItem).find('span').text($(this).text());
+        return false;
+      });
+    };
+    this.bindEvents();
+  }
 });
 
 

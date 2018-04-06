@@ -44,15 +44,54 @@ exports.getByID = function (id, cb) {
     'where experience.id_candidate ='+id +
     ' group by id_experience order by experience.dateStart\n' +
     ';';
-  console.log(query2);
+  var query3 = 'SELECT skills.name FROM `hr-app`.candidate \n' +
+    'INNER JOIN candidateSkills cs ON cs.id_candidate=candidate.id_candidate \n' +
+    'INNER JOIN skills ON skills.id_skills = cs.id_skills \n' +
+    'where candidate.id_candidate ='+id;
+  var query4 = 'SELECT name FROM `hr-app`.statusName';
+  var query5 = 'SELECT name FROM `hr-app`.position';
+  var getAllSkills = 'SELECT name FROM `hr-app`.skills';
+  var error = [];
 
-  connection.query(query, [id], function (error, results) {
-    data.docs = results;
-    connection.query(query2, [id], function (error, results) {
-      data.exp = results;
-      cb(error, data);
+  var promiseQuery1 = new Promise((res,rej)=>{
+    connection.query(query, [id], function (error, results) {
+      data.docs = results;
+      res();
     });
   });
+  var promiseQuery2 = new Promise((res,rej)=>{
+    connection.query(query2, [id], function (error, results) {
+      data.exp = results;
+      res();
+    });
+  });
+  var promiseQuery3 = new Promise((res,rej)=>{
+    connection.query(query3, [id], function (error, results) {
+      data.skills = results;
+      res();
+    });
+  });
+  var promiseQuery4 = new Promise((res,rej)=>{
+    connection.query(query4, [id], function (error, results) {
+      data.allStatuses = results;
+      res();
+    });
+  });
+  var promiseQuery5 = new Promise((res,rej)=>{
+    connection.query(query5, [id], function (error, results) {
+      data.allPositions = results;
+      res();
+    });
+  });
+  var promiseGetAllSkills = new Promise((res,rej)=>{
+    connection.query(getAllSkills, [id], function (error, results) {
+      data.allSkills = results;
+      res();
+    });
+  });
+
+  Promise.all([promiseQuery1,promiseQuery2,promiseQuery3,promiseQuery4,promiseQuery5,promiseGetAllSkills]).then(()=>{cb(error, data);});
+
 };
 exports.create = function (candidate, cb) {
   connection.query('INSERT INTO candidate SET ?', candidate, function (error, results) {
@@ -60,9 +99,65 @@ exports.create = function (candidate, cb) {
   });
 };
 exports.update = function (id, candidate, cb) {
-  connection.query('UPDATE `candidate` SET `firstName`=?,`lastName`=?,`position`=?, `candidateExperience_id`=?, `skills`=?, `adress`=?, `email`=?, `telephone`=? where `candidate_id`=?', [candidate.firstName, candidate.lastName, candidate.position, candidate.candidateExperience_id, candidate.skills, candidate.adress, candidate.email, candidate.telephone, id], function (error, results) {
-    cb(error, results);
+  console.log(candidate);
+  var promises = [];
+  var errors = null;
+  var updateCandidate = 'UPDATE `hr-app`.`candidate` ' +
+    'inner join person on person.id_person = candidate.id_person ' +
+    'inner join candidatePosition cp on cp.id_candidate = candidate.id_candidate ' +
+    'inner join position p on p.id_position = cp.id_position ' +
+    'inner join candidateStatus cs on cs.id_candidate = candidate.id_candidate ' +
+    'inner join statusName sn on sn.id_status = cs.id_status ' +
+    'SET candidate.`salary`= ?, candidate.`telephone`= ?, ' +
+    'candidate.`email`= ?, candidate.`address`= ?, ' +
+    'person.`firstName`= ?,person.`secondName`= ?, ' +
+    'cp.id_position=(select position.id_position from position where position.name = ?), ' +
+    'cs.id_status=(select statusName.id_status from statusName where statusName.name= ?) '+
+    'WHERE candidate.`id_candidate`= ?';
+  var promiseUpdateCandidate = new Promise(function (res, rej) {
+    connection.query(updateCandidate, [candidate.salary,candidate.telephone, candidate.email, candidate.address, candidate.firstName, candidate.lastName, candidate.position, candidate.status, id], function (error, results) {
+      if(error){
+        errors=error;
+      }
+      res();
+    });
   });
+  promises.push(promiseUpdateCandidate);
+
+  var addNewSkills = "";
+  if(candidate.newSkills.length>0){
+    candidate.newSkills.forEach(function (item) {
+      addNewSkills = 'insert into candidateSkills (candidateSkills.id_candidate, candidateSkills.id_skills) \n' +
+        'values ('+id+',(select id_skills from skills where skills.name = \''+item+'\'));\n';
+      var promiseAddNewSkills = new Promise((res,rej)=>{
+        connection.query(addNewSkills, function (error, results) {
+          if(error){
+            errors=error;
+          }
+          res();
+        });
+      });
+      promises.push(promiseAddNewSkills);
+    });
+  }
+  if(candidate.oldSkills.length>0){
+    var deleteQuery;
+    candidate.oldSkills.forEach(function (item) {
+      deleteQuery = 'DELETE `hr-app`.`candidateSkills` FROM `hr-app`.`candidateSkills` \n' +
+        'WHERE candidateSkills.id_candidate = '+id+' and candidateSkills.id_skills=(select skills.id_skills from skills where skills.name="'+item+'")\n' +
+        ';';
+      var promiseDeleteOldSkills = new Promise((res,rej)=>{
+        connection.query(deleteQuery, function (error, results) {
+          if(error){
+            errors=error;
+          }
+          res();
+        });
+      });
+      promises.push(promiseDeleteOldSkills);
+    });
+  }
+  Promise.all(promises).then(()=>{cb(errors,"ok")});
 };
 exports.delete = function (id, cb) {
   connection.query('DELETE FROM `candidate` WHERE `candidate_id`=?', [id], function (error, results) {
