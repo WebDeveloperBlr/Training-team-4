@@ -3,6 +3,7 @@ const db = require('../db');
 
 
 var connection = db.get;
+console.log(db.get);
 
 
 exports.all = function (limit, filter, cb) {
