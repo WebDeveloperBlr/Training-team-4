@@ -114,16 +114,16 @@ $(function () {
         $("#select-vacant").val(srcEvent.isVacant);
         $("select[class*='select-'], select[class^='select-']").material_select();
         quill.setContents(srcEvent.msgText);
-  
+        
         $('#modal-submit-lower')[0].onclick = editEvent;
         $('#modal-submit')[0].onclick = editEvent;
         function editEvent() {
           srcEvent.title = $("#modal-event-name").val();
           srcEvent.allDay = $('#checkbox-all-day')[0].checked;
-          
+  
           let inputDayStart = $("#start_date").val();
           let inputDayEnd = $("#end_date").val();
-          
+  
           if (srcEvent.allDay) {
             srcEvent.start = inputDayStart;
             srcEvent.end = inputDayEnd;
@@ -134,9 +134,7 @@ $(function () {
               $('#modal-time-start').val(),
               $('#modal-time-end').val()
             );
-            //console.log('date.start: ', date.start);
-            //console.log('date.start: ', date.end)
-            
+    
             srcEvent.start = date.start;
             srcEvent.end = date.end;
             
@@ -276,6 +274,14 @@ function EvDate(_start, _end) {
   this.getTimeEnd = function () {
     return that.momentEnd.format(that.formatTime);
   }
+  /*this.getTimeStartAllDay = function () {
+    return that.momentStart.hours(7).minutes(0).format(that.formatTime);
+  }
+  
+  this.getTimeEndAllDay = function () {
+    return that.momentEnd.hours(21).minutes(30).format(that.formatTime);
+  }
+  */
   
   this.setDate = function (s, e) {
     that.momentStart = moment(s, that.formatDate);

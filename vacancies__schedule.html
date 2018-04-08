@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="keywords" content="">
   <link rel="icon" href="assets/images/icon.png">
-  <link rel="stylesheet"  href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/main.css">
   <link rel="stylesheet" href="assets/css/fullcalendar.css">
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <link rel="stylesheet" href="assets/css/materialize.css"/>
@@ -19,8 +19,9 @@
 
 </head>
 <body>
-<section class="hr-app-section scroll">
-  <div class="hr-app-section__sidebar height-120vh">
+
+<section class="hr-app-section calendar-sidebar-bug-fix-height">
+  <div class="hr-app-section__sidebar calendar-sidebar-bug-fix-height">
     <svg class="icon icon-CLOSE ">
       <use xlink:href="assets/images/svg/symbol/sprite.svg#CLOSE"></use>
     </svg>
@@ -29,9 +30,11 @@
       <ul class="hr-app-section__sidebar-list">
         <li class="hr-app-section__sidebar-list-item"><a class="hr-app-section__sidebar-item-link"
                                                          href="#">Interview</a></li>
-        <li class="hr-app-section__sidebar-list-item"><a class="hr-app-section__sidebar-item-link" data-target="#vacancies-tab" href="HR-app.html">Vacancies</a>
+        <li class="hr-app-section__sidebar-list-item"><a class="hr-app-section__sidebar-item-link"
+                                                         data-target="#vacancies-tab" href="HR-app.html">Vacancies</a>
         </li>
-        <li class="hr-app-section__sidebar-list-item"><a data-target="#candidates-tab" class="hr-app-section__sidebar-item-link"
+        <li class="hr-app-section__sidebar-list-item"><a data-target="#candidates-tab"
+                                                         class="hr-app-section__sidebar-item-link"
                                                          href="#">Candidates</a></li>
         <li class="hr-app-section__sidebar-list-item"><a class="hr-app-section__sidebar-item-link"
                                                          href="#">Management</a></li>
@@ -76,9 +79,9 @@
       </div>
       <section class="vacancies-tab" id="vacancies-tab">
       </section>
-        <div class="calendar-wrapper">
-          <div id='calendar'></div>
-        </div>
+      <div class="calendar-wrapper">
+        <div id='calendar'></div>
+      </div>
     </div>
     <div data-popup-open class="display-none schedule__pop-up border-box ">
       <form class="popup-inner bg-color-white size-responsive">
@@ -86,21 +89,23 @@
         <div class="schedule__tag-wrapper">
           <span class="btn btn-primary border-radius-10 select-none">
           Event
-        </span>
+          </span>
         </div>
         <div>
           <span class="lineheight material-icons ">access_alarm</span>
-          <input id="eventStart" class="schedule__popup-field datepicker " placeholder="enter start of event" type="text"/>
-          <span class="field-tag">start</span>
+          <input id="eventStart" class="schedule__popup-field datepicker " placeholder="Enter start of event"
+                 type="text"/>
+          <span class="field-tag hide-on-small-only">start</span>
         </div>
         <div class="experiment">
           <span class="lineheight material-icons ">access_time</span>
-          <input id="eventEnd" class="schedule__popup-field datepicker " placeholder="enter end of event" type="text"/>
-          <span class="field-tag">end</span>
+          <input id="eventEnd" class="schedule__popup-field datepicker " placeholder="Enter end of event" type="text"/>
+          <span class="field-tag hide-on-small-only">end</span>
         </div>
         <div>
-           <span class="lineheight material-icons ">assignment</span>
-           <input id="eventTitle" class="schedule__popup-person-field schedule__popup-field" placeholder="add title" type="text"/>
+          <span class="lineheight material-icons ">assignment</span>
+          <input id="eventTitle" class="schedule__popup-person-field schedule__popup-field" placeholder="Add title"
+                 type="text"/>
         </div>
         <div id="saveEvent" class="btn btn-primary float-right select-none">
           Save
@@ -109,7 +114,7 @@
         <span class="popup-close schedule-popup-close">x</span>
       </form>
     </div>
-
+    
     <div id="calendar-modal" class="calendar-modal modal">
       <form action="">
         <div class="modal-content">
@@ -118,11 +123,11 @@
               <i id="modal-close" class="no-padding modal-close modal-close-icon material-icons">close</i>
             </div>
             <div class="col m7 s12">
-              <input required type="text" id="modal-event-name" class='no-border grey lighten-3 input--small' placeholder='Name'
-                     id='event-name'/>
+              <input required type="text" id="modal-event-name" class='no-border grey lighten-3 input--small' placeholder='Name' id='event-name'/>
             </div>
             <div class="col valign-wrapper hide-on-small-only">
-              <button type="button" id="modal-submit" class="modal-close center-align  waves-effect blue btn">Edit</button>
+              <button type="button" id="modal-submit" class="modal-close center-align  waves-effect blue btn">Edit
+              </button>
             </div>
           </div>
           <div class="row ">
@@ -162,7 +167,7 @@
                          id='event-place'/>
                 </div>
               </div>
-
+              
               <div class="row">
                 <div class="col ">
                   <i class="material-icons hide-on-small-and-down">video_call</i>
@@ -175,7 +180,7 @@
                   </select>
                 </div>
               </div>
-
+              
               <div class="row">
                 <div class="col ">
                   <i class="material-icons">add_alert</i>
@@ -184,7 +189,7 @@
                   Add notification
                 </div>
               </div>
-
+              
               <div class="row">
                 <div class="col">
                   <i class="material-icons">today</i>
@@ -205,7 +210,7 @@
                   </select>
                 </div>
               </div>
-
+              
               <div class="row">
                 <div class="col ">
                   <i class="material-icons hide-on-small-and-down">work</i>
@@ -218,7 +223,7 @@
                 </div>
                 <div class="col m5 s5 margin-left grey lighten-3">
                   <select id="select-privacy" class="select-privacy no-border">
-                    <option value="1" selected >Default privacy settings</option>
+                    <option value="1" selected>Default privacy settings</option>
                     <option value="0">Other</option>
                   </select>
                 </div>
@@ -226,7 +231,7 @@
                   <i class="material-icons info" title="Other interviewees won't see this event.">info</i>
                 </div>
               </div>
-
+              
               <div class="row">
                 <div class="col hide-on-small-and-down">
                   <i class="material-icons">subject</i>
@@ -237,28 +242,36 @@
                   </div>
                 </div>
               </div>
-
+            
             </div>
-            <div class="row" id="event-time">
-              <div class="col m1 s2" title="Uncheck the box first!">
-                <i class="material-icons">access_time</i>
+            <div id="event-time">
+              <div class="row">
+                <div class="col m1 s2">
+                  <i class="material-icons">access_time</i>
+                </div>
+                <div class="col s7 m4">
+                  <div class="row">
+                    <input id="modal-time-start" placeholder="Start time"
+                           class="col timepicker no-border input--small grey lighten-3">
+                  </div>
+                  <div class="row ">
+                    <input id="modal-time-end" placeholder="End time"
+                           class="col timepicker no-border input--small grey lighten-3">
+                  </div>
+                </div>
               </div>
-              <div class="col s7 m4">
-                <div class="row">
-                  <input id="modal-time-start" placeholder="Start time" class="col timepicker no-border input--small grey lighten-3">
-                </div>
-                <div class="row">
-                  <input id="modal-time-end" placeholder="End time"  class="col timepicker no-border input--small grey lighten-3">
-                </div>
+              <div class="row margin-top">
+                <i class="col material-icons" title="To enter time, uncheck the tick first.">info</i>
               </div>
             </div>
-          <div class="row modal-submit-lower  hide-on-med-and-up">
-            <div class="col right">
-              <!--<button type="submit" id="modal-submit-lower" class="modal-action waves-effect blue btn">Создать</button>-->
-              <button type="button" id="modal-submit-lower" class=" modal-close waves-effect blue btn">Edit</button>
+  
+            <div class="row modal-submit-lower  hide-on-med-and-up">
+              <div class="col right">
+                <!--<button type="submit" id="modal-submit-lower" class="modal-action waves-effect blue btn">Создать</button>-->
+                <button type="button" id="modal-submit-lower" class=" modal-close waves-effect blue btn">Edit</button>
+              </div>
             </div>
           </div>
-        </div>
         </div>
       </form>
     </div>
