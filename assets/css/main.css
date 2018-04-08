@@ -65,6 +65,9 @@ video {
 textarea {
   resize: none;
 }
+label{
+  margin: 0;
+}
 
 section {
   position: relative;
@@ -2868,6 +2871,18 @@ input:-ms-input-placeholder {
 }
 .skill--deletable{
   transition: all .5s ease;
+}
+.candidate-profile__date-inputs-wrapper{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.candidate-profile__date-label{
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
+.candidate-profile__dateInput{
+  margin-bottom: 5px;
 }
 
 

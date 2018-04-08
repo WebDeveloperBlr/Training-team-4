@@ -203,6 +203,7 @@ $(document).ready(function () {
     this.modalItemsWrapper = $(this.modalStatus).find('.skills-modal__items-wrapper');
     this.addSkillButton = $(this.section).find('#addSkillButton');
 
+
     this.clearPerson = function () {
       $(this.editButton).removeClass('d-none');
       $(this.saveButton).addClass('d-none');
@@ -282,11 +283,14 @@ $(document).ready(function () {
       }
       for (i = 0; i < self.allTextareas.length; i++) {
         $(self.allTextareas[i]).addClass('d-none');
-        $(self.allTextareas[i]).addClass('border-danger');
+        $(self.allTextareas[i]).removeClass('border-danger');
         $(self.allTextareas[i]).val("");
       }
       $(self.candFields).each(function (ind, el) {
         $(el).removeClass('d-none');
+      });
+      $(self.dateInputs).each(function (ind, el) {
+        $(el).addClass('d-none');
       });
       $(".cands-exp__editing-button").removeClass("d-none");
       $(self.reviewButton).removeClass('d-none');
@@ -303,8 +307,21 @@ $(document).ready(function () {
         $(self.allTextareas[i]).removeClass('d-none');
         $(self.allTextareas[i]).val($(self.allTextareas[i]).prev().text());
       }
+      $(self.dateLabels).removeClass('d-none');
       $(self.candFields).each(function (ind, el) {
         $(el).addClass('d-none');
+      });
+      $(self.expItems).each(function (ind, el) {
+        var fromInput = $(el).find('[data-attr="from"]');
+        var toInput = $(el).find('[data-attr="to"]');
+        if($(fromInput).length>0){
+          $(fromInput).removeClass('d-none');
+          $(fromInput).jqxDateTimeInput('setDate', sqlToJsDate(self.data.exp[ind].dateStart,","));
+        }
+        if($(toInput).length>0){
+          $(toInput).removeClass('d-none');
+          $(toInput).jqxDateTimeInput('setDate', sqlToJsDate(self.data.exp[ind].dateEnd,","));
+        }
       });
       $(self.reviewButton).addClass('d-none');
       $('.candidate-profile__candidate-label').removeClass('d-none');
@@ -320,13 +337,12 @@ $(document).ready(function () {
           '                        <div class="exp-description" data-attr = "to-be-hidden">' +
           sqlToJsDate(el.dateStart) + ' - ' + sqlToJsDate(el.dateEnd) +
           '                        </div>' +
-          '                        <textarea rows="2" data-attr="expFieldInput" class="txt cands-exp__right-part-item-description-textarea cands-exp__textarea-lfet-part-fix d-none"></textarea>' +
           '                      </div>' +
           '                      <div class="exp-description cands-exp__left-part-description " data-attr = "to-be-hidden">' +
           el.position +
           '                      </div>' +
-          '                      <textarea rows="2" class="txt cands-exp__right-part-item-description-textarea' +
-          '                    cands-exp__textarea-lfet-part-fix d-none"></textarea>' +
+          '<div class="candidate-profile__date-inputs-wrapper"><label class="d-none candidate-profile__date-label" data-attr="date-label">From</label><div class="candidate-profile__dateInput d-none" data-attr="from"></div></div>' +
+          '<div class="candidate-profile__date-inputs-wrapper"><label class="d-none candidate-profile__date-label" data-attr="date-label">To</label><div class="candidate-profile__dateInput d-none" data-attr="to"></div></div>' +
           '                    </div>' +
           '                  </div>' +
           '                  <div class="cands-exp__row-right-part">' +
@@ -521,11 +537,15 @@ $(document).ready(function () {
       self.fillAddSkill();
       self.bindSkillAdd();
       new CustomDropdown(self.statusInput);
+      $(".candidate-profile__dateInput").jqxDateTimeInput({ width: '150px', height: '25px' });
     }).then(function () {
       self.allTextareas = $(self.section).find('.txt');
       self.allInputs = $(self.section).find('.inp');
       self.descriptions = $(self.section).find(".exp-description");
-      self.candFields = $('[data-attr = "to-be-hidden"]');
+      self.candFields = $(self.section).find('[data-attr = "to-be-hidden"]');
+      self.dateLabels = $(self.section).find('[data-attr="date-label"]');
+      self.dateInputs = $(self.section).find('.candidate-profile__dateInput');
+      self.expItems = $(self.section).find('.cands-exp__row');
     });
 
     this.bindEvents();
@@ -701,7 +721,7 @@ $(document).ready(function () {
       this.bindMobileEvents();
     }
   };
-  function sqlToJsDate(sqlDate){
+  function sqlToJsDate(sqlDate, separator){
     if(sqlDate){
       //sqlDate in SQL DATETIME format ("yyyy-mm-dd hh:mm:ss.ms")
       var sqlDateWithoutTime = sqlDate.substring(0,sqlDate.indexOf("T"));
@@ -711,7 +731,11 @@ $(document).ready(function () {
       var sMonth = sqlDateArr1[1];
       var sDay = sqlDateArr1[2];
       //format of sqlDateArr2[] = ['dd', 'hh:mm:ss.ms']
-      return sYear + '.' + sMonth + '.' + sDay;
+      if(separator){
+        return sYear + separator + sMonth + separator + sDay;
+      }else {
+        return sYear + '.' + sMonth + '.' + sDay;
+      }
     }else return "Now"
 
   }
