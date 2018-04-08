@@ -50,6 +50,10 @@
   margin-left: 1rem !important;
 }
 
+.margin-top {
+  margin-top: 1rem !important;
+}
+
 .colorpicker-wrapper {
   padding-left: 0 !important;
 }
@@ -57,6 +61,10 @@
 .select-dropdown {
   margin-bottom: 0 !important;
   border: none !important;
+}
+
+.modal-content {
+  height: 100% !important;
 }
 
 .modal-content .row {
@@ -73,6 +81,10 @@
   background: transparent;  /* optional: just make scrollbar invisible */
 }
 
+.material-icons .info {
+  cursor: pointer;
+}
+
 
 @media (max-width: 1024px) and (min-height: 812px) {
   .modal {
@@ -85,7 +97,7 @@
 
 @media (max-width: 875px) {
   .modal {
-    height: 100%;
+    height: 93%;
     overflow-y: scroll !important;
   }
 }
@@ -118,9 +130,18 @@
   height: 6rem;
 }
 
+.disabled-tab{
+  pointer-events: none;
+}
+
 .editor-wrapper {
   margin-top: 0.5em;
-  height: 12rem;
+}
+
+@media (max-width: 600px) {
+  .editor-wrapper {
+    height: 10rem;
+  }
 }
 
 @media (min-height: 824px) {

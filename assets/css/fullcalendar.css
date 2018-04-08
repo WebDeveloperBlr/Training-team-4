@@ -1263,6 +1263,11 @@ be a descendant of the grid when it is being dragged.
 
 /*popup for schedule starts here*/
 
+
+.popup-inner {
+	max-width: 500px;
+	z-index: 1000 !important;
+}
 .schedule__popup-header{
 	text-align:center;
 	font-size:1.5rem;
@@ -1305,8 +1310,6 @@ be a descendant of the grid when it is being dragged.
 
 @media all and (max-width:1000px) {
 	.size-responsive{
-		max-width:500px;
-		left:550px;
 		float:left;
 		margin-left:0px;
 		margin-right:0px;
@@ -1350,7 +1353,6 @@ be a descendant of the grid when it is being dragged.
 
 .schedule__tag-wrapper{
 	text-align:left;
-	width:60%;
 	margin-left:auto;
 	margin-right:auto;
 }
