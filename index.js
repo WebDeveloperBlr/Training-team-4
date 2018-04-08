@@ -41,6 +41,30 @@ server.get('/', function handler(req, res, next) {
       next();
     });
 });
+server.get('/vacancies__schedule.html', function handler(req, res, next) {
+    fs.readFile(__dirname + '/vacancies__schedule.html',
+        function (err, data) {
+            if (err) {
+                next(err);
+                return;
+            }
+            res.write(data);
+            res.end();
+            next();
+        });
+});
+server.get('/HR-app.html', function handler(req, res, next) {
+    fs.readFile(__dirname + '/HR-app.html',
+        function (err, data) {
+            if (err) {
+                next(err);
+                return;
+            }
+            res.write(data);
+            res.end();
+            next();
+        });
+});
 server.get('/candidates', candidatesController.all);
 server.get('/vacancies', vacanciesController.all);
 server.get('/candidates/:id', candidatesController.getById);
