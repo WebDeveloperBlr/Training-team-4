@@ -77,6 +77,10 @@
   background: transparent;  /* optional: just make scrollbar invisible */
 }
 
+.material-icons .info {
+  cursor: pointer;
+}
+
 
 @media (max-width: 1024px) and (min-height: 812px) {
   .modal {
@@ -122,11 +126,13 @@
   height: 6rem;
 }
 
+.disabled-tab{
+  pointer-events: none;
+}
+
 .editor-wrapper {
   margin-top: 0.5em;
 }
-
-
 
 @media (max-width: 600px) {
   .editor-wrapper {

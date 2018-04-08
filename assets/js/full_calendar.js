@@ -63,35 +63,92 @@ $(function () {
         for (let p = 0; p < addedEvents.length; p++) {
           if (addedEvents[p].title == calEvent.title) {
             srcEvent = addedEvents[p];
-            console.log(addedEvents[p])
           }
-          
         }
         
-        
-        console.log(srcEvent);
-        
         $('#calendar-modal').modal("open"); //open modal window
+        
         $("#modal-event-name").val(srcEvent.title);
-        $('#start_date').val(srcEvent.start);
-        $('#end_date').val(srcEvent.start);
+        
+        var date = new EvDate(srcEvent.start, srcEvent.end);
+        
+        //console.log('srcEvent() ', srcEvent.start);
+        //console.log('srcEvent() ', srcEvent.end)
+        //console.log('date: ', date);
+        //console.log('date.getTimeStart() ', date.getTimeStart());
+        //console.log('date.getTimeEnd() ', date.getTimeEnd());
+        
+        $('#start_date').val(date.getDateStart());
+        $('#end_date').val(date.getDateEnd());
+        
         $('#checkbox-all-day')[0].checked = srcEvent.allDay;
+        if ($('#checkbox-all-day')[0].checked) {
+          freezeTime(date);
+        }
+        else {
+          $('#modal-time-start').prop('disabled', false);
+          $('#modal-time-end').prop('disabled', false);
+          $('#modal-time-start').timepicker('setTime', date.getTimeStart());
+          $('#modal-time-end').timepicker('setTime', date.getTimeEnd());
+        }
+        
+        $('#checkbox-all-day').on('click', function () {
+          if ($('#checkbox-all-day')[0].checked === false) {
+            $('#modal-time-start').prop('disabled', false);
+            $('#modal-time-end').prop('disabled', false);
+            
+            $('#modal-time-start').val(date.getTimeStart());
+            $('#modal-time-end').val(date.getTimeEnd());
+          }
+          if ($('#checkbox-all-day')[0].checked === true) {
+            freezeTime(date);
+          }
+        });
+        
+        $('#select-repeat').val(srcEvent.repeat);
         $("#event-place").val(srcEvent.place);
         $("#select-interviewer").val(srcEvent.interviewer);
-        $("#colorpicker").data('ddslick').selectedData.value = srcEvent.color;
+        $('#colorpicker').ddslick('select', {index: srcEvent.colorIndex});
         $("#select-privacy").val(srcEvent.privacy);
         $("#select-video").val(srcEvent.isVideoConf);
-        $("#select-vacant").val(event.isVacant);
+        $("#select-vacant").val(srcEvent.isVacant);
+        $("select[class*='select-'], select[class^='select-']").material_select();
         quill.setContents(srcEvent.msgText);
-        
-        var submitBtn = document.getElementById("modal-submit");
-        submitBtn.onclick = function () {
+  
+        $('#modal-submit-lower')[0].onclick = editEvent;
+        $('#modal-submit')[0].onclick = editEvent;
+        function editEvent() {
           srcEvent.title = $("#modal-event-name").val();
-          srcEvent.start = $("#start_date").val();
           srcEvent.allDay = $('#checkbox-all-day')[0].checked;
+          
+          let inputDayStart = $("#start_date").val();
+          let inputDayEnd = $("#end_date").val();
+          
+          if (srcEvent.allDay) {
+            srcEvent.start = inputDayStart;
+            srcEvent.end = inputDayEnd;
+          }
+          else {
+            date.updateTimeAndDate(
+              inputDayStart, inputDayEnd,
+              $('#modal-time-start').val(),
+              $('#modal-time-end').val()
+            );
+            //console.log('date.start: ', date.start);
+            //console.log('date.start: ', date.end)
+            
+            srcEvent.start = date.start;
+            srcEvent.end = date.end;
+            
+            //console.log('srcEvent.start: ', srcEvent.start);
+            //console.log('srcEvent.end: ', srcEvent.end)
+          }
+          
           srcEvent.place = $("#event-place").val();
+          srcEvent.repeat = $('#select-repeat').val();
           srcEvent.interviewer = $("#select-interviewer").val();
           srcEvent.color = $("#colorpicker").data('ddslick').selectedData.value;
+          srcEvent.colorIndex = $("#colorpicker").data('ddslick').selectedIndex;
           srcEvent.privacy = $("#select-privacy").val();
           srcEvent.isVideoConf = $("#select-video").val();
           srcEvent.isVacant = $("#select-vacant").val();
@@ -111,23 +168,36 @@ $(function () {
   });
   $('#calendar-modal').modal({
     dismissible: true, // Modal can be dismissed by clicking outside of the modal
-    endingTop: '4%' // Ending top style attribute
+    endingTop: '4%'
   });
   $("select[class*='select-'], select[class^='select-']").material_select(); //initializing selects
   $('ul.tabs').tabs(); //initializing material tabs
   var quill = new Quill('#editor', {
     theme: 'snow',
-    placeholder: 'Добавьте описание',
+    placeholder: 'Add description',
     modules: {
       toolbar: toolbarOptions
     }
   }); //initializing wysiwyg window for texteditor
-  $('#modal-time-start, #modal-time-end').timepicker({}); //initializing timepicker
+  
+  $('#modal-time-start, #modal-time-end').timepicker({
+    'minTime': '7:00am',
+    'maxTime': '21:30pm'
+  }); //initializing timepicker
+  
   $('#colorpicker').ddslick({
-    width: '55px'
+    width: '55px',
+    defaultSelectedIndex: 1
   }); //initializing select for colorpicker
   
 });
+
+function freezeTime(date) {
+  $('#modal-time-start').timepicker('setTime', null);
+  $('#modal-time-end').timepicker('setTime', null);
+  $('#modal-time-start').prop('disabled', true);
+  $('#modal-time-end').prop('disabled', true);
+}
 
 function popup(date, jsEvent, view) {
   $(".schedule__pop-up").removeClass("display-none");
@@ -165,6 +235,75 @@ function EventCreator(start, end, title) {
   this.title = title;
   this.start = start;
   this.end = end;
+  this.allDay = true;
+  this.repeat = 0;
+  this.place = '';
+  this.interviewer = 0;
+  this.color = '';
+  this.colorIndex = 0;
+  this.privacy = 1;
+  this.isVideoConf = 0;
+  this.isVacant = 1;
+}
+
+function EvDate(_start, _end) {
+  let that = this;
+  
+  this.start = _start;
+  this.end = _end;
+  
+  this.formatDate = 'YYYY-MM-D';
+  this.formatTime = 'hh:mma';
+  
+  
+  this.momentStart = moment(that.start);
+  this.momentEnd = moment(that.end);
+  //console.log("momentStart ", that.momentStart);
+  //console.log('momentEnd ', that.momentEnd)
+  
+  this.getDateStart = function () {
+    return that.momentStart.format(that.formatDate);
+  }
+  
+  this.getDateEnd = function () {
+    return that.momentEnd.format(that.formatDate);
+  }
+  
+  this.getTimeStart = function () {
+    return that.momentStart.format(that.formatTime);
+  }
+  
+  this.getTimeEnd = function () {
+    return that.momentEnd.format(that.formatTime);
+  }
+  
+  this.setDate = function (s, e) {
+    that.momentStart = moment(s, that.formatDate);
+    that.momentEnd = moment(e, that.formatDate);
+  }
+  
+  this.setTime = function (s, e) {
+    that.momentStart.hours(moment(s, that.formatTime).hours());
+    that.momentStart.minutes(moment(s, that.formatTime).minutes());
+    
+    that.momentEnd.hours(moment(e, that.formatTime).hours());
+    that.momentEnd.minutes(moment(e, that.formatTime).minutes());
+  };
+  
+  
+  this.updateTimeAndDate = function (stDate, endDate, stTime, endTime) {
+    that.setDate(stDate, endDate);
+    that.setTime(stTime, endTime);
+    
+    that.start = that.momentStart.format();
+    that.end = that.momentEnd.format();
+    
+    //console.log('updateTimeAndDate that.start', that.start);
+    //console.log('updateTimeAndDate that.end', that.end);
+    
+    
+  }
+  
   
 }
 

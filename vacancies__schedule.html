@@ -118,11 +118,11 @@
               <i id="modal-close" class="no-padding modal-close modal-close-icon material-icons">close</i>
             </div>
             <div class="col m7 s12">
-              <input required type="text" id="modal-event-name" class='no-border grey lighten-3 input--small' placeholder='Добавьте название'
+              <input required type="text" id="modal-event-name" class='no-border grey lighten-3 input--small' placeholder='Name'
                      id='event-name'/>
             </div>
             <div class="col valign-wrapper hide-on-small-only">
-              <button type="button" id="modal-submit" class="  center-align modal-close waves-effect blue btn">Изменить</button>
+              <button type="button" id="modal-submit" class="modal-close center-align  waves-effect blue btn">Edit</button>
             </div>
           </div>
           <div class="row ">
@@ -136,20 +136,20 @@
           <div class="row">
             <div class="col s4 m3 checkbox-day valign-wrapper">
               <input type="checkbox" id="checkbox-all-day"/>
-              <label for="checkbox-all-day">Весь день</label>
+              <label for="checkbox-all-day">All day</label>
             </div>
             <div class="col s7  m4 grey lighten-3">
               <select id="select-repeat" class="select-repeat no-border">
-                <option value="1" selected>Не повторять</option>
-                <option value="2">Повторять</option>
+                <option value="0" selected>Don't repeat</option>
+                <option value="1">Repeat</option>
               </select>
             </div>
           </div>
           <div class="row">
             <div class="tabs-wrapper col s12 no-padding">
               <ul class="tabs">
-                <li class="tab col m6 s10"><a class="active" href="#event-data">Сведения о мероприятии</a></li>
-                <li class="tab col m2 s3"><a href="#event-time">Время</a></li>
+                <li class="tab col m6 s10"><a class="active" href="#event-data">Event data</a></li>
+                <li class="tab col m2 s3"><a href="#event-time">Time</a></li>
               </ul>
             </div>
             <div id="event-data" class="col s12">
@@ -158,7 +158,7 @@
                   <i class="material-icons">location_on</i>
                 </div>
                 <div class="col s9 m8">
-                  <input type="text" class='truncate input--small no-border grey lighten-3' placeholder='Укажите место проведения'
+                  <input type="text" class='truncate input--small no-border grey lighten-3' placeholder='Location'
                          id='event-place'/>
                 </div>
               </div>
@@ -169,9 +169,9 @@
                 </div>
                 <div class="col s12 m8 grey lighten-3  ">
                   <select id="select-video" class="select-video no-border">
-                    <option value="0" disabled selected>Добавить видео-конференцию</option>
-                    <option value="1">Нет</option>
-                    <option value="2">Да</option>
+                    <option value="0" disabled selected>Add video-conference</option>
+                    <option value="1">No</option>
+                    <option value="2">Yes</option>
                   </select>
                 </div>
               </div>
@@ -181,7 +181,7 @@
                   <i class="material-icons">add_alert</i>
                 </div>
                 <div class="col s9 m6 waves-effect btn-flat truncate">
-                  Добавить уведомление
+                  Add notification
                 </div>
               </div>
 
@@ -191,16 +191,17 @@
                 </div>
                 <div class="col s5  grey lighten-3  ">
                   <select id="select-interviewer" class="select-interviewer no-border">
-                    <option value="1" selected>Ivan Ivanov</option>
+                    <option value="0" selected disabled>Interviewer</option>
+                    <option value="1">Ivan Ivanov</option>
                     <option value="2">Peter Petrov</option>
                     <option value="3">John Jones</option>
                   </select>
                 </div>
                 <div class="col grey lighten-3 colorpicker-wrapper margin-left">
                   <select id="colorpicker" class="colorpicker no-border">
-                    <option value="0" selected="selected" data-imagesrc="assets/images/svg/colors/blue.svg"></option>
-                    <option value="1" data-imagesrc="assets/images/svg/colors/red.svg"></option>
-                    <option value="2" data-imagesrc="assets/images/svg/colors/green.svg"></option>
+                    <option value="#3a87ad" data-imagesrc="assets/images/svg/colors/blue.svg"></option>
+                    <option value="#CC3131" data-imagesrc="assets/images/svg/colors/red.svg"></option>
+                    <option value="#85CC65" data-imagesrc="assets/images/svg/colors/green.svg"></option>
                   </select>
                 </div>
               </div>
@@ -211,18 +212,18 @@
                 </div>
                 <div class="col s5 m4 grey lighten-3">
                   <select id="select-vacant" class="select-vacant no-border">
-                    <option value="0">Не свободен/свободна</option>
-                    <option value="1" selected>Свободен/свободна</option>
+                    <option value="0">Unemployed</option>
+                    <option value="1" selected>Employed</option>
                   </select>
                 </div>
                 <div class="col m5 s5 margin-left grey lighten-3">
                   <select id="select-privacy" class="select-privacy no-border">
-                    <option value="1" selected >Настройки приватности по умолчанию</option>
-                    <option value="0">Другие</option>
+                    <option value="1" selected >Default privacy settings</option>
+                    <option value="0">Other</option>
                   </select>
                 </div>
                 <div class="col hide-on-med-and-down">
-                  <i class="material-icons">info</i>
+                  <i class="material-icons info" title="Other interviewees won't see this event.">info</i>
                 </div>
               </div>
 
@@ -239,22 +240,22 @@
 
             </div>
             <div class="row" id="event-time">
-              <div class="col m1 s2">
+              <div class="col m1 s2" title="Uncheck the box first!">
                 <i class="material-icons">access_time</i>
               </div>
-              <div class="col s3">
+              <div class="col s7 m4">
                 <div class="row">
-                  <input id="modal-time-start" placeholder="Начало"  class="col timepicker no-border input--small grey lighten-3">
+                  <input id="modal-time-start" placeholder="Start time" class="col timepicker no-border input--small grey lighten-3">
                 </div>
                 <div class="row">
-                  <input id="modal-time-end" placeholder="Конец"  class="col timepicker no-border input--small grey lighten-3">
+                  <input id="modal-time-end" placeholder="End time"  class="col timepicker no-border input--small grey lighten-3">
                 </div>
               </div>
             </div>
-          <div class="row modal-submit-lower hide-on-med-and-up">
+          <div class="row modal-submit-lower  hide-on-med-and-up">
             <div class="col right">
               <!--<button type="submit" id="modal-submit-lower" class="modal-action waves-effect blue btn">Создать</button>-->
-              <button type="button" id="modal-submit-lower" class=" modal-close waves-effect blue btn">Изменить</button>
+              <button type="button" id="modal-submit-lower" class=" modal-close waves-effect blue btn">Edit</button>
             </div>
           </div>
         </div>
