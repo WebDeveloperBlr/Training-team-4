@@ -19,7 +19,7 @@ server.use(restify.plugins.queryParser());
 server.use(restify.plugins.bodyParser());
 
 
-server.listen(process.env.PORT || 8080, function () {
+server.listen(8080, function () {
   console.log('%s listening at %s', server.name, server.url);
 });
 
@@ -48,7 +48,7 @@ server.get('/candidates/:id', candidatesController.getById);
 
 //rest api to create a new record into mysql database
 server.post('/', candidatesController.create);
-server.put('/candidates/:id', candidatesController.update);
+server.put('/:id', candidatesController.update);
 server.del('/:id', candidatesController.delete);
 
 

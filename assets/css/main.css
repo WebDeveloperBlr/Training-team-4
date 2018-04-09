@@ -66,9 +66,6 @@ video {
 textarea {
   resize: none;
 }
-label{
-  margin: 0;
-}
 
 section {
   position: relative;
@@ -1816,9 +1813,11 @@ hr-app__candidates-item-link{
 
 .candidate-profile__hr-app__left-part {
   border-right: 1px solid #EBEBEB;
+
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: space-between;
+
 }
 
 @media (max-width: 1024px) {
@@ -1834,6 +1833,8 @@ hr-app__candidates-item-link{
 .candidate-profile__hr-app__candidate-preview {
   display: flex;
   flex-direction: column;
+  height: 50%;
+  min-height: 305px;
   border-bottom: 1px solid #EBEBEB;
   padding: 10px 30px;
   align-items: flex-start;
@@ -1865,7 +1866,7 @@ hr-app__candidates-item-link{
     border: none;
     outline: none;
     font-size: 0.9375rem;
-    font-weight: 400;
+    font-weight: 600;
     margin-bottom: 1em;
 }
 
@@ -1908,20 +1909,20 @@ hr-app__candidates-item-link{
 }
 
 .candidate-profile__candidate-position {
-    color: #595959;
+    color: #cccccc;
     font-size: 16px;
     font-weight: 300;
 }
 
 .candidate-profile__candidate-name {
-    color: #343434;
-    font-weight: 500;
+    color: #000;
+    font-weight: 800;
     font-size: 1.2rem;
 }
 
 .candidate-profile__candidate-salary {
     color: #6b6b6b;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
 }
 
 @media (max-width: 1024px) {
@@ -1939,14 +1940,15 @@ hr-app__candidates-item-link{
     display: flex;
     justify-content: flex-end;
     width: 100%;
-    font-size: 0.8rem;
-    font-weight: 400;
+    font-size: 0.7rem;
+    font-weight: 600;
     color: #cccccc;
 }
 
 .candidate-profile__hr-app__contact-info {
     display: flex;
     flex-direction: column;
+    height: 40%;
     padding: 20px 30px;
     align-items: flex-start;
     justify-content: flex-start;
@@ -1965,20 +1967,20 @@ hr-app__candidates-item-link{
 
 .contact-info__text {
     margin-bottom: 0.925rem;
-    font-weight: 400;
+    font-weight: 600;
     font-size: 1.1rem;
-    color: #343434;
+    color: #6b6b6b;
 }
 
 .contact-info__telephone, .contact-info__email, .contact-info__address {
-    color: #595959;
+    color: #cccccc;
     font-size: 0.85rem;
     margin-bottom: 0.625rem;
 }
 
 .contact-info__data {
-    color: #343434;
-    font-weight: 500;
+    color: #000;
+    font-weight: 600;
 }
 
 .candidate-profile__hr-app__right-part {
@@ -2015,7 +2017,6 @@ hr-app__candidates-item-link{
     min-height: 35vh;
     bottom: 0;
     overflow-y: scroll;
-    padding: 20px 40px;
 }
 
 @media (max-width: 1024px) {
@@ -2038,15 +2039,20 @@ hr-app__candidates-item-link{
 }
 
 .skills__text {
+    margin-left: 2.3rem;
+    margin-top: 1.3rem;
     font-size: 1.4rem;
-    color: #343434;
+    color: #6b6b6b;
 }
 
 .skills__elements {
-    margin-top: 10px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    margin-left: 2.3rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    height: 30%;
 }
 
 @media (max-width: 1024px) {
@@ -2059,14 +2065,11 @@ hr-app__candidates-item-link{
 }
 
 .skills__elements__decoration {
-    border-radius: 5px;
-    padding: 5px 10px;
-    background-color: #f6f6f6;
-    color: #474747;
+    border: 2px solid #EBEBEB;
+    border-radius: 10px;
+    padding: 0.3875rem;
+    margin: 10px;
 }
-.skills__elements__decoration:not(:first-of-type) {
-     margin-left: 10px;
- }
 
 @media (max-width: 1024px) {
   .skills__elements__decoration {
@@ -2110,18 +2113,16 @@ hr-app__candidates-item-link{
 
 .cands-exp__header-wrapper {
     flex-basis: 100%;
-    text-align: left;
-    position: relative;
+    margin-bottom: 30px;
+    opacity: 0.8;
 }
 
 .cands-exp__header {
     display: inline-block;
-    position: relative;
-    left: 30%;
-    transform: translateX(-50%);
+    margin-left: 2.3rem;
     margin-top: 1.3rem;
     font-size: 1.4rem;
-    color: #343434;
+    color: #6b6b6b;
 }
 
 @media (max-width: 1024px) {
@@ -2159,21 +2160,19 @@ hr-app__candidates-item-link{
 }
 
 .cands-exp__right-part-item-header {
-    font-weight: 500;
-    color: #343434;
+    text-decoration: underline;
+    font-weight: bold;
     font-size: 1.1rem;
 }
 
 .cands-exp__right-part-item-description {
     line-height: 1.25rem;
     font-size: 0.97rem;
-    color: #828282;
-    font-weight: 300;
-    margin-top: 5px;
 }
 
 .cands-exp__left-part-item {
-    padding: 0 20px;
+    box-sizing: border-box;
+    padding-right: 7%;
     margin-top: -10px;
     flex-basis: 70%;
     margin-bottom: 20px;
@@ -2181,10 +2180,13 @@ hr-app__candidates-item-link{
 
 .cands-exp__right-part-item {
     margin-top: -10px;
-    border: 1px solid #e6e6e6;
+    border: 1px solid gray;
     border-radius: 5px;
-    padding: 10px 20px;
+    box-sizing: border-box;
+    padding-left: 3%;
+    padding-right: 3%;
     margin-bottom: 20px;
+    box-shadow: 1px 0px 2px 1px #bfb0b0;
 }
 
 .cands-exp__row-right-part::before {
@@ -2200,7 +2202,10 @@ hr-app__candidates-item-link{
 }
 
 .cands-exp__left-part-date {
-    text-align: right;
+    border: 1px solid gray;
+    border-radius: 5px;
+    text-align: center;
+    box-shadow: inset -1px 0px 2px 0px #bfb0b0;
     font-size: 0.9rem;
 }
 
@@ -2608,31 +2613,6 @@ input:-ms-input-placeholder {
 }
 .see-schedule-btn:hover{
   color:white;
-}
-.candidate-profile__date-inputs-wrapper{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.candidate-profile__date-label{
-  margin-right: 5px;
-  margin-bottom: 5px;
-  font-weight: 300;
-  font-size: 14px;
-  color: #343434;
-}
-.candidate-profile__dateInput{
-  margin-bottom: 5px;
-}
-.candidate-profile__exp-position-input{
-  font-size: 14px;
-  color: #343434;
-  font-weight: 400;
-  padding: 0 5px;
-  max-height: 25px;
-  margin-bottom: 10px;
-  border: none;
-  border-bottom: 1px solid #e6e6e6;
 }
 
 
