@@ -58,7 +58,8 @@ exports.update = function (req, res) {
     salary: req.body.docs[0].salary||"",
     status: req.body.docs[0].status||"",
     newSkills: req.body.newSkills||[],
-    oldSkills: req.body.oldSkills||[]
+    oldSkills: req.body.oldSkills||[],
+    exp: req.body.exp||[]
   };
 
   console.log(candidate);

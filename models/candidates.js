@@ -38,7 +38,7 @@ exports.getByID = function (id, cb) {
     '    INNER JOIN position pos ON pos.id_position = cp.id_position ' +
     '    INNER JOIN person per ON per.id_person = candidate.id_person ' +
     ' WHERE candidate.id_candidate ='+id;
-  var query2 = 'SELECT * FROM `hr-app`.experience\n' +
+  var query2 = 'SELECT experience.id_experience,experience.company, experience.dateStart, experience.dateEnd, experience.position, experience.info FROM `hr-app`.experience\n' +
     'inner join candidate on candidate.id_candidate = experience.id_candidate\n' +
     'where experience.id_candidate ='+id +
     ' group by id_experience order by experience.dateStart\n' +
@@ -92,16 +92,18 @@ exports.getByID = function (id, cb) {
   Promise.all([promiseQuery1,promiseQuery2,promiseQuery3,promiseQuery4,promiseQuery5,promiseGetAllSkills]).then(()=>{cb(error, data);});
 
 };
-exports.create = function (candidate, cb) {
+
+
+/*exports.create = function (candidate, cb) {
   connection.query('INSERT INTO candidate SET ?', candidate, function (error, results) {
     cb(error, results);
   });
-};
+};*/
 exports.update = function (id, candidate, cb) {
   console.log(candidate);
   var promises = [];
   var errors = null;
-  var updateCandidate = 'UPDATE `hr-app`.`candidate` ' +
+  var updateCandidate = 'UPDATE `candidate` ' +
     'inner join person on person.id_person = candidate.id_person ' +
     'inner join candidatePosition cp on cp.id_candidate = candidate.id_candidate ' +
     'inner join position p on p.id_position = cp.id_position ' +
@@ -123,8 +125,9 @@ exports.update = function (id, candidate, cb) {
   });
   promises.push(promiseUpdateCandidate);
 
-  var addNewSkills = "";
+
   if(candidate.newSkills.length>0){
+    var addNewSkills = "";
     candidate.newSkills.forEach(function (item) {
       addNewSkills = 'insert into candidateSkills (candidateSkills.id_candidate, candidateSkills.id_skills) \n' +
         'values ('+id+',(select id_skills from skills where skills.name = \''+item+'\'));\n';
@@ -142,7 +145,7 @@ exports.update = function (id, candidate, cb) {
   if(candidate.oldSkills.length>0){
     var deleteQuery;
     candidate.oldSkills.forEach(function (item) {
-      deleteQuery = 'DELETE `hr-app`.`candidateSkills` FROM `hr-app`.`candidateSkills` \n' +
+      deleteQuery = 'DELETE candidateSkills FROM candidateSkills \n' +
         'WHERE candidateSkills.id_candidate = '+id+' and candidateSkills.id_skills=(select skills.id_skills from skills where skills.name="'+item+'")\n' +
         ';';
       var promiseDeleteOldSkills = new Promise((res,rej)=>{
@@ -156,6 +159,11 @@ exports.update = function (id, candidate, cb) {
       promises.push(promiseDeleteOldSkills);
     });
   }
+
+  candidate.exp.forEach((el, index)=>{
+
+  });
+
   Promise.all(promises).then(()=>{cb(errors,"ok")});
 };
 exports.delete = function (id, cb) {
