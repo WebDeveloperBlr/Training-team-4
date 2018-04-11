@@ -2842,14 +2842,13 @@ input:-ms-input-placeholder {
   font-weight: 300;
 }
 .add-button {
-  color: #fff;
+  color: #343434;
   -webkit-transition: all .5s ease;
   transition: all .5s ease;
   width: 30px;
   height: 35px;
   font-size: 22px;
-  background-color: #21e1bc;
-  border: 1px solid #21e1bc;
+  background-color: #f6f6f6;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
