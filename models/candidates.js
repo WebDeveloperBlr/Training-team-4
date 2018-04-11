@@ -89,7 +89,10 @@ exports.getByID = function (id, cb) {
     });
   });
 
-  Promise.all([promiseQuery1,promiseQuery2,promiseQuery3,promiseQuery4,promiseQuery5,promiseGetAllSkills]).then(()=>{cb(error, data);});
+  Promise.all([promiseQuery1,promiseQuery2,promiseQuery3,promiseQuery4,promiseQuery5,promiseGetAllSkills]).then(()=>{
+    console.log(data);
+    cb(error, data);
+  });
 
 };
 
@@ -100,7 +103,7 @@ exports.getByID = function (id, cb) {
   });
 };*/
 exports.update = function (id, candidate, cb) {
-  console.log(candidate);
+  //console.log(candidate);
   var promises = [];
   var errors = null;
   var updateCandidate = 'UPDATE `candidate` ' +
@@ -160,9 +163,75 @@ exports.update = function (id, candidate, cb) {
     });
   }
 
-  candidate.exp.forEach((el, index)=>{
+  console.log(candidate.exp.length);
+  if(candidate.exp.length>0){
+    var updateExpQuery = '';
+    candidate.exp.forEach((item)=>{
+      if(item.dateEnd){
+        updateExpQuery = 'UPDATE experience \n' +
+          'SET experience.dateStart= "' + item.dateStart + '",' +
+          'experience.dateEnd= "' + item.dateEnd + '",' +
+          'experience.company= "' + item.company + '",' +
+          'experience.position= "' + item.position + '",' +
+          'experience.info= "' + item.info + '" ' +
+          'WHERE experience.id_experience=' + item.id_experience + ';';
+      }else{
+        updateExpQuery = 'UPDATE experience \n' +
+          'SET experience.dateStart= "' + item.dateStart + '",' +
+          'experience.dateEnd= ' + null + ',' +
+          'experience.company= "' + item.company + '",' +
+          'experience.position= "' + item.position + '",' +
+          'experience.info= "' + item.info + '" ' +
+          'WHERE experience.id_experience=' + item.id_experience + ';';
+      }
 
-  });
+      console.log(updateExpQuery);
+      var promiseUpdateExp = new Promise((res, rej)=>{
+        connection.query(updateExpQuery, function (error, results) {
+          if(error){
+            errors=error;
+          }
+          res();
+        })
+      });
+      promises.push(promiseUpdateExp);
+
+    });
+  }
+
+  if(candidate.newExp.length>0){
+    var addExpQuery;
+    candidate.newExp.forEach(function (item) {
+      addExpQuery = 'INSERT INTO experience (`company`, `dateStart`, `dateEnd`, `position`, `info`, `id_candidate`) ' +
+        'VALUES ("'+item.company+'", "'+item.dateStart+'", "'+item.dateEnd+'", "'+item.position+'", "'+item.info+'" , ' + id + ');';
+      var promiseAddNewExp = new Promise((res,rej)=>{
+        connection.query(addExpQuery, function (error, results) {
+          if(error){
+            errors=error;
+          }
+          res();
+        });
+      });
+      promises.push(promiseAddNewExp);
+    });
+  }
+
+  if(candidate.oldExp.length>0){
+    var deleteExpQuery;
+    candidate.oldExp.forEach(function (item) {
+      deleteExpQuery = 'DELETE experience FROM experience ' +
+        'WHERE experience.id_experience = '+item.id_experience+';';
+      var promiseDeleteOldExp = new Promise((res,rej)=>{
+        connection.query(deleteExpQuery, function (error, results) {
+          if(error){
+            errors=error;
+          }
+          res();
+        });
+      });
+      promises.push(promiseDeleteOldExp);
+    });
+  }
 
   Promise.all(promises).then(()=>{cb(errors,"ok")});
 };

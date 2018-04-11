@@ -6,7 +6,8 @@ module.exports = {
     host     : 'localhost',
     user     : 'root',
     password : '',
-    database : 'hr-app'
+    database : 'hr-app',
+    timezone: 'utc'
   })
   /*get : mysql.createPool({
     host     : 'eu-cdbr-west-02.cleardb.net',

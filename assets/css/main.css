@@ -711,6 +711,7 @@ input:focus:-ms-input-placeholder {
 }
 
 .hr-app-section__right-bar__search-bar {
+  border-bottom: 1px solid #e6e6e6;
   z-index: 3;
   padding: 0 40px;
   display: -webkit-box;
@@ -941,7 +942,7 @@ hr-app__candidates-item-link {
 }
 
 .slide-up {
-  margin-top: -172px;
+  margin-top: -174px;
 }
 
 @media (max-width: 515px) {
@@ -2057,6 +2058,7 @@ hr-app__candidates-item-link {
   margin: 0;
   overflow-y: scroll;
   width: 100%;
+  padding-bottom: 40px;
 }
 
 .cands-exp__rows-wrapper {
@@ -2086,10 +2088,12 @@ hr-app__candidates-item-link {
   flex-basis: 100%;
   text-align: left;
   position: relative;
+  margin-bottom: 40px;
 }
 
 .cands-exp__header {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   position: relative;
   left: 30%;
   transform: translateX(-50%);
@@ -2154,6 +2158,7 @@ hr-app__candidates-item-link {
 }
 
 .cands-exp__right-part-item {
+  position: relative;
   margin-top: -10px;
   border: 1px solid #e6e6e6;
   border-radius: 5px;
@@ -2201,7 +2206,29 @@ hr-app__candidates-item-link {
   height: 100%;
   border: none;
   line-height: 1rem;
-  color: #343434;
+  color: #828282;
+  font-weight: 300;
+}
+.cands-exp__right-part-item-companyInput{
+  border: none;
+
+}
+.cands-exp__right-part-item__delete-button{
+  position: relative;
+  width: 25px;
+  height: 25px;
+  background-color: #ff2617;
+  position: absolute;
+  right: -35px;
+  cursor: pointer;
+  top: 50%;
+  transform: translateY(-50%);
+  border-radius: 4px;
+}
+.cands-exp__right-part-item__delete-button .icon{
+  max-height: 100%;
+  max-width: 100%;
+  fill: #fff;
 }
 
 .display-none {
@@ -2806,7 +2833,7 @@ input:-ms-input-placeholder {
   white-space: nowrap;
   padding: 5px 10px;
 }
-.candidate-profile__input{
+.candidate-profile__candidate-name,.candidate-profile__candidate-salary{
   margin-top: 3px;
 }
 .candidate-profile__candidate-label{
@@ -2818,9 +2845,11 @@ input:-ms-input-placeholder {
   color: #fff;
   -webkit-transition: all .5s ease;
   transition: all .5s ease;
-  height: 38.4px;
+  width: 30px;
+  height: 35px;
   font-size: 22px;
-  background-color: #007bff;
+  background-color: #21e1bc;
+  border: 1px solid #21e1bc;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2832,10 +2861,23 @@ input:-ms-input-placeholder {
   align-items: center;
   margin-top: 10px;
   margin-left: 10px;
-  width: 33px;
-  cursor: pointer; }
+
+  cursor: pointer;
+border-radius: 5px}
+.add-button span{
+  margin-top: -2px;
+  margin-left: 0px;
+}
+.add-button--small{
+  margin: 0 10px;
+  height: 25px;
+  width: 25px;
+  font-size: 20px;
+  font-weight: 400;
+}
 .add-button:hover {
-  background-color: #006ac5; }
+  color: #fff;
+  background-color: #27AAE1; }
 .candidate-profile__hr-app__skills-wrapper{
   display: flex;
 }
@@ -2886,6 +2928,17 @@ input:-ms-input-placeholder {
 }
 .candidate-profile__dateInput{
   margin-bottom: 5px;
+}
+.font--light{
+  color: #343434;
+  font-weight: 400;
+}
+.exp-modal__row__inputs-wrapper{
+  display: flex;
+  flex-direction: column;
+}
+.exp-modal__row__right-col__description-textarea{
+  border: 1px solid #e6e6e6;
 }
 .candidate-profile__exp-position-input{
   font-size: 14px;

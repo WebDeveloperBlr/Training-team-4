@@ -22,13 +22,16 @@
       <ul class="hr-app-section__sidebar-list">
         <li class="hr-app-section__sidebar-list-item"><a class="hr-app-section__sidebar-item-link" data-attr="tab-link"
                                                          href="#">Interview</a></li>
-        <li class="hr-app-section__sidebar-list-item"><a class="hr-app-section__sidebar-item-link" data-attr="tab-link" data-target="#vacancies-tab" href="#">Vacancies</a>
+        <li class="hr-app-section__sidebar-list-item"><a class="hr-app-section__sidebar-item-link" data-attr="tab-link"
+                                                         data-target="#vacancies-tab" href="#">Vacancies</a>
         </li>
-        <li class="hr-app-section__sidebar-list-item"><a data-target="#candidates-tab" data-attr="tab-link" class="hr-app-section__sidebar-item-link"
+        <li class="hr-app-section__sidebar-list-item"><a data-target="#candidates-tab" data-attr="tab-link"
+                                                         class="hr-app-section__sidebar-item-link"
                                                          href="#">Candidates</a></li>
         <li class="hr-app-section__sidebar-list-item"><a class="hr-app-section__sidebar-item-link"
                                                          data-attr="tab-link" href="#">Management</a></li>
-        <li class="hr-app-section__sidebar-list-item mobile-item"><a class="hr-app-section__sidebar-item-link" data-attr="tab-link" href="#">Notifications
+        <li class="hr-app-section__sidebar-list-item mobile-item"><a class="hr-app-section__sidebar-item-link"
+                                                                     data-attr="tab-link" href="#">Notifications
           <svg class="icon icon-BELL ">
             <use xlink:href="assets/images/svg/symbol/sprite.svg#BELL"></use>
           </svg>
@@ -92,7 +95,8 @@
               </div>
               <div class="hr-app__filters-bar__filter-item">
                 <div class="hr-app__filters-bar__select-text">Work Experience</div>
-                <select class="hr-app__filters-bar__select" data-attr="filter-item" id="hr-app__filters-bar__select--exp">
+                <select class="hr-app__filters-bar__select" data-attr="filter-item"
+                        id="hr-app__filters-bar__select--exp">
                   <option class="hr-app__filters-bar__select-option">Any</option>
                   <option class="hr-app__filters-bar__select-option">Junior</option>
                   <option class="hr-app__filters-bar__select-option">Middle</option>
@@ -160,7 +164,8 @@
                 <use xlink:href="assets/images/svg/symbol/sprite.svg#ARROW"></use>
               </svg>
             </div>
-            <div class="hr-app__filters-bar__fields-wrapper" id="candidates-filters-bar-collapse" data-parent="#hr-app__table">
+            <div class="hr-app__filters-bar__fields-wrapper" id="candidates-filters-bar-collapse"
+                 data-parent="#hr-app__table">
               <div class="hr-app__filters-bar__filter-item">
                 <div class="hr-app__filters-bar__select-text">Name</div>
                 <div class="hr-app__filters-bar__input-wrap">
@@ -257,18 +262,19 @@
               <div class="candidate-profile__candidate-wrapper">
                 <div class="candidate-profile__candidate-position">
                   <span class="candidate-profile__candidate-label d-none">Position</span>
-                  <span class="" data-attr = "to-be-hidden" id="candidate-position"></span>
+                  <span class="" data-attr="to-be-hidden" id="candidate-position"></span>
                   <div class="inp jqxComboBox d-none candidate-profile__input" id="positionInput"></div>
                 </div>
                 <div class="candidate-profile__candidate-name">
                   <span class="candidate-profile__candidate-label d-none">Name</span>
-                  <span class="" data-attr = "to-be-hidden" id="candidate-name"></span>
+                  <span class="" data-attr="to-be-hidden" id="candidate-name"></span>
                   <input class="inp cands-input-properties d-none candidate-profile__input" id="nameInput" type="text">
                 </div>
                 <div class="candidate-profile__candidate-salary">
                   <span class="candidate-profile__candidate-label d-none">Salary</span>
-                  <span class="" data-attr = "to-be-hidden" id="candidate-salary"></span>
-                  <input class="inp cands-input-properties d-none candidate-profile__input" id="salaryInput" type="text">
+                  <span class="" data-attr="to-be-hidden" id="candidate-salary"></span>
+                  <input class="inp cands-input-properties d-none candidate-profile__input" id="salaryInput"
+                         type="text">
                 </div>
               </div>
               <a class="btn cands-review-btn" id="reviewButton" data-popup-open="popup-1" href="#">Review</a>
@@ -290,7 +296,11 @@
                     <input type="text" placeholder="Reviewer's Name" class="review-input d-none">
 
                     <div class="review-block__body">
-                      <p>Donec in volutpat nisi. In quam lectus, aliquet rhoncus cursus a, congue et arcu. Vestibulum tincidunt neque id nisi pulvinar aliquam. Nulla luctus luctus ipsum at ultricies. Nullam nec velit dui. Nullam sem eros, pulvinar sed pellentesque ac, feugiat et turpis. Donec gravida ipsum cursus massa malesuada tincidunt. Nullam finibus nunc mauris, quis semper neque ultrices in. Ut ac risus eget eros imperdiet posuere nec eu lectus.</p>
+                      <p>Donec in volutpat nisi. In quam lectus, aliquet rhoncus cursus a, congue et arcu. Vestibulum
+                        tincidunt neque id nisi pulvinar aliquam. Nulla luctus luctus ipsum at ultricies. Nullam nec
+                        velit dui. Nullam sem eros, pulvinar sed pellentesque ac, feugiat et turpis. Donec gravida ipsum
+                        cursus massa malesuada tincidunt. Nullam finibus nunc mauris, quis semper neque ultrices in. Ut
+                        ac risus eget eros imperdiet posuere nec eu lectus.</p>
                       <ul class="list-inline">
                         <li class="list-inline-item review-block__inline-list-active">Form</li>
                         <li class="list-inline-item review-block__inline-list">Form</li>
@@ -300,7 +310,8 @@
                     </div>
 
                     <div class="review-block__footer">
-                      <input type="submit" value="Send" data-popup-close="popup-1" href="#" class="cands-review-send btn"></input>
+                      <input type="submit" value="Send" data-popup-close="popup-1" href="#"
+                             class="cands-review-send btn"/>
                       <button type="button" class="btn edit-btn" id="review-editing">Edit review</button>
                       <button type="button" class="btn save-btn d-none" id="review-saving">Save changes</button>
                     </div>
@@ -309,7 +320,8 @@
                 </div>
               </div>
 
-              <div class="modal fade" id="addSkillModal" tabindex="-1" role="dialog" aria-labelledby="addSkillModalLabel" aria-hidden="true">
+              <div class="modal fade" id="addSkillModal" tabindex="-1" role="dialog"
+                   aria-labelledby="addSkillModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -322,13 +334,70 @@
 
                       <div class="skills-modal__search-wrapper">
                         <span class="skills-modal__search-label">Search</span>
-                        <input type="search" class="skills-modal__search-input" />
+                        <input type="search" class="skills-modal__search-input"/>
                       </div>
 
                       <div class="skills-modal__items-wrapper">
 
 
                       </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="modal fade" id="addExpModal" tabindex="-1" role="dialog" aria-labelledby="addExpModalLabel"
+                   aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="addExpModalLabel">Add Experience</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+
+                      <div class="exp-modal__body-inner-wrap">
+                        <div class="exp-modal__row">
+                          <div class="exp-modal__row__left-col">
+                            <div class="exp-modal__row__left-col-item">
+                              <div class="exp-modal__row__inputs-wrapper">
+                                <label for="exp-modal__row__left-col__exp-position-input" class="font--light">Position</label>
+                                <input type="text" class="exp-modal__row__left-col__exp-position-input"
+                                       id="exp-modal__row__left-col__exp-position-input"/>
+                              </div>
+                              <div class="exp-modal__row__left-col__date-inputs-wrapper"><label
+                                  class="exp-modal__row__left-col__date-label" data-attr="date-label" class="font--light">From</label>
+                                <div class="exp-modal__row__left-col__dateInput" id="modalDateFromInput" data-attr="from"></div>
+                              </div>
+                              <div class="exp-modal__row__left-col__date-inputs-wrapper"><label
+                                  class="exp-modal__row__left-col__date-label" data-attr="date-label">To</label>
+                                <div class="exp-modal__row__left-col__dateInput" data-attr="to"></div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="exp-modal__row__right-col">
+                            <div class="exp-modal__row__right-col-item">
+                              <div class="exp-modal__row__inputs-wrapper">
+                                <label for="exp-modal__row__right-col__company-input" class="font--light">Company</label>
+                                <input class="exp-modal__row__right-col__company-input"
+                                      type="text" id="exp-modal__row__right-col__company-input"/>
+                              </div>
+                              <div class="exp-modal__row__right-col__description-textarea-wrapper">
+                                <label for="exp-modal__row__right-col__description-textarea" class="font--light">Info</label>
+                                <textarea rows="3"
+                                          class="exp-modal__row__right-col__description-textarea" id="exp-modal__row__right-col__description-textarea"></textarea>
+                              </div>
+                              </div>
+
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-primary" data-dismiss="modal" aria-label="Close" id="modalSaveExpButton">Save changes</button>
                     </div>
                   </div>
                 </div>
@@ -341,17 +410,17 @@
               </div>
               <div class="contact-info__telephone">
                 Telephone:
-                <p class="contact-info__data" data-attr = "to-be-hidden" id="telephoneField"></p>
+                <p class="contact-info__data" data-attr="to-be-hidden" id="telephoneField"></p>
                 <input class="inp cands-input-properties d-none" id="telephoneInput" type="tel">
               </div>
               <div class="contact-info__email">
                 Email:
-                <p class="contact-info__data" data-attr = "to-be-hidden" id="emailField"></p>
+                <p class="contact-info__data" data-attr="to-be-hidden" id="emailField"></p>
                 <input class="inp cands-input-properties d-none" id="emailInput" type="email">
               </div>
               <div class="contact-info__address">
                 Address:
-                <p class="contact-info__data" data-attr = "to-be-hidden" id="addressField"></p>
+                <p class="contact-info__data" data-attr="to-be-hidden" id="addressField"></p>
                 <input class="inp cands-input-properties d-none" id="addressInput" type="text">
               </div>
             </div>
@@ -359,8 +428,12 @@
           <div class="candidate-profile__hr-app__right-part col-9">
             <div class="cands-exp">
               <div class="cands-exp__header-wrapper ">
-                <div class="cands-exp__header">Experience
+                <div class="cands-exp__header">
+                  <span>Experience</span>
+                  <div class="add-button add-button--small d-none" id="addExpButton" data-toggle="modal"
+                       data-target="#addExpModal"><span>+</span></div>
                 </div>
+
               </div>
               <div class="cands-exp__rows-wrapper">
               </div>
@@ -370,33 +443,34 @@
               <div class="candidate-profile__hr-app__skills-wrapper">
                 <div class="skills__elements">
                 </div>
-                <div class="add-button d-none" id="addSkillButton" data-toggle="modal" data-target="#addSkillModal"><span>+</span></div>
+                <div class="add-button d-none" id="addSkillButton" data-toggle="modal" data-target="#addSkillModal">
+                  <span>+</span></div>
               </div>
 
 
-            <div class="success-button-wrap round--55 bg-success">
-              <svg class="icon icon-CHECK ">
-                <use xlink:href="assets/images/svg/symbol/sprite.svg#CHECK"></use>
-              </svg>
-            </div>
-            <div class="error-button-wrap round--55 bg-danger" id="cands-error-button">
-              <svg class="icon icon-CLOSE ">
-                <use xlink:href="assets/images/svg/symbol/sprite.svg#CLOSE"></use>
-              </svg>
-            </div>
-            <div class="edit-button-wrap round--55 bg-warning" id="cands-editing-button">
-              <svg class="icon icon-PENCIL ">
-                <use xlink:href="assets/images/svg/symbol/sprite.svg#PENCIL"></use>
-              </svg>
-            </div>
-            <div class="save-button-wrap round--55 bg-primary d-none" id="cands-save-button">
-              <svg class="icon icon-save ">
-                <use xlink:href="assets/images/svg/symbol/sprite.svg#save"></use>
-              </svg>
-            </div>
+              <div class="success-button-wrap round--55 bg-success">
+                <svg class="icon icon-CHECK ">
+                  <use xlink:href="assets/images/svg/symbol/sprite.svg#CHECK"></use>
+                </svg>
+              </div>
+              <div class="error-button-wrap round--55 bg-danger" id="cands-error-button">
+                <svg class="icon icon-CLOSE ">
+                  <use xlink:href="assets/images/svg/symbol/sprite.svg#CLOSE"></use>
+                </svg>
+              </div>
+              <div class="edit-button-wrap round--55 bg-warning" id="cands-editing-button">
+                <svg class="icon icon-PENCIL ">
+                  <use xlink:href="assets/images/svg/symbol/sprite.svg#PENCIL"></use>
+                </svg>
+              </div>
+              <div class="save-button-wrap round--55 bg-primary d-none" id="cands-save-button">
+                <svg class="icon icon-save ">
+                  <use xlink:href="assets/images/svg/symbol/sprite.svg#save"></use>
+                </svg>
+              </div>
 
+            </div>
           </div>
-        </div>
       </section>
 
     </div>

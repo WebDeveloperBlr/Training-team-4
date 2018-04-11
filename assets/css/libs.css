@@ -13796,13 +13796,15 @@ of the horizontal scrollbar.*/
 
 .jqx-item {
   transition: all .2s ease;
-  padding: 0 10px;
   cursor: pointer;
   -ms-touch-action: none;
   -moz-box-sizing: content-box;
   box-sizing: content-box;
   color: inherit;
   -webkit-text-size-adjust: none;
+}
+.jqx-listitem-element span{
+  padding: 0 10px;
 }
 
 /*applied to containers to set a background and border color. Tabs, NavigationBar, Calendar content.*/
