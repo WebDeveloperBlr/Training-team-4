@@ -6655,7 +6655,7 @@ a.bg-dark:focus, a.bg-dark:hover, button.bg-dark:focus, button.bg-dark:hover {
 }
 
 .border-danger {
-  border-color: #dc3545 !important;
+  border: 1px solid #dc3545 !important;
 }
 
 .border-light {
