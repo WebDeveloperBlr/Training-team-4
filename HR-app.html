@@ -9,7 +9,7 @@
   <link rel="stylesheet" type="text/css" href="assets/css/libs.css">
   <link rel="icon" href="assets/images/icon.png">
   <link rel="stylesheet" type="text/css" href="assets/css/main.css">
-  <link rel="stylesheet" type="text/css" href="assets/css/bundle.css">
+
 
 </head>
 <body>
@@ -23,14 +23,17 @@
       <ul class="hr-app-section__sidebar-list">
         <li class="hr-app-section__sidebar-list-item"><a class="hr-app-section__sidebar-item-link" data-attr="tab-link"
                                                          href="#">Interview</a></li>
-        <li class="hr-app-section__sidebar-list-item"><a class="hr-app-section__sidebar-item-link" data-attr="tab-link" data-target="#vacancies-tab" href="#">Vacancies</a>
+        <li class="hr-app-section__sidebar-list-item"><a class="hr-app-section__sidebar-item-link" data-attr="tab-link"
+                                                         data-target="#vacancies-tab" href="#">Vacancies</a>
         </li>
-        <li class="hr-app-section__sidebar-list-item"><a data-target="#candidates-tab" data-attr="tab-link" class="hr-app-section__sidebar-item-link"
+        <li class="hr-app-section__sidebar-list-item"><a data-target="#candidates-tab" data-attr="tab-link"
+                                                         class="hr-app-section__sidebar-item-link"
                                                          href="#">Candidates</a></li>
         <li class="hr-app-section__sidebar-list-item"><a class="hr-app-section__sidebar-item-link"
-                                                         data-attr="tab-link" href="vacancies__schedule.html">Management</a></li>
-        <li class="hr-app-section__sidebar-list-item mobile-item"><a class="hr-app-section__sidebar-item-link" data-attr="tab-link" href="#">Notifications
-          <svg class="icon icon-BELL " data-btn-menu>
+                                                         data-attr="tab-link" href="#">Management</a></li>
+        <li class="hr-app-section__sidebar-list-item mobile-item"><a class="hr-app-section__sidebar-item-link"
+                                                                     data-attr="tab-link" href="#">Notifications
+          <svg class="icon icon-BELL ">
             <use xlink:href="assets/images/svg/symbol/sprite.svg#BELL"></use>
           </svg>
         </a></li>
@@ -94,7 +97,8 @@
               </div>
               <div class="hr-app__filters-bar__filter-item">
                 <div class="hr-app__filters-bar__select-text">Work Experience</div>
-                <select class="hr-app__filters-bar__select" data-attr="filter-item" id="hr-app__filters-bar__select--exp">
+                <select class="hr-app__filters-bar__select" data-attr="filter-item"
+                        id="hr-app__filters-bar__select--exp">
                   <option class="hr-app__filters-bar__select-option">Any</option>
                   <option class="hr-app__filters-bar__select-option">Junior</option>
                   <option class="hr-app__filters-bar__select-option">Middle</option>
@@ -163,7 +167,8 @@
                 <use xlink:href="assets/images/svg/symbol/sprite.svg#ARROW"></use>
               </svg>
             </div>
-            <div class="hr-app__filters-bar__fields-wrapper" id="candidates-filters-bar-collapse" data-parent="#hr-app__table">
+            <div class="hr-app__filters-bar__fields-wrapper" id="candidates-filters-bar-collapse"
+                 data-parent="#hr-app__table">
               <div class="hr-app__filters-bar__filter-item">
                 <div class="hr-app__filters-bar__select-text">Name</div>
                 <div class="hr-app__filters-bar__input-wrap">
@@ -187,15 +192,6 @@
                   <option class="hr-app__filters-bar__select-option">CV-accepted</option>
                   <option class="hr-app__filters-bar__select-option">Accepted for interview</option>
                 </select>
-              </div>
-              <div class="hr-app__filters-bar__dropdown">Name
-                <ul class="hr-app__filters-bar__dropdown-list">
-                  <li class="hr-app__filters-bar__dropdown-list-item"><a
-                      class="hr-app__filters-bar__dropdown-item-link">Nai</a>
-                  </li>
-                  <li class="hr-app__filters-bar__dropdown-list-item">Name</li>
-                  <li class="hr-app__filters-bar__dropdown-list-item">Name</li>
-                </ul>
               </div>
               <div class="hr-app__filters-bar__pagination"><span>1</span><span> of</span><span> 12</span></div>
               <div class="hr-app__filters-bar__sort-button-wrapper">
@@ -231,114 +227,12 @@
           </div>
         </div>
       </section>
-      <!--<section class="hr-app__candidates-section flex-column d-none" id="candidates-tab">
-        <div class="hr-app__filters-bar" id="candidates-filters-bar">
-          <div class="hr-app__filters-bar__header-wrapper">
-            <h3 class="hr-app__filters-bar__header hr-app-section&#45;&#45;header">Candidates</h3>
-            <button class="hr-app__filters-bar__add-profile-button"><span>+</span></button>
-          </div>
-          <div class="hr-app__filters-bar__wrap">
-            <div class="hr-app__filters-bar__text-wrapper" data-toggle="collapse" data-target="" role="button"
-                 aria-expanded="false" aria-controls="filters-bar-collapse">
-              <div class="hr-app__filters-bar__text">Filter by</div>
-              <svg class="icon icon-ARROW ">
-                <use xlink:href="assets/images/svg/symbol/sprite.svg#ARROW"></use>
-              </svg>
-            </div>
-            <div class="hr-app__filters-bar__fields-wrapper" id="candidates-filters-bar-collapse" data-parent="#hr-app__table">
-              <div class="hr-app__filters-bar__filter-item">
-                <div class="hr-app__filters-bar__select-text">Name</div>
-                <div class="hr-app__filters-bar__input-wrap">
-                  <input class="hr-app__filters-bar__input" type="text"/>
-                </div>
-              </div>
-              <div class="hr-app__filters-bar__filter-item">
-                <div class="hr-app__filters-bar__select-text">Age</div>
-                <div class="hr-app__filters-bar__input-wrap justify-content-between"><span
-                    class="hr-app__filters-bar__input-wrap__text">from</span>
-                  <input class="hr-app__filters-bar__input small&#45;&#45;input" type="text" maxlength="2"/><span
-                      class="hr-app__filters-bar__input-wrap__text">to</span>
-                  <input class="hr-app__filters-bar__input small&#45;&#45;input" type="text" maxlength="2"/>
-                </div>
-              </div>
-              <div class="hr-app__filters-bar__filter-item">
-                <div class="hr-app__filters-bar__select-text">Status</div>
-                <select class="hr-app__filters-bar__select" data-attr="filter-item">
-                  <option class="hr-app__filters-bar__select-option">Any</option>
-                  <option class="hr-app__filters-bar__select-option">CV-rejected</option>
-                  <option class="hr-app__filters-bar__select-option">CV-accepted</option>
-                  <option class="hr-app__filters-bar__select-option">Accepted for interview</option>
-                </select>
-              </div>
-              <div class="hr-app__filters-bar__dropdown">Name
-                <ul class="hr-app__filters-bar__dropdown-list">
-                  <li class="hr-app__filters-bar__dropdown-list-item"><a
-                      class="hr-app__filters-bar__dropdown-item-link">Nai</a>
-                  </li>
-                  <li class="hr-app__filters-bar__dropdown-list-item">Name</li>
-                  <li class="hr-app__filters-bar__dropdown-list-item">Name</li>
-                </ul>
-              </div>
-              <div class="hr-app__filters-bar__pagination"><span>1</span><span> of</span><span> 12</span></div>
-              <div class="hr-app__filters-bar__sort-button-wrapper">
-                <div class="hr-app__filters-bar__sort-button">Filter</div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="hr-app__candidates-items-wrapper" id="hr-app__candidates-items-wrapper">
-          <div class="row">
-            <div class="col-lg-3">
-              <div class="hr-app__candidates-item d-flex flex-column">
-                <a href="#" class="hr-app__candidates-item-link">
-                  <div class="hr-app__candidates-item__img-wrap">
-                    <img class="hr-app__candidates-item__img"
-                                                                      src="assets/images/profiles/profile.jpg"
-                                                                      alt="profile">
-                    <div class="hr-app__candidates-item-cv-text"></div>
-                  </div>
-                  <div class="hr-app__candidates-item-text-wrapper"><span
-                      class="hr-app__candidates-item&#45;&#45;profession-text">Java Developer</span>
-                    <h5 class="hr-app__candidates-item-name-text">Artem Badaev</h5><span
-                        class="hr-app__candidates-item-salary-text">800$</span>
-                  </div>
-                </a>
-
-              </div>
-            </div>
-
-          </div>
-
-          <div class="hr-app__table-editor">
-            <div class="hr-app__table-editor__col">
-              <div class="hr-app__table-editor__text">Rows per page:</div>
-              <select class="hr-app__table-editor__select" id="rows-per-page-vacancies">
-                <option class="hr-app__table-editor__select-option">10</option>
-                <option class="hr-app__table-editor__select-option">20</option>
-                <option class="hr-app__table-editor__select-option">50</option>
-              </select>
-            </div>
-            <div class="hr-app__table-editor__col order-2">
-              <div class="hr-app__table-editor__pagination"></div>
-            </div>
-            <div class="hr-app__table-editor__page-buttons hr-app__table-editor__col order-1 order-lg-2">
-
-              <ul class="pagination-sm pagination" id="pagination">
-
-              </ul>
-            </div>
-            <div class="hr-app__fixed-round">
-              <div class="hr-app__fixed-round__plus">+</div>
-            </div>
-          </div>
-        </div>
-      </section>-->
       <section class="candidate-profile-block d-none" id="candidate-profile-block">
         <div class="candidate-profile__hr-app__nav-bar">
-          <nav aria-label="breadcrumb">
+          <nav class="candidate-profile__breadcrumb" aria-label="breadcrumb">
             <ol class="profile-breadcrumb">
               <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Candidates</a></li>
-              <li class="breadcrumb-item active">Jimmy Carr</li>
+              <li class="breadcrumb-item active" id="breadcrumbField"></li>
             </ol>
           </nav>
         </div>
@@ -346,33 +240,51 @@
           <div class="candidate-profile__hr-app__left-part col-3">
             <div class="candidate-profile__hr-app__candidate-preview">
               <div class="candidate-profile__cv-wrapper">
-                <select class="candidate-profile__cv-status">
-                  <option>Accepted for interview</option>
+                <span class="candidate-profile__cv-status-label">Status: </span>
+                <span class="candidate-profile__cv-status" id="statusField" data-attr="to-be-hidden">
+
+                </span>
+                <div class="hr-app__filters-bar__dropdown inp d-none" id="statusInput">
+                  <div class="hr-app__filters-bar__dropdown-icon">
+                    <svg class="icon icon-ARROW ">
+                      <use xlink:href="assets/images/svg/symbol/sprite.svg#ARROW"></use>
+                    </svg>
+                  </div>
+                  <div class="hr-app__filters-bar__dropdown-active-value"><span>New</span></div>
+                  <ul class="hr-app__filters-bar__dropdown-list">
+
+                  </ul>
+                </div>
+                <!--<select class="candidate-profile__statusInput inp d-none" id="statusInput">
                   <option>New</option>
-                  <option>CV-Rejected</option>
-                </select>
+                </select>-->
               </div>
               <div class="candidate-profile__img-preview">
                 <img width="100%" height="100%" src="http://img.x-hw.by/news/2017/244.jpg">
               </div>
               <div class="candidate-profile__candidate-wrapper">
                 <div class="candidate-profile__candidate-position">
-                  <span class="to-be-hidden" id="candidate-position"></span>
-                  <input class="inp cands-input-properties display-none" type="text">
+                  <span class="candidate-profile__candidate-label d-none">Position</span>
+                  <span class="" data-attr="to-be-hidden" id="candidate-position"></span>
+                  <div class="inp jqxComboBox d-none candidate-profile__input" id="positionInput"></div>
                 </div>
                 <div class="candidate-profile__candidate-name">
-                  <span class="to-be-hidden" id="candidate-name"></span>
-                  <input class="inp cands-input-properties display-none" type="text">
+                  <span class="candidate-profile__candidate-label d-none">Name</span>
+                  <span class="" data-attr="to-be-hidden" id="candidate-name"></span>
+                  <input class="inp cands-input-properties d-none candidate-profile__input" id="nameInput" type="text">
                 </div>
                 <div class="candidate-profile__candidate-salary">
-                  <span class="to-be-hidden" id="candidate-salary"></span>
-                  <input class="inp cands-input-properties display-none" type="text">
+                  <span class="candidate-profile__candidate-label d-none">Salary</span>
+                  <span class="" data-attr="to-be-hidden" id="candidate-salary"></span>
+                  <input class="inp cands-input-properties d-none candidate-profile__input" id="salaryInput"
+                         type="text">
                 </div>
               </div>
+              <a class="btn cands-review-btn" id="reviewButton" data-popup-open="popup-1" href="#">Review</a>
               <div class="candidate-profile__cv-term">
                 1 day later
               </div>
-              <a class="btn cands-review-btn" data-popup-open="popup-1" href="#">Review</a>
+
               <div class="popup" data-popup="popup-1">
                 <div class="popup-inner cands-review-wrapper">
                   <form action="#">
@@ -391,6 +303,90 @@
                   </form>
                 </div>
               </div>
+
+              <div class="modal fade" id="addSkillModal" tabindex="-1" role="dialog"
+                   aria-labelledby="addSkillModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="addSkillModalLabel">Add skill</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+
+                      <div class="skills-modal__search-wrapper">
+                        <span class="skills-modal__search-label">Search</span>
+                        <input type="search" class="skills-modal__search-input"/>
+                      </div>
+
+                      <div class="skills-modal__items-wrapper">
+
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="modal fade" id="addExpModal" tabindex="-1" role="dialog" aria-labelledby="addExpModalLabel"
+                   aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="addExpModalLabel">Add Experience</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+
+                      <div class="exp-modal__body-inner-wrap">
+                        <div class="exp-modal__row">
+                          <div class="exp-modal__row__left-col">
+                            <div class="exp-modal__row__left-col-item">
+                              <div class="exp-modal__row__inputs-wrapper">
+                                <label for="exp-modal__row__left-col__exp-position-input" class="font--light">Position</label>
+                                <input type="text" class="exp-modal__row__left-col__exp-position-input"
+                                       id="exp-modal__row__left-col__exp-position-input"/>
+                              </div>
+                              <div class="exp-modal__row__left-col__date-inputs-wrapper"><label
+                                  class="exp-modal__row__left-col__date-label" data-attr="date-label" class="font--light">From</label>
+                                <div class="exp-modal__row__left-col__dateInput" id="modalDateFromInput" data-attr="from"></div>
+                              </div>
+                              <div class="exp-modal__row__left-col__date-inputs-wrapper"><label
+                                  class="exp-modal__row__left-col__date-label" data-attr="date-label">To</label>
+                                <div class="exp-modal__row__left-col__dateInput" data-attr="to"></div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="exp-modal__row__right-col">
+                            <div class="exp-modal__row__right-col-item">
+                              <div class="exp-modal__row__inputs-wrapper">
+                                <label for="exp-modal__row__right-col__company-input" class="font--light">Company</label>
+                                <input class="exp-modal__row__right-col__company-input"
+                                      type="text" id="exp-modal__row__right-col__company-input"/>
+                              </div>
+                              <div class="exp-modal__row__right-col__description-textarea-wrapper">
+                                <label for="exp-modal__row__right-col__description-textarea" class="font--light">Info</label>
+                                <textarea rows="3"
+                                          class="exp-modal__row__right-col__description-textarea" id="exp-modal__row__right-col__description-textarea"></textarea>
+                              </div>
+                              </div>
+
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-primary" data-dismiss="modal" aria-label="Close" id="modalSaveExpButton">Save changes</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
             </div>
             <div class="candidate-profile__hr-app__contact-info">
               <div class="contact-info__text">
@@ -398,187 +394,67 @@
               </div>
               <div class="contact-info__telephone">
                 Telephone:
-                <p class="contact-info__data to-be-hidden" id="telephoneField"></p>
-                <input class="inp cands-input-properties display-none" type="number">
+                <p class="contact-info__data" data-attr="to-be-hidden" id="telephoneField"></p>
+                <input class="inp cands-input-properties d-none" id="telephoneInput" type="tel">
               </div>
               <div class="contact-info__email">
                 Email:
-                <p class="to-be-hidden contact-info__data" id="emailField"></p>
-                <input class="inp cands-input-properties display-none" type="email">
+                <p class="contact-info__data" data-attr="to-be-hidden" id="emailField"></p>
+                <input class="inp cands-input-properties d-none" id="emailInput" type="email">
               </div>
               <div class="contact-info__address">
                 Address:
-                <p class="to-be-hidden contact-info__data" id="addressField"></p>
-                <input class="inp cands-input-properties display-none" type="text">
+                <p class="contact-info__data" data-attr="to-be-hidden" id="addressField"></p>
+                <input class="inp cands-input-properties d-none" id="addressInput" type="text">
               </div>
             </div>
           </div>
           <div class="candidate-profile__hr-app__right-part col-9">
             <div class="cands-exp">
               <div class="cands-exp__header-wrapper ">
-                <div class="cands-exp__header">Experience
-                  <div class="cands-exp__editing-button-wrapper">
-                    <div class="display-none cands-exp__editing-button cands-exp__add-row">
-                      Add timepoint
-                    </div><div class="display-none cands-exp__editing-button cands-exp__delete-row">
-                    Delete timepoint
-                  </div>
-                  </div>
+                <div class="cands-exp__header">
+                  <span>Experience</span>
+                  <div class="add-button add-button--small d-none" id="addExpButton" data-toggle="modal"
+                       data-target="#addExpModal"><span>+</span></div>
                 </div>
+
               </div>
               <div class="cands-exp__rows-wrapper">
-                <div class="cands-exp__row">
-                  <div class="cands-exp__row-left-part">
-                    <div class="cands-exp__left-part-item">
-                      <div class="cands-exp__left-part-date">
-                        <div class="exp-description to-be-hidden  ">
-                          Apr 2015 - Now
-                        </div>
-                        <textarea rows="2" class="
-                     txt cands-exp__right-part-item-description-textarea
-                    cands-exp__textarea-lfet-part-fix
-                    display-none
-                    ">
-                        </textarea>
-                      </div>
-                      <div class="exp-description to-be-hidden cands-exp__left-part-description ">
-                        Learn Java Developer<br>
-                        London, UK
-                      </div>
-                      <textarea rows="2" class="
-                     txt cands-exp__right-part-item-description-textarea
-                    cands-exp__textarea-lfet-part-fix display-none
-                    ">
-                       </textarea>
-                    </div>
-                  </div>
-                  <div class="cands-exp__row-right-part">
-                    <div class="cands-exp__right-part-item">
-                      <div class="to-be-hidden cands-exp__right-part-item-header">
-                        Itransition
-                      </div>
-                      <div class="exp-description to-be-hidden cands-exp__right-part-item-description ">
-                        No the rationally pursues expound occur human circumstances born
-                        must
-                      </div>
-                      <textarea rows="3" class="
-                     txt cands-exp__right-part-item-description-textarea  display-none">
-                        </textarea>
-                    </div>
-                  </div>
-                </div>
-                <div class="cands-exp__row">
-                  <div class="cands-exp__row-left-part">
-                    <div class="cands-exp__left-part-item">
-                      <div class="cands-exp__left-part-date exp-description">
-                        <div class="to-be-hidden">Oct 2012 - Mar 2015</div>
-                        <div class="to-be-hidden">( 2 years 7 months )</div>
-                        <textarea rows="2" class="
-                     txt cands-exp__right-part-item-description-textarea
-                    cands-exp__textarea-lfet-part-fix
-                    display-none
-                    ">
-
-
-                          </textarea>
-                      </div>
-                      <div class="cands-exp__left-part-description
-                    to-be-hidden exp-description">
-                        Senior Java Developer<br>
-                        London, UK
-                      </div>
-                      <textarea rows="2" class="
-                     txt cands-exp__right-part-item-description-textarea
-                    cands-exp__textarea-lfet-part-fix
-                    display-none
-                    ">
-
-
-                        </textarea>
-                    </div>
-                  </div>
-                  <div class="cands-exp__row-right-part dashed-left-border">
-                    <div class="cands-exp__right-part-item">
-                      <div class="cands-exp__right-part-item-header">
-                        Itransition
-                      </div>
-                      <div class="to-be-hidden
-                    cands-exp__right-part-item-description exp-description">
-                        Explorer man enjoy denouncing to born are complete expound pursue
-                        occur avoids how example has occasionally which there produces truth
-                        the extremely exercise happiness are example can it the a
-                      </div>
-                      <textarea rows="3" class="
-                     txt cands-exp__right-part-item-description-textarea
-                    display-none">
-
-
-
-                        </textarea>
-                    </div>
-                  </div>
-                </div>
-                <div class="cands-exp__row">
-                  <div class="cands-exp__row-left-part">
-                    <div class="cands-exp__left-part-item">
-                      <div class="cands-exp__left-part-date exp-description">
-                        <div class="to-be-hidden">Education</div>
-                        <div class="to-be-hidden">2007-2012</div>
-                        <textarea rows="2" class="
-                     txt cands-exp__right-part-item-description-textarea
-                    cands-exp__textarea-lfet-part-fix
-                    display-none
-                    ">
-
-
-                          </textarea>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="cands-exp__row-right-part no-left-border">
-                    <div class="cands-exp__right-part-item">
-                      <div class="cands-exp__right-part-item-header">
-                        Itransition
-                      </div>
-                      <div class=" exp-description
-                    to-be-hidden cands-exp__right-part-item-description">
-                        Give can trivial pursues fault undertakes born procure to pursues
-                        pleasure it pain
-                      </div>
-                      <textarea rows="3" class=
-                          " txt cands-exp__right-part-item-description-textarea
-                    display-none">
-
-                        </textarea>
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
             <div class="candidate-profile__hr-app__skills">
               <div class="skills__text">Skills</div>
-              <div class="skills__elements">
-                <span class="skills__elements__decoration">JavaScript</span>
-                <span class="skills__elements__decoration">Node.js</span>
-                <span class="skills__elements__decoration">Java</span>
-                <span class="skills__elements__decoration">Maven</span>
-                <span class="skills__elements__decoration">JSF</span>
-                <span class="skills__elements__decoration">JPA</span>
-                <span class="skills__elements__decoration">Design Patterns</span>
-                <span class="skills__elements__decoration not-delete display-none">
-                <input class="inp skills-editing-input ">
-                  <div class="add-skill">Add</div>
-                </span>
+              <div class="candidate-profile__hr-app__skills-wrapper">
+                <div class="skills__elements">
+                </div>
+                <div class="add-button d-none" id="addSkillButton" data-toggle="modal" data-target="#addSkillModal">
+                  <span>+</span></div>
               </div>
-            </div>
-            <div class="editing-icon__wrapper">
-              <div class="editing-icon" id="cands-editing-icon">
-                <input class="inp cands__submit editing-icon display-none" id="" value="Save" type="submit">
-                <img class="editing-icon__image" src="assets/images/edit.png">
+
+
+              <div class="success-button-wrap round--55 bg-success">
+                <svg class="icon icon-CHECK ">
+                  <use xlink:href="assets/images/svg/symbol/sprite.svg#CHECK"></use>
+                </svg>
               </div>
+              <div class="error-button-wrap round--55 bg-danger" id="cands-error-button">
+                <svg class="icon icon-CLOSE ">
+                  <use xlink:href="assets/images/svg/symbol/sprite.svg#CLOSE"></use>
+                </svg>
+              </div>
+              <div class="edit-button-wrap round--55 bg-warning" id="cands-editing-button">
+                <svg class="icon icon-PENCIL ">
+                  <use xlink:href="assets/images/svg/symbol/sprite.svg#PENCIL"></use>
+                </svg>
+              </div>
+              <div class="save-button-wrap round--55 bg-primary d-none" id="cands-save-button">
+                <svg class="icon icon-save ">
+                  <use xlink:href="assets/images/svg/symbol/sprite.svg#save"></use>
+                </svg>
+              </div>
+
             </div>
           </div>
-        </div>
       </section>
 
     </div>
@@ -598,6 +474,7 @@
   </div>
 </section>
 <script src="assets/js/libs.min.js"></script>
+<script src="assets/js/candidateProfile.js"></script>
 <script src="assets/js/main.js"></script>
 <script src="assets/js/app.js"></script>
 
