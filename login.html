@@ -11,12 +11,12 @@
 </head>
 <body>
 <header class="header">
-  <form class="form-page__login-form" action="HR-app.html">
+  <form class="form-page__login-form" id="login-form" action="/index.js">
     <h4 class="header-4">Вход</h4>
     <div class="login-form__inputs-wrapper">
       <label class="login-form__label" for="login">Логин</label>
       <div class="login-form__field-wrapper">
-        <input class="login-form__input" type="text" id="login" placeholder="Логин" required>
+        <input class="login-form__input" type="text" name="loginInput" id="login" placeholder="Логин" required>
         <div class="login-form__text">Пожалуйста, введите логин :)</div>
       </div>
       <label class="login-form__label" for="email">Эл. почта</label>
@@ -26,7 +26,7 @@
       </div>
       <label class="login-form__label" for="password">Пароль</label>
       <div class="login-form__field-wrapper">
-        <input class="login-form__input input--valid-check" type="password" id="password" placeholder="Пароль"
+        <input name="passwordInput" class="login-form__input input--valid-check" type="password" id="password" placeholder="Пароль"
                minlength="6" maxlength="24" required>
         <div class="login-form__text">Пожалуйста, введите пароль :)</div>
       </div>
@@ -38,5 +38,26 @@
 </header>
 <script src="assets/js/libs.min.js"></script>
 <script src="assets/js/main.js"></script>
+<script>
+    var logForm=document.getElementById("login-form");
+    logForm.onsubmit=function(event){
+        event.preventDefault();
+        var loginObj= {
+            userLogin:this.elements.loginInput.value,
+            userPassword:this.elements.passwordInput.value
+        };
+        var xhr=new XMLHttpRequest();
+        xhr.open("POST","/authentication",true);
+        xhr.setRequestHeader("Content-type",'application/json; charset=utf-8');
+        xhr.send(JSON.stringify(loginObj));
+        xhr.onreadystatechange=function(){
+            if(this.readyState!=4)
+                return;
+            if(this.status!=200)
+                return;
+            return;
+        };
+    }
+</script>
 </body>
 </html>
