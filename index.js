@@ -74,6 +74,19 @@ server.get('/HR-app', function handler(req, res, next) {
     }
 });
 
+server.get('/vacancies__schedule', function handler(req, res, next) {
+    fs.readFile(__dirname + '/vacancies__schedule.html',
+        function (err, data) {
+            if (err) {
+                next(err);
+                return;
+            }
+            res.write(data);
+            res.end();
+            next();
+        });
+});
+
 server.post("/authentication",function(req,res,next){
     connection.query("SELECT * FROM `hr-app`.Authentication",function(err,results){
         var count=0;
