@@ -86,6 +86,18 @@ server.get('/vacancies__schedule', function handler(req, res, next) {
             next();
         });
 });
+server.get("/register",function(req,res,next){
+    fs.readFile(__dirname + '/register.html',
+        function (err, data) {
+            if (err) {
+                next(err);
+                return;
+            }
+            res.write(data);
+            res.end();
+            next();
+        });
+});
 
 server.post("/authentication",function(req,res,next){
     connection.query("SELECT * FROM `hr-app`.Authentication",function(err,results){
@@ -113,6 +125,11 @@ server.post("/authentication",function(req,res,next){
             }
         });
     });
+});
+
+server.post("/registration",function(req,res,next){
+    console.log(req.body.regLogin);
+    res.end();
 });
 
 server.get('/candidates', candidatesController.all);
