@@ -3,12 +3,16 @@ var config = require('./config'),
   mysql = require('mysql');
 var db=require("./db");
 var connection=db.get;
-
 var candidatesController = require('./controllers/candidates');
 var vacanciesController = require('./controllers/vacancies');
 var fs = require('fs');
 
 var data = [];
+
+var access=false;
+setInterval(function(){
+    access=false;
+},120000);
 
 const server = restify.createServer({
   name: config.name,
@@ -43,8 +47,9 @@ server.get('/', function handler(req, res, next) {
       next();
     });
 });
-/*
+
 server.get('/HR-app', function handler(req, res, next) {
+    if(access){
     fs.readFile(__dirname + '/HR-app.html',
         function (err, data) {
             if (err) {
@@ -55,30 +60,42 @@ server.get('/HR-app', function handler(req, res, next) {
             res.end();
             next();
         });
+    }else{
+        fs.readFile(__dirname + '/login.html',
+            function (err, data) {
+                if (err) {
+                    next(err);
+                    return;
+                }
+                res.write(data);
+                res.end();
+                next();
+            });
+    }
 });
-*/
+
 server.post("/authentication",function(req,res,next){
     connection.query("SELECT * FROM `hr-app`.Authentication",function(err,results){
         var count=0;
         results.forEach(function(row,i,results){
             if(req.body.userLogin==row.login){
                 if(req.body.userPassword==row.password){
-                    console.log(req.body.userPassword);
-                    console.log(req.body.userPassword.length);
-                    console.log(row.password);
-                    console.log(row.password.length);
-                    console.log(req.body.userPassword==row.password);
-                    console.log(row.login+"  logged in");
+
                     fs.readFile(__dirname+ "/HR-app.html",function(err,content){
                         if(err) throw err;
                         else{
-                            res.setHeader('Content-Type', 'text/html:charset=utf-8');
                             count++;
+                            access=true;
+                            console.log(row.login+"  "+"logged in");
                             res.end("true");
                         }
                     });
+                }else {
+                    console.log("false");
+                    res.end("false");
                 }
             }else {
+                console.log("false");
                 res.end("false");
             }
         });

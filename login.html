@@ -11,7 +11,7 @@
 </head>
 <body>
 <header class="header">
-  <form class="form-page__login-form" id="login-form" action="/index.js">
+  <form class="form-page__login-form"  id="login-form" method="get" action="/HR-app">
     <h4 class="header-4">Вход</h4>
     <div class="login-form__inputs-wrapper">
       <label class="login-form__label" for="login">Логин</label>
@@ -31,7 +31,7 @@
         <div class="login-form__text">Пожалуйста, введите пароль :)</div>
       </div>
     </div>
-    <span class="login-form__info-text text--red">The email or password you entered is incorrect.</span>
+    <span id="incorrect-password-popup" class="login-form__info-text d-none text--red">The email or password you entered is incorrect.</span>
     <input class="button login-form__submit" type="submit" value="Войти"><a
       class="login-form__no-account-link header-link" href="register.html">Нет профиля :(</a>
   </form>
@@ -39,6 +39,7 @@
 <script src="assets/js/libs.min.js"></script>
 <script src="assets/js/main.js"></script>
 <script>
+
     var logForm=document.getElementById("login-form");
     logForm.onsubmit=function(event){
         event.preventDefault();
@@ -55,11 +56,15 @@
                 return;
             if(this.status!=200)
                 return;
-            if(xhr.responseText=="true"){
-                var transferXhr=new XMLHttpRequest();
-                trans
+            if(xhr.responseText=="false"){
+                var incorrPasswPopup=document.getElementById("incorrect-password-popup");
+                incorrPasswPopup.classList.remove("d-none");
+                return;
             }
+            window.location.href="/HR-app";
+
         };
+
     }
 </script>
 </body>

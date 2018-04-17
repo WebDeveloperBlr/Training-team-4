@@ -3100,7 +3100,10 @@ border-radius: 5px}
 }
 
 
+#incorrect-password-popup{
+  transition-duration:1s;
 
+}
 
 
 
