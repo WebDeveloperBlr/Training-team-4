@@ -1,3 +1,4 @@
+<!--
 <!DOCTYPE html>
 <html lang="ru-RU">
 <head>
@@ -10,7 +11,7 @@
 </head>
 <body>
 <header class="header">
-    <form class="createProfile__form header-form-style" action=""><a class="createProfile__backToMain-link" href="login.html">
+    <form id="lol"class="createProfile__form header-form-style" action=""><a class="createProfile__backToMain-link" href="login.html">
         <svg class="icon icon-ARROW ">
             <use xlink:href="assets/images/svg/symbol/sprite.svg#ARROW"></use>
         </svg>
@@ -48,7 +49,89 @@
         <input class="button createProfile__submit button--success" type="submit" value="Создать">
     </form>
 </header>
+<script>
+    var form=document.getElementById("lol");
+    form.onsubmit=function(){
+        alert("submitted");
+    }
+</script>
 <script src="assets/js/libs.min.js"></script>
 <script src="assets/js/main.js"></script>
 </body>
 </html>
+-->
+
+
+<!DOCTYPE html>
+<html lang="ru-RU">
+<head>
+    <meta charset="utf-8">
+    <title>Main page</title>
+    <meta http-equiv="X-UA-Compatible" content="IE = edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="keywords" content="">
+    <link rel="stylesheet" type="text/css" href="assets/css/libs.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/main.css">
+</head>
+<body>
+<header class="header">
+    <form class="form-page__login-form"  id="login-form" method="get" action="/index.js">
+        <a class="createProfile__backToMain-link" href="/">
+            <svg class="icon icon-ARROW ">
+                <use xlink:href="assets/images/svg/symbol/sprite.svg#ARROW"></use>
+            </svg>
+        </a>
+        <h4 class="header-4">Registration</h4>
+        <div class="login-form__inputs-wrapper">
+            <label class="login-form__label" for="userLogin">Login</label>
+            <div class="login-form__field-wrapper">
+                <input class="login-form__input" type="text" name="loginInput" id="userLogin" placeholder="Login" required>
+                <div class="login-form__text">Please, enter your login</div>
+            </div>
+            <label class="login-form__label" for="userPassword">Password</label>
+            <div class="login-form__field-wrapper">
+                <input name="passwordInput" class="login-form__input input--valid-check" type="password" id="userPassword" placeholder="Password"
+                       minlength="6" maxlength="24" required>
+                <div class="login-form__text">Please, enter your password</div>
+            </div>
+            <label class="login-form__label" for="userRepPassword">Repeat password</label>
+            <div class="login-form__field-wrapper">
+                <input name="passwordInput" class="login-form__input input--valid-check" type="password" id="userRepPassword" placeholder="Password"
+                       minlength="6" maxlength="24" required>
+                <div class="login-form__text">Please, repeat your password</div>
+            </div>
+        </div>
+        <input id="submitBtn" class="button login-form__submit" type="submit" value="Sign up">
+        <div id="alertMes"  class="d-none unable-to-register opacity-0 alert alert-danger">
+          <div>Unable to register now.</div>
+          <div>Please, try later.</div>
+        </div>
+    </form>
+
+</header>
+<script src="assets/js/libs.min.js"></script>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/client-side-registration.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

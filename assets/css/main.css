@@ -354,12 +354,10 @@ input:focus:-ms-input-placeholder {
 }
 
 .createProfile__backToMain-link {
-  position: absolute;
-  left: 30px;
-  top: 30px;
   border: 1px solid #ebebeb;
   width: 30px;
   height: 30px;
+  box-shadow:1px 1px 1px 1px #5e806e;
 }
 
 .createProfile__backToMain-link .icon {
@@ -526,6 +524,17 @@ input:focus:-ms-input-placeholder {
   -ms-flex-pack: justify;
   justify-content: space-between;
   height: 100vh;
+}
+
+.hr-app-section-without-height {
+  font-family: "Ubuntu", Arial, sans-serif;
+  overflow: hidden;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
 }
 
 .hr-app-section__sidebar {
@@ -3109,11 +3118,25 @@ border-radius: 5px}
   margin-bottom:5px;
 }
 
+.unable-to-register{
+  display:flex;
+  width:100%;
+  transition-duration:2s;
+  flex-direction:column;
+  text-align:center;
 
+}
+.opacity-0{
+  opacity:0;
+}
+.less-padding{
+  padding:2.2rem 3.75rem;
+}
 
-
-
-
+.incorrect-field-value{
+  border:2px solid red ;
+  outline:none;
+}
 
 
 

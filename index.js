@@ -6,8 +6,11 @@ var connection=db.get;
 var candidatesController = require('./controllers/candidates');
 var vacanciesController = require('./controllers/vacancies');
 var fs = require('fs');
+var sendFile=require("./controllers/sendFile");
+
 
 var data = [];
+
 
 var access=false;
 setInterval(function(){
@@ -36,67 +39,25 @@ server.get('/assets/*.*', restify.plugins.serveStatic({
 }));
 
 server.get('/', function handler(req, res, next) {
-  fs.readFile(__dirname + '/login.html',
-    function (err, data) {
-      if (err) {
-        next(err);
-        return;
-      }
-      res.write(data);
-      res.end();
-      next();
-    });
+  sendFile(req,res,next,'/login.html');
 });
 
 server.get('/HR-app', function handler(req, res, next) {
-    if(access){
-    fs.readFile(__dirname + '/HR-app.html',
-        function (err, data) {
-            if (err) {
-                next(err);
-                return;
-            }
-            res.write(data);
-            res.end();
-            next();
-        });
-    }else{
-        fs.readFile(__dirname + '/login.html',
-            function (err, data) {
-                if (err) {
-                    next(err);
-                    return;
-                }
-                res.write(data);
-                res.end();
-                next();
-            });
-    }
+    if(access)
+        sendFile(req,res,next,'/HR-app.html');
+    else
+        sendFile(req,res,next,'/login.html');
+
 });
 
 server.get('/vacancies__schedule', function handler(req, res, next) {
-    fs.readFile(__dirname + '/vacancies__schedule.html',
-        function (err, data) {
-            if (err) {
-                next(err);
-                return;
-            }
-            res.write(data);
-            res.end();
-            next();
-        });
+    if(access)
+        sendFile(req,res,next,'/vacancies__schedule.html');
+    else
+        sendFile(req,res,next,'/login.html');
 });
 server.get("/register",function(req,res,next){
-    fs.readFile(__dirname + '/register.html',
-        function (err, data) {
-            if (err) {
-                next(err);
-                return;
-            }
-            res.write(data);
-            res.end();
-            next();
-        });
+    sendFile(req,res,next,'/register.html')
 });
 
 server.post("/authentication",function(req,res,next){
@@ -105,32 +66,34 @@ server.post("/authentication",function(req,res,next){
         results.forEach(function(row,i,results){
             if(req.body.userLogin==row.login){
                 if(req.body.userPassword==row.password){
-
-                    fs.readFile(__dirname+ "/HR-app.html",function(err,content){
-                        if(err) throw err;
-                        else{
-                            count++;
-                            access=true;
-                            console.log(row.login+"  "+"logged in");
-                            res.end("true");
-                        }
-                    });
-                }else {
-                    console.log("false");
-                    res.end("false");
+                     count++;
+                     access=true;
+                     console.log(row.login+"  "+"logged in");
+                     res.end("true");
                 }
-            }else {
-                console.log("false");
-                res.end("false");
             }
         });
+        if(!access)
+            res.end("false");
     });
 });
 
 server.post("/registration",function(req,res,next){
-    console.log(req.body.regLogin);
-    res.end();
+    connection.query('INSERT INTO `hr-app`.Authentication VALUES ("'+req.body.login+'","'+req.body.password+'");',function(err,results){
+        if(err){
+            console.error(err);
+            throw err;
+            res.end("false");
+        }else{
+            access=true;
+            console.log(req.body.login+" inserted into db with pass-> "+req.body.password);
+            res.end("true");
+        }
+    });
+
 });
+
+
 
 server.get('/candidates', candidatesController.all);
 server.get('/vacancies', vacanciesController.all);

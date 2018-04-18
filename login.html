@@ -12,60 +12,34 @@
 <body>
 <header class="header">
   <form class="form-page__login-form"  id="login-form" method="get" action="/HR-app">
-    <h4 class="header-4">Вход</h4>
+    <h4 class="header-4">Enter</h4>
     <div class="login-form__inputs-wrapper">
-      <label class="login-form__label" for="login">Логин</label>
+      <label class="login-form__label" for="login">Login</label>
       <div class="login-form__field-wrapper">
-        <input class="login-form__input" type="text" name="loginInput" id="login" placeholder="Логин" required>
-        <div class="login-form__text">Пожалуйста, введите логин :)</div>
+        <input class="login-form__input" type="text" name="loginInput" id="login" placeholder="Login" required>
+        <div class="login-form__text">Please, enter your login</div>
       </div>
+      <!--
       <label class="login-form__label" for="email">Эл. почта</label>
       <div class="login-form__field-wrapper">
         <input class="login-form__input" type="email" id="email" placeholder="Email" required>
         <div class="login-form__text">Пожалуйста, введите адрес электронной почты :)</div>
       </div>
-      <label class="login-form__label" for="password">Пароль</label>
+      -->
+      <label class="login-form__label" for="password">Password</label>
       <div class="login-form__field-wrapper">
-        <input name="passwordInput" class="login-form__input input--valid-check" type="password" id="password" placeholder="Пароль"
+        <input name="passwordInput" class="login-form__input input--valid-check" type="password" id="password" placeholder="Password"
                minlength="6" maxlength="24" required>
-        <div class="login-form__text">Пожалуйста, введите пароль :)</div>
+        <div class="login-form__text">Please, enter your password</div>
       </div>
     </div>
     <span id="incorrect-password-popup" class="login-form__info-text d-none text--red">The email or password you entered is incorrect.</span>
-    <input class="button login-form__submit" type="submit" value="Войти"><a
-      class="login-form__no-account-link header-link" href="/register">Нет профиля :(</a>
+    <input class="button login-form__submit" type="submit" value="Sign in"><a
+      class="login-form__no-account-link header-link" href="/register">Has no profile :(</a>
   </form>
 </header>
 <script src="assets/js/libs.min.js"></script>
 <script src="assets/js/main.js"></script>
-<script>
-
-    var logForm=document.getElementById("login-form");
-    logForm.onsubmit=function(event){
-        event.preventDefault();
-        var loginObj= {
-            userLogin:this.elements.loginInput.value,
-            userPassword:this.elements.passwordInput.value
-        };
-        var xhr=new XMLHttpRequest();
-        xhr.open("POST","/authentication",true);
-        xhr.setRequestHeader("Content-type",'application/json; charset=utf-8');
-        xhr.send(JSON.stringify(loginObj));
-        xhr.onreadystatechange=function(){
-            if(this.readyState!=4)
-                return;
-            if(this.status!=200)
-                return;
-            if(xhr.responseText=="false"){
-                var incorrPasswPopup=document.getElementById("incorrect-password-popup");
-                incorrPasswPopup.classList.remove("d-none");
-                return;
-            }
-            window.location.href="/HR-app";
-
-        };
-
-    }
-</script>
+<script src="assets/js/client-side-authentication.js"></script>
 </body>
 </html>

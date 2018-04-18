@@ -22,7 +22,6 @@
   },
   "homepage": "https://github.com/AlexKolonitsky/Training-team-3#readme",
   "dependencies": {
-    "express": "^4.16.3",
     "mysql": "^2.15.0",
     "restify": "^7.1.1"
   }
