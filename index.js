@@ -95,7 +95,6 @@ server.post("/registration", function (req, res, next) {
           throw err;
         } else {
           access = true;
-          console.log(req.body.login + " inserted into db with pass-> " + req.body.password + " and hash " + hashedPassword);
           res.end("true");
         }
       });
@@ -104,8 +103,23 @@ server.post("/registration", function (req, res, next) {
 });
 
 server.post("/oninputLoginReg",function(req,res,next){
-
-})
+  var count=0;
+  connection.query('SELECT login FROM `hr-app`.Authentication', function (err, queryResults) {
+    if (err) {
+      console.log(err);
+      throw err;
+    } else {
+      queryResults.forEach(function(row,i,results){
+        if(req.body.currentLogin==row.login) {
+          res.end("taken");
+          count++;
+        }
+      });
+      if (count==0){
+        res.end("free");}
+    }
+  });
+});
 
 server.get('/candidates', candidatesController.all);
 server.get('/vacancies', vacanciesController.all);
