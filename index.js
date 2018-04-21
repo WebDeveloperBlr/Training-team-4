@@ -103,7 +103,9 @@ server.post("/registration", function (req, res, next) {
   });
 });
 
+server.post("/oninputLoginReg",function(req,res,next){
 
+})
 
 server.get('/candidates', candidatesController.all);
 server.get('/vacancies', vacanciesController.all);

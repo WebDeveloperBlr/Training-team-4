@@ -53,3 +53,7 @@ form.onsubmit = function (event) {
     }
   }
 };
+
+loginInp.oninput=function(){
+  alert("inputed");
+};
