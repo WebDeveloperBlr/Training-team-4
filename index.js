@@ -13,9 +13,10 @@ var data = [];
 
 
 var access=false;
+
 setInterval(function(){
-    access=false;
-},120000);
+  access=false;
+},1000);
 
 const server = restify.createServer({
   name: config.name,
@@ -60,37 +61,46 @@ server.get("/register",function(req,res,next){
     sendFile(req,res,next,'/register.html')
 });
 
+var bcrypt = require('bcrypt');
+const saltRounds = 10;
+
 server.post("/authentication",function(req,res,next){
     connection.query("SELECT * FROM `hr-app`.Authentication",function(err,results){
-        var count=0;
         results.forEach(function(row,i,results){
-            if(req.body.userLogin==row.login){
-                if(req.body.userPassword==row.password){
-                     count++;
-                     access=true;
-                     console.log(row.login+"  "+"logged in");
-                     res.end("true");
+            bcrypt.compare(req.body.userPassword, row.password, function(err, resHash) {
+              if(resHash){
+                  access=true;
+                  console.log(row.login+"  "+"logged in");
+                  res.end("true");
                 }
-            }
+              if(i==(results.length-1) && access==false){
+                res.end("false");
+              }
+            });
         });
-        if(!access)
-            res.end("false");
     });
 });
 
-server.post("/registration",function(req,res,next){
-    connection.query('INSERT INTO `hr-app`.Authentication VALUES ("'+req.body.login+'","'+req.body.password+'");',function(err,results){
-        if(err){
-            console.error(err);
-            throw err;
-            res.end("false");
-        }else{
-            access=true;
-            console.log(req.body.login+" inserted into db with pass-> "+req.body.password);
-            res.end("true");
-        }
-    });
 
+server.post("/registration",function(req,res,next){
+    var hashedPassword;
+    bcrypt.hash(req.body.password, saltRounds, function(err, hash) {
+      if (err)
+          throw err;
+      else{
+          hashedPassword = hash;
+          connection.query('INSERT INTO `hr-app`.Authentication VALUES ("'+req.body.login+'","'+hashedPassword+'");',function(err,results){
+            if(err){
+              console.error(err);
+          throw err;
+          res.end("false");
+        }else{
+          access=true;
+          console.log(req.body.login+" inserted into db with pass-> "+req.body.password+" and hash "+hashedPassword);
+          res.end("true");
+        }
+      });}
+    });
 });
 
 

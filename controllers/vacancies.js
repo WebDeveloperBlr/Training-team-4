@@ -1,4 +1,4 @@
-var  Vacancies = require("./../models/Vacancies");
+var  Vacancies = require("./../models/vacancies");
 
 exports.all = function(req, res){
   var limit;
