@@ -277,7 +277,10 @@ input:focus:-ms-input-placeholder {
   padding: 0.625rem 1.25rem;
 }
 
-.login-form__input:focus + .login-form__text:after {
+
+
+.login-form__input:focus ~ .decor {
+  transition-duration: 0.5s;
   display: block;
   content: '';
   width: 8px;
@@ -285,10 +288,13 @@ input:focus:-ms-input-placeholder {
   background-color: #edd378;
   position: absolute;
   left: 50%;
-  bottom: 0;
+  bottom: 90px;
   -webkit-transform: rotate(45deg) translateX(-50%) translateY(100%);
   transform: rotate(45deg) translateX(-50%) translateY(100%);
+  opacity:1;
 }
+
+
 
 .login-form__text {
   -webkit-transition: all .5s ease;
@@ -304,6 +310,7 @@ input:focus:-ms-input-placeholder {
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
   font-size: 0.9375rem;
+    min-width:220px;
 }
 
 .login-form__info-text {
@@ -3139,7 +3146,25 @@ border-radius: 5px}
 }
 
 
+.login-form__input:focus~.login-free{
+  background-color: #06bd2f !important;
+  transition: all .5s ease;
+}
 
+.login-form__input:focus~.login-used{
+  background-color: #d4114a !important;
+  transition: all .5s ease;
+  color:white !important;
+}
+
+.incorrect-field-value:focus~.decor{
+  bottom:72px;
+  background-color: #edd378 !important;
+}
+
+.password-rep +.decor{
+    bottom:82px !important;
+}
 
 
 

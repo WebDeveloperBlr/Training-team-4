@@ -63,7 +63,7 @@
 
 
 <!DOCTYPE html>
-<html lang="ru-RU">
+<html lang="en-EN">
 <head>
     <meta charset="utf-8">
     <title>Main page</title>
@@ -85,20 +85,20 @@
         <div class="login-form__inputs-wrapper">
             <label class="login-form__label" for="userLogin">Login</label>
             <div class="login-form__field-wrapper">
-                <input class="login-form__input" type="text" name="loginInput" id="userLogin" placeholder="Login" required>
-                <div class="login-form__text">Please, enter your login</div>
+                <input autocomplete="off" class="login-form__input" type="text" name="loginInput" id="userLogin" placeholder="Login" required>
+                <div id="login-tip" class="login-form__text">Please, enter your login</div><span id="decor" class="decor opacity-0"></span>
             </div>
             <label class="login-form__label" for="userPassword">Password</label>
             <div class="login-form__field-wrapper">
                 <input name="passwordInput" class="login-form__input input--valid-check" type="password" id="userPassword" placeholder="Password"
                        minlength="6" maxlength="24" required>
-                <div class="login-form__text">Please, enter your password</div>
+                <div class="login-form__text">Please, enter your password</div><span class="decor opacity-0"></span>
             </div>
             <label class="login-form__label" for="userRepPassword">Repeat password</label>
             <div class="login-form__field-wrapper">
                 <input name="passwordInput" class="login-form__input input--valid-check" type="password" id="userRepPassword" placeholder="Password"
                        minlength="6" maxlength="24" required>
-                <div class="login-form__text">Please, repeat your password</div>
+                <div class="login-form__text">Please, repeat your password</div><span class="decor opacity-0"></span>
             </div>
         </div>
         <input id="submitBtn" class="button login-form__submit" type="submit" value="Sign up">

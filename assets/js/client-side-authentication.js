@@ -19,8 +19,10 @@ logForm.onsubmit=function(event){
             incorrPasswPopup.classList.remove("d-none");
             return;
         }
-        window.location.href="/HR-app";
+      logForm.elements.loginInput.value="";
+      logForm.elements.passwordInput.value="";
+      window.location.href="/HR-app";
 
     };
 
-}
+};
