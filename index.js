@@ -7,16 +7,9 @@ var candidatesController = require('./controllers/candidates');
 var vacanciesController = require('./controllers/vacancies');
 var fs = require('fs');
 var sendFile = require("./controllers/sendFile");
-
+var session=require("express-session");
 
 var data = [];
-
-
-var access = false;
-
-setInterval(function () {
-  access = false;
-}, 60000);
 
 const server = restify.createServer({
   name: config.name,
@@ -28,6 +21,7 @@ const server = restify.createServer({
 server.use(restify.plugins.acceptParser(server.acceptable));
 server.use(restify.plugins.queryParser());
 server.use(restify.plugins.bodyParser());
+server.use(session({ secret: 'really beautiful august sunrise', cookie: { maxAge: null }}));
 
 server.listen(process.env.PORT || 8080, function () {
   console.log('%s listening at %s', server.name, server.url);
@@ -44,7 +38,7 @@ server.get('/', function handler(req, res, next) {
 });
 
 server.get('/HR-app', function handler(req, res, next) {
-  if (access)
+  if (req.session.access)
     sendFile(req, res, next, '/HR-app.html');
   else
     sendFile(req, res, next, '/login.html');
@@ -52,7 +46,7 @@ server.get('/HR-app', function handler(req, res, next) {
 });
 
 server.get('/vacancies__schedule', function handler(req, res, next) {
-  if (access)
+  if (req.session.access)
     sendFile(req, res, next, '/vacancies__schedule.html');
   else
     sendFile(req, res, next, '/login.html');
@@ -65,15 +59,16 @@ var bcrypt = require('bcrypt');
 const saltRounds = 10;
 
 server.post("/authentication", function (req, res, next) {
-  connection.query("SELECT * FROM `hr-app`.Authentication", function (err, results) {
-    results.forEach(function (row, i, results) {
+  connection.query("SELECT * FROM `hr-app`.Authentication", function (err, queryResults) {
+    queryResults.forEach(function (row, i, results) {
       bcrypt.compare(req.body.userPassword, row.password, function (err, resHash) {
         if (resHash) {
-          access = true;
           console.log(row.login + "  " + "logged in");
+          req.session.access=true;
           res.end("true");
         }
-        if (i == (results.length - 1) && access == false) {
+        if (i == (queryResults.length - 1) && !req.session.access) {
+          console.log("false");
           res.end("false");
         }
       });
@@ -94,7 +89,7 @@ server.post("/registration", function (req, res, next) {
           res.end("false");
           throw err;
         } else {
-          access = true;
+          req.session.access=true;
           res.end("true");
         }
       });
