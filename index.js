@@ -105,7 +105,7 @@ server.post("/oninputLoginReg",function(req,res,next){
       throw err;
     } else {
       queryResults.forEach(function(row,i,results){
-        if(req.body.currentLogin==row.login) {
+        if(req.body.currentLogin.toLowerCase()==row.login.toLowerCase()) {
           res.end("taken");
           count++;
         }
