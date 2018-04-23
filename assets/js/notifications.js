@@ -3,19 +3,32 @@ var menu = document.getElementById("notificationMenu");
 var notifContainer = document.getElementById("notifsContainer");
 var interviewContainer=document.getElementById("interview-container");
 var nextInterviews, newCandidates;
+var allCandsBtn=document.getElementById("viewCandsBtn");
+var allInterviewsBtn=document.getElementById("viewInterviewsBtn");
 
-function renderCandidates(){
-  newCandidates.forEach(function (row, i, results) {
+function renderCandidates(a,b){
+  for(a;a<b;a++){
     var newEl = document.createElement("div");
     newEl.className = "notification";
     newEl.innerHTML = '<img class="notification__img" src="https://www.meme-arsenal.com/memes/31b51255d61f1c9ff104146e59a30790.jpg">\n' +
-      '<span class="notification__name">' + row.firstName + " " + row.secondName + '</span>\n' +
-      '<span class="notification__salary">' + row.salary + "$" + '</span>\n' +
-      '<span class="notification__position">' + row.name + '</span>\n' +
+      '<span class="notification__name">' + newCandidates[a].firstName + " " + newCandidates[a].secondName + '</span>\n' +
+      '<span class="notification__salary">' + newCandidates[a].salary + "$" + '</span>\n' +
+      '<span class="notification__position">' + newCandidates[a].name + '</span>\n' +
       '<button class="notification__close" data-close="">X</button>';
     notifContainer.append(newEl);
-  });
-}
+  }
+  }
+  // newCandidates.forEach(function (row, i, results) {
+  //   var newEl = document.createElement("div");
+  //   newEl.className = "notification";
+  //   newEl.innerHTML = '<img class="notification__img" src="https://www.meme-arsenal.com/memes/31b51255d61f1c9ff104146e59a30790.jpg">\n' +
+  //     '<span class="notification__name">' + row.firstName + " " + row.secondName + '</span>\n' +
+  //     '<span class="notification__salary">' + row.salary + "$" + '</span>\n' +
+  //     '<span class="notification__position">' + row.name + '</span>\n' +
+  //     '<button class="notification__close" data-close="">X</button>';
+  //   notifContainer.append(newEl);
+  // });
+// }
 
 function sortByDate(array) {
   array.sort(function (a, b){
@@ -56,6 +69,14 @@ notifContainer.addEventListener("click", function (event) {
   else return;
 });
 
+allInterviewsBtn.onclick=function(){
+  renderInterviews(4,nextInterviews.length);
+};
+
+allCandsBtn.onclick=function(){
+  renderCandidates(4,newCandidates.length);
+};
+
 (function () {
   xhrConfigure("GET",'/getNotificationCandidates',function () {
     if (this.readyState != 4)
@@ -63,7 +84,7 @@ notifContainer.addEventListener("click", function (event) {
     if (this.status != 200)
       return;
     newCandidates = JSON.parse(this.responseText);
-    renderCandidates();
+    renderCandidates(0,4);
   }
   );
 })();
@@ -75,6 +96,6 @@ notifContainer.addEventListener("click", function (event) {
     if (this.status != 200)
       return;
     nextInterviews=JSON.parse(this.responseText);
-    renderInterviews(0,nextInterviews.length);
+    renderInterviews(0,4);
   });
 })();
