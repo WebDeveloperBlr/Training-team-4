@@ -23,10 +23,10 @@ exports.all = function(limit,filter,cb){
 
     query += ') group by vacancy.id_vacancy';
 
- // console.log('SELECT count(*) "count" FROM(' + query+') AS T;');
+  console.log('SELECT count(*) "count" FROM(' + query+') AS T;');
 
     connection.query('SELECT count(*) "count" FROM(' + query+') AS T;', function (error, results) {
-     // console.log(results);
+      console.log(results);
       data.count = results[0].count;
       connection.query(query+' ORDER BY vacancy.id_vacancy ASC LIMIT ' +limit+ ';', function (error, results) {
           data.docs = results;

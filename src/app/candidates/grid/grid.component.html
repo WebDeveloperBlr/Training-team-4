@@ -1,0 +1,41 @@
+<div class="hr-app__table" *ngIf='data' id="hr-app__table">
+
+  <div class="hr-app__table__row table--row table-row--big" *ngFor='let item of data.docs'>
+    <div class="hr-app__table-col col--photo" data-toggle="collapse" data-target="" role="button"
+         aria-expanded="false" aria-controls="filters-bar-collapse">
+      <div class="hr-app__table-col__photo"><img class="hr-app__table-col__photo-img"
+                                                 src="/assets/images/profiles/profile.jpg" alt=""></div>
+    </div>
+    <div class="hr-app__table-col">
+      <div class="hr-app__table-col__advantages">{{item.name}}</div>
+    </div>
+    <div class="hr-app__table-col">
+      <div class="hr-app__table-col__advantages">{{item.position}}</div>
+    </div>
+    <div class="hr-app__table-col">
+      <div class="hr-app__table-col__advantages">{{item.status}}</div>
+    </div>
+    <div class="hr-app__table-col"><a class="hr-app__table-col__button" routerLink="/candidates/{{item.id_candidate}}">View
+      Candidate</a></div>
+  </div>
+
+
+  <div class="hr-app__table-editor">
+    <div class="hr-app__table-editor__col">
+      <div class="hr-app__table-editor__text">Rows per page:</div>
+      <app-dropdown (onChanged)="changeLimit($event)"></app-dropdown>
+
+    </div>
+    <div class="hr-app__table-editor__col order-2">
+      <div class="hr-app__table-editor__pagination">{{(offset-1)*limit+1}} - {{(offset-1)*limit + limit}} of {{data.count}}</div>
+    </div>
+    <div
+      class="hr-app__table-editor__page-buttons hr-app__table-editor__col order-1 order-lg-2">
+
+      <app-pagination (onChanged)="changeOffset($event)" ></app-pagination>
+    </div>
+    <div class="hr-app__fixed-round">
+      <div class="hr-app__fixed-round__plus">+</div>
+    </div>
+  </div>
+</div>
