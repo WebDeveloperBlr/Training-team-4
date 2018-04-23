@@ -21,9 +21,9 @@ export class VacanciesComponent implements OnInit {
   ngOnInit() {
     this.getVacancies();
   }
-  getVacancies(): void{
+  getVacancies(): void {
     //this.vs.getAll().subscribe(data => this.data = data);
-    this.vs.getMockAll(this.grid.limit,this.grid.offset).subscribe(data => this.data = data);
+    this.vs.getMockAll(this.grid.limit, this.grid.offset).subscribe(data => this.data = data);
   }
 
 }
