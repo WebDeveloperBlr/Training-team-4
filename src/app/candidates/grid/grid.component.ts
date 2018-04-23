@@ -1,6 +1,7 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ViewChild } from '@angular/core';
 import { CandidateService } from '../../candidate.service';
 import { PaginationComponent } from '../../common/pagination/pagination.component';
+import { DropdownComponent } from '../../common/dropdown/dropdown.component';
 
 @Component({
   selector: 'app-grid',
@@ -8,27 +9,26 @@ import { PaginationComponent } from '../../common/pagination/pagination.componen
   styleUrls: ['./grid.component.scss']
 })
 export class GridComponent implements OnInit {
+
   @Output() changePage = new EventEmitter<any>();
   data: object;
   offset: number;
   limit: number;
 
+  @ViewChild(PaginationComponent)
+  private pg: PaginationComponent;
 
-  reloadData(){
-    this.changePage.emit([this.limit, this.offset]);
+  @ViewChild(DropdownComponent)
+  private dropDown: DropdownComponent;
+
+
+  onChange(): void {
+    this.limit = this.dropDown.activeValue;
+    this.offset = this.pg.page;
+    this.changePage.emit();
   }
 
-  changeOffset(event: number):void {
-    this.offset = event;
-    this.reloadData();
-  }
-
-  changeLimit(event: number):void {
-    this.limit = event;
-    this.reloadData();
-  }
-
-  constructor(private cs: CandidateService, private pg: PaginationComponent) { }
+  constructor(private cs: CandidateService) { }
 
   ngOnInit() {
     this.offset = this.cs.currentOffset;
@@ -36,7 +36,7 @@ export class GridComponent implements OnInit {
       this.getCandidates();
   }
 
-  getCandidates(limit: number = 10, offset: number  = this.pg.page): void {
+  getCandidates(limit: number = 10, offset: number  = 1): void {
     //this.data = this.cs.getCandidates().subscribe((candidates) => this.data = candidates);
     this.cs.getMockCandidates(limit, offset).subscribe((data) => {
       this.data = data;

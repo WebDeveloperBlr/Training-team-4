@@ -2,7 +2,7 @@
   "count": 80,
   "docs": [
   {
-    "_id": "5adb2fc32ca1d20f9aaf4c8a",
+    "id_candidate": "5adb2fc32ca1d20f9aaf4c8a",
     "age": 20,
     "name": "Vaughn Lambert",
     "position": "Java Developer",
@@ -14,7 +14,7 @@
     "status": "CV-accepted"
   },
   {
-    "_id": "5adb2fc3a561f77283ce0e9f",
+    "id_candidate": "5adb2fc3a561f77283ce0e9f",
     "age": 36,
     "name": "Emily Morgan",
     "position": "JavaScript Developer",
@@ -26,7 +26,7 @@
     "status": "Accepted for interview"
   },
   {
-    "_id": "5adb2fc3dbbc2e160a0084de",
+    "id_candidate": "5adb2fc3dbbc2e160a0084de",
     "age": 33,
     "name": "Maddox Goodman",
     "position": "PHP Developer",
@@ -38,7 +38,7 @@
     "status": "Accepted for interview"
   },
   {
-    "_id": "5adb2fc31b2cd6d7fcd02cd9",
+    "id_candidate": "5adb2fc31b2cd6d7fcd02cd9",
     "age": 29,
     "name": "Georgia Pruitt",
     "position": "Java Developer",
@@ -50,7 +50,7 @@
     "status": "Accepted for interview"
   },
   {
-    "_id": "5adb2fc367dab63d35ea7d1d",
+    "id_candidate": "5adb2fc367dab63d35ea7d1d",
     "age": 25,
     "name": "Loraine Alexander",
     "position": "Ruby Developer",
@@ -62,7 +62,7 @@
     "status": "New"
   },
   {
-    "_id": "5adb2fc311072ec98006e0f3",
+    "id_candidate": "5adb2fc311072ec98006e0f3",
     "age": 35,
     "name": "Browning Francis",
     "position": "PHP Developer",
@@ -74,7 +74,7 @@
     "status": "New"
   },
   {
-    "_id": "5adb2fc3b78bc86ffcf4c43a",
+    "id_candidate": "5adb2fc3b78bc86ffcf4c43a",
     "age": 32,
     "name": "Kelli Evans",
     "position": "PHP Developer",
@@ -86,7 +86,7 @@
     "status": "CV-accepted"
   },
   {
-    "_id": "5adb2fc30db8fe7493a82067",
+    "id_candidate": "5adb2fc30db8fe7493a82067",
     "age": 37,
     "name": "Mosley Lloyd",
     "position": "Java Developer",
@@ -98,7 +98,7 @@
     "status": "CV-accepted"
   },
   {
-    "_id": "5adb2fc3c4480fcce920a560",
+    "id_candidate": "5adb2fc3c4480fcce920a560",
     "age": 22,
     "name": "Estella Sosa",
     "position": "Java Developer",
@@ -110,7 +110,7 @@
     "status": "New"
   },
   {
-    "_id": "5adb2fc3f771fa97b0bf2aaa",
+    "id_candidate": "5adb2fc3f771fa97b0bf2aaa",
     "age": 21,
     "name": "Cox Robinson",
     "position": "JavaScript Developer",
@@ -122,7 +122,7 @@
     "status": "New"
   },
   {
-    "_id": "5adb2fc383631b030fd8fc7b",
+    "id_candidate": "5adb2fc383631b030fd8fc7b",
     "age": 29,
     "name": "Williams Mooney",
     "position": "PHP Developer",
@@ -134,7 +134,7 @@
     "status": "New"
   },
   {
-    "_id": "5adb2fc3a57b49a4846632fa",
+    "id_candidate": "5adb2fc3a57b49a4846632fa",
     "age": 39,
     "name": "Rowe Sutton",
     "position": "JavaScript Developer",
@@ -146,7 +146,7 @@
     "status": "New"
   },
   {
-    "_id": "5adb2fc39d2ed5f7fd46c545",
+    "id_candidate": "5adb2fc39d2ed5f7fd46c545",
     "age": 23,
     "name": "Ina Baxter",
     "position": "JavaScript Developer",
@@ -158,7 +158,7 @@
     "status": "New"
   },
   {
-    "_id": "5adb2fc39e925b68b25c193a",
+    "id_candidate": "5adb2fc39e925b68b25c193a",
     "age": 35,
     "name": "Mamie Mcmahon",
     "position": "PHP Developer",
@@ -170,7 +170,7 @@
     "status": "Accepted for interview"
   },
   {
-    "_id": "5adb2fc39fb2be2f778ffb04",
+    "id_candidate": "5adb2fc39fb2be2f778ffb04",
     "age": 30,
     "name": "Lea Coleman",
     "position": "Java Developer",
@@ -182,7 +182,7 @@
     "status": "CV-rejected"
   },
   {
-    "_id": "5adb2fc3a8c8c751d545cd78",
+    "id_candidate": "5adb2fc3a8c8c751d545cd78",
     "age": 37,
     "name": "Copeland Craig",
     "position": "Java Developer",
@@ -194,7 +194,7 @@
     "status": "CV-accepted"
   },
   {
-    "_id": "5adb2fc3a705debf44d729fa",
+    "id_candidate": "5adb2fc3a705debf44d729fa",
     "age": 35,
     "name": "Joan Atkinson",
     "position": "PHP Developer",
@@ -206,7 +206,7 @@
     "status": "New"
   },
   {
-    "_id": "5adb2fc34521a305853a9fcd",
+    "id_candidate": "5adb2fc34521a305853a9fcd",
     "age": 37,
     "name": "Sherrie Stephens",
     "position": "PHP Developer",
@@ -218,7 +218,7 @@
     "status": "Accepted for interview"
   },
   {
-    "_id": "5adb2fc3c569b64f574c4d27",
+    "id_candidate": "5adb2fc3c569b64f574c4d27",
     "age": 32,
     "name": "Camacho Cooke",
     "position": "Ruby Developer",
@@ -230,7 +230,7 @@
     "status": "New"
   },
   {
-    "_id": "5adb2fc31afc1266646d7d16",
+    "id_candidate": "5adb2fc31afc1266646d7d16",
     "age": 20,
     "name": "Cherry Nguyen",
     "position": "JavaScript Developer",
@@ -242,7 +242,7 @@
     "status": "Accepted for interview"
   },
   {
-    "_id": "5adb2fc3367bb6a01aa690c6",
+    "id_candidate": "5adb2fc3367bb6a01aa690c6",
     "age": 40,
     "name": "Herminia Mcpherson",
     "position": "Ruby Developer",
@@ -254,7 +254,7 @@
     "status": "Accepted for interview"
   },
   {
-    "_id": "5adb2fc3ddcac306d9690c2c",
+    "id_candidate": "5adb2fc3ddcac306d9690c2c",
     "age": 27,
     "name": "Marla Ramos",
     "position": "JavaScript Developer",
@@ -266,7 +266,7 @@
     "status": "CV-rejected"
   },
   {
-    "_id": "5adb2fc355230f3c9a189113",
+    "id_candidate": "5adb2fc355230f3c9a189113",
     "age": 38,
     "name": "Coffey Mcdaniel",
     "position": "PHP Developer",
@@ -278,7 +278,7 @@
     "status": "Accepted for interview"
   },
   {
-    "_id": "5adb2fc34b9d6e9ec86496ad",
+    "id_candidate": "5adb2fc34b9d6e9ec86496ad",
     "age": 27,
     "name": "Strong Gamble",
     "position": "PHP Developer",
@@ -290,7 +290,7 @@
     "status": "New"
   },
   {
-    "_id": "5adb2fc3cedbbed47875ff90",
+    "id_candidate": "5adb2fc3cedbbed47875ff90",
     "age": 27,
     "name": "Sheree Singleton",
     "position": "PHP Developer",
@@ -302,7 +302,7 @@
     "status": "Accepted for interview"
   },
   {
-    "_id": "5adb2fc31e3b9c22c2a05b68",
+    "id_candidate": "5adb2fc31e3b9c22c2a05b68",
     "age": 33,
     "name": "Hilda Griffith",
     "position": "JavaScript Developer",
@@ -314,7 +314,7 @@
     "status": "Accepted for interview"
   },
   {
-    "_id": "5adb2fc30899f9a151bfe2c8",
+    "id_candidate": "5adb2fc30899f9a151bfe2c8",
     "age": 36,
     "name": "Sallie Carter",
     "position": "Ruby Developer",
@@ -326,7 +326,7 @@
     "status": "New"
   },
   {
-    "_id": "5adb2fc3814b99a3998c777c",
+    "id_candidate": "5adb2fc3814b99a3998c777c",
     "age": 24,
     "name": "Cleveland Williamson",
     "position": "Java Developer",
@@ -338,7 +338,7 @@
     "status": "CV-rejected"
   },
   {
-    "_id": "5adb2fc390b8cac4257902f7",
+    "id_candidate": "5adb2fc390b8cac4257902f7",
     "age": 33,
     "name": "Gillespie Patrick",
     "position": "PHP Developer",
@@ -350,7 +350,7 @@
     "status": "CV-accepted"
   },
   {
-    "_id": "5adb2fc31c59c902c06b114a",
+    "id_candidate": "5adb2fc31c59c902c06b114a",
     "age": 25,
     "name": "Claudette Kirk",
     "position": "Java Developer",
@@ -362,7 +362,7 @@
     "status": "New"
   },
   {
-    "_id": "5adb2fc3af001f922ff41ba9",
+    "id_candidate": "5adb2fc3af001f922ff41ba9",
     "age": 38,
     "name": "Owen Trevino",
     "position": "Java Developer",
@@ -374,7 +374,7 @@
     "status": "Accepted for interview"
   },
   {
-    "_id": "5adb2fc34118a744efa94f4c",
+    "id_candidate": "5adb2fc34118a744efa94f4c",
     "age": 40,
     "name": "Jenny Snyder",
     "position": "JavaScript Developer",
@@ -386,7 +386,7 @@
     "status": "Accepted for interview"
   },
   {
-    "_id": "5adb2fc382992c678c167b77",
+    "id_candidate": "5adb2fc382992c678c167b77",
     "age": 30,
     "name": "Bates Cobb",
     "position": "Java Developer",
@@ -398,7 +398,7 @@
     "status": "New"
   },
   {
-    "_id": "5adb2fc3b3ced41d6430b6ef",
+    "id_candidate": "5adb2fc3b3ced41d6430b6ef",
     "age": 30,
     "name": "Roberson Gallagher",
     "position": "JavaScript Developer",
@@ -410,7 +410,7 @@
     "status": "New"
   },
   {
-    "_id": "5adb2fc3a056cf14075fa09e",
+    "id_candidate": "5adb2fc3a056cf14075fa09e",
     "age": 39,
     "name": "Jocelyn Casey",
     "position": "Ruby Developer",
@@ -422,7 +422,7 @@
     "status": "Accepted for interview"
   },
   {
-    "_id": "5adb2fc365ee36f389750a53",
+    "id_candidate": "5adb2fc365ee36f389750a53",
     "age": 33,
     "name": "Juliet Parks",
     "position": "Java Developer",
@@ -434,7 +434,7 @@
     "status": "Accepted for interview"
   },
   {
-    "_id": "5adb2fc3320bc622bd65e0d0",
+    "id_candidate": "5adb2fc3320bc622bd65e0d0",
     "age": 22,
     "name": "Kelly Tate",
     "position": "Ruby Developer",
@@ -446,7 +446,7 @@
     "status": "CV-rejected"
   },
   {
-    "_id": "5adb2fc3668e7083a885a8cb",
+    "id_candidate": "5adb2fc3668e7083a885a8cb",
     "age": 22,
     "name": "Gail Hogan",
     "position": "Java Developer",
@@ -458,7 +458,7 @@
     "status": "New"
   },
   {
-    "_id": "5adb2fc3bdddc6074bebe4cb",
+    "id_candidate": "5adb2fc3bdddc6074bebe4cb",
     "age": 29,
     "name": "Hilary Ratliff",
     "position": "Ruby Developer",
@@ -470,7 +470,7 @@
     "status": "New"
   },
   {
-    "_id": "5adb2fc3720e4faf3ad755d3",
+    "id_candidate": "5adb2fc3720e4faf3ad755d3",
     "age": 40,
     "name": "Lelia Holmes",
     "position": "Ruby Developer",
@@ -482,7 +482,7 @@
     "status": "CV-rejected"
   },
   {
-    "_id": "5adb2fc3e19ca3aefd45904a",
+    "id_candidate": "5adb2fc3e19ca3aefd45904a",
     "age": 29,
     "name": "Angela Phelps",
     "position": "Java Developer",
@@ -494,7 +494,7 @@
     "status": "CV-rejected"
   },
   {
-    "_id": "5adb2fc368570841cf347c80",
+    "id_candidate": "5adb2fc368570841cf347c80",
     "age": 29,
     "name": "Lloyd Blake",
     "position": "Java Developer",
@@ -506,7 +506,7 @@
     "status": "CV-accepted"
   },
   {
-    "_id": "5adb2fc3314d64359b67ab89",
+    "id_candidate": "5adb2fc3314d64359b67ab89",
     "age": 25,
     "name": "Dominique Compton",
     "position": "Java Developer",
@@ -518,7 +518,7 @@
     "status": "New"
   },
   {
-    "_id": "5adb2fc3c774ef4ffe470146",
+    "id_candidate": "5adb2fc3c774ef4ffe470146",
     "age": 39,
     "name": "May Ortega",
     "position": "Java Developer",
@@ -530,7 +530,7 @@
     "status": "Accepted for interview"
   },
   {
-    "_id": "5adb2fc39d91c706fb329f43",
+    "id_candidate": "5adb2fc39d91c706fb329f43",
     "age": 35,
     "name": "Maxwell Gibbs",
     "position": "PHP Developer",
@@ -542,7 +542,7 @@
     "status": "New"
   },
   {
-    "_id": "5adb2fc3794ad21cad50f703",
+    "id_candidate": "5adb2fc3794ad21cad50f703",
     "age": 27,
     "name": "Morales Stark",
     "position": "Ruby Developer",
@@ -554,7 +554,7 @@
     "status": "CV-rejected"
   },
   {
-    "_id": "5adb2fc31783d0d56c289181",
+    "id_candidate": "5adb2fc31783d0d56c289181",
     "age": 24,
     "name": "Lucy Vang",
     "position": "Ruby Developer",
@@ -566,7 +566,7 @@
     "status": "New"
   },
   {
-    "_id": "5adb2fc38dd47b349637313a",
+    "id_candidate": "5adb2fc38dd47b349637313a",
     "age": 31,
     "name": "Hopper Little",
     "position": "JavaScript Developer",
@@ -578,7 +578,7 @@
     "status": "Accepted for interview"
   },
   {
-    "_id": "5adb2fc3571e29762aaf351f",
+    "id_candidate": "5adb2fc3571e29762aaf351f",
     "age": 20,
     "name": "Ferguson Boyle",
     "position": "JavaScript Developer",
@@ -590,7 +590,7 @@
     "status": "Accepted for interview"
   },
   {
-    "_id": "5adb2fc36c895f9294143829",
+    "id_candidate": "5adb2fc36c895f9294143829",
     "age": 26,
     "name": "Sharron Rush",
     "position": "Java Developer",
@@ -602,7 +602,7 @@
     "status": "CV-rejected"
   },
   {
-    "_id": "5adb2fc393ae2a73066eb053",
+    "id_candidate": "5adb2fc393ae2a73066eb053",
     "age": 39,
     "name": "Kerry Mckinney",
     "position": "Ruby Developer",
@@ -614,7 +614,7 @@
     "status": "Accepted for interview"
   },
   {
-    "_id": "5adb2fc319ab8ad486da28e0",
+    "id_candidate": "5adb2fc319ab8ad486da28e0",
     "age": 27,
     "name": "Haney Macias",
     "position": "Java Developer",
@@ -626,7 +626,7 @@
     "status": "Accepted for interview"
   },
   {
-    "_id": "5adb2fc3416a8534a9233e00",
+    "id_candidate": "5adb2fc3416a8534a9233e00",
     "age": 37,
     "name": "Conley Irwin",
     "position": "Java Developer",
@@ -638,7 +638,7 @@
     "status": "CV-accepted"
   },
   {
-    "_id": "5adb2fc38bf379bad6336d48",
+    "id_candidate": "5adb2fc38bf379bad6336d48",
     "age": 27,
     "name": "Fox Downs",
     "position": "JavaScript Developer",
@@ -650,7 +650,7 @@
     "status": "New"
   },
   {
-    "_id": "5adb2fc3590c9d83a2633f25",
+    "id_candidate": "5adb2fc3590c9d83a2633f25",
     "age": 33,
     "name": "Bowers Barry",
     "position": "PHP Developer",
@@ -662,7 +662,7 @@
     "status": "CV-rejected"
   },
   {
-    "_id": "5adb2fc364cad596a91c7a97",
+    "id_candidate": "5adb2fc364cad596a91c7a97",
     "age": 20,
     "name": "Cristina Joyner",
     "position": "Ruby Developer",
@@ -674,7 +674,7 @@
     "status": "CV-rejected"
   },
   {
-    "_id": "5adb2fc3d268e7f2fd4176ba",
+    "id_candidate": "5adb2fc3d268e7f2fd4176ba",
     "age": 40,
     "name": "Louella Shepherd",
     "position": "Java Developer",
@@ -686,7 +686,7 @@
     "status": "Accepted for interview"
   },
   {
-    "_id": "5adb2fc330a78d362203ec40",
+    "id_candidate": "5adb2fc330a78d362203ec40",
     "age": 28,
     "name": "Gomez Norris",
     "position": "Java Developer",
@@ -698,7 +698,7 @@
     "status": "CV-rejected"
   },
   {
-    "_id": "5adb2fc3effb446e505addc5",
+    "id_candidate": "5adb2fc3effb446e505addc5",
     "age": 38,
     "name": "Jaclyn Caldwell",
     "position": "PHP Developer",
@@ -710,7 +710,7 @@
     "status": "Accepted for interview"
   },
   {
-    "_id": "5adb2fc3399f11c5aac8a65f",
+    "id_candidate": "5adb2fc3399f11c5aac8a65f",
     "age": 20,
     "name": "Roxanne Garcia",
     "position": "Ruby Developer",
@@ -722,7 +722,7 @@
     "status": "CV-rejected"
   },
   {
-    "_id": "5adb2fc347edf0492689c94b",
+    "id_candidate": "5adb2fc347edf0492689c94b",
     "age": 37,
     "name": "Mia House",
     "position": "Java Developer",
@@ -734,7 +734,7 @@
     "status": "CV-rejected"
   },
   {
-    "_id": "5adb2fc3efb9477df0a7226c",
+    "id_candidate": "5adb2fc3efb9477df0a7226c",
     "age": 25,
     "name": "Esther Adams",
     "position": "Java Developer",
@@ -746,7 +746,7 @@
     "status": "Accepted for interview"
   },
   {
-    "_id": "5adb2fc307543e6771dcb1ff",
+    "id_candidate": "5adb2fc307543e6771dcb1ff",
     "age": 26,
     "name": "Charlene Mullen",
     "position": "Ruby Developer",
@@ -758,7 +758,7 @@
     "status": "Accepted for interview"
   },
   {
-    "_id": "5adb2fc3c9a74ac770b06943",
+    "id_candidate": "5adb2fc3c9a74ac770b06943",
     "age": 33,
     "name": "Rasmussen Frost",
     "position": "Java Developer",
@@ -770,7 +770,7 @@
     "status": "Accepted for interview"
   },
   {
-    "_id": "5adb2fc36bb09c05f451d427",
+    "id_candidate": "5adb2fc36bb09c05f451d427",
     "age": 38,
     "name": "Alison King",
     "position": "Ruby Developer",
@@ -782,7 +782,7 @@
     "status": "Accepted for interview"
   },
   {
-    "_id": "5adb2fc365e868d1eb6c57d2",
+    "id_candidate": "5adb2fc365e868d1eb6c57d2",
     "age": 38,
     "name": "Clarice Graves",
     "position": "Java Developer",
@@ -794,7 +794,7 @@
     "status": "CV-rejected"
   },
   {
-    "_id": "5adb2fc3d10dafdecc11e8dd",
+    "id_candidate": "5adb2fc3d10dafdecc11e8dd",
     "age": 36,
     "name": "Blankenship Waller",
     "position": "PHP Developer",
@@ -806,7 +806,7 @@
     "status": "CV-accepted"
   },
   {
-    "_id": "5adb2fc3146323b09db2c558",
+    "id_candidate": "5adb2fc3146323b09db2c558",
     "age": 27,
     "name": "Bridges Conway",
     "position": "JavaScript Developer",

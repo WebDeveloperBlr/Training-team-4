@@ -3107,6 +3107,11 @@ app-candidates{
   position: relative;
   overflow: auto;
 }
+app-vacancies{
+  max-height: 100%;
+  position: relative;
+  overflow: auto;
+}
 .page-item.active .page-link{
   background-color: #02c2dd;
   border-color: #02c2dd;

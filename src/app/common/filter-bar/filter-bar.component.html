@@ -32,7 +32,7 @@
       </div>
       <div class="hr-app__filters-bar__filter-item">
         <div class="hr-app__filters-bar__select-text">Status</div>
-        <app-ng-select-component></app-ng-select-component>
+        <app-ng-select-component (onChanged)="change($event)"></app-ng-select-component>
 
       </div>
       <div class="hr-app__filters-bar__pagination"><span>1</span><span> of</span><span> 12</span></div>

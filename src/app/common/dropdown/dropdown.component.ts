@@ -8,7 +8,7 @@ import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 export class DropdownComponent implements OnInit {
 
   values: Array<number> = [10, 20, 50];
-  activeValue = 10;
+  public activeValue = 10;
   @Output() onChanged = new EventEmitter<number>();
 
   onChange(evt): void {

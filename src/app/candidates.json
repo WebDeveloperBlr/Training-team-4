@@ -1,7 +1,7 @@
 {
     count: 30,
     docs: [{
-        "_id": "5aaea033d116fce10bf34373",
+        "id_candidate": "5aaea033d116fce10bf34373",
         "age": 37,
         "name": "Carr",
         "lastName": "Mcneil",
@@ -15,7 +15,7 @@
         "start": "2018-05-02",
         "end": "2018-05-02"
     }, {
-        "_id": "5aaea0338793fb6393f2f483",
+        "id_candidate": "5aaea0338793fb6393f2f483",
         "age": 27,
         "name": "Johnson",
         "lastName": "Hanson",
@@ -29,7 +29,7 @@
         "start": "2018-04-21",
         "end": "2018-04-21"
     }, {
-        "_id": "5aaea0339b115d0850faa840",
+        "id_candidate": "5aaea0339b115d0850faa840",
         "age": 23,
         "name": "Sheri",
         "lastName": "Donaldson",
@@ -43,7 +43,7 @@
         "start": "2018-05-04",
         "end": "2018-05-04"
     }, {
-        "_id": "5aaea033990f48246ca038c1",
+        "id_candidate": "5aaea033990f48246ca038c1",
         "age": 33,
         "name": "Greta",
         "lastName": "Gardner",
@@ -57,7 +57,7 @@
         "start": "2018-04-06",
         "end": "2018-04-06"
     }, {
-        "_id": "5aaea033b8eae8226e909a06",
+        "id_candidate": "5aaea033b8eae8226e909a06",
         "age": 33,
         "name": "Alston",
         "lastName": "Peters",
@@ -71,7 +71,7 @@
         "start": "2018-03-23",
         "end": "2018-03-23"
     }, {
-        "_id": "5aaea033cb5e587005d9c1eb",
+        "id_candidate": "5aaea033cb5e587005d9c1eb",
         "age": 22,
         "name": "Sharon",
         "lastName": "Patterson",
@@ -85,7 +85,7 @@
         "start": "2018-05-20",
         "end": "2018-05-20"
     }, {
-        "_id": "5aaea03308a17e61c59fc7ca",
+        "id_candidate": "5aaea03308a17e61c59fc7ca",
         "age": 37,
         "name": "Marian",
         "lastName": "Norman",
@@ -99,7 +99,7 @@
         "start": "2018-06-30",
         "end": "2018-06-30"
     }, {
-        "_id": "5aaea033679acbc6027a3578",
+        "id_candidate": "5aaea033679acbc6027a3578",
         "age": 23,
         "name": "Therese",
         "lastName": "Stokes",
@@ -113,7 +113,7 @@
         "start": "2018-05-10",
         "end": "2018-05-10"
     }, {
-        "_id": "5aaea033d78b86d18a2b511a",
+        "id_candidate": "5aaea033d78b86d18a2b511a",
         "age": 39,
         "name": "Kayla",
         "lastName": "Todd",
@@ -127,7 +127,7 @@
         "start": "2018-04-27",
         "end": "2018-04-27"
     }, {
-        "_id": "5aaea03320ace872f7afec6f",
+        "id_candidate": "5aaea03320ace872f7afec6f",
         "age": 33,
         "name": "Arlene",
         "lastName": "Morse",
@@ -141,7 +141,7 @@
         "start": "2018-03-22",
         "end": "2018-03-22"
     }, {
-        "_id": "5aaea033e265a6dd1dc838f5",
+        "id_candidate": "5aaea033e265a6dd1dc838f5",
         "age": 30,
         "name": "Obrien",
         "lastName": "Farmer",
@@ -155,7 +155,7 @@
         "start": "2018-06-16",
         "end": "2018-06-16"
     }, {
-        "_id": "5aaea0331fca6938dd76b338",
+        "id_candidate": "5aaea0331fca6938dd76b338",
         "age": 35,
         "name": "Mayer",
         "lastName": "Carson",
@@ -169,7 +169,7 @@
         "start": "2018-05-02",
         "end": "2018-05-02"
     }, {
-        "_id": "5aaea03361b9a9722195f20b",
+        "id_candidate": "5aaea03361b9a9722195f20b",
         "age": 37,
         "name": "Roxanne",
         "lastName": "Tyson",
@@ -183,7 +183,7 @@
         "start": "2018-03-27",
         "end": "2018-03-27"
     }, {
-        "_id": "5aaea033a2d789476cbc2a40",
+        "id_candidate": "5aaea033a2d789476cbc2a40",
         "age": 38,
         "name": "Fannie",
         "lastName": "Odonnell",
@@ -197,7 +197,7 @@
         "start": "2018-06-29",
         "end": "2018-06-29"
     }, {
-        "_id": "5aaea033910553f7bc231aaf",
+        "id_candidate": "5aaea033910553f7bc231aaf",
         "age": 38,
         "name": "Alvarez",
         "lastName": "Cleveland",
@@ -211,7 +211,7 @@
         "start": "2018-05-31",
         "end": "2018-05-31"
     }, {
-        "_id": "5aaea03369a95b8db2ff719f",
+        "id_candidate": "5aaea03369a95b8db2ff719f",
         "age": 26,
         "name": "Snow",
         "lastName": "Crane",
@@ -225,7 +225,7 @@
         "start": "2018-05-18",
         "end": "2018-05-18"
     }, {
-        "_id": "5aaea0336824798ade1e94ce",
+        "id_candidate": "5aaea0336824798ade1e94ce",
         "age": 36,
         "name": "Nita",
         "lastName": "Logan",
@@ -239,7 +239,7 @@
         "start": "2018-05-21",
         "end": "2018-05-21"
     }, {
-        "_id": "5aaea033e49795185fb44846",
+        "id_candidate": "5aaea033e49795185fb44846",
         "age": 30,
         "name": "Williamson",
         "lastName": "Alexander",
@@ -253,7 +253,7 @@
         "start": "2018-05-23",
         "end": "2018-05-23"
     }, {
-        "_id": "5aaea0338f0b2686f2338589",
+        "id_candidate": "5aaea0338f0b2686f2338589",
         "age": 24,
         "name": "Wilma",
         "lastName": "Contreras",
@@ -267,7 +267,7 @@
         "start": "2018-06-23",
         "end": "2018-06-23"
     }, {
-        "_id": "5aaea0330d01e11a4aef77a6",
+        "id_candidate": "5aaea0330d01e11a4aef77a6",
         "age": 23,
         "name": "Bird",
         "lastName": "Hutchinson",
@@ -281,7 +281,7 @@
         "start": "2018-06-22",
         "end": "2018-06-22"
     }, {
-        "_id": "5aaea033840e97d722e47001",
+        "id_candidate": "5aaea033840e97d722e47001",
         "age": 25,
         "name": "Madge",
         "lastName": "Calhoun",
@@ -295,7 +295,7 @@
         "start": "2018-04-10",
         "end": "2018-04-10"
     }, {
-        "_id": "5aaea033bf8580fed9218ecd",
+        "id_candidate": "5aaea033bf8580fed9218ecd",
         "age": 34,
         "name": "Maricela",
         "lastName": "Wilkinson",
@@ -309,7 +309,7 @@
         "start": "2018-06-25",
         "end": "2018-06-25"
     }, {
-        "_id": "5aaea0337929ca2135419631",
+        "id_candidate": "5aaea0337929ca2135419631",
         "age": 40,
         "name": "Saunders",
         "lastName": "Hernandez",
@@ -323,7 +323,7 @@
         "start": "2018-04-18",
         "end": "2018-04-18"
     }, {
-        "_id": "5aaea033026106a36cf21dbd",
+        "id_candidate": "5aaea033026106a36cf21dbd",
         "age": 25,
         "name": "Hood",
         "lastName": "Mercado",
@@ -337,7 +337,7 @@
         "start": "2018-04-06",
         "end": "2018-04-06"
     }, {
-        "_id": "5aaea03399d548b291450d34",
+        "id_candidate": "5aaea03399d548b291450d34",
         "age": 27,
         "name": "Shelley",
         "lastName": "Stanley",
@@ -351,7 +351,7 @@
         "start": "2018-04-04",
         "end": "2018-04-04"
     }, {
-        "_id": "5aaea033e7c0bd2016c25af8",
+        "id_candidate": "5aaea033e7c0bd2016c25af8",
         "age": 39,
         "name": "Leon",
         "lastName": "Faulkner",
@@ -365,7 +365,7 @@
         "start": "2018-06-28",
         "end": "2018-06-28"
     }, {
-        "_id": "5aaea0336b3e43d1bf2ea6e7",
+        "id_candidate": "5aaea0336b3e43d1bf2ea6e7",
         "age": 21,
         "name": "Helena",
         "lastName": "Lynn",
@@ -379,7 +379,7 @@
         "start": "2018-05-09",
         "end": "2018-05-09"
     }, {
-        "_id": "5aaea033a9a2881c0a55f38c",
+        "id_candidate": "5aaea033a9a2881c0a55f38c",
         "age": 22,
         "name": "Ethel",
         "lastName": "Greer",
@@ -393,7 +393,7 @@
         "start": "2018-04-03",
         "end": "2018-04-03"
     }, {
-        "_id": "5aaea0335930af70a9d3a8a1",
+        "id_candidate": "5aaea0335930af70a9d3a8a1",
         "age": 35,
         "name": "Ramos",
         "lastName": "Deleon",
@@ -407,7 +407,7 @@
         "start": "2018-06-09",
         "end": "2018-06-09"
     }, {
-        "_id": "5aaea033c40d3c7dcb646385",
+        "id_candidate": "5aaea033c40d3c7dcb646385",
         "age": 32,
         "name": "Marci",
         "lastName": "Dale",

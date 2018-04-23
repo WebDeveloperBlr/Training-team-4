@@ -1,6 +1,5 @@
-import { Component, OnInit, EventEmitter,Output, Input } from '@angular/core';
-import { CandidateService } from '../../candidate.service';
-import { Observable } from 'rxjs/Observable';
+import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
+
 
 @Component({
   selector: 'app-pagination',
@@ -11,11 +10,14 @@ export class PaginationComponent implements OnInit {
 
 
   page = 1;
-  data : any;
+  @Input()
+  data: any;
+  @Input()
+  limit: number;
   pageLimit: number;
 
 
-  constructor(private cs: CandidateService) { }
+  constructor() { }
 
   ngOnInit() {
     this.getData() ;
@@ -26,12 +28,13 @@ export class PaginationComponent implements OnInit {
     this.onChanged.emit(event);
   }
 
-  getData(): void{
-    this.cs.getMockCandidates(10, this.page).subscribe((data) => {
+  getData(): void {
+    this.pageLimit = Math.ceil(this.data.count / this.limit) ;
+    /*this.cs.getMockCandidates(10, this.page).subscribe((data) => {
       this.data = data;
       this.pageLimit = Math.round(this.data.count / 10) ;
       console.log(data);
-    });
+    });*/
   }
 
 }

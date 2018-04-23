@@ -8,6 +8,13 @@ exports.all = function (limit, filter, cb) {
   var data = {};
   var error = [];
   console.log(filter);
+  try{
+    filter = JSON.parse(filter);
+  }
+  catch(e){
+    filter = null;
+  }
+  
   var query = 'SELECT candidate.id_candidate,concat(per.firstName,\' \',per.secondName) \'name\',candidate.salary, pos.name "position", statusName.name "status" ' +
     'FROM `hr-app`.candidate ' +
     'INNER JOIN candidateStatus cs ON cs.id_candidate=candidate.id_candidate ' +
@@ -15,9 +22,11 @@ exports.all = function (limit, filter, cb) {
     'INNER JOIN candidatePosition cp ON cp.id_candidate = candidate.id_candidate ' +
     'INNER JOIN position pos ON pos.id_position = cp.id_position ' +
     'INNER JOIN person per ON per.id_person = candidate.id_person ';
-  if (typeof filter!=='undefined'&&filter[0][0] !== '') {
-    query += 'WHERE ( statusName.name = \'' + filter[0][0] + '\' ) ';
+  if (filter&&filter.id_status) {
+
+    query += 'WHERE ( statusName.name = \'' + filter.id_status + '\' ) ';
   }
+  console.log(query);
   connection.query('SELECT count(*) "count" FROM(' + query + 'group by id_candidate ) AS T;', function (error, results) {
     data.count = results[0].count;
     connection.query(query + 'group by id_candidate ORDER BY id_candidate ASC LIMIT ' + limit + ';', function (error, results) {

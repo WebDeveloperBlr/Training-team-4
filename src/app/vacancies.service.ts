@@ -1,35 +1,32 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import { MessageService } from './message.service';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
-import {hasOwnProperty} from 'tslint/lib/utils';
-
 
 @Injectable()
-export class CandidateService {
-  private URL = '/candidates';
-  public cache;
-  public currentOffset: number;
-  public currentLimit: number;
-  private MockData;
+export class VacanciesService {
 
-  private data = new BehaviorSubject(undefined);
+  private URL = '/vacancies';
+  cache = {};
+  data = new BehaviorSubject(undefined);
+  currentOffset: number;
+  currentLimit: number;
 
+  constructor(private http: HttpClient) { }
 
-  getCandidates(limit: number = 10, offset: number = 1, filterObj?: any): Observable<any> {
+  getAll(limit:number = 10, offset: number = 1, filterObj?: any): Observable<any> {
     if ( !this.data || this.currentOffset !== offset || this.currentLimit !== limit || filterObj) {
       let params = new HttpParams();
       params = params.append('currentPage', offset.toString());
       params = params.append('limit', limit.toString());
-      if(filterObj && filterObj.id_status && filterObj.id_status !== 'Any') {
+      if(filterObj) {
         params = params.append('filter', JSON.stringify(filterObj));
       }
 
       this.http.get(this.URL,{ params: params }).subscribe(
         (data: any) => {
-          const newData = [];
           this.data.next(data);
         }
       );
@@ -38,19 +35,22 @@ export class CandidateService {
     }
     return this.data.asObservable();
   }
+  getMockAll(limit: number = 10, offset: number = 1, filterObj?: any): Observable<any>{
 
-  getMockCandidates(limit: number = 10, offset: number = 1, filterObj?: any): Observable<any> {
     if ( !this.data || this.currentOffset !== offset || this.currentLimit !== limit || filterObj) {
-      this.http.get('assets/json/candidates.json').subscribe(
+
+      this.http.get('assets/json/vacancies.json').subscribe(
         (data: any) => {
           const newData = [];
           if(filterObj && filterObj.id_status && filterObj.id_status!=='Any'){
+
             let filteredData = [];
             filteredData = data.docs.filter(val => val.status === filterObj.id_status);
             data.docs = filteredData;
+
           }
           for (let i = (offset - 1) * limit; i < (offset - 1) * limit + limit; i++) {
-            if(data.docs[i]){
+            if (data.docs[i]) {
               newData.push(data.docs[i]);
             }
           }
@@ -62,30 +62,6 @@ export class CandidateService {
       this.currentLimit = limit;
     }
     return this.data.asObservable();
-  }
-
-  getLimitFromJson(data: object[], limit: number, offset: number): object[]{
-    const newData = [];
-    for (let i = (offset - 1) * limit; i < (offset - 1) * limit + 10; i++) {
-      if(data[i] !== undefined){
-        newData.push(data[i]);
-      }
-    }
-    return newData;
-  }
-
-  getCandidate(id: number){
-    return this.http.get(this.URL + '/' + id);
-  }
-
-  constructor(
-    private messageService: MessageService,
-    private http: HttpClient) {
-  }
-
-  /** Log a CandidateService message with the MessageService */
-  private log(message: string) {
-    this.messageService.add('CandidateService: ' + message);
   }
 
 }
