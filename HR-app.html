@@ -63,7 +63,7 @@
           </form>
         </div>
         <div class="hr-app-section__right-bar__icon-panel-wrap">
-          <svg class="icon icon-BELL "  data-btn-menu>
+          <svg id="right-bell" class="icon icon-BELL "  data-btn-menu>
             <use xlink:href="assets/images/svg/symbol/sprite.svg#BELL"></use>
           </svg>
           <svg class="icon icon-exit ">
@@ -459,25 +459,24 @@
 
     </div>
   </section>
-  <div class="right-col" data-menu>
+  <div id="notificationMenu" class="right-col" data-menu>
     <div class="right-col__item">
       <h2 class="right-col__title">New candidates</h2>
-      <div class="notifications custom-scroll" data-candidates></div>
-      <button class="show-more notifications__show-more" data-show="candidates">View All</button>
+      <div id="notifsContainer" class="notifications custom-scroll" data-candidates></div>
+      <button id="viewCandsBtn" class="show-more notifications__show-more" data-show="candidates">View All</button>
     </div>
 
     <div class="right-col__item">
       <h2 class="right-col__title">Next interviews</h2>
-      <div class="notifications custom-scroll" data-notifications></div>
-      <button class="show-more notifications__show-more" data-show="notifications">View All</button>
+      <div id="interview-container" class="notifications custom-scroll" data-notifications></div>
+      <button id="viewInterviewsBtn" class="show-more notifications__show-more" data-show="notifications">View All</button>
     </div>
   </div>
 </section>
 <script src="assets/js/libs.min.js"></script>
 <script src="assets/js/candidateProfile.js"></script>
 <script src="assets/js/main.js"></script>
-<script src="assets/js/app.js"></script>
-
-
+<script src="assets/js/notifications.js"></script>
+<!--<script src="assets/js/app.js"></script>-->
 </body>
 </html>

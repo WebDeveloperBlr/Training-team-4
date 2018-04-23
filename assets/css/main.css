@@ -3075,10 +3075,17 @@ border-radius: 5px}
   font-size: 12px;
   color: #dedede;
   transition: opacity 0.3s;
+  outline:none;
 }
+
+.right-col__item:nth-child(2) .notification{
+  padding-left:25px;
+}
+
 .notification:hover .notification__close {
   opacity: 1;
   color: #bfbfbf;
+  outline:none;
 }
 .right-col {
   max-width: 300px;

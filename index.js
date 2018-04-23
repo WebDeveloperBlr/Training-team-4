@@ -61,17 +61,19 @@ const saltRounds = 10;
 server.post("/authentication", function (req, res, next) {
   connection.query("SELECT * FROM `hr-app`.Authentication", function (err, queryResults) {
     queryResults.forEach(function (row, i, results) {
-      bcrypt.compare(req.body.userPassword, row.password, function (err, resHash) {
-        if (resHash) {
-          console.log(row.login + "  " + "logged in");
-          req.session.access=true;
-          res.end("true");
-        }
-        if (i == (queryResults.length - 1) && !req.session.access) {
-          console.log("false");
-          res.end("false");
-        }
-      });
+      if (req.body.userLogin == row.login){
+        bcrypt.compare(req.body.userPassword, row.password, function (err, resHash) {
+          if (resHash) {
+            console.log(row.login + "  " + "logged in");
+            req.session.access = true;
+            res.end("true");
+          }
+          if (i == (queryResults.length - 1) && !req.session.access) {
+            console.log("false");
+            res.end("false");
+          }
+        });
+    }
     });
   });
 });
@@ -84,7 +86,7 @@ server.post("/registration", function (req, res, next) {
       throw err;
     else {
       hashedPassword = hash;
-      connection.query('INSERT INTO `hr-app`.Authentication VALUES ("' + req.body.login + '","' + hashedPassword + '");', function (err, results) {
+      connection.query('INSERT INTO `hr-app`.Authentication VALUES ("' + req.body.login + '","' + hashedPassword + '",1);', function (err, results) {
         if (err) {
           res.end("false");
           throw err;
@@ -113,6 +115,35 @@ server.post("/oninputLoginReg",function(req,res,next){
       if (count==0){
         res.end("free");}
     }
+  });
+});
+
+server.get("/getNotificationCandidates",function(req,res,next){
+  connection.query("SELECT p.firstName, p.secondName,c.salary,name\n" +
+    "FROM candidate c\n" +
+    "INNER JOIN person p\n" +
+    "on c.id_person=p.id_person\n" +
+    "INNER JOIN candidatePosition cP\n" +
+    "on c.id_candidate=cP.id_candidatePosition\n" +
+    "INNER JOIN position ps\n" +
+    "on cP.id_position=ps.id_position\n" +
+    "inner JOIN candidateStatus cS\n" +
+    "on c.id_candidate=cS.id_candidate\n" +
+    "where cS.id_status=5;",function(err, results){
+    if(err) throw err;
+    res.end(JSON.stringify(results));
+  });
+});
+
+server.get("/getNextInterviews",function(req,res,next){
+  connection.query("SELECT id_event,dateStart,dateEnd,e.id_interviewer,info,place,isRepeatable, e.id_importance,title,isVacant,name as importanceLevel,firstName,lastName\n" +
+    "from event e\n" +
+    "INNER JOIN importance im\n" +
+    "on e.id_importance=im.id_importance\n" +
+    "INNER join interviewer viewer\n" +
+    "on e.id_interviewer=viewer.id_interviewer;",function(err,results){
+    if(err) throw err;
+    res.end(JSON.stringify(results));
   });
 });
 
