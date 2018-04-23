@@ -1,0 +1,3 @@
+<select class="hr-app__table-editor__select" #rowsPerPageVacancies (change)='onChange(rowsPerPageVacancies.value)' >
+  <option class="hr-app__table-editor__select-option" *ngFor="let item of values" value="{{item}}">{{item}}</option>
+</select>

@@ -1,0 +1,125 @@
+{
+  "count": 30,
+  "docs": [
+    {
+      "id_candidate": "5adb2fc32ca1d20f9aaf4c8a",
+      "age": 20,
+      "name": "Vaughn Lambert",
+      "position": "Java Developer",
+      "gender": "male",
+      "company": "GEEKMOSIS",
+      "email": "vaughnlambert@geekmosis.com",
+      "phone": "+375 (994) 450-2528",
+      "address": "753 Hooper Street, Wedgewood, Illinois, 1466",
+      "status": "CV-accepted"
+    },
+    {
+      "id_candidate": "5adb2fc3a561f77283ce0e9f",
+      "age": 36,
+      "name": "Emily Morgan",
+      "position": "JavaScript Developer",
+      "gender": "female",
+      "company": "BUZZOPIA",
+      "email": "emilymorgan@buzzopia.com",
+      "phone": "+375 (898) 519-2615",
+      "address": "219 Little Street, Irwin, Maine, 7587",
+      "status": "Accepted for interview"
+    },
+    {
+      "id_candidate": "5adb2fc3dbbc2e160a0084de",
+      "age": 33,
+      "name": "Maddox Goodman",
+      "position": "PHP Developer",
+      "gender": "male",
+      "company": "EXOTERIC",
+      "email": "maddoxgoodman@exoteric.com",
+      "phone": "+375 (883) 537-2118",
+      "address": "265 Rugby Road, Bath, Alabama, 653",
+      "status": "Accepted for interview"
+    },
+    {
+      "id_candidate": "5adb2fc31b2cd6d7fcd02cd9",
+      "age": 29,
+      "name": "Georgia Pruitt",
+      "position": "Java Developer",
+      "gender": "female",
+      "company": "REMOLD",
+      "email": "georgiapruitt@remold.com",
+      "phone": "+375 (989) 552-2208",
+      "address": "137 Coyle Street, Wheaton, Arkansas, 4701",
+      "status": "Accepted for interview"
+    },
+    {
+      "id_candidate": "5adb2fc367dab63d35ea7d1d",
+      "age": 25,
+      "name": "Loraine Alexander",
+      "position": "Ruby Developer",
+      "gender": "female",
+      "company": "FISHLAND",
+      "email": "lorainealexander@fishland.com",
+      "phone": "+375 (983) 434-2196",
+      "address": "275 Hope Street, Allendale, Marshall Islands, 8437",
+      "status": "New"
+    },
+    {
+      "id_candidate": "5adb2fc311072ec98006e0f3",
+      "age": 35,
+      "name": "Browning Francis",
+      "position": "PHP Developer",
+      "gender": "male",
+      "company": "VANTAGE",
+      "email": "browningfrancis@vantage.com",
+      "phone": "+375 (916) 551-3181",
+      "address": "902 Dinsmore Place, Moscow, Minnesota, 1027",
+      "status": "New"
+    },
+    {
+      "id_candidate": "5adb2fc3b78bc86ffcf4c43a",
+      "age": 32,
+      "name": "Kelli Evans",
+      "position": "PHP Developer",
+      "gender": "female",
+      "company": "XIXAN",
+      "email": "kellievans@xixan.com",
+      "phone": "+375 (897) 535-3126",
+      "address": "945 Holly Street, Chautauqua, North Carolina, 2063",
+      "status": "CV-accepted"
+    },
+    {
+      "id_candidate": "5adb2fc30db8fe7493a82067",
+      "age": 37,
+      "name": "Mosley Lloyd",
+      "position": "Java Developer",
+      "gender": "male",
+      "company": "XLEEN",
+      "email": "mosleylloyd@xleen.com",
+      "phone": "+375 (811) 434-2355",
+      "address": "679 Marconi Place, Sterling, District Of Columbia, 8752",
+      "status": "CV-accepted"
+    },
+    {
+      "id_candidate": "5adb2fc3c4480fcce920a560",
+      "age": 22,
+      "name": "Estella Sosa",
+      "position": "Java Developer",
+      "gender": "female",
+      "company": "IMAGINART",
+      "email": "estellasosa@imaginart.com",
+      "phone": "+375 (855) 556-2801",
+      "address": "307 Homecrest Avenue, Dunlo, Pennsylvania, 8213",
+      "status": "New"
+    },
+    {
+      "id_candidate": "5adb2fc3f771fa97b0bf2aaa",
+      "age": 21,
+      "name": "Cox Robinson",
+      "position": "JavaScript Developer",
+      "gender": "male",
+      "company": "YOGASM",
+      "email": "coxrobinson@yogasm.com",
+      "phone": "+375 (883) 433-3907",
+      "address": "247 Woodruff Avenue, Dana, Mississippi, 9846",
+      "status": "New"
+    }
+  ]
+}

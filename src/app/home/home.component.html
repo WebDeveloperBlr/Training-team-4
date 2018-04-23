@@ -1,0 +1,49 @@
+<section class="hr-app-section">
+  <div class="hr-app-section__sidebar">
+    <svg class="icon icon-CLOSE ">
+      <use xlink:href="assets/images/svg/symbol/sprite.svg#CLOSE"></use>
+    </svg>
+    <div class="hr-app-section__sidebar-wrapper">
+      <h1 class="hr-app-section__sidebar-header">hr app</h1>
+      <ul class="hr-app-section__sidebar-list">
+        <li class="hr-app-section__sidebar-list-item" routerLinkActive="active"><a class="hr-app-section__sidebar-item-link" data-attr="tab-link"
+                                                         href="/interview">Interview</a></li>
+        <li class="hr-app-section__sidebar-list-item" routerLinkActive="active"><a class="hr-app-section__sidebar-item-link" href="/vacancies" >Vacancies</a>
+        </li>
+        <li class="hr-app-section__sidebar-list-item" routerLinkActive="active"><a class="hr-app-section__sidebar-item-link"                                                          routerLink="/candidates" >Candidates</a></li>
+        <li class="hr-app-section__sidebar-list-item"><a class="hr-app-section__sidebar-item-link" routerLinkActive="active" href="/management">Management</a></li>
+        <li class="hr-app-section__sidebar-list-item mobile-item"><a class="hr-app-section__sidebar-item-link"
+                                                                     data-attr="tab-link" href="#">Notifications
+          <svg class="icon icon-BELL ">
+            <use xlink:href="assets/images/svg/symbol/sprite.svg#BELL"></use>
+          </svg>
+        </a></li>
+      </ul>
+      <a class="hr-app-section__exit-button mobile-item" href="#">Exit
+        <svg class="icon icon-exit ">
+          <use xlink:href="assets/images/svg/symbol/sprite.svg#exit"></use>
+        </svg>
+      </a>
+    </div>
+  </div>
+  <div class="hr-app-section__right-bar">
+    <div class="hr-app-section__right-bar-wrap">
+      <app-search-bar></app-search-bar>
+      <router-outlet></router-outlet>
+  </div>
+  <div class="right-col" data-menu>
+    <div class="right-col__item">
+      <h2 class="right-col__title">New candidates</h2>
+      <div class="notifications custom-scroll" data-candidates></div>
+      <button class="show-more notifications__show-more" data-show="candidates">View All</button>
+    </div>
+
+    <div class="right-col__item">
+      <h2 class="right-col__title">Next interviews</h2>
+      <div class="notifications custom-scroll" data-notifications></div>
+      <button class="show-more notifications__show-more" data-show="notifications">View All</button>
+    </div>
+  </div>
+  </div>
+</section>
+<app-messages></app-messages>
