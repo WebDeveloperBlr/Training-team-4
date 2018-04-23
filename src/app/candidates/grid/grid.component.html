@@ -23,7 +23,7 @@
   <div class="hr-app__table-editor">
     <div class="hr-app__table-editor__col">
       <div class="hr-app__table-editor__text">Rows per page:</div>
-      <app-dropdown (onChanged)="changeLimit($event)"></app-dropdown>
+      <app-dropdown (onChanged)="onChange()"></app-dropdown>
 
     </div>
     <div class="hr-app__table-editor__col order-2">
@@ -32,7 +32,7 @@
     <div
       class="hr-app__table-editor__page-buttons hr-app__table-editor__col order-1 order-lg-2">
 
-      <app-pagination (onChanged)="changeOffset($event)" ></app-pagination>
+      <app-pagination [data]="data" (onChanged)="onChange()" ></app-pagination>
     </div>
     <div class="hr-app__fixed-round">
       <div class="hr-app__fixed-round__plus">+</div>

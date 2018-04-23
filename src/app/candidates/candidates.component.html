@@ -1,4 +1,4 @@
 <section class="vacancies-tab" id="candidates-tab">
-  <app-filter-bar></app-filter-bar>
-  <app-grid (changePage)="getCandidates($event)"></app-grid>
+  <app-filter-bar (onChange)="filterData()"></app-filter-bar>
+  <app-grid (changePage)="getCandidates()"></app-grid>
 </section>

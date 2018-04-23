@@ -21,6 +21,8 @@ import { FilterBarComponent } from './common/filter-bar/filter-bar.component';
 import { PaginationComponent } from './common/pagination/pagination.component';
 import { DropdownComponent } from './common/dropdown/dropdown.component';
 import { NgSelectComponentComponent } from './common/ng-select-component/ng-select-component.component';
+import {VacanciesService} from './vacancies.service';
+import { VacanciesGridComponent } from './vacancies/vacancies-grid/vacancies-grid.component';
 
 
 @NgModule({
@@ -36,7 +38,8 @@ import { NgSelectComponentComponent } from './common/ng-select-component/ng-sele
     FilterBarComponent,
     PaginationComponent,
     DropdownComponent,
-    NgSelectComponentComponent
+    NgSelectComponentComponent,
+    VacanciesGridComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +52,8 @@ import { NgSelectComponentComponent } from './common/ng-select-component/ng-sele
   providers: [
     CandidateService,
     MessageService,
-    PaginationComponent
+    PaginationComponent,
+    VacanciesService
   ],
   bootstrap: [AppComponent]
 })

@@ -1,7 +1,8 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ViewChild } from '@angular/core';
+import { FilterBarComponent } from '../common/filter-bar/filter-bar.component';
 import { CANDIDATES } from '../mock-candidates';
 import { CandidateService } from '../candidate.service';
-import { PaginationComponent } from '../common/pagination/pagination.component';
+import { GridComponent } from './grid/grid.component';
 import { Observable } from 'rxjs/Observable';
 
 @Component({
@@ -13,20 +14,33 @@ import { Observable } from 'rxjs/Observable';
 export class CandidatesComponent implements OnInit {
 
   data: Observable<any>;
+  filterObj = {};
 
-  constructor(private cs: CandidateService, private pg: PaginationComponent) { }
+  @ViewChild(FilterBarComponent)
+  private filterBar: FilterBarComponent;
+
+  @ViewChild(GridComponent)
+  private grid: GridComponent;
+
+  constructor(private cs: CandidateService) { }
 
   ngOnInit() {
     this.getCandidates();
   }
 
-  getCandidates(info: Array<number> = [10, 1]): void {
-    /*this.candidateService.getCandidates()
-      .subscribe(candidates => this.candidates = candidates);*/
-    this.cs.getMockCandidates(info[0], info[1]).subscribe((data) => {
+  filterData(): void {
+
+    this.filterObj = this.filterBar.filterObj;
+    //console.log(this.pagination);
+    this.getCandidates();
+  }
+
+  getCandidates(): void {
+    this.cs.getCandidates(this.grid.limit, this.grid.offset, this.filterObj)
+      .subscribe(data => this.data = data);
+    /*this.cs.getMockCandidates(this.grid.limit, this.grid.offset, this.filterObj).subscribe((data) => {
        this.data = data;
-    });
-    //this.data = this.cs.getMockCandidates(10, offset);
+    });*/
 
   }
 

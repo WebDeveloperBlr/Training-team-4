@@ -1,3 +1,56 @@
-<p>
-  vacancies works!
-</p>
+<section class="vacancies-tab" id="vacancies-tab">
+  <div class="hr-app__filters-bar" id="vacancies-filters-bar">
+    <div class="hr-app__filters-bar__header-wrapper">
+      <h3 class="hr-app__filters-bar__header">Vacancies</h3>
+      <button class="btn btn-info"><a class="see-schedule-btn" href="vacancies__schedule.html">See schedule</a></button>
+      <button class="hr-app__filters-bar__add-profile-button"><span>+</span></button>
+    </div>
+    <div class="hr-app__filters-bar__wrap">
+      <div class="hr-app__filters-bar__text-wrapper" data-toggle="collapse" data-target="" role="button"
+           aria-expanded="false" aria-controls="filters-bar-collapse">
+        <div class="hr-app__filters-bar__text">Filter by</div>
+        <svg class="icon icon-ARROW ">
+          <use xlink:href="assets/images/svg/symbol/sprite.svg#ARROW"></use>
+        </svg>
+      </div>
+      <div class="hr-app__filters-bar__fields-wrapper" id="filters-bar-collapse"
+           data-parent="#hr-app__table">
+        <div class="hr-app__filters-bar__filter-item">
+          <div class="hr-app__filters-bar__select-text">Position</div>
+          <div class="hr-app__filters-bar__input-wrap">
+            <input class="hr-app__filters-bar__input" data-attr="filter-item" id="hr-app__filters-bar__input--pos"
+                   type="text">
+          </div>
+        </div>
+        <div class="hr-app__filters-bar__filter-item">
+          <div class="hr-app__filters-bar__select-text">Work Experience</div>
+          <select class="hr-app__filters-bar__select" data-attr="filter-item"
+                  id="hr-app__filters-bar__select--exp">
+            <option class="hr-app__filters-bar__select-option">Any</option>
+            <option class="hr-app__filters-bar__select-option">Junior</option>
+            <option class="hr-app__filters-bar__select-option">Middle</option>
+            <option class="hr-app__filters-bar__select-option">Senior</option>
+          </select>
+        </div>
+        <div class="hr-app__filters-bar__filter-item">
+          <div class="hr-app__filters-bar__select-text">Salary</div>
+          <div class="hr-app__filters-bar__input-wrap justify-content-between"><span
+            class="hr-app__filters-bar__input-wrap__text">from</span>
+            <input class="hr-app__filters-bar__input small--input"
+                   id="hr-app__filters-bar__input--salary-from" data-attr="filter-item" type="text" maxlength="4"><span
+              class="hr-app__filters-bar__input-wrap__text">to</span>
+            <input class="hr-app__filters-bar__input small--input"
+                   id="hr-app__filters-bar__input--salary-to" data-attr="filter-item" type="text" maxlength="4">
+          </div>
+        </div>
+        <div class="hr-app__filters-bar__pagination"><span>1</span><span> of</span><span> 12</span></div>
+        <div class="hr-app__filters-bar__sort-button-wrapper">
+          <div class="hr-app__filters-bar__sort-button" id="hr-app__filters-bar__sort-button">
+            Filter
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-vacancies-grid (changePage)="getVacancies()"></app-vacancies-grid>
+</section>

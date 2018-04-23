@@ -1,7 +1,8 @@
 <ng-select ngClass="custom" [items]="statuses"
            bindLabel="name"
-           bindValue="id_status"
+           bindValue="name"
            placeholder="Select value"
-           [(ngModel)]="selectedItemId">
+           [(ngModel)]="selectedItemId"
+           (change)="onChange()">
 </ng-select>
 
