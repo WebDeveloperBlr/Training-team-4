@@ -18,17 +18,7 @@ function renderCandidates(a,b){
     notifContainer.append(newEl);
   }
   }
-  // newCandidates.forEach(function (row, i, results) {
-  //   var newEl = document.createElement("div");
-  //   newEl.className = "notification";
-  //   newEl.innerHTML = '<img class="notification__img" src="https://www.meme-arsenal.com/memes/31b51255d61f1c9ff104146e59a30790.jpg">\n' +
-  //     '<span class="notification__name">' + row.firstName + " " + row.secondName + '</span>\n' +
-  //     '<span class="notification__salary">' + row.salary + "$" + '</span>\n' +
-  //     '<span class="notification__position">' + row.name + '</span>\n' +
-  //     '<button class="notification__close" data-close="">X</button>';
-  //   notifContainer.append(newEl);
-  // });
-// }
+
 
 function sortByDate(array) {
   array.sort(function (a, b){
@@ -50,12 +40,12 @@ function renderInterviews(a,b){
   }
 }
 
-function xhrConfigure(method,url,reaction){
+function xhrConfigure(method,url,callback){
   var xhr = new XMLHttpRequest();
   xhr.open(method, url, true);
   xhr.setRequestHeader("Content-type", 'application/json; charset=utf-8');
   xhr.send();
-  xhr.onreadystatechange=reaction;
+  xhr.onreadystatechange=callback;
 }
 
 bell.addEventListener("click", function () {
@@ -84,7 +74,10 @@ allCandsBtn.onclick=function(){
     if (this.status != 200)
       return;
     newCandidates = JSON.parse(this.responseText);
-    renderCandidates(0,4);
+    if(newCandidates.length>4)
+      renderCandidates(0,4);
+    else
+      renderCandidates(0, newCandidates.length);
   }
   );
 })();
@@ -96,6 +89,9 @@ allCandsBtn.onclick=function(){
     if (this.status != 200)
       return;
     nextInterviews=JSON.parse(this.responseText);
-    renderInterviews(0,4);
+    if(nextInterviews.length>4)
+      renderInterviews(0,4);
+    else
+      renderInterviews(0,nextInterviews.length);
   });
 })();

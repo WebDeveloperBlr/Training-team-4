@@ -147,6 +147,18 @@ server.get("/getNextInterviews",function(req,res,next){
   });
 });
 
+server.get("/getEvents",function(req,res,next){
+  connection.query("SELECT id_event,dateStart,timeStart,dateEnd,timeEnd,e.id_interviewer,info,place,isRepeatable, e.id_importance,title,isVacant,name as importanceLevel,firstName,lastName\n" +
+    "from event e\n" +
+    "INNER JOIN importance im\n" +
+    "on e.id_importance=im.id_importance\n" +
+    "INNER join interviewer viewer\n" +
+    "on e.id_interviewer=viewer.id_interviewer;",function(err, results){
+    if(err) throw err;
+    res.end(JSON.stringify(results));
+  });
+});
+
 server.get('/candidates', candidatesController.all);
 server.get('/vacancies', vacanciesController.all);
 server.get('/candidates/:id', candidatesController.getById);
