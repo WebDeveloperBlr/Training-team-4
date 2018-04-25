@@ -7,7 +7,7 @@ var connection = db.get;
 exports.all = function (limit, filter, cb) {
   var data = {};
   var error = [];
-  console.log(filter);
+ // console.log(filter);
   var query = 'SELECT candidate.id_candidate,concat(per.firstName,\' \',per.secondName) \'name\',candidate.salary, pos.name "position", statusName.name "status" ' +
     'FROM `hr-app`.candidate ' +
     'INNER JOIN candidateStatus cs ON cs.id_candidate=candidate.id_candidate ' +
@@ -90,7 +90,7 @@ exports.getByID = function (id, cb) {
   });
 
   Promise.all([promiseQuery1,promiseQuery2,promiseQuery3,promiseQuery4,promiseQuery5,promiseGetAllSkills]).then(()=>{
-    console.log(data);
+    //console.log(data);
     cb(error, data);
   });
 
@@ -163,7 +163,7 @@ exports.update = function (id, candidate, cb) {
     });
   }
 
-  console.log(candidate.exp.length);
+ // console.log(candidate.exp.length);
   if(candidate.exp.length>0){
     var updateExpQuery = '';
     candidate.exp.forEach((item)=>{
@@ -185,7 +185,7 @@ exports.update = function (id, candidate, cb) {
           'WHERE experience.id_experience=' + item.id_experience + ';';
       }
 
-      console.log(updateExpQuery);
+  //    console.log(updateExpQuery);
       var promiseUpdateExp = new Promise((res, rej)=>{
         connection.query(updateExpQuery, function (error, results) {
           if(error){

@@ -136,10 +136,10 @@
           </div>
           <div class="row ">
             <div class="col m3 s6">
-              <input required id="start_date" class="datepicker no-border input--small grey lighten-3"/>
+              <input required id="start_date" autocomplete="off" class="datepicker no-border input--small grey lighten-3"/>
             </div>
             <div class="col m3 s6">
-              <input required id="end_date" class="datepicker no-border input--small grey lighten-3"/>
+              <input required id="end_date" autocomplete="off" class="datepicker no-border input--small grey lighten-3"/>
             </div>
           </div>
           <div class="row">
@@ -172,27 +172,7 @@
                 </div>
               </div>
               
-              <div class="row">
-                <div class="col ">
-                  <i class="material-icons hide-on-small-and-down">video_call</i>
-                </div>
-                <div class="col s12 m8 grey lighten-3  ">
-                  <select id="select-video" class="select-video no-border">
-                    <option value="0" disabled selected>Add video-conference</option>
-                    <option value="1">No</option>
-                    <option value="2">Yes</option>
-                  </select>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="col ">
-                  <i class="material-icons">add_alert</i>
-                </div>
-                <div class="col s9 m6 waves-effect btn-flat truncate">
-                  Add notification
-                </div>
-              </div>
+
               
               <div class="row">
                 <div class="col">
@@ -201,9 +181,6 @@
                 <div class="col s5  grey lighten-3  ">
                   <select id="select-interviewer" class="select-interviewer no-border">
                     <option value="0" selected disabled>Interviewer</option>
-                    <option value="1">Ivan Ivanov</option>
-                    <option value="2">Peter Petrov</option>
-                    <option value="3">John Jones</option>
                   </select>
                 </div>
                 <div class="col grey lighten-3 colorpicker-wrapper margin-left">
@@ -221,8 +198,8 @@
                 </div>
                 <div class="col s5 m4 grey lighten-3">
                   <select id="select-vacant" class="select-vacant no-border">
-                    <option value="0">Unemployed</option>
-                    <option value="1" selected>Employed</option>
+                    <option value="0">Occupied</option>
+                    <option value="1" selected>Vacant</option>
                   </select>
                 </div>
                 <div class="col m5 s5 margin-left grey lighten-3">
@@ -261,11 +238,10 @@
                   <div class="row ">
                     <input id="modal-time-end" placeholder="End time"
                            class="col timepicker no-border input--small grey lighten-3">
+                    <i class="timeTip col material-icons" title="To enter time, uncheck the tick first.">info</i>
                   </div>
+
                 </div>
-              </div>
-              <div class="row margin-top">
-                <i class="col material-icons" title="To enter time, uncheck the tick first.">info</i>
               </div>
             </div>
   

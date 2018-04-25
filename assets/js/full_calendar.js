@@ -313,31 +313,84 @@
 //
 // }
 //
-function xhrConfigure(method,url,callback){
+var addedEvents = [];
+var interviewers=[];
+function xhrConfigure(method,url,callback,sendInfo){
   var xhr = new XMLHttpRequest();
   xhr.open(method, url, true);
   xhr.setRequestHeader("Content-type", 'application/json; charset=utf-8');
-  xhr.send();
+  xhr.send(sendInfo);
   xhr.onreadystatechange=callback;
 }
 
-var addedEvents = [];
+function fillInInterviewers(){
+  var container=document.getElementById("select-interviewer");
+  interviewers.forEach(function(interviewer,i){
+    var option=document.createElement("option");
+    option.value=i+1;
+    option.innerHTML=interviewer;
+    container.append(option);
+  });
+}
 
-xhrConfigure("GET","/getEvents",function(){
+xhrConfigure("GET","/getInterviewers",function(){
   if (this.readyState != 4)
     return;
   if (this.status != 200)
     return;
-  JSON.parse(this.responseText).forEach(function(row,i,results)
-  {
-    // EventCreator(start, end, title,id,allDay,repeat,place,interviewer,imp)
-    addedEvents.push(new EventCreator(row.dateStart.split("T")[0]+"T"+row.timeStart,row.dateEnd.split("T")[0]+"T"+row.timeEnd,
-      row.title,row.id_event,false,row.isRepeatable,row.place,row.firstName+" "+row.lastName,
-      row.importanceLevel));
+  JSON.parse(this.responseText).forEach(function(row,i,results){
+    var interviewer=row.firstName+" "+row.lastName;
+    interviewers.push(interviewer);
   });
-  $("#calendar").fullCalendar('refetchEvents');
+  fillInInterviewers();
 });
 
+var eventsControl={};
+
+eventsControl.getAll=function() {
+  xhrConfigure("GET", "/getEvents", function () {
+    if (this.readyState != 4)
+      return;
+    if (this.status != 200)
+      return;
+    JSON.parse(this.responseText).forEach(function (row, i, results) {
+      // EventCreator(start, end, title,id,allDay,repeat,place,interviewer,imp)
+      addedEvents.push(new EventCreator(row.dateStart.split("T")[0] + "T" + row.timeStart, row.dateEnd.split("T")[0] + "T" + row.timeEnd,
+        row.title, row.id_event, row.allDay, row.isRepeatable, row.place, row.id_interviewer,
+        row.id_importance,row.info,row.isVacant));
+    });
+    $("#calendar").fullCalendar('refetchEvents');
+  });
+};
+
+eventsControl.createEvent= function(start,end,title) {
+  var newEvent = new EventCreator(start, end, title);
+  xhrConfigure("POST", "/eventCreate", function () {
+    if (this.readyState != 4)
+      return;
+    if (this.status != 200)
+      return;
+    $(".schedule__pop-up").addClass("display-none");
+    $("#eventTitle").val("");
+    $("#eventStart").val("");
+    $("#eventEnd").val("");
+    addedEvents.length = 0;
+    eventsControl.getAll();
+  }, JSON.stringify(newEvent));
+};
+
+eventsControl.updateEvent=function(obj){
+  xhrConfigure("POST","/updateEvent",function(){
+    if (this.readyState != 4)
+      return;
+    if (this.status != 200)
+      return;
+    eventsControl.getAll();
+  },
+    JSON.stringify(obj));
+};
+
+eventsControl.getAll();
 
 $(".datepicker").datepicker({
   dateFormat: "yy-mm-dd",
@@ -393,14 +446,15 @@ $(function () {
     eventDrop: function(event, data, revertFunc) {
       let srcEvent;
       for (let p = 0; p < addedEvents.length; p++) {
-        if (addedEvents[p].title == event.title) {
+        if (addedEvents[p].id == event.id) {
           srcEvent = addedEvents[p];
           break;
         }
       }
-      let diff = data.as('m') ;
-      srcEvent.start.add(diff, 'm');
-      srcEvent.end.add(diff, 'm');
+      srcEvent.start=event.start;
+      srcEvent.end=srcEvent.start;
+      addedEvents.length=0;
+      eventsControl.updateEvent(srcEvent);
       //console.log(srcEvent.start);
       // console.log(srcEvent.end);
       $("#calendar").fullCalendar('refetchEvents');
@@ -416,7 +470,7 @@ $(function () {
           return;
         var srcEvent;
         for (let p = 0; p < addedEvents.length; p++) {
-          if (addedEvents[p].title == calEvent.title) {
+          if (addedEvents[p].id == calEvent.id) {
             srcEvent = addedEvents[p];
           }
         }
@@ -428,31 +482,31 @@ $(function () {
         nameInp.val(srcEvent.title);
         nameInp.focus();
         
-        let date = new EvDate(srcEvent.start, srcEvent.end);
+        //let date = new EvDate(srcEvent.start, srcEvent.end);
         
         //console.log('date.startDate() ', date.startDate);
         //console.log('date.endDate() ', date.endDate);
         //console.log('date: ', date);
         
-        $('#start_date').val(date.startDate);
-        $('#end_date').val(date.endDate);
+        $('#start_date').val(srcEvent.start.split("T")[0]);
+        $('#end_date').val(srcEvent.end.split("T")[0]);
         
         $('#checkbox-all-day')[0].checked = srcEvent.allDay;
         
         if ($('#checkbox-all-day')[0].checked) {
-          freezeTime(date);
+          freezeTime();
         }
-        else {
-          startTime.prop('disabled', false);
-          endTime.prop('disabled', false);
+        // else {
+        //   startTime.prop('disabled', false);
+        //   endTime.prop('disabled', false);
+        //
+        //   //console.log('date.getTimeStart() ', date.startTime);
+        //   //console.log('date.getTimeEnd() ', date.endTime);
+        //
+        //   startTime.timepicker('setTime', date.startTime);
+        //   endTime.timepicker('setTime', date.endTime);
           
-          //console.log('date.getTimeStart() ', date.startTime);
-          //console.log('date.getTimeEnd() ', date.endTime);
-          
-          startTime.timepicker('setTime', date.startTime);
-          endTime.timepicker('setTime', date.endTime);
-          
-        }
+        // }
         
         $('#checkbox-all-day').on('click', function () {
           if ($('#checkbox-all-day')[0].checked === false) {
@@ -462,12 +516,12 @@ $(function () {
             //console.log(date);
             //console.log('date.getTimeStart() ', date.startDate);
             //console.log('date.getTimeEnd() ', date.endDate);
-            
-            startTime.timepicker('setTime', date.startTime);
-            endTime.timepicker('setTime', date.endTime);
+            //
+            // startTime.timepicker('setTime', date.startTime);
+            // endTime.timepicker('setTime', date.endTime);
           }
-          if ($('#checkbox-all-day')[0].checked === true) {
-            freezeTime(date);
+          if ($('#checkbox-all-day')[0].checked == true) {
+            freezeTime();
           }
         });
         
@@ -479,7 +533,7 @@ $(function () {
         $("#select-video").val(srcEvent.isVideoConf);
         $("#select-vacant").val(srcEvent.isVacant);
         $("select[class*='select-'], select[class^='select-']").material_select();
-        quill.setContents(srcEvent.msgText);
+        quill.setText(srcEvent.info);
         
         $('#modal-submit-lower')[0].onclick = editEvent;
         $('#modal-submit')[0].onclick = editEvent;
@@ -490,17 +544,6 @@ $(function () {
           let inputDayStart = $("#start_date").val();
           let inputDayEnd = $("#end_date").val();
           //console.log('inputDayStart, inputDayEnd ', inputDayStart, inputDayEnd);
-          
-          
-          date.updateTimeAndDate(
-            inputDayStart, inputDayEnd,
-            startTime.val(),
-            endTime.val()
-          );
-          
-          srcEvent.start = date.start;
-          srcEvent.end = date.end;
-          
           //console.log('date.start: ', date.start);
           //console.log('srcEvent.end: ', srcEvent.end);
           
@@ -509,12 +552,17 @@ $(function () {
           srcEvent.interviewer = $("#select-interviewer").val();
           srcEvent.color = $("#colorpicker").data('ddslick').selectedData.value;
           srcEvent.colorIndex = $("#colorpicker").data('ddslick').selectedIndex;
+          // alert(srcEvent.color+"   "+srcEvent.colorIndex);
           srcEvent.privacy = $("#select-privacy").val();
           srcEvent.isVideoConf = $("#select-video").val();
           srcEvent.isVacant = $("#select-vacant").val();
-          srcEvent.msgText = quill.getContents();
+          srcEvent.info = quill.getText();
+          srcEvent.start=$("#start_date").val()+"T"+$("#modal-time-start").val();
+          srcEvent.end=$("#end_date").val()+"T"+$("#modal-time-end").val();
           $("#calendar").fullCalendar('refetchEvents');
-          quill.setContents('');
+          quill.setText('');
+          addedEvents.length=0;
+          eventsControl.updateEvent(srcEvent);
         }
       }
     },
@@ -550,12 +598,11 @@ $(function () {
     defaultSelectedIndex: 1
   }); //initializing select for colorpicker
   
-})
-;
+});
 
-function freezeTime(date) {
-  $('#modal-time-start').timepicker('setTime', '09:00');
-  $('#modal-time-end').timepicker('setTime', '21:00');
+function freezeTime() {
+  $('#modal-time-start').val("09:00");
+  $('#modal-time-end').val("21:00");
   $('#modal-time-start').prop('disabled', true);
   $('#modal-time-end').prop('disabled', true);
 }
@@ -592,18 +639,11 @@ $("#saveEvent").click(function () {
   start.set({'hours': 09, 'minutes': 00});
   end.set({'hours': 21, 'minutes': 00});
   //console.log(end);
-  
-  var newEvent = new EventCreator(start, end, title);
-  addedEvents.push(newEvent);
-  $(".schedule__pop-up").addClass("display-none");
-  $("#eventTitle").val("");
-  $("#eventStart").val("");
-  $("#eventEnd").val("");
-  $("#calendar").fullCalendar('refetchEvents');
+  eventsControl.createEvent(start,end,title);
 });
 
-function EventCreator(start, end, title,id,allDay,repeat,place,interviewer,imp) {
-  this.id=id;
+function EventCreator(start, end, title,id,allDay,repeat,place,interviewer,imp,info,vacant) {
+  this.id=id ;
   this.title = title;
   this.start = start;
   this.end = end;
@@ -611,46 +651,17 @@ function EventCreator(start, end, title,id,allDay,repeat,place,interviewer,imp) 
   this.repeat = repeat;
   this.place = place;
   this.interviewer = interviewer;
-  this.color = imp;
-  this.colorIndex = 0;
+  this.colorIndex = imp-1;
   this.privacy = 1;
   this.isVideoConf = 0;
-  this.isVacant = 1;
-}
-
-function EvDate(_startDate, _endDate) {
-  let that = this;
-  this.start = _startDate;
-  this.end = _endDate;
-  
-  const formatDate = 'YYYY-MM-DD';
-  const formatTime = 'HH:mm';
-  
-  this.startDate = this.start.format(formatDate);
-  this.endDate = this.end.format(formatDate);
-  
-  this.startTime = this.start.format(formatTime);
-  this.endTime = this.end.format(formatTime);
-  
-  
-  this.updateTimeAndDate = function (_stDate, _endDate, _stTime, _endTime) {
-    let stDate = moment(_stDate, formatDate);
-    let endDate  = moment(_endDate, formatDate);
-    stDate.hours(moment(_stTime, formatTime).hours());
-    stDate.minutes(moment(_stTime, formatTime).minutes());
-    endDate.hours(moment(_endTime, formatTime).hours());
-    endDate.minutes(moment(_endTime, formatTime).minutes());
-    
-    //console.log('start ', that.start);
-    //console.log('end ', that.end);
-    //console.log(stDate.diff(endDate));
-    if(stDate.diff(endDate) > 0) {
-      alert("Wrong date input!");
-      return;
-    }
-    that.start = stDate;
-    that.end = endDate;
-    //console.log('updateTimeAndDate: that.start', that.start);
-    //console.log('updateTimeAndDate: that.end', that.end);
+  this.isVacant = vacant;
+  this.info=info;
+  if(imp==1){
+    this.color="#3a87ad";
+  }else if(imp==2){
+    this.color="#CC3131";
+  }else if(imp==3){
+    this.color="#85CC65";
   }
 }
+
