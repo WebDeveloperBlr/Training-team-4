@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output, ViewChild, Input} from '@angular/core';
 import { VacanciesService } from '../../vacancies.service';
 import { Observable } from 'rxjs/Observable';
 import {PaginationComponent} from '../../common/pagination/pagination.component';
@@ -11,6 +11,7 @@ import {DropdownComponent} from '../../common/dropdown/dropdown.component';
 })
 export class VacanciesGridComponent implements OnInit {
 
+  @Input()
   data: any;
   @Output() changePage = new EventEmitter<any>();
 
@@ -33,7 +34,7 @@ export class VacanciesGridComponent implements OnInit {
   constructor(private vs: VacanciesService) { }
 
   ngOnInit() {
-    this.vs.getAll().subscribe(data => this.data = data);
+    //this.vs.getAll().subscribe(data => this.data = data);
     /*this.vs.getMockAll().subscribe(data => {
       this.data = data;
     });*/

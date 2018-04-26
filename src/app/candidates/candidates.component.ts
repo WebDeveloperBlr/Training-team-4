@@ -29,9 +29,7 @@ export class CandidatesComponent implements OnInit {
   }
 
   filterData(): void {
-
     this.filterObj = this.filterBar.filterObj;
-    //console.log(this.pagination);
     this.getCandidates();
   }
 

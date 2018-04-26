@@ -4,6 +4,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { FormsModule } from '@angular/forms';
 
+
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
@@ -23,6 +24,8 @@ import { DropdownComponent } from './common/dropdown/dropdown.component';
 import { NgSelectComponentComponent } from './common/ng-select-component/ng-select-component.component';
 import {VacanciesService} from './vacancies.service';
 import { VacanciesGridComponent } from './vacancies/vacancies-grid/vacancies-grid.component';
+import { VacanciesFilterBarComponent } from './vacancies/vacancies-filter-bar/vacancies-filter-bar.component';
+import {formControlBinding} from '@angular/forms/src/directives/ng_model';
 
 
 @NgModule({
@@ -39,7 +42,8 @@ import { VacanciesGridComponent } from './vacancies/vacancies-grid/vacancies-gri
     PaginationComponent,
     DropdownComponent,
     NgSelectComponentComponent,
-    VacanciesGridComponent
+    VacanciesGridComponent,
+    VacanciesFilterBarComponent
   ],
   imports: [
     BrowserModule,

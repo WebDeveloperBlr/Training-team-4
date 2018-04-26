@@ -8,7 +8,7 @@ import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 @Injectable()
 export class VacanciesService {
 
-  private URL = '/vacancies';
+  private URL = 'http://localhost:8080/vacancies';
   cache = {};
   data = new BehaviorSubject(undefined);
   currentOffset: number;
@@ -16,7 +16,8 @@ export class VacanciesService {
 
   constructor(private http: HttpClient) { }
 
-  getAll(limit:number = 10, offset: number = 1, filterObj?: any): Observable<any> {
+  getAll(limit: number = 10, offset: number = 1, filterObj?: any): Observable<any> {
+    console.log(filterObj);
     if ( !this.data || this.currentOffset !== offset || this.currentLimit !== limit || filterObj) {
       let params = new HttpParams();
       params = params.append('currentPage', offset.toString());
