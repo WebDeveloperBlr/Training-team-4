@@ -914,6 +914,7 @@ hr-app__candidates-item-link {
 }
 
 .vacancies-tab {
+  height: 100%;
   overflow: auto;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1097,7 +1098,7 @@ hr-app__candidates-item-link {
 }
 
 .hr-app__filters-bar__select-text {
-  margin: auto;
+  margin: 0 auto;
   margin-bottom: 5px;
   font-weight: 400;
   color: #333333;
@@ -3132,6 +3133,9 @@ app-vacancies{
       width: 100%;
     }
   }
+}
+app-candidates{
+  height: 100%;
 }
 
 

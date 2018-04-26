@@ -27,9 +27,9 @@ export class CandidateDetailComponent implements OnInit {
 
   getCandidate(): void {
     const id = +this.route.snapshot.paramMap.get('id');
-    this.data = CANDIDATES_DETAIL;
-    /*this.candidateService.getCandidate(id)
-      .subscribe(data => this.data = data);*/
+    //this.data = CANDIDATES_DETAIL;
+    this.candidateService.getCandidate(id)
+      .subscribe(data => this.data = data);
   }
 
 }

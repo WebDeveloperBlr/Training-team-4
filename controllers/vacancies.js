@@ -1,6 +1,7 @@
 var  Vacancies = require("./../models/Vacancies");
 
 exports.all = function(req, res){
+  res.header('Access-Control-Allow-Origin','*');
   var limit;
   if(req.query.limit){
     limit = (req.query.currentPage>1)?req.query.limit*(req.query.currentPage-1)+", "+req.query.limit:req.query.limit;
@@ -19,6 +20,7 @@ exports.all = function(req, res){
 
 };
 exports.getById = function (req,res) {
+  res.header('Access-Control-Allow-Origin','*');
   Vacancies.getByID(req.params.id, function (err, docs) {
     if(err){
       console.log(err);
@@ -28,6 +30,7 @@ exports.getById = function (req,res) {
   })
 };
 exports.create = function (req,res) {
+  res.header('Access-Control-Allow-Origin','*');
   var Vacancies ={
     firstName: req.body.firstName,
     lastName: req.body.lastName,
@@ -47,6 +50,7 @@ exports.create = function (req,res) {
   })
 };
 exports.update = function (req,res) {
+  res.header('Access-Control-Allow-Origin','*');
   var Vacancies ={
     firstName: req.body.firstName,
     lastName: req.body.lastName,
@@ -66,6 +70,7 @@ exports.update = function (req,res) {
   })
 };
 exports.delete = function (req,res) {
+  res.header('Access-Control-Allow-Origin','*');
   Vacancies.delete(req.params.id, function (err, docs) {
     if(err){
       console.log(err);

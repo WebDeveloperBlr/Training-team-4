@@ -13,8 +13,8 @@ export class PaginationComponent implements OnInit {
   @Input()
   data: any;
   @Input()
-  limit: number;
-  pageLimit: number;
+  limit: number = 10;
+  pageLimit: number = this.data ? Math.ceil(this.data.count / this.limit) : 10;
 
 
   constructor() { }
@@ -24,17 +24,12 @@ export class PaginationComponent implements OnInit {
   }
 
   @Output() onChanged = new EventEmitter<number>();
-  pageChange(event){
+  pageChange(event) {
     this.onChanged.emit(event);
   }
 
   getData(): void {
-    this.pageLimit = Math.ceil(this.data.count / this.limit) ;
-    /*this.cs.getMockCandidates(10, this.page).subscribe((data) => {
-      this.data = data;
-      this.pageLimit = Math.round(this.data.count / 10) ;
-      console.log(data);
-    });*/
+    console.log(this.limit);
   }
 
 }

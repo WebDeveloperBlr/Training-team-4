@@ -9,12 +9,13 @@ import { Component, OnInit, ChangeDetectionStrategy, EventEmitter, Output } from
 
 export class NgSelectComponentComponent implements OnInit{
 
-  statuses = [
+  data = [
     {id_status: 1, name: 'Any'},
     {id_status: 2, name: 'CV-rejected'},
-    {id_status: 3, name: 'Interview accepted'},
+    {id_status: 3, name: 'Accepted for interview'},
     {id_status: 4, name: 'CV-accepted'},
-    {id_status: 5, name: 'New'}
+    {id_status: 5, name: 'New'},
+    {id_status: 6, name: 'Accepted for work'}
   ];
   public selectedItemId: string = null;
   @Output() onChanged = new EventEmitter<any>();
@@ -25,7 +26,7 @@ export class NgSelectComponentComponent implements OnInit{
 
 
   ngOnInit() {
-    this.selectedItemId = this.statuses[0].name;
+    this.selectedItemId = this.data[0].name;
   }
 }
 

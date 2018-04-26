@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, ViewChild } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ViewChild, Input } from '@angular/core';
 import { CandidateService } from '../../candidate.service';
 import { PaginationComponent } from '../../common/pagination/pagination.component';
 import { DropdownComponent } from '../../common/dropdown/dropdown.component';
@@ -11,6 +11,8 @@ import { DropdownComponent } from '../../common/dropdown/dropdown.component';
 export class GridComponent implements OnInit {
 
   @Output() changePage = new EventEmitter<any>();
+
+  @Input()
   data: object;
   offset: number;
   limit: number;
@@ -23,6 +25,7 @@ export class GridComponent implements OnInit {
 
 
   onChange(): void {
+    console.log('fired');
     this.limit = this.dropDown.activeValue;
     this.offset = this.pg.page;
     this.changePage.emit();
@@ -38,10 +41,10 @@ export class GridComponent implements OnInit {
 
   getCandidates(limit: number = 10, offset: number  = 1): void {
     //this.data = this.cs.getCandidates().subscribe((candidates) => this.data = candidates);
-    this.cs.getMockCandidates(limit, offset).subscribe((data) => {
+    /*this.cs.getMockCandidates(limit, offset).subscribe((data) => {
       this.data = data;
         console.log(data);
-    });
+    });*/
   }
 
 }

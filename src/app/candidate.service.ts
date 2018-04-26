@@ -9,7 +9,7 @@ import {hasOwnProperty} from 'tslint/lib/utils';
 
 @Injectable()
 export class CandidateService {
-  private URL = '/candidates';
+  private URL = 'http://localhost:8080/candidates';
   public cache;
   public currentOffset: number;
   public currentLimit: number;
@@ -19,11 +19,13 @@ export class CandidateService {
 
 
   getCandidates(limit: number = 10, offset: number = 1, filterObj?: any): Observable<any> {
+
     if ( !this.data || this.currentOffset !== offset || this.currentLimit !== limit || filterObj) {
       let params = new HttpParams();
       params = params.append('currentPage', offset.toString());
       params = params.append('limit', limit.toString());
-      if(filterObj && filterObj.id_status && filterObj.id_status !== 'Any') {
+      if( filterObj ) {
+        console.log(filterObj);
         params = params.append('filter', JSON.stringify(filterObj));
       }
 
@@ -44,9 +46,9 @@ export class CandidateService {
       this.http.get('assets/json/candidates.json').subscribe(
         (data: any) => {
           const newData = [];
-          if(filterObj && filterObj.id_status && filterObj.id_status!=='Any'){
+          if(filterObj && filterObj.statusName && filterObj.statusName!=='Any'){
             let filteredData = [];
-            filteredData = data.docs.filter(val => val.status === filterObj.id_status);
+            filteredData = data.docs.filter(val => val.status === filterObj.statusName);
             data.docs = filteredData;
           }
           for (let i = (offset - 1) * limit; i < (offset - 1) * limit + limit; i++) {

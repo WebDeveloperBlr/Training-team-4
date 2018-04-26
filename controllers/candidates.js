@@ -1,6 +1,5 @@
 var Candidates = require("./../models/candidates");
 var fs = require('fs');
-console.log(__dirname);
 
 exports.all = function (req, res) {
   var limit;
@@ -9,6 +8,7 @@ exports.all = function (req, res) {
   } else {
     limit = "10";
   }
+  res.header('Access-Control-Allow-Origin','*');
   Candidates.all(limit, req.query.filter, function (err, docs) {
     if (err) {
       console.log(err);
@@ -19,6 +19,7 @@ exports.all = function (req, res) {
 
 };
 exports.getById = function (req, res) {
+  res.header('Access-Control-Allow-Origin','*');
   Candidates.getByID(req.params.id, function (err, docs) {
     if (err.length>0) {
       console.log(err[0]);
@@ -28,6 +29,7 @@ exports.getById = function (req, res) {
   })
 };
 exports.create = function (req, res) {
+  res.header('Access-Control-Allow-Origin','*');
   var candidate = {
     firstName: req.body.firstName,
     lastName: req.body.lastName,
@@ -48,6 +50,7 @@ exports.create = function (req, res) {
   })
 };
 exports.update = function (req, res) {
+  res.header('Access-Control-Allow-Origin','*');
   var candidate = {
     firstName: req.body.docs[0].firstName||"",
     lastName: req.body.docs[0].lastName||"",
@@ -75,6 +78,7 @@ exports.update = function (req, res) {
   })
 };
 exports.delete = function (req, res) {
+  res.header('Access-Control-Allow-Origin','*');
   Candidates.delete(req.params.id, function (err, docs) {
     if (err) {
       console.log(err);

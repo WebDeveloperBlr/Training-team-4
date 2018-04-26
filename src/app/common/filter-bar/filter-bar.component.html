@@ -18,7 +18,7 @@
       <div class="hr-app__filters-bar__filter-item">
         <div class="hr-app__filters-bar__select-text">Name</div>
         <div class="hr-app__filters-bar__input-wrap">
-          <input class="hr-app__filters-bar__input" type="text"/>
+          <input class="hr-app__filters-bar__input" (input)="changeName($event)" type="text"/>
         </div>
       </div>
       <div class="hr-app__filters-bar__filter-item">
@@ -32,7 +32,12 @@
       </div>
       <div class="hr-app__filters-bar__filter-item">
         <div class="hr-app__filters-bar__select-text">Status</div>
-        <app-ng-select-component (onChanged)="change($event)"></app-ng-select-component>
+        <ng-select ngClass="custom" [items]="statusData"
+                   bindLabel="name"
+                   bindValue="name"
+                   placeholder="Select value"
+                   [(ngModel)]="selectedItemName"
+                   (change)="onChange()"></ng-select>
 
       </div>
       <div class="hr-app__filters-bar__pagination"><span>1</span><span> of</span><span> 12</span></div>

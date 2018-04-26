@@ -11,22 +11,37 @@ export class FilterBarComponent implements OnInit {
   width: number;
   height: number = 25;
   selectedIndex: number = 0;
-  filterObj: any = {};
-  @ViewChild(NgSelectComponentComponent)
-  private childSelect: NgSelectComponentComponent;
+  filterObj: any = {
+    name: ''
+  };
+
+  statusData = [
+    {id_status: 1, name: 'Any'},
+    {id_status: 2, name: 'CV-rejected'},
+    {id_status: 3, name: 'Accepted for interview'},
+    {id_status: 4, name: 'CV-accepted'},
+    {id_status: 5, name: 'New'},
+    {id_status: 6, name: 'Accepted for work'}
+  ];
+  public selectedItemName: string = null;
+
+  @Output() onChanged = new EventEmitter<any>();
 
 
-  @Output() onChange = new EventEmitter<any>();
-
-  change(evt): void {
-    this.filterObj.id_status = this.childSelect.selectedItemId;
+  onChange(): void {
+    this.filterObj.statusName = this.selectedItemName;
     console.log(this.filterObj);
-    this.onChange.emit(this.filterObj);
+    this.onChanged.emit(this.selectedItemName);
   }
 
+  changeName(event): void{
+    this.filterObj.name = event.target.value;
+    this.onChange();
+  }
   constructor() { }
 
   ngOnInit() {
+    this.selectedItemName = this.statusData[0].name;
   }
 
 }
