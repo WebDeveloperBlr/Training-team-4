@@ -58,22 +58,26 @@ server.get("/register", function (req, res, next) {
 var bcrypt = require('bcrypt');
 const saltRounds = 10;
 
+
+
 server.post("/authentication", function (req, res, next) {
   connection.query("SELECT * FROM `hr-app`.Authentication", function (err, queryResults) {
     queryResults.forEach(function (row, i, results) {
       if (req.body.userLogin == row.login){
-        bcrypt.compare(req.body.userPassword, row.password, function (err, resHash) {
-          if (resHash) {
-            console.log(row.login + "  " + "logged in");
-            req.session.access = true;
-            res.end("true");
-          }
-          if (i == (queryResults.length - 1) && !req.session.access) {
-            console.log("false");
-            res.end("false");
-          }
-        });
+        if(bcrypt.compareSync(req.body.userPassword, row.password)){
+          console.log(row.login + "  " + "logged in");
+          req.session.access = true;
+          console.log("true is sent");
+          res.end("true");
+        }else{
+          // console.log("false inner");
+          res.end("false");
+        }
     }
+    if(i==queryResults.length-1 && !req.session.access){
+        // console.log("false outer");
+        res.end("false");
+      }
     });
   });
 });
