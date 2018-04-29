@@ -14,7 +14,7 @@ logForm.onsubmit=function(event){
             return;
         if(this.status!=200)
             return;
-        if(xhr.responseText=="false"){
+        if(this.responseText=="false"){
             var incorrPasswPopup=document.getElementById("incorrect-password-popup");
             incorrPasswPopup.classList.remove("d-none");
             return;

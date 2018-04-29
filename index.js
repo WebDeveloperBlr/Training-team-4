@@ -58,22 +58,26 @@ server.get("/register", function (req, res, next) {
 var bcrypt = require('bcrypt');
 const saltRounds = 10;
 
+
+
 server.post("/authentication", function (req, res, next) {
   connection.query("SELECT * FROM `hr-app`.Authentication", function (err, queryResults) {
     queryResults.forEach(function (row, i, results) {
       if (req.body.userLogin == row.login){
-        bcrypt.compare(req.body.userPassword, row.password, function (err, resHash) {
-          if (resHash) {
-            console.log(row.login + "  " + "logged in");
-            req.session.access = true;
-            res.end("true");
-          }
-          if (i == (queryResults.length - 1) && !req.session.access) {
-            console.log("false");
-            res.end("false");
-          }
-        });
+        if(bcrypt.compareSync(req.body.userPassword, row.password)){
+          console.log(row.login + "  " + "logged in");
+          req.session.access = true;
+          console.log("true is sent");
+          res.end("true");
+        }else{
+          // console.log("false inner");
+          res.end("false");
+        }
     }
+    if(i==queryResults.length-1 && !req.session.access){
+        // console.log("false outer");
+        res.end("false");
+      }
     });
   });
 });
@@ -119,16 +123,16 @@ server.post("/oninputLoginReg",function(req,res,next){
 });
 
 server.get("/getNotificationCandidates",function(req,res,next){
-  connection.query("SELECT p.firstName, p.secondName,c.salary,name\n" +
-    "FROM candidate c\n" +
-    "INNER JOIN person p\n" +
-    "on c.id_person=p.id_person\n" +
-    "INNER JOIN candidatePosition cP\n" +
-    "on c.id_candidate=cP.id_candidatePosition\n" +
-    "INNER JOIN position ps\n" +
-    "on cP.id_position=ps.id_position\n" +
-    "inner JOIN candidateStatus cS\n" +
-    "on c.id_candidate=cS.id_candidate\n" +
+  connection.query("SELECT p.firstName, p.secondName,c.salary,name " +
+    "FROM candidate c " +
+    "INNER JOIN person p " +
+    "on c.id_person=p.id_person " +
+    "INNER JOIN candidatePosition cP " +
+    "on c.id_candidate=cP.id_candidatePosition " +
+    "INNER JOIN position ps " +
+    "on cP.id_position=ps.id_position " +
+    "inner JOIN candidateStatus cS " +
+    "on c.id_candidate=cS.id_candidate " +
     "where cS.id_status=5;",function(err, results){
     if(err) throw err;
     res.end(JSON.stringify(results));
@@ -136,16 +140,72 @@ server.get("/getNotificationCandidates",function(req,res,next){
 });
 
 server.get("/getNextInterviews",function(req,res,next){
-  connection.query("SELECT id_event,dateStart,dateEnd,e.id_interviewer,info,place,isRepeatable, e.id_importance,title,isVacant,name as importanceLevel,firstName,lastName\n" +
-    "from event e\n" +
-    "INNER JOIN importance im\n" +
-    "on e.id_importance=im.id_importance\n" +
-    "INNER join interviewer viewer\n" +
+  connection.query("SELECT id_event,dateStart,dateEnd,e.id_interviewer,info,place,isRepeatable, e.id_importance,title,isVacant,name as importanceLevel,firstName,lastName " +
+    "from event e " +
+    "INNER JOIN importance im " +
+    "on e.id_importance=im.id_importance " +
+    "INNER join interviewer viewer " +
     "on e.id_interviewer=viewer.id_interviewer;",function(err,results){
     if(err) throw err;
     res.end(JSON.stringify(results));
   });
 });
+
+server.get("/getEvents",function(req,res,next){
+  connection.query("SELECT id_event,dateStart,timeStart,dateEnd,timeEnd,e.id_interviewer,info,place,isRepeatable, e.id_importance,title,isVacant,name as importanceLevel,firstName,lastName,allDay " +
+    "from event e " +
+    "INNER JOIN importance im " +
+    "on e.id_importance=im.id_importance " +
+    "INNER join interviewer viewer " +
+    "on e.id_interviewer=viewer.id_interviewer;",function(err, results){
+    if(err) throw err;
+    res.end(JSON.stringify(results));
+  });
+});
+
+server.post("/eventCreate",function(req,res,next){
+  var defStart="09:00:00";
+  var defEnd="10:00:00";
+  var defInfo="No info yet";
+  var defPlace="No place yet";
+  connection.query('INSERT INTO `hr-app`.event(dateStart,dateEnd,title,timeStart,timeEnd,id_interviewer,info,place,isRepeatable,id_importance,isVacant,allDay)'+
+  'VALUES("'+req.body.start+'","'+req.body.end+'","'+req.body.title+'","'+defStart+'","'+defEnd+'","'+1+'","'+defInfo+'","'+defPlace+'","'+false+'","'+1+'","'+true+'","'+false+'");',function(err,results){
+    if (err) throw err;
+    else res.end();
+  });
+});
+
+server.get("/getInterviewers",function(req,res,next){
+  connection.query("SELECT * FROM interviewer ;",function(err,results){
+    if
+      (err) throw err;
+    else
+      res.end(JSON.stringify(results));
+  });
+});
+
+server.post("/updateEvent",function(req,res,next){
+  connection.query(' ' +
+    'update event ' +
+    'set ' +
+    'dateStart="'+req.body.start.split(`T`)[0]+'", ' +
+    '  timeStart="'+req.body.start.split(`T`)[1]+'", ' +
+    '  dateEnd="'+req.body.end.split(`T`)[0]+'", ' +
+    '  timeEnd="'+req.body.end.split(`T`)[1]+'", ' +
+    '  id_interviewer='+req.body.interviewer+', ' +
+    '  info="'+req.body.info+'", ' +
+    '  place="'+req.body.place+'", ' +
+    '  isRepeatable='+req.body.repeat+', ' +
+    '  id_importance='+(req.body.colorIndex+1)+', ' +
+    '  title="'+req.body.title+'", ' +
+    '  isVacant='+req.body.isVacant+', ' +
+    '  allDay='+req.body.allDay+' ' +
+    'where id_event='+req.body.id+';',function(err,results){
+    if (err) throw err;
+    res.end();
+  });
+});
+
 
 server.get('/candidates', candidatesController.all);
 server.get('/vacancies', vacanciesController.all);
@@ -157,4 +217,19 @@ server.post('/', candidatesController.create);
 server.put('/candidates/:id', candidatesController.update);
 server.del('/:id', candidatesController.delete);
 
-
+//
+// update event
+// set
+// dateStart="2018-04-20",
+//   timeStart="05:00:00",
+//   dateEnd="2018-04-20",
+//   timeEnd="06:00:00",
+//   id_interviewer=2,
+//   info="dont know",
+//   place="no place",
+//   isRepeatable=true,
+//   id_importance=2,
+//   title="something",
+//   isVacant=true,
+//   allDay=false
+// where id_event=2;
