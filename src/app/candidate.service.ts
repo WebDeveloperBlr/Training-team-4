@@ -5,10 +5,11 @@ import { MessageService } from './message.service';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {hasOwnProperty} from 'tslint/lib/utils';
-
+import {NotifCandidate} from "./interfaces/notifCandidate";
 
 @Injectable()
 export class CandidateService {
+  private URLforNewCandidates='/getNewCandidates';
   private URL = 'http://localhost:8080/candidates';
   public cache;
   public currentOffset: number;
@@ -88,6 +89,11 @@ export class CandidateService {
     }
     return newData;
   }
+
+  getNewCandidates(): Observable<NotifCandidate[]> {
+     return this.http.get<NotifCandidate[]>(this.URLforNewCandidates);
+  }
+
 
   getCandidate(id: number){
     return this.http.get(this.URL + '/' + id);

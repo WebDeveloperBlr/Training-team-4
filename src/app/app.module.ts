@@ -27,6 +27,7 @@ import { VacanciesGridComponent } from './vacancies/vacancies-grid/vacancies-gri
 import { VacanciesFilterBarComponent } from './vacancies/vacancies-filter-bar/vacancies-filter-bar.component';
 import {formControlBinding} from '@angular/forms/src/directives/ng_model';
 import { NotificationsBarComponent } from './notifications-bar/notifications-bar.component';
+import {EventsService} from "./events.service";
 
 
 @NgModule({
@@ -59,7 +60,8 @@ import { NotificationsBarComponent } from './notifications-bar/notifications-bar
     CandidateService,
     MessageService,
     PaginationComponent,
-    VacanciesService
+    VacanciesService,
+    EventsService
   ],
   bootstrap: [AppComponent]
 })

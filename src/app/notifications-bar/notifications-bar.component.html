@@ -1,11 +1,11 @@
 <div  [class._active]="candidateService.barOpened" id="notificationMenu" class="right-col _active" data-menu="">
   <div class="right-col__item">
     <h2 class="right-col__title">New candidates</h2>
-    <div id="notifsContainer" class="notifications custom-scroll" data-candidates="">
-      <div class="notification"><img class="notification__img" src="https://www.meme-arsenal.com/memes/31b51255d61f1c9ff104146e59a30790.jpg">
-        <span class="notification__name">Venua Smirnov</span>
-        <span class="notification__salary">2000$</span>
-        <span class="notification__position">JavaScript Developer</span>
+    <div  id="notifsContainer" class="notifications custom-scroll" data-candidates="">
+      <div *ngFor="let cand of newCandidates" class="notification"><img class="notification__img" src="https://www.meme-arsenal.com/memes/31b51255d61f1c9ff104146e59a30790.jpg">
+        <span class="notification__name">{{cand.firstName}} {{cand.lastName}}</span>
+        <span class="notification__salary">{{cand.salary}}$</span>
+        <span class="notification__position">{{cand.name}}</span>
       <button class="notification__close" data-close="">X</button>
       </div>
     </div>
@@ -14,9 +14,15 @@
 
   <div class="right-col__item">
     <h2 class="right-col__title">Next interviews</h2>
-    <div id="interview-container" class="notifications custom-scroll" data-notifications=""><div class="notification"><span class="notification__title">EXAMPLE</span>
-      <span class="notification__start">2018-04-17 — 2018-04-17</span>
-      <button class="notification__close" data-close="">X</button></div></div>
+    <div id="interview-container"  class="notifications custom-scroll" data-notifications="">
+      <div *ngFor="let event of nextEvents" class="notification">
+        <span class="notification__title">{{event.title}}</span>
+        <span class="notification__start">{{event.dateStart | date:"dd-mm-yyyy"}}</span>
+        <span class="notification__start">{{event.dateStart | date:"HH:mm"}} - {{event.timeEnd|date:"HH:mm"}}</span>
+       <button class="notification__close" data-close="">X</button>
+      </div>
+    </div>
+    <div ></div>
     <button id="viewInterviewsBtn" class="show-more notifications__show-more" data-show="notifications">View All</button>
   </div>
 </div>
