@@ -1,0 +1,50 @@
+<div class="hr-app__table" *ngIf='data' id="hr-app__table">
+  <div class="table--row hr-app__table__header-row">
+    <div class="hr-app__table-col table--header-col col--photo" id="table--header-col--pos">Photo</div>
+    <div class="hr-app__table-col table--header-col col--name" id="table--header-col--pos">Name</div>
+    <div class="hr-app__table-col table--header-col col--position" id="table--header-col--pos">Position</div>
+    <div class="hr-app__table-col table--header-col col--status" id="table--header-col--pos">Status</div>
+    <div class="hr-app__table-col table--header-col col--view candidate" id="table--header-col--pos">View Candidate
+    </div>
+  </div>
+  <div class="hr-app__table__row table--row table-row--big" *ngFor='let item of data.docs'>
+    <div class="hr-app__table-col col--photo" data-toggle="collapse" data-target="" role="button"
+         aria-expanded="false" aria-controls="filters-bar-collapse">
+      <div class="hr-app__table-col__photo"><img class="hr-app__table-col__photo-img"
+                                                 src="/assets/images/profiles/profile.jpg" alt=""></div>
+    </div>
+    <div class="hr-app__table-col">
+      <div class="hr-app__table-col__advantages">{{item.name}}</div>
+    </div>
+    <div class="hr-app__table-col">
+      <div class="hr-app__table-col__advantages">{{item.position}}</div>
+    </div>
+    <div class="hr-app__table-col">
+      <div class="hr-app__table-col__advantages">{{item.status}}</div>
+    </div>
+    <div class="hr-app__table-col"><a class="hr-app__table-col__button" routerLink="/candidates/{{item.id_candidate}}">View
+      Candidate</a></div>
+  </div>
+
+
+  <div class="hr-app__table-editor">
+    <div class="hr-app__table-editor__col">
+      <div class="hr-app__table-editor__text">Rows per page:</div>
+      <app-dropdown (onChanged)="onChange()"></app-dropdown>
+
+    </div>
+    <div class="hr-app__table-editor__col order-2">
+      <div class="hr-app__table-editor__pagination">{{(offset-1)*limit+1}} - {{((offset-1)*limit + limit) > data.count ? data.count : ((offset-1)*limit + limit)}} of
+        {{data.count}}
+      </div>
+    </div>
+    <div
+      class="hr-app__table-editor__page-buttons hr-app__table-editor__col order-1 order-lg-2">
+
+      <app-pagination [data]="data" [limit] = "limit" (onChanged)="onChange()"></app-pagination>
+    </div>
+    <div class="hr-app__fixed-round">
+      <div class="hr-app__fixed-round__plus">+</div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,4 @@
+<section class="vacancies-tab" id="vacancies-tab">
+  <app-vacancies-filter-bar (onChange)="filterData()"></app-vacancies-filter-bar>
+  <app-vacancies-grid [data]="data" (changePage)="getVacancies()"></app-vacancies-grid>
+</section>

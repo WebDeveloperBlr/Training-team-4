@@ -1,0 +1,15 @@
+.messages{
+  font-family: 'Ubuntu', Sans-Serif;
+  font-weight: 400;
+  padding: 20px;
+  background-color: #35a9ff;
+  color: #fff;
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 60px;
+  z-index: 999;
+  height: auto;
+  width: 250px;
+  border-radius: 2px;
+}
