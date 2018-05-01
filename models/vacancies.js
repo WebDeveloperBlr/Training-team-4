@@ -2,7 +2,7 @@
 const db = require('../db');
 var connection = db.get;
 exports.all = function(limit, filter, cb) {
-  console.log(filter);
+//  console.log(filter);
     var data = {};
     var query
     filter = undefined;
@@ -22,9 +22,9 @@ exports.all = function(limit, filter, cb) {
     }else{
       query = 'SELECT position.name \'position\', vacancy.requirements, vacancy.workExperience,vacancy.salary\n' + 'FROM `hr-app`.vacancy \n' + 'INNER JOIN `hr-app`.vacancyPosition ON vacancyPosition.id_vacancy=vacancy.id_vacancy \n' + 'INNER JOIN position ON position.id_position=vacancyPosition.id_position group by vacancy.id_vacancy';
     }
-    
+
     connection.query('SELECT count(*) "count" FROM(' + query + ') AS T;', function(error, results) {
-        console.log(results);
+      //  console.log(results);
         data.count = results[0].count;
         connection.query(query + ' ORDER BY vacancy.id_vacancy ASC LIMIT ' + limit + ';', function(error, results) {
             data.docs = results;

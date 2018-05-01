@@ -36,6 +36,9 @@ export class VacanciesService {
     }
     return this.data.asObservable();
   }
+
+
+
   getMockAll(limit: number = 10, offset: number = 1, filterObj?: any): Observable<any>{
 
     if ( !this.data || this.currentOffset !== offset || this.currentLimit !== limit || filterObj) {

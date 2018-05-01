@@ -26,6 +26,7 @@ import {VacanciesService} from './vacancies.service';
 import { VacanciesGridComponent } from './vacancies/vacancies-grid/vacancies-grid.component';
 import { VacanciesFilterBarComponent } from './vacancies/vacancies-filter-bar/vacancies-filter-bar.component';
 import {formControlBinding} from '@angular/forms/src/directives/ng_model';
+import { NotificationsBarComponent } from './notifications-bar/notifications-bar.component';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import {formControlBinding} from '@angular/forms/src/directives/ng_model';
     DropdownComponent,
     NgSelectComponentComponent,
     VacanciesGridComponent,
-    VacanciesFilterBarComponent
+    VacanciesFilterBarComponent,
+    NotificationsBarComponent
   ],
   imports: [
     BrowserModule,
