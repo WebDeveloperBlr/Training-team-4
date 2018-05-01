@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {CandidateService} from "../../candidate.service";
 
 @Component({
   selector: 'app-search-bar',
@@ -8,13 +7,9 @@ import {CandidateService} from "../../candidate.service";
 })
 export class SearchBarComponent implements OnInit {
 
-  constructor(private candidateService:CandidateService) { }
+  constructor() { }
 
   ngOnInit() {
   }
 
-
-  toggleSideBar(){
-    this.candidateService.toggleSideBar();
-  }
 }

@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import { MessageService } from './message.service';
-import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
-import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Injectable()
 export class VacanciesService {
@@ -36,8 +36,6 @@ export class VacanciesService {
     }
     return this.data.asObservable();
   }
-
-
   getMockAll(limit: number = 10, offset: number = 1, filterObj?: any): Observable<any>{
 
     if ( !this.data || this.currentOffset !== offset || this.currentLimit !== limit || filterObj) {

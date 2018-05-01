@@ -14,7 +14,6 @@ export class VacanciesComponent implements OnInit {
   data = {};
   filterObj = {};
 
-
   @ViewChild(VacanciesGridComponent)
   private grid: VacanciesGridComponent;
   @ViewChild(VacanciesFilterBarComponent)
