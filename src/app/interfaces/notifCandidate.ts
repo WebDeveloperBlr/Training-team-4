@@ -4,4 +4,5 @@ export interface NotifCandidate{
   lastName:string;
   salary:number;
   name:string;
+  state?:string;
 }
