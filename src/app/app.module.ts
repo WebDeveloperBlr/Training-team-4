@@ -30,6 +30,7 @@ import {formControlBinding} from '@angular/forms/src/directives/ng_model';
 import { InterviewsComponent } from './interviews/interviews.component';
 import { NewEventFormComponent, NewEventFormContent } from './interviews/new-event-form/new-event-form.component';
 import { EditEventFormComponent, EditEventFormContent } from './interviews/edit-event-form/edit-event-form.component';
+import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import { EditEventFormComponent, EditEventFormContent } from './interviews/edit-
     NgSelectModule,
     FormsModule,
     ReactiveFormsModule,
-    FullCalendarModule
+    FullCalendarModule,
+    MultiselectDropdownModule
   ],
   providers: [
     CandidateService,
