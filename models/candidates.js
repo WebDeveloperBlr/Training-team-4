@@ -7,7 +7,7 @@ var connection = db.get;
 exports.all = function (limit, filter, cb) {
   var data = {};
   var error = [];
-  console.log(filter);
+ // console.log(filter);
   try{
     filter = JSON.parse(filter);
   }
@@ -22,7 +22,7 @@ exports.all = function (limit, filter, cb) {
     'INNER JOIN candidatePosition cp ON cp.id_candidate = candidate.id_candidate ' +
     'INNER JOIN position pos ON pos.id_position = cp.id_position ' +
     'INNER JOIN person per ON per.id_person = candidate.id_person ';
-  console.log(filter);
+ // console.log(filter);
 
   if (filter&&filter.name!==undefined) {
     query += 'WHERE ( ';
@@ -104,7 +104,7 @@ exports.getByID = function (id, cb) {
   });
 
   Promise.all([promiseQuery1,promiseQuery2,promiseQuery3,promiseQuery4,promiseQuery5,promiseGetAllSkills]).then(()=>{
-    console.log(data);
+  //  console.log(data);
     cb(error, data);
   });
 
@@ -198,7 +198,7 @@ exports.update = function (id, candidate, cb) {
           'WHERE experience.id_experience=' + item.id_experience + ';';
       }
 
-      console.log(updateExpQuery);
+  //    console.log(updateExpQuery);
       var promiseUpdateExp = new Promise((res, rej)=>{
         connection.query(updateExpQuery, function (error, results) {
           if(error){

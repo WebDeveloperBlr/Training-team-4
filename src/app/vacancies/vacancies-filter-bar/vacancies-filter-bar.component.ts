@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, ViewChild, EventEmitter } from '@angular/core';
 
+
 @Component({
   selector: 'app-vacancies-filter-bar',
   templateUrl: './vacancies-filter-bar.component.html',

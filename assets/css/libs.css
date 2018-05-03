@@ -16779,7 +16779,7 @@ ol li .jqx-listmenu-item-label:before {
 }
 
 .jqx-primary .jqx-icon-arrow-down-selected, .jqx-warning .jqx-icon-arrow-down-selected, .jqx-danger .jqx-icon-arrow-down-selected, .jqx-success .jqx-icon-arrow-down-selected, .jqx-info .jqx-icon-arrow-down-selected {
-  background-image: url('assets//assets/images/icons/icons/icon-down-white.png');
+  background-image: url('/assets/images/icons/icons/icon-down-white.png');
 }
 
 .jqx-primary .jqx-icon-arrow-down-hover, .jqx-warning .jqx-icon-arrow-down-hover, .jqx-danger .jqx-icon-arrow-down-hover, .jqx-success .jqx-icon-arrow-down-hover, .jqx-info .jqx-icon-arrow-down-hover {

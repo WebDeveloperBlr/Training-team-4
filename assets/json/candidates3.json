@@ -1,0 +1,123 @@
+{
+  "count": 30,
+  "docs": [{
+    "id_candidate": "5adb2fc31afc1266646d7d16",
+    "age": 20,
+    "name": "Cherry Nguyen",
+    "position": "JavaScript Developer",
+    "gender": "female",
+    "company": "AQUAFIRE",
+    "email": "cherrynguyen@aquafire.com",
+    "phone": "+375 (931) 537-3111",
+    "address": "154 Gain Court, Katonah, Virgin Islands, 2514",
+    "status": "Accepted for interview"
+  },
+    {
+      "id_candidate": "5adb2fc3367bb6a01aa690c6",
+      "age": 40,
+      "name": "Herminia Mcpherson",
+      "position": "Ruby Developer",
+      "gender": "female",
+      "company": "ZOLARITY",
+      "email": "herminiamcpherson@zolarity.com",
+      "phone": "+375 (921) 436-2385",
+      "address": "675 Wogan Terrace, Coaldale, Tennessee, 2678",
+      "status": "Accepted for interview"
+    },
+    {
+      "id_candidate": "5adb2fc3ddcac306d9690c2c",
+      "age": 27,
+      "name": "Marla Ramos",
+      "position": "JavaScript Developer",
+      "gender": "female",
+      "company": "GEEKETRON",
+      "email": "marlaramos@geeketron.com",
+      "phone": "+375 (999) 488-3496",
+      "address": "139 Schenectady Avenue, Westboro, Maryland, 8126",
+      "status": "CV-rejected"
+    },
+    {
+      "id_candidate": "5adb2fc355230f3c9a189113",
+      "age": 38,
+      "name": "Coffey Mcdaniel",
+      "position": "PHP Developer",
+      "gender": "male",
+      "company": "TECHTRIX",
+      "email": "coffeymcdaniel@techtrix.com",
+      "phone": "+375 (899) 493-3929",
+      "address": "610 Roder Avenue, Shelby, Palau, 2592",
+      "status": "Accepted for interview"
+    },
+    {
+      "id_candidate": "5adb2fc34b9d6e9ec86496ad",
+      "age": 27,
+      "name": "Strong Gamble",
+      "position": "PHP Developer",
+      "gender": "male",
+      "company": "GENMOM",
+      "email": "stronggamble@genmom.com",
+      "phone": "+375 (873) 546-3112",
+      "address": "462 Joralemon Street, Longbranch, New Hampshire, 7373",
+      "status": "New"
+    },
+    {
+      "id_candidate": "5adb2fc3cedbbed47875ff90",
+      "age": 27,
+      "name": "Sheree Singleton",
+      "position": "PHP Developer",
+      "gender": "female",
+      "company": "ZYTREK",
+      "email": "shereesingleton@zytrek.com",
+      "phone": "+375 (908) 465-2271",
+      "address": "439 Middleton Street, Cawood, Florida, 4066",
+      "status": "Accepted for interview"
+    },
+    {
+      "id_candidate": "5adb2fc31e3b9c22c2a05b68",
+      "age": 33,
+      "name": "Hilda Griffith",
+      "position": "JavaScript Developer",
+      "gender": "female",
+      "company": "DIGIGENE",
+      "email": "hildagriffith@digigene.com",
+      "phone": "+375 (944) 575-3804",
+      "address": "873 Nevins Street, Homestead, Puerto Rico, 4111",
+      "status": "Accepted for interview"
+    },
+    {
+      "id_candidate": "5adb2fc30899f9a151bfe2c8",
+      "age": 36,
+      "name": "Sallie Carter",
+      "position": "Ruby Developer",
+      "gender": "female",
+      "company": "JUNIPOOR",
+      "email": "salliecarter@junipoor.com",
+      "phone": "+375 (917) 457-3762",
+      "address": "926 Thornton Street, Westerville, Louisiana, 4118",
+      "status": "New"
+    },
+    {
+      "id_candidate": "5adb2fc3814b99a3998c777c",
+      "age": 24,
+      "name": "Cleveland Williamson",
+      "position": "Java Developer",
+      "gender": "male",
+      "company": "OLUCORE",
+      "email": "clevelandwilliamson@olucore.com",
+      "phone": "+375 (847) 458-2459",
+      "address": "518 Suydam Street, Walker, Nebraska, 1995",
+      "status": "CV-rejected"
+    },
+    {
+      "id_candidate": "5adb2fc390b8cac4257902f7",
+      "age": 33,
+      "name": "Gillespie Patrick",
+      "position": "PHP Developer",
+      "gender": "male",
+      "company": "ORBIXTAR",
+      "email": "gillespiepatrick@orbixtar.com",
+      "phone": "+375 (990) 430-3944",
+      "address": "507 Tiffany Place, Collins, Hawaii, 616",
+      "status": "CV-accepted"
+    }]
+}

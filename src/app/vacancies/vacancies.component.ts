@@ -14,6 +14,7 @@ export class VacanciesComponent implements OnInit {
   data = {};
   filterObj = {};
 
+
   @ViewChild(VacanciesGridComponent)
   private grid: VacanciesGridComponent;
   @ViewChild(VacanciesFilterBarComponent)
@@ -30,7 +31,7 @@ export class VacanciesComponent implements OnInit {
   }
   getVacancies(): void {
     this.vs.getAll(this.grid.limit, this.grid.offset, this.filterObj).subscribe(data => this.data = data);
-    //this.vs.getMockAll(this.grid.limit, this.grid.offset).subscribe(data => this.data = data);
+    // this.vs.getMockAll(this.grid.limit, this.grid.offset).subscribe(data => this.data = data);
   }
 
 }

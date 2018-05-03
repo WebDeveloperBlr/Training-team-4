@@ -310,7 +310,7 @@ input:focus:-ms-input-placeholder {
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
   font-size: 0.9375rem;
-    min-width:220px;
+  min-width:220px;
 }
 
 .login-form__info-text {
@@ -2888,7 +2888,7 @@ input:-ms-input-placeholder {
   margin-left: 10px;
 
   cursor: pointer;
-border-radius: 5px}
+  border-radius: 5px}
 .add-button span{
   margin-top: -2px;
   margin-left: 0px;
@@ -3170,7 +3170,7 @@ border-radius: 5px}
 }
 
 .password-rep +.decor{
-    bottom:82px !important;
+  bottom:82px !important;
 }
 
 
