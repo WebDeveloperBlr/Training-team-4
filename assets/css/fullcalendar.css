@@ -1362,19 +1362,3 @@ be a descendant of the grid when it is being dragged.
 	top:8px;
 }
 
-i{
-	cursor:pointer;
-}
-
-.col.s9.m8{
-	padding-left:0px;
-}
-
-.timeTip{
-	display:inline-block;
-	float:right !important;
-}
-
-#modal-time-end{
-	margin-bottom:10px !important;
-}

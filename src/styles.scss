@@ -2,6 +2,7 @@
 @import '~normalize.css/normalize.css';
 @import '~bootstrap/dist/css/bootstrap.css';
 @import "~@ng-select/ng-select/themes/default.theme.css";
+@import "~fullcalendar/dist/fullcalendar.min.css";
 
 @font-face {
   font-family: 'Ubuntu';
@@ -3138,8 +3139,41 @@ app-candidates{
   height: 100%;
 }
 
+.popup-header {
+  font-family: mainFont;
+  margin: 1em;
+}
+.tabs-wrapper {
+  margin: 0.5em 0.3em;
+}
+.select-color, .select-interviewer {
+  margin-left: -15px !important;
+}
+.new-event-title {
+  height: 6em;
+}
+.modal-dialog {
+  max-width: 200px !important;
+}
+.modal-content {
+  width: 400px !important;
+}
+.modal-content .popup-window {
+  min-height: 330px !important;
+}
 
+.modal-content .edit-window {
+  min-height: 400px !important;
+}
 
+.popup-submit {
+  position: fixed;
+  bottom: 1em;
+}
+
+.select-interview {
+  overflow: paged-y;
+}
 
 
 
