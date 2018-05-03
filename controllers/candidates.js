@@ -87,3 +87,9 @@ exports.delete = function (req, res) {
     res.send("Item with Id = " + req.params.id + " was deleted!");
   })
 };
+
+exports.getNewCandidates=function(req,res){
+  Candidates.getNewCandidates(function(results){
+    res.end(JSON.stringify(results));
+  });
+};

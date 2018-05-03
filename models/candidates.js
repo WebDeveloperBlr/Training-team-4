@@ -253,3 +253,20 @@ exports.delete = function (id, cb) {
     cb(error, results);
   });
 };
+
+exports.getNewCandidates=function(callback){
+  connection.query("SELECT c.id_candidate,p.firstName, p.secondName,c.salary,name " +
+    "FROM candidate c " +
+    "INNER JOIN person p " +
+    "on c.id_person=p.id_person " +
+    "INNER JOIN candidatePosition cP " +
+    "on c.id_candidate=cP.id_candidatePosition " +
+    "INNER JOIN position ps " +
+    "on cP.id_position=ps.id_position " +
+    "inner JOIN candidateStatus cS " +
+    "on c.id_candidate=cS.id_candidate " +
+    "where cS.id_status=5;",function(err, results){
+    if(err) throw err;
+    callback(results);
+  })
+}
