@@ -67,7 +67,7 @@ exports.update = function (req, res) {
     oldExp: req.body.oldExp||[]
   };
 
-  console.log(candidate);
+ // console.log(candidate);
   //console.log(req.body.docs);
   Candidates.update(req.params.id, candidate, function (err, docs) {
     if (err) {

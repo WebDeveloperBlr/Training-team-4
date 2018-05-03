@@ -10,7 +10,7 @@ describe('EditEventFormComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ EditEventFormComponent ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
