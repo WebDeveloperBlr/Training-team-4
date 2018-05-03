@@ -26,13 +26,16 @@
     "@ng-bootstrap/ng-bootstrap": "^1.1.2",
     "@ng-select/ng-select": "^1.1.1",
     "bcrypt": "^2.0.1",
+    "angular-2-dropdown-multiselect": "^1.7.1",
     "bootstrap": "^4.1.0",
     "core-js": "^2.4.1",
     "express-session": "^1.15.6",
+    "fullcalendar": "^3.6.1",
     "mysql": "^2.15.0",
+    "ng-fullcalendar": "^1.5.5",
     "normalize.css": "^8.0.0",
     "restify": "^7.1.1",
-    "rxjs": "^5.5.6",
+    "rxjs": "^5.5.10",
     "zone.js": "^0.8.19"
   },
   "devDependencies": {

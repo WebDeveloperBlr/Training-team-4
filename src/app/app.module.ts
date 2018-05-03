@@ -1,10 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgSelectModule } from '@ng-select/ng-select';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { FullCalendarModule } from 'ng-fullcalendar';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -23,13 +23,17 @@ import { FilterBarComponent } from './common/filter-bar/filter-bar.component';
 import { PaginationComponent } from './common/pagination/pagination.component';
 import { DropdownComponent } from './common/dropdown/dropdown.component';
 import { NgSelectComponentComponent } from './common/ng-select-component/ng-select-component.component';
-import {VacanciesService} from './vacancies.service';
+import { VacanciesService } from './vacancies.service';
+import {EventsService} from './events.service';
+import { EventService } from './event.service';
 import { VacanciesGridComponent } from './vacancies/vacancies-grid/vacancies-grid.component';
 import { VacanciesFilterBarComponent } from './vacancies/vacancies-filter-bar/vacancies-filter-bar.component';
 import {formControlBinding} from '@angular/forms/src/directives/ng_model';
 import { NotificationsBarComponent } from './notifications-bar/notifications-bar.component';
-import {EventsService} from "./events.service";
-
+import { InterviewsComponent } from './interviews/interviews.component';
+import { NewEventFormComponent, NewEventFormContent } from './interviews/new-event-form/new-event-form.component';
+import { EditEventFormComponent, EditEventFormContent } from './interviews/edit-event-form/edit-event-form.component';
+import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
 
 @NgModule({
   declarations: [
@@ -47,7 +51,12 @@ import {EventsService} from "./events.service";
     NgSelectComponentComponent,
     VacanciesGridComponent,
     VacanciesFilterBarComponent,
-    NotificationsBarComponent
+    NotificationsBarComponent,
+    InterviewsComponent,
+    NewEventFormComponent,
+    NewEventFormContent,
+    EditEventFormComponent,
+    EditEventFormContent
   ],
   imports: [
     BrowserModule,
@@ -56,14 +65,22 @@ import {EventsService} from "./events.service";
     NgbModule.forRoot(),
     NgSelectModule,
     FormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ReactiveFormsModule,
+    FullCalendarModule,
+    MultiselectDropdownModule
   ],
   providers: [
     CandidateService,
     MessageService,
     PaginationComponent,
     VacanciesService,
-    EventsService
+    EventsService,
+    EventService
+  ],
+  entryComponents: [
+    NewEventFormContent,
+    EditEventFormContent
   ],
   bootstrap: [AppComponent]
 })
