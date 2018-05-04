@@ -2,6 +2,7 @@ var config = require('./config'),
   restify = require('restify');
 var candidatesController = require('./controllers/candidates');
 var vacanciesController = require('./controllers/vacancies');
+var eventsController=require("./controllers/events");
 var fs = require('fs');
 const db = require('./db');
 var connection = db.get;
@@ -41,34 +42,8 @@ server.get('/', function handler(req, res, next) {
     });
 });
 
-server.get("/getNewCandidates",function(req,res,next){
-  connection.query("SELECT c.id_candidate,p.firstName, p.secondName,c.salary,name " +
-    "FROM candidate c " +
-    "INNER JOIN person p " +
-    "on c.id_person=p.id_person " +
-    "INNER JOIN candidatePosition cP " +
-    "on c.id_candidate=cP.id_candidatePosition " +
-    "INNER JOIN position ps " +
-    "on cP.id_position=ps.id_position " +
-    "inner JOIN candidateStatus cS " +
-    "on c.id_candidate=cS.id_candidate " +
-    "where cS.id_status=5;",function(err, results){
-    if(err) throw err;
-    res.end(JSON.stringify(results));
-  });
-});
-
-server.get("/getNextInterviews",function(req,res,next){
-  connection.query("SELECT id_event,dateStart,timeStart,timeEnd,title " +
-    "from event e " +
-    "INNER JOIN importance im " +
-    "on e.id_importance=im.id_importance " +
-    "INNER join interviewer viewer " +
-    "on e.id_interviewer=viewer.id_interviewer;",function(err,results){
-    if(err) throw err;
-    res.end(JSON.stringify(results));
-  });
-});
+server.get("/getNewCandidates",candidatesController.getNewCandidates);
+server.get("/getNextInterviews",eventsController.getNextInterviews);
 
 server.get('/candidates', candidatesController.all);
 server.get('/vacancies', vacanciesController.all);
