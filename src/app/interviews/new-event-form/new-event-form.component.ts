@@ -21,7 +21,7 @@ export class NewEventFormContent implements OnInit {
       'title': new FormControl(this.event.title,
         [
           Validators.required,
-          Validators.minLength(6)
+          Validators.minLength(3)
         ]),
       'date': new FormControl(this.event.start,
           Validators.required)

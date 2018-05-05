@@ -1,6 +1,6 @@
 <div class="container edit-window no-border">
   <div class="row popup-header">
-    <h4 class="text-dark">Edit a new interview</h4>
+    <h4 class="text-dark">Edit an interview</h4>
   </div>
   <form class="form-group" [formGroup]="eventForm" (ngSubmit)="onSubmit()" novalidate>
     <div class="row tabs-wrapper">
@@ -13,37 +13,44 @@
           formControlName="title">
       </div>
       <div *ngIf="title.invalid && (title.dirty || title.touched)"
-           class="alert alert-danger">
+           class="alert alert-danger popup-alert">
         <div *ngIf="title.errors.required">
           Title is required.
         </div>
         <div *ngIf="title.errors.minlength">
-          Title must be at least 4 characters long.
+          Title must be at least 3 characters long.
         </div>
       </div>
     </div>
-    <div class="row popup-date tabs-wrapper">
-      <div class="input-group">
-        <input
-          id="dp"
-          placeholder="YYYY-MM-DD"
-          class="form-control"
-          formControlName="date"
-          ngbDatepicker
-          #dp="ngbDatepicker">
-        <div class="input-group-append">
-          <button
-            class="btn btn-outline-secondary"
-            (click)="dp.toggle()"
-            type="button">
-            <img src="../../../assets/images/icons/icon-calendar.png"
-                 style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
-          </button>
+    <div class="row tabs-wrapper popoup-date-wrapper">
+      <div class="col-sm-5 popup-date">
+        <div class="input-group">
+          <input
+            id="dp"
+            placeholder="yyyy-mm-dd"
+            class="form-control"
+            formControlName="date"
+            ngbDatepicker
+            #dp="ngbDatepicker">
+          <div class="input-group-append">
+            <button
+              class="btn btn-outline-secondary"
+              (click)="dp.toggle()"
+              type="button">
+              <img src="../../../assets/images/icons/icon-calendar.png"
+                   style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
+            </button>
+          </div>
+        </div>
+        <div *ngIf="date.invalid && (date.dirty || date.touched)"
+             class="alert alert-danger popup-alert">
+          Invalid date.
         </div>
       </div>
-      <div *ngIf="date.invalid && (date.dirty || date.touched)"
-           class="alert alert-danger">
-        Invalid date.
+      <div class="col-sm-7">
+        <ngb-timepicker
+          formControlName="time">
+        </ngb-timepicker>
       </div>
     </div>
     <div class="row tabs-wrapper">
@@ -59,6 +66,7 @@
     <div class="row tabs-wrapper align-items-start select-interview">
       <ss-multiselect-dropdown
         formControlName="interviewer"
+        [texts]="selectInterviewerTexts"
         [options]="selectInterviewerOptions"
         [settings]="selectInterviewerSettings"
         [(ngModel)]="selectInterviewerModel"
@@ -68,11 +76,10 @@
     <div class="row tabs-wrapper align-items-start">
       <div class="col-sm-6">
         <select id="color" class="form-control select-color">
+          <option value="">Color</option>
           <option value="0">red</option>
           <option value="1"> green</option>
           <option value="2">blue</option>
-          <!--<option *ngFor="let summary of summaries" value={{summary}}>-->
-          <!--</option>-->
         </select>
       </div>
     </div>
@@ -89,8 +96,10 @@
         </textarea>
       </div>
     </div>
-    <button type="submit" class="btn btn-primary popup-submit" [disabled]="!eventForm.valid">Submit</button>
+    <div class="popup-buttons">
+      <button type="submit" class="btn btn-primary" [disabled]="!eventForm.valid">Submit</button>
+      <button type="submit" class="btn btn-warning">Delete interview</button>
+    </div>
   </form>
-
 </div>
 

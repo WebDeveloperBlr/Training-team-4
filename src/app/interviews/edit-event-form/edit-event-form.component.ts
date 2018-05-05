@@ -5,7 +5,7 @@ import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { CalendarComponent } from 'ng-fullcalendar';
 import { Event } from '../../event';
 import { FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
-import { IMultiSelectOption, IMultiSelectSettings } from 'angular-2-dropdown-multiselect';
+import { IMultiSelectOption, IMultiSelectSettings, IMultiSelectTexts } from 'angular-2-dropdown-multiselect';
 
 @Component({
   selector: 'app-edit-event-form-content',
@@ -17,7 +17,9 @@ export class EditEventFormContent implements OnInit {
   selectInterviewerModel: number[];
   selectInterviewerOptions: IMultiSelectOption[];
   selectInterviewerSettings: IMultiSelectSettings;
-  event = new Event(1, '', (new Date()).toISOString().slice(0, 10));
+  selectInterviewerTexts: IMultiSelectTexts;
+  time = {hour: 9, minute: 0};
+  event = new Event(1, '', (new Date()).toISOString().slice(0, 10), this.time);
   constructor(public activeModal: NgbActiveModal) {}
 
   ngOnInit() {
@@ -25,15 +27,21 @@ export class EditEventFormContent implements OnInit {
       'title': new FormControl(this.event.title,
         [
           Validators.required,
-          Validators.minLength(6)
+          Validators.minLength(3)
         ]),
       'date': new FormControl(this.event.start,
         Validators.required),
+      'time': new FormControl(this.event.time),
       'place': new FormControl(this.event.place),
       'interviewer': new FormControl(2),
       'color': new FormControl('0'),
       'info': new FormControl('')
     });
+    this.selectInterviewerTexts = {
+      checkedPlural: 'interviewers',
+      allSelected: 'All interviewers',
+      defaultTitle: 'Interviewer'
+    };
     this.selectInterviewerSettings = {
       buttonClasses: 'btn btn-primary btn-block',
       dynamicTitleMaxItems: 2
