@@ -15,6 +15,14 @@ const server = restify.createServer({
 server.use(restify.plugins.acceptParser(server.acceptable));
 server.use(restify.plugins.queryParser());
 server.use(restify.plugins.bodyParser());
+server.use(
+  function crossOrigin(req,res,next){
+    res.header("Access-Control-Allow-Origin", req.headers.origin);
+    res.header("Access-Control-Allow-Methods", req.header("Access-Control-Request-Method"));
+    res.header("Access-Control-Allow-Headers", req.header("Access-Control-Request-Headers"));
+    return next();
+  }
+);
 
 
 server.listen(process.env.PORT || 8080, function () {
@@ -47,6 +55,9 @@ server.get('/candidates/:id', candidatesController.getById);
 //rest api to create a new record into mysql database
 server.post('/', candidatesController.create);
 server.put('/candidates/:id', candidatesController.update);
+server.post('/candidates/:id', (req, res) => {
+  console.log(req);
+});
 server.del('/:id', candidatesController.delete);
 
 

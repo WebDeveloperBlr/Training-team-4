@@ -23,6 +23,9 @@ export class VacanciesService {
       params = params.append('currentPage', offset.toString());
       params = params.append('limit', limit.toString());
       if(filterObj) {
+        if(filterObj.positionName === 'Any'){
+          filterObj.positionName = '';
+        }
         params = params.append('filter', JSON.stringify(filterObj));
       }
 

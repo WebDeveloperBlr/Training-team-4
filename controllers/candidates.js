@@ -8,7 +8,6 @@ exports.all = function (req, res) {
   } else {
     limit = "10";
   }
-  res.header('Access-Control-Allow-Origin','*');
   Candidates.all(limit, req.query.filter, function (err, docs) {
     if (err) {
       console.log(err);
@@ -19,8 +18,7 @@ exports.all = function (req, res) {
 
 };
 exports.getById = function (req, res) {
-  res.header('Access-Control-Allow-Origin','*');
-  Candidates.getByID(req.params.id, function (err, docs) {
+  Candidates.getByID(req.params.id, req.query.position , function (err, docs) {
     if (err.length>0) {
       console.log(err[0]);
       return res.send(err[0]);
@@ -51,7 +49,7 @@ exports.create = function (req, res) {
 };
 exports.update = function (req, res) {
   res.header('Access-Control-Allow-Origin','*');
-  var candidate = {
+  /*var candidate = {
     firstName: req.body.docs[0].firstName||"",
     lastName: req.body.docs[0].lastName||"",
     position: req.body.docs[0].position||"",
@@ -65,7 +63,10 @@ exports.update = function (req, res) {
     exp: req.body.exp||[],
     newExp: req.body.newExp||[],
     oldExp: req.body.oldExp||[]
-  };
+  };*/
+
+  var candidate = req.body;
+
 
   console.log(candidate);
   //console.log(req.body.docs);

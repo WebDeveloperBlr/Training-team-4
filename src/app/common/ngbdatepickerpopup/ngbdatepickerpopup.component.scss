@@ -1,0 +1,10 @@
+.form-group{
+  max-width: 150px;
+  font-size: 13px;
+  .form-control, .btn{
+    font-weight: 400;
+    color: #343434;
+    border-radius: 0;
+    padding: 2px 7px;
+  }
+}

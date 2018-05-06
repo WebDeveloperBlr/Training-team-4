@@ -4,7 +4,6 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { FormsModule } from '@angular/forms';
 
-
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
@@ -26,6 +25,8 @@ import {VacanciesService} from './vacancies.service';
 import { VacanciesGridComponent } from './vacancies/vacancies-grid/vacancies-grid.component';
 import { VacanciesFilterBarComponent } from './vacancies/vacancies-filter-bar/vacancies-filter-bar.component';
 import {formControlBinding} from '@angular/forms/src/directives/ng_model';
+import { NgDatepickerModule } from 'ng2-datepicker';
+import { NgbdatepickerpopupComponent } from './common/ngbdatepickerpopup/ngbdatepickerpopup.component';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import {formControlBinding} from '@angular/forms/src/directives/ng_model';
     DropdownComponent,
     NgSelectComponentComponent,
     VacanciesGridComponent,
-    VacanciesFilterBarComponent
+    VacanciesFilterBarComponent,
+    NgbdatepickerpopupComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +53,8 @@ import {formControlBinding} from '@angular/forms/src/directives/ng_model';
     HttpClientModule,
     NgbModule.forRoot(),
     NgSelectModule,
-    FormsModule
+    FormsModule,
+    NgDatepickerModule
   ],
   providers: [
     CandidateService,
