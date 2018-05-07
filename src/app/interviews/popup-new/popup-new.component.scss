@@ -1,0 +1,33 @@
+.container{
+  position:absolute;
+  left:40%;
+  top:200px;
+  max-width:400px;
+  z-index:300;
+  border:2px solid #cdd6e0;
+  background-color: #ebebeb;
+  border-radius:10px;
+  transition-duration: 0.15s;
+}
+
+.input-group.popup-date{
+  margin-bottom:50px;
+}
+@media all and (max-width:700px) {
+
+  .container{
+    left:5%;
+  }
+
+}
+
+.hidden{
+  opacity:0;
+  z-index:0;
+  display:none;
+}
+
+button[type="submit"]{
+  float:right;
+  margin-bottom:15px;
+}

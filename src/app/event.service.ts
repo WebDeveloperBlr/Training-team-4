@@ -4,41 +4,47 @@ import 'rxjs/add/observable/of';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {NextEvent} from './interfaces/NextEvent';
 import 'rxjs/add/observable/of';
-
+import {Post} from './interfaces/Post';
 
 @Injectable()
 export class EventService {
   constructor(private http: HttpClient) {}
 
-  private nextInterviewURL = '/getNextInterviews';
+  private nextInterviewURL = 'http://localhost:8080/getNextInterviews';
+  private calendarEventsURL = 'http://localhost:8080/getEvents';
+  private insertCalendarEventURL="http://localhost:8080/eventCreate";
+
+  showedNew:boolean=false;
+  showedEdit:boolean=false;
 
   getNextInterviews(): Observable<NextEvent[]> {
     return this.http.get<NextEvent[]>(this.nextInterviewURL);
   }
 
-  public getEvents(): Observable<any> {
-    const dateObj = new Date();
-    const yearMonth = dateObj.getUTCFullYear() + '-' + (dateObj.getUTCMonth() + 1);
-    let data: any = [
-      {
-      title: 'All Day Event',
-      start: yearMonth + '-01'
-      },
-      {
-        title: 'Long Event',
-        start: yearMonth + '-07',
-        end: yearMonth + '-10'
-      },
-      {
-        title: 'Conference',
-        start: yearMonth + '-11',
-        end: yearMonth + '-13'
-      },
-      {
-        title: 'Click for Google',
-        url: 'http://google.com/',
-        start: yearMonth + '-28'
-      }];
-    return Observable.of(data);
+  getEvents(): Observable<any> {
+    return this.http.get<any>(this.calendarEventsURL);
+  }
+
+  insertEvent(title:string, start:string){
+    const data:Post={
+      title:title,
+      start:start
+    };
+    this.http.post(this.insertCalendarEventURL, data).subscribe( ()=>{});
+  }
+  closeNew(){
+    this.showedNew=false;
+  }
+
+  openNew(){
+    this.showedNew=true;
+  }
+
+  closeEdit(){
+    this.showedEdit=false;
+  }
+
+  openEdit(){
+    this.showedEdit=true;
   }
 }

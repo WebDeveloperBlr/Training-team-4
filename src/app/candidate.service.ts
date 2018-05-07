@@ -9,7 +9,7 @@ import {NotifCandidate} from './interfaces/notifCandidate';
 
 @Injectable()
 export class CandidateService {
-  private URLforNewCandidates = '/getNewCandidates';
+  private URLforNewCandidates = 'http://localhost:8080/getNewCandidates';
   private URL = 'http://localhost:8080/candidates';
   public cache;
   public currentOffset: number;

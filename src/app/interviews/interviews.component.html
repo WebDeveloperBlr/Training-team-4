@@ -1,4 +1,8 @@
-
+<app-popup-new
+  [lol]="lola"
+  [startDate]="startDate"
+  (refetchEvents)="refetchEvents()"></app-popup-new>
+<app-popup-edit></app-popup-edit>
 <div *ngIf="calendarOptions">
   <ng-fullcalendar
     #ucCalendar
