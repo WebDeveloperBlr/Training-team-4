@@ -27,8 +27,9 @@ export class InterviewsComponent implements OnInit {
   ngOnInit() {
     this.eventService.getEvents().subscribe(data => {
       this.addedEvents=data;
+      console.log(data);
       for(let i=0;i<this.addedEvents.length;i++){
-        this.addedEvents[i].start=this.addedEvents[i].dateStart;
+        this.addedEvents[i].start=this.addedEvents[i].dateStart.split("T")[0]+"T"+this.addedEvents[i].timeStart;
       }
       this.calendarOptions ={
         firstDay: 1,
@@ -85,7 +86,7 @@ export class InterviewsComponent implements OnInit {
     this.displayEvent = model;
   }
   eventClick(model: any) {
-
+    this.eventService.openEdit();
   }
   updateEvent(model: any) {
     model = {

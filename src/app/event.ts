@@ -4,12 +4,13 @@ export class Event {
     public title: string,
     public start: any,
     public end: string = start,
-    public place?: string,
-    public interviewer: number = 1,
-    public color: number = 1,
+    public place: string,
+    public interviewer: number,
+    public color: number,
     public colorIndex?: number,
     public isVacant?: boolean,
-    public info?: string
+    public info?: string,
+    public id_candidate?:number
   ) {}
 }
 
