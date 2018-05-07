@@ -1,11 +1,21 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-
+import 'rxjs/add/observable/of';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
+import {NextEvent} from './interfaces/NextEvent';
 import 'rxjs/add/observable/of';
 
 
 @Injectable()
 export class EventService {
+  constructor(private http: HttpClient) {}
+
+  private nextInterviewURL = '/getNextInterviews';
+
+  getNextInterviews(): Observable<NextEvent[]> {
+    return this.http.get<NextEvent[]>(this.nextInterviewURL);
+  }
+
   public getEvents(): Observable<any> {
     const dateObj = new Date();
     const yearMonth = dateObj.getUTCFullYear() + '-' + (dateObj.getUTCMonth() + 1);

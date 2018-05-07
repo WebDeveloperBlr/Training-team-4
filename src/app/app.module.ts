@@ -24,15 +24,12 @@ import { PaginationComponent } from './common/pagination/pagination.component';
 import { DropdownComponent } from './common/dropdown/dropdown.component';
 import { NgSelectComponentComponent } from './common/ng-select-component/ng-select-component.component';
 import { VacanciesService } from './vacancies.service';
-import {EventsService} from './events.service';
 import { EventService } from './event.service';
 import { VacanciesGridComponent } from './vacancies/vacancies-grid/vacancies-grid.component';
 import { VacanciesFilterBarComponent } from './vacancies/vacancies-filter-bar/vacancies-filter-bar.component';
 import {formControlBinding} from '@angular/forms/src/directives/ng_model';
 import { NotificationsBarComponent } from './notifications-bar/notifications-bar.component';
 import { InterviewsComponent } from './interviews/interviews.component';
-import { NewEventFormComponent, NewEventFormContent } from './interviews/new-event-form/new-event-form.component';
-import { EditEventFormComponent, EditEventFormContent } from './interviews/edit-event-form/edit-event-form.component';
 import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
 
 @NgModule({
@@ -52,11 +49,7 @@ import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
     VacanciesGridComponent,
     VacanciesFilterBarComponent,
     NotificationsBarComponent,
-    InterviewsComponent,
-    NewEventFormComponent,
-    NewEventFormContent,
-    EditEventFormComponent,
-    EditEventFormContent
+    InterviewsComponent
   ],
   imports: [
     BrowserModule,
@@ -75,12 +68,7 @@ import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
     MessageService,
     PaginationComponent,
     VacanciesService,
-    EventsService,
     EventService
-  ],
-  entryComponents: [
-    NewEventFormContent,
-    EditEventFormContent
   ],
   bootstrap: [AppComponent]
 })

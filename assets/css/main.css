@@ -3096,10 +3096,11 @@ input:-ms-input-placeholder {
   bottom: 0;
   background: #fff;
   transition: right 0.4s;
+  z-index:50;
 }
 .right-col._active {
   right: 0;
-  z-index: 5;
+  z-index: 50;
   box-shadow: -15px 0 31px -25px rgba(0, 0, 0, 0.75);
 }
 .right-col__header {

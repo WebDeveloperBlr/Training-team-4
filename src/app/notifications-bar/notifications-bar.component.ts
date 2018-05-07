@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {CandidateService} from "../candidate.service";
 import {NotifCandidate} from "../interfaces/notifCandidate";
-import {EventsService} from "../events.service";
+import {EventService} from '../event.service';
 import{NextEvent} from "../interfaces/NextEvent";
 import {trigger, state, style, animate, transition} from '@angular/animations';
 
@@ -17,7 +17,7 @@ import {trigger, state, style, animate, transition} from '@angular/animations';
         style({
           opacity:0
         }),
-        animate(2000, style({backgroundColor:"white", opacity:1}))
+        animate(400, style({backgroundColor:"white", opacity:1}))
       ]),
       transition('* => void',[
         animate(400, style({transform:"translateX(150%)"}))
@@ -31,7 +31,7 @@ import {trigger, state, style, animate, transition} from '@angular/animations';
 export class NotificationsBarComponent implements OnInit {
 
   constructor(private candidateService:CandidateService,
-              private eventsService:EventsService) { }
+              private eventsService:EventService) { }
 
   cacheCandidates:NotifCandidate[]=[];
   newCandidates:NotifCandidate[]=[];

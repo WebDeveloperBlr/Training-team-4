@@ -2,8 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { CalendarComponent } from 'ng-fullcalendar';
 import { Options } from 'fullcalendar';
 import { EventService } from '../event.service';
-import { NewEventFormComponent } from './new-event-form/new-event-form.component';
-import { EditEventFormComponent } from './edit-event-form/edit-event-form.component';
+
 
 @Component({
   selector: 'app-interviews',
@@ -15,8 +14,6 @@ export class InterviewsComponent implements OnInit {
   calendarOptions: Options;
   displayEvent: any;
   @ViewChild(CalendarComponent) ucCalendar: CalendarComponent;
-  @ViewChild(NewEventFormComponent) newEventForm: NewEventFormComponent;
-  @ViewChild(EditEventFormComponent) editEventForm: EditEventFormComponent;
   constructor( protected eventService: EventService ) {}
 
   ngOnInit() {
@@ -56,13 +53,13 @@ export class InterviewsComponent implements OnInit {
     });
   }
   dayClick(model: any) {
-    this.newEventForm.open();
+
   }
   clickButton(model: any) {
     this.displayEvent = model;
   }
   eventClick(model: any) {
-    this.editEventForm.open(model);
+
   }
   updateEvent(model: any) {
     model = {
