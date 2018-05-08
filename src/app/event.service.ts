@@ -1,34 +1,70 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-
 import 'rxjs/add/observable/of';
-
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
+import {NextEvent} from './interfaces/NextEvent';
+import 'rxjs/add/observable/of';
+import {Post} from './interfaces/Post';
 
 @Injectable()
 export class EventService {
-  public getEvents(): Observable<any> {
-    const dateObj = new Date();
-    const yearMonth = dateObj.getUTCFullYear() + '-' + (dateObj.getUTCMonth() + 1);
-    let data: any = [
-      {
-      title: 'All Day Event',
-      start: yearMonth + '-01'
-      },
-      {
-        title: 'Long Event',
-        start: yearMonth + '-07',
-        end: yearMonth + '-10'
-      },
-      {
-        title: 'Conference',
-        start: yearMonth + '-11',
-        end: yearMonth + '-13'
-      },
-      {
-        title: 'Click for Google',
-        url: 'http://google.com/',
-        start: yearMonth + '-28'
-      }];
-    return Observable.of(data);
+  constructor(private http: HttpClient) {}
+
+  private nextInterviewURL = 'http://localhost:8080/getNextInterviews';
+  private calendarEventsURL = 'http://localhost:8080/getEvents';
+  private insertCalendarEventURL="http://localhost:8080/eventCreate";
+  private getInterviewersURL="http://localhost:8080/getInterviewers";
+  private getCandidatesURL="http://localhost:8080/getCandidates";
+  private updateEventURL="http://localhost:8080/updateEvent";
+  private updateEventDateURL="http://localhost:8080/updateEventDate";
+
+  showedNew:boolean=false;
+  showedEdit:boolean=false;
+
+  getNextInterviews(): Observable<NextEvent[]> {
+    return this.http.get<NextEvent[]>(this.nextInterviewURL);
+  }
+
+  getEvents(): Observable<any> {
+    return this.http.get<any>(this.calendarEventsURL);
+  }
+
+  insertEvent(title:string, start:string){
+    const data:Post={
+      title:title,
+      start:start
+    };
+    this.http.post(this.insertCalendarEventURL, data).subscribe( ()=>{});
+  }
+  closeNew(){
+    this.showedNew=false;
+  }
+
+  openNew(){
+    this.showedNew=true;
+  }
+
+  closeEdit(){
+    this.showedEdit=false;
+  }
+
+  openEdit(){
+    this.showedEdit=true;
+  }
+
+  getInterviewers():Observable<any>{
+    return this.http.get<any>(this.getInterviewersURL);
+  }
+
+  getCandidates():Observable<any>{
+    return this.http.get<any>(this.getCandidatesURL);
+  }
+
+  updateEvent(event):void{
+      this.http.post<any>(this.updateEventURL,event).subscribe(()=>{});
+  }
+
+  updateEventDate(event){
+    this.http.post<any>(this.updateEventDateURL,event).subscribe(()=>{});
   }
 }
