@@ -115,7 +115,6 @@ export class PopupEditComponent implements OnChanges,OnInit {
       id_candidate:this.selectIntervieweeModel[0],
       id_interviewer:this.selectInterviewerModel[0]
     };
-    console.log(updatedEvent);
     this.eventService.updateEvent(updatedEvent);
     this.eventService.closeEdit();
     setTimeout(()=>{this.emitEvent();},100);
@@ -128,6 +127,12 @@ export class PopupEditComponent implements OnChanges,OnInit {
   onChangeInterviewee(){
     return;
     // console.log(this.selectIntervieweeModel);
+  }
+
+  deleteEvent(){
+    this.eventService.deleteEvent(this.clickedEvent.id_event);
+    setTimeout(()=>{this.emitEvent();});
+    this.eventService.closeEdit();
   }
 
   emitEvent(){

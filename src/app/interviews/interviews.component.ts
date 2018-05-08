@@ -112,8 +112,6 @@ export class InterviewsComponent implements OnInit {
   }
 
   buildClickedEvent(event){
-    console.log('event');
-    console.log(event);
     this.clickedEvent.id_event=event.id_event,
     this.clickedEvent.title=event.title;
     this.clickedEvent.info=event.info;
@@ -202,7 +200,7 @@ export class InterviewsComponent implements OnInit {
 
 
     let b:any=new Date(model.event.start._d);
-    b.setDate(b.getDate()+1);
+    b.setDate(b.getDate());
     b=b.toISOString().split("T")[0];
     console.log("this is b " +b);
     // let dateStart=model.event.start._d.toISOString().split("T")[0];
