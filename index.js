@@ -125,6 +125,20 @@ server.post("/updateEvent",function(req,res,next){
   });
 });
 
+
+
+
+server.post('/updateEventDate',function(req,res,next){
+  connection.query(' UPDATE event \n' +
+    ' set\n' +
+    ' dateStart="'+req.body.dateStart+'", \n' +
+    ' timeStart="'+req.body.timeStart+'" \n' +
+    ' where id_event='+req.body.id_event+';',function(err,results){
+    if (err) throw err;
+    res.end();
+  });
+});
+
 server.get("/getNewCandidates",candidatesController.getNewCandidates);
 server.get("/getNextInterviews",eventsController.getNextInterviews);
 

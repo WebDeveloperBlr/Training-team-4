@@ -16,6 +16,7 @@ export class EventService {
   private getInterviewersURL="http://localhost:8080/getInterviewers";
   private getCandidatesURL="http://localhost:8080/getCandidates";
   private updateEventURL="http://localhost:8080/updateEvent";
+  private updateEventDateURL="http://localhost:8080/updateEventDate";
 
   showedNew:boolean=false;
   showedEdit:boolean=false;
@@ -63,4 +64,7 @@ export class EventService {
       this.http.post<any>(this.updateEventURL,event).subscribe(()=>{});
   }
 
+  updateEventDate(event){
+    this.http.post<any>(this.updateEventDateURL,event).subscribe(()=>{});
+  }
 }

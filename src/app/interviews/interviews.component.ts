@@ -4,6 +4,7 @@ import { Options } from 'fullcalendar';
 import { EventService } from '../event.service';
 import {StartDate} from '../interfaces/StartDate';
 import {FormControl, Validators} from '@angular/forms';
+import set = Reflect.set;
 
 
 @Component({
@@ -54,9 +55,9 @@ export class InterviewsComponent implements OnInit {
           today: 'today',
           month: 'month',
           week: 'week',
-          day: 'day',
-          listWeek: 'week list',
-          listDay: 'day list'
+          day: 'day'
+          // listWeek: 'week list',
+          // listDay: 'day list'
       },
       height: 550,
         defaultView: 'month',
@@ -87,7 +88,8 @@ export class InterviewsComponent implements OnInit {
     this.startDate.year=+temp[0];
     this.startDate.month=+temp[1];
     this.startDate.day=+temp[2];
-    setTimeout(()=>{this.eventService.openNew();},0);
+    setTimeout(()=>{this.eventService.openNew();
+                            this.eventService.closeEdit()},0);
   }
   clickButton(model: any) {
     this.displayEvent = model;
@@ -95,7 +97,9 @@ export class InterviewsComponent implements OnInit {
   eventClick(model: any) {
     let rootEvent:any=this.findCorrespondentEvent(model.event);
     this.buildClickedEvent(rootEvent);
-    this.eventService.openEdit();
+
+    setTimeout(()=>{this.eventService.openEdit();
+                            this.eventService.closeNew()},10);
   }
 
   chooseColor(id_importance:number):string{
@@ -191,5 +195,26 @@ export class InterviewsComponent implements OnInit {
 
   onDrop(model:any){
     console.log(model.event.start._d.toISOString());
+    let a:any=new Date(model.event.start._d);
+    a.setHours(a.getHours()+3);
+    a=a.toISOString().split("T")[1];
+    a=a.slice(0,a.length-5);
+
+
+    let b:any=new Date(model.event.start._d);
+    b.setDate(b.getDate());
+    b=b.toISOString().split("T")[0];
+    console.log("this is b " +b);
+    // let dateStart=model.event.start._d.toISOString().split("T")[0];
+    // console.log(dateStart);
+    this.eventService.updateEventDate({
+      id_event:model.event.id_event,
+      dateStart:b,
+      timeStart:a
+    });
+
+     setTimeout(()=>{ this.refetchEvents();
+     console.log(this.addedEvents);}
+     ,100);
   }
 }
