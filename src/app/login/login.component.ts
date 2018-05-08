@@ -11,7 +11,6 @@ export class LoginComponent implements OnInit {
   passwordInp: string;
   paswordRepInp: string;
   arrow;
-  popups: [];
   registerForm;
   regInfo = {};
   regCount = 0;

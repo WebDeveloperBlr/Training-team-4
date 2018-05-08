@@ -8,8 +8,8 @@
     ngClass="{'less-padding': isError}"
     action="">
     <a class="createProfile__backToMain-link" routerLink="/login">
-      <svg class="icon icon-ARROW ">
-        <use xlink:href="assets/images/svg/symbol/sprite.svg#ARROW"></use>
+      <svg class="icon icon-ARROW">
+        <use xlink:href="../../assets/images/svg/symbol/sprite.svg#ARROW"></use>
       </svg>
     </a>
     <h4 class="header-4">Registration</h4>
@@ -28,17 +28,16 @@
           placeholder="Login"
           required>
         <div
-          [ngModel]="arrow"
-          #arrow="ngModel"
+          #arrow
           id="login-tip"
           class="login-form__text">Please, enter your login</div><span id="decor" class="decor opacity-0"></span>
       </div>
       <label class="login-form__label" for="userPassword">Password</label>
       <div class="login-form__field-wrapper">
         <input
-          (keyup)="loginInp()"
-          [ngModel]="password"
-          #password="ngModel"
+          (keyup)="loginInput()"
+          [ngModel]="passwordInp"
+          #passwordInp="ngModel"
           name="passwordInp"
           class="login-form__input input--valid-check"
           type="password"
@@ -52,7 +51,7 @@
       <label class="login-form__label" for="userRepPassword">Repeat password</label>
       <div class="login-form__field-wrapper">
         <input
-          (keyup)="loginInp(paswordRepInp.value)"
+          (keyup)="loginInput()"
           [ngModel]="paswordRepInp"
           #paswordRepInp="ngModel"
           name="paswordRepInp"
@@ -75,7 +74,7 @@
       value="Sign up">
     <div id="alertMes"
          class="d-none unable-to-register opacity-0 alert alert-danger"
-         ngClass="{'d-none': !isError, opacity-0: !isError}">
+         ngClass="{'d-none': !isError, 'opacity-0': !isError}">
       <div>Unable to register now.</div>
       <div>Please, try later.</div>
     </div>
