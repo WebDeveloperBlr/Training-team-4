@@ -35,20 +35,6 @@ export class PopupNewComponent implements OnInit,OnChanges {
    else {
      this.eventForm.patchValue({date: this.startDate});
    }
-    // console.log(this.startDate);
-    // if(this.startDate.year==1999) {
-    //   alert(this.startDate.month);
-    //   alert('first');
-    // }
-    // else {
-    //   alert("next");
-    //   // console.log(this.startDate);
-    //   // console.log(5);
-    //   // this.eventForm.patchValue({
-    //   //   date:   {year:2018,month:5,day:7}
-    //   //   //this.startDate
-    //   // });
-    // }
   }
 
 

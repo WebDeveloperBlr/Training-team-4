@@ -14,39 +14,58 @@ import {EventService} from "../../event.service";
 })
 export class PopupEditComponent implements OnChanges,OnInit {
 
-  constructor(private eventService:EventService) {}
-  eventForm: FormGroup;
-  selectInterviewerModel: number[]=[1,2];
-  selectInterviewerOptions: IMultiSelectOption[];
-  selectInterviewerSettings: IMultiSelectSettings;
-  selectInterviewerTexts: IMultiSelectTexts;
-  selectIntervieweeModel: number[]=[3,1];
-  selectIntervieweeOptions: IMultiSelectOption[];
-  selectIntervieweeSettings: IMultiSelectSettings;
-  selectIntervieweeTexts: IMultiSelectTexts;
-  event:any={title:"MATITLE",start:{year:2018,month:5,day:8},timeStart:"0920",place:"some PLACE",startTime:{hour:12,minute:30}};
-  // event = new Event(1, '', (new Date()).toISOString().slice(0, 10), "2018-05-06");
+  @Input() lol:any;
   @Input() clickedEvent:any;
-  @Input() message:any;
+  @Input() selectInterviewerOptions:IMultiSelectOption[];
+  @Input() selectIntervieweeOptions:IMultiSelectOption[];
+  // this.selectIntervieweeOptions = [
+  //   { id: 1, name: 'Interviewee 1' },
+  //   { id: 2, name: 'Interviewee 2' },
+  //   { id: 3, name: 'Interviewee 3' },
+  //   { id: 4, name: 'Interviewee 4' }
+  // ];
+  constructor(private eventService:EventService) {}
 
   ngOnChanges(change:any){
-    // <number>this.message=<number>change.currentValue;
+    if(this.clickedEvent.title=="first")
+      return;
+    this.eventForm.patchValue({
+      title:this.clickedEvent.title,
+      date:this.clickedEvent.start,
+      time:this.clickedEvent.startTime,
+      place:this.clickedEvent.place,
+      color:this.clickedEvent.color,
+      info:this.clickedEvent.info
+    });
+    this.selectIntervieweeModel=this.clickedEvent.candidate;
+    this.selectInterviewerModel=this.clickedEvent.interviewer;
   }
+  eventForm: FormGroup;
+  selectInterviewerModel: number[]=[1];
+  // selectInterviewerOptions: IMultiSelectOption[];
+  selectInterviewerSettings: IMultiSelectSettings;
+  selectInterviewerTexts: IMultiSelectTexts;
+  selectIntervieweeModel: number[]=[1];
+  selectIntervieweeSettings: IMultiSelectSettings;
+  selectIntervieweeTexts: IMultiSelectTexts;
+  // event = new Event(1, '', (new Date()).toISOString().slice(0, 10), "2018-05-06");
+
+
   ngOnInit() {
     this.eventForm = new FormGroup({
-      'title': new FormControl(this.event.title,
+      'title': new FormControl(this.clickedEvent.title,
         [
           Validators.required,
           Validators.minLength(3)
         ]),
-      'date': new FormControl(this.event.start,
+      'date': new FormControl(this.clickedEvent.start,
         Validators.required),
-      'time': new FormControl(this.event.startTime),
-      'place': new FormControl(this.event.place),
-      'interviewer': new FormControl(2),
-      'interviewee':new FormControl(3),
-      'color': new FormControl(0),
-      'info': new FormControl('real info')
+      'time': new FormControl(this.clickedEvent.startTime),
+      'place': new FormControl(this.clickedEvent.place),
+      'interviewer': new FormControl(),
+      'interviewee':new FormControl(),
+      'color': new FormControl(this.clickedEvent.color),
+      'info': new FormControl(this.clickedEvent.info)
     });
     this.selectInterviewerTexts = {
       checkedPlural: 'interviewers',
@@ -58,12 +77,7 @@ export class PopupEditComponent implements OnChanges,OnInit {
       dynamicTitleMaxItems: 2,
       enableSearch:true
     };
-    this.selectInterviewerOptions = [
-      { id: 1, name: 'Interviewer 1' },
-      { id: 2, name: 'Interviewer 2' },
-      { id: 3, name: 'Interviewer 3' },
-      { id: 4, name: 'Interviewer 4' }
-    ];
+
 
     this.selectIntervieweeTexts = {
       allSelected: 'All interviewees',
@@ -75,12 +89,6 @@ export class PopupEditComponent implements OnChanges,OnInit {
       selectionLimit:1,
       enableSearch:true
     };
-    this.selectIntervieweeOptions = [
-      { id: 1, name: 'Interviewee 1' },
-      { id: 2, name: 'Interviewee 2' },
-      { id: 3, name: 'Interviewee 3' },
-      { id: 4, name: 'Interviewee 4' }
-    ];
   }
 
   get title() { return this.eventForm.get('title'); }

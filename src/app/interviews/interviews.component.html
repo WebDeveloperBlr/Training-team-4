@@ -2,8 +2,12 @@
   [lol]="lola"
   [startDate]="startDate"
   (refetchEvents)="refetchEvents()"></app-popup-new>
-<app-popup-edit></app-popup-edit>
-<div *ngIf="calendarOptions">
+<app-popup-edit
+  [selectInterviewerOptions]="selectInterviewerOptions"
+  [selectIntervieweeOptions]="selectIntervieweeOptions"
+  [lol]="lola"
+  [clickedEvent]="clickedEvent" ></app-popup-edit>
+<div (click)="lolIncr()" *ngIf="calendarOptions">
   <ng-fullcalendar
     #ucCalendar
     [options]="calendarOptions"

@@ -75,12 +75,34 @@ server.post("/eventCreate",function(req,res,next){
   var defInfo="No info yet";
   var defPlace="No place yet";
   connection.query('INSERT INTO `hr-app`.event(dateStart,dateEnd,title,timeStart,timeEnd,id_interviewer,info,place,isRepeatable,id_importance,isVacant,allDay,id_candidate)'+
-    'VALUES("'+req.body.start+'","'+req.body.end+'","'+req.body.title+'","'+defStart+'","'+defEnd+'","'+1+'","'+defInfo+'","'+defPlace+'","'+false+'","'+1+'","'+true+'","'+false+'","'+2+'");',function(err,results){
+    'VALUES("'+req.body.start+'","'+req.body.end+'","'+req.body.title+'","'+defStart+'","'+defEnd+'","'+1+'","'+defInfo+'","'+defPlace+'","'+false+'","'+1+'","'+true+'","'+false+'","'+1+'");',function(err,results){
     if (err) throw err;
     else res.end();
   });
 });
 
+server.get("/getInterviewers",function(req,res,next){
+  connection.query("SELECT * FROM interviewer ;",function(err,results){
+    if
+    (err) throw err;
+    else
+      res.end(JSON.stringify(results));
+  });
+});
+
+server.get("/getCandidates",function(req,res,next){
+  connection.query("SELECT id_candidate,firstName,secondName\n" +
+    "from candidate c\n" +
+    "INNER JOIN person p\n" +
+    "on c.id_person=p.id_person\n" +
+    "ORDER by secondName;",function(err,results){
+    if (err)
+      throw err;
+    console.log(results.length);
+    console.log(results[2]);
+    res.end(JSON.stringify(results));
+  })
+});
 
 server.get("/getNewCandidates",candidatesController.getNewCandidates);
 server.get("/getNextInterviews",eventsController.getNextInterviews);

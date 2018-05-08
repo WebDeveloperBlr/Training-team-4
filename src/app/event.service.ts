@@ -13,6 +13,8 @@ export class EventService {
   private nextInterviewURL = 'http://localhost:8080/getNextInterviews';
   private calendarEventsURL = 'http://localhost:8080/getEvents';
   private insertCalendarEventURL="http://localhost:8080/eventCreate";
+  private getInterviewersURL="http://localhost:8080/getInterviewers";
+  private getCandidatesURL="http://localhost:8080/getCandidates";
 
   showedNew:boolean=false;
   showedEdit:boolean=false;
@@ -47,4 +49,13 @@ export class EventService {
   openEdit(){
     this.showedEdit=true;
   }
+
+  getInterviewers():Observable<any>{
+    return this.http.get<any>(this.getInterviewersURL);
+  }
+
+  getCandidates():Observable<any>{
+    return this.http.get<any>(this.getCandidatesURL);
+  }
+
 }
