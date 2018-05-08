@@ -7,17 +7,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  title: string;
-  login: string;
-  password: string;
+  loginInp: string;
+  passwordInp: string;
+  paswordRepInp: string;
+  arrow;
+  popups: [];
+  registerForm;
+  regInfo = {};
+  regCount = 0;
 
   constructor( ) {
   }
   ngOnInit() {
   }
-  signIn() {
+  loginInput() {
 
-  };
+  }
 
   /*var logForm=document.getElementById("login-form");
 logForm.onsubmit=function(event){

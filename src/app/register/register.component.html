@@ -5,7 +5,7 @@
     id="login-form"
     method="get"
     onsubmit="signUp()"
-    action="/index.js">
+    action="">
     <a class="createProfile__backToMain-link" routerLink="/login">
       <svg class="icon icon-ARROW ">
         <use xlink:href="assets/images/svg/symbol/sprite.svg#ARROW"></use>
@@ -16,9 +16,9 @@
       <label class="login-form__label" for="userLogin">Login</label>
       <div class="login-form__field-wrapper">
         <input
-          [ngModel]="login"
-          (change)="loginInp(login.value)"
-          #login="ngModel"
+          (ngModel)="loginInp"
+          (keyup)="loginInput()"
+          #loginInp="ngModel"
           autocomplete="off"
           class="login-form__input"
           type="text"
@@ -35,7 +35,7 @@
       <label class="login-form__label" for="userPassword">Password</label>
       <div class="login-form__field-wrapper">
         <input
-          (change)="loginInp(password.value)"
+          (keyup)="loginInp()"
           [ngModel]="password"
           #password="ngModel"
           name="passwordInp"
@@ -51,7 +51,7 @@
       <label class="login-form__label" for="userRepPassword">Repeat password</label>
       <div class="login-form__field-wrapper">
         <input
-          (change)="loginInp(paswordRepInp.value)"
+          (keyup)="loginInp(paswordRepInp.value)"
           [ngModel]="paswordRepInp"
           #paswordRepInp="ngModel"
           name="paswordRepInp"
@@ -68,6 +68,7 @@
     <input
       [disabled]="!registerForm.valid"
       id="submitBtn"
+
       class="button login-form__submit"
       type="submit"
       value="Sign up">

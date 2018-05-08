@@ -5,36 +5,38 @@
     id="login-form"
     method="get"
     onsubmit="signIn()"
-    action="/HR-app">
-    <h4 class="header-4">{{ title }}</h4>
+    action="">
+    <h4 class="header-4">Enter</h4>
     <div class="login-form__inputs-wrapper">
-      <label class="login-form__label" for="login">Login</label>
+      <label class="login-form__label" for="userLogin">Login</label>
       <div class="login-form__field-wrapper">
         <input
-          (ngModel)="login"
-          #login="ngModel"
-          name="login"
+          (ngModel)="loginInp"
+          (keyup)="loginInput()"
+          #loginInp="ngModel"
           class="login-form__input"
           type="text"
-          id="login"
+          name="loginInp"
+          id="userLogin"
           placeholder="Login"
           required>
         <div class="login-form__text">Please, enter your login</div><span id="decor" class="decor opacity-0"></span>
       </div>
-      <label class="login-form__label" for="password">Password</label>
+      <label class="login-form__label" for="userPassword">Password</label>
       <div class="login-form__field-wrapper">
         <input
+         (keyup)="loginInput()"
          (ngModel)="password"
          #password = "ngModel"
-         name="password"
+         name="passwordInp"
          class="login-form__input input--valid-check"
          type="password"
-         id="password"
+         id="userPassword"
          placeholder="Password"
          minlength="6"
          maxlength="24"
          required>
-        <div class="login-form__text">
+        <div #popups class="login-form__text">
           Please, enter your password
         </div>
         <span id="decor" class="decor opacity-0"></span>
@@ -44,19 +46,15 @@
       The email or password you entered is incorrect.
     </span>
     <input
+      [disabled]="!loginForm.valid"
+      id="submitBtn"
       class="button login-form__submit"
       type="submit"
       value="Sign in">
-    <!-- [disabled]="!loginForm.valid" -->
     <a
       class="login-form__no-account-link header-link"
       routerLink="/register">
       Has no profile :(
-    </a>
-    <a
-      class="login-form__no-account-link header-link"
-      routerLink="/login">
-      Log In
     </a>
   </form>
 </header>
