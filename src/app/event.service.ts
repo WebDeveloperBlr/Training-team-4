@@ -1,11 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import 'rxjs/add/observable/of';
 
 
 @Injectable()
 export class EventService {
+
+  constructor(private http: HttpClient) {
+  }
+
   public getEvents(): Observable<any> {
     const dateObj = new Date();
     const yearMonth = dateObj.getUTCFullYear() + '-' + (dateObj.getUTCMonth() + 1);
@@ -31,4 +35,5 @@ export class EventService {
       }];
     return Observable.of(data);
   }
+
 }

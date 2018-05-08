@@ -34,6 +34,8 @@ import { InterviewsComponent } from './interviews/interviews.component';
 import { NewEventFormComponent, NewEventFormContent } from './interviews/new-event-form/new-event-form.component';
 import { EditEventFormComponent, EditEventFormContent } from './interviews/edit-event-form/edit-event-form.component';
 import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +58,9 @@ import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
     NewEventFormComponent,
     NewEventFormContent,
     EditEventFormComponent,
-    EditEventFormContent
+    EditEventFormContent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

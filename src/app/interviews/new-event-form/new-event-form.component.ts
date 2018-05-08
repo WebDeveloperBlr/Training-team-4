@@ -15,7 +15,8 @@ import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 })
 export class NewEventFormContent implements OnInit {
   eventForm: FormGroup;
-  event = new Event(1, '', (new Date()).toISOString().slice(0, 10));
+  time = {hour: 9, minute: 0};
+  event = new Event(1, '', (new Date()).toISOString().slice(0, 10), this.time);
   ngOnInit() {
     this.eventForm = new FormGroup({
       'title': new FormControl(this.event.title,
