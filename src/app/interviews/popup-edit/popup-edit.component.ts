@@ -48,8 +48,9 @@ export class PopupEditComponent implements OnChanges,OnInit {
   selectIntervieweeModel: number[]=[1];
   selectIntervieweeSettings: IMultiSelectSettings;
   selectIntervieweeTexts: IMultiSelectTexts;
-  // event = new Event(1, '', (new Date()).toISOString().slice(0, 10), "2018-05-06");
 
+  chosenCandidate:any;
+  chosenInterviewer:any;
 
   ngOnInit() {
     this.eventForm = new FormGroup({
@@ -75,7 +76,8 @@ export class PopupEditComponent implements OnChanges,OnInit {
     this.selectInterviewerSettings = {
       buttonClasses: 'btn btn-primary btn-block',
       dynamicTitleMaxItems: 2,
-      enableSearch:true
+      enableSearch:true,
+      selectionLimit:1
     };
 
 
@@ -91,9 +93,28 @@ export class PopupEditComponent implements OnChanges,OnInit {
     };
   }
 
-  get title() { return this.eventForm.get('title'); }
-  get date() { return this.eventForm.get('date'); }
+  get title():any { return this.eventForm.get('title'); }
+  get date():any { return this.eventForm.get('date'); }
+  get time():any { return this.eventForm.get('time');}
+  get color():any { return this.eventForm.get('color');}
+  get info():any { return this.eventForm.get('info');}
+  get interviewee():any { return this.eventForm.get('interviewee');}
+  get interviewer():any { return this.eventForm.get('interviewer');}
+  get place():any { return this.eventForm.get('place');}
   onSubmit() {
+    let updatedEvent={
+      id_event:this.clickedEvent.id_event,
+      title:this.title.value,
+      dateStart:this.date.value.year+"-"+this.date.value.month+"-"+this.date.value.day,
+      timeStart:this.time.value.hour+":"+this.time.value.minute+":00",
+      id_importace:this.color.value,
+      info:this.info.value,
+      place:this.place.value,
+      id_candidate:this.selectIntervieweeModel[0],
+      id_interviewer:this.selectInterviewerModel[0]
+    };
+    console.log(updatedEvent);
+    this.eventService.updateEvent(updatedEvent);
   }
   onChange() {
     console.log(this.selectInterviewerModel);
@@ -102,5 +123,6 @@ export class PopupEditComponent implements OnChanges,OnInit {
   onChangeInterviewee(){
     console.log(this.selectIntervieweeModel);
   }
+
 
 }

@@ -98,10 +98,31 @@ server.get("/getCandidates",function(req,res,next){
     "ORDER by secondName;",function(err,results){
     if (err)
       throw err;
-    console.log(results.length);
-    console.log(results[2]);
     res.end(JSON.stringify(results));
   })
+});
+
+server.post("/updateEvent",function(req,res,next){
+  res.end();
+  // connection.query(' ' +
+  //   'update event ' +
+  //   'set ' +
+  //   'dateStart="'+req.body.start.split(`T`)[0]+'", ' +
+  //   '  timeStart="'+req.body.start.split(`T`)[1]+'", ' +
+  //   '  dateEnd="'+req.body.end.split(`T`)[0]+'", ' +
+  //   '  timeEnd="'+req.body.end.split(`T`)[1]+'", ' +
+  //   '  id_interviewer='+req.body.interviewer+', ' +
+  //   '  info="'+req.body.info+'", ' +
+  //   '  place="'+req.body.place+'", ' +
+  //   '  isRepeatable='+req.body.repeat+', ' +
+  //   '  id_importance='+(req.body.colorIndex+1)+', ' +
+  //   '  title="'+req.body.title+'", ' +
+  //   '  isVacant='+req.body.isVacant+', ' +
+  //   '  allDay='+req.body.allDay+' ' +
+  //   'where id_event='+req.body.id+';',function(err,results){
+  //   if (err) throw err;
+  //   res.end();
+  // });
 });
 
 server.get("/getNewCandidates",candidatesController.getNewCandidates);

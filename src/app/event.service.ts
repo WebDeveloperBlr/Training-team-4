@@ -15,6 +15,7 @@ export class EventService {
   private insertCalendarEventURL="http://localhost:8080/eventCreate";
   private getInterviewersURL="http://localhost:8080/getInterviewers";
   private getCandidatesURL="http://localhost:8080/getCandidates";
+  private updateEventURL="http://localhost:8080/updateEvent";
 
   showedNew:boolean=false;
   showedEdit:boolean=false;
@@ -56,6 +57,10 @@ export class EventService {
 
   getCandidates():Observable<any>{
     return this.http.get<any>(this.getCandidatesURL);
+  }
+
+  updateEvent(event):void{
+      this.http.post<any>(this.updateEventURL,event).subscribe(()=>{});
   }
 
 }

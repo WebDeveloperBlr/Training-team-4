@@ -36,9 +36,14 @@ export class InterviewsComponent implements OnInit {
       this.getCandidates();
       this.addedEvents=data;
       console.log(data);
+      console.log("before");
+      console.log(this.addedEvents[0].start);
       for(let i=0;i<this.addedEvents.length;i++){
         this.addedEvents[i].start=this.addedEvents[i].dateStart.split("T")[0]+"T"+this.addedEvents[i].timeStart;
+        this.addedEvents[i].color=this.chooseColor(this.addedEvents[i].id_importance);
       }
+      console.log("after");
+      console.log(this.addedEvents[0].start);
       this.calendarOptions ={
         firstDay: 1,
         selectable: true,
@@ -97,9 +102,19 @@ export class InterviewsComponent implements OnInit {
     this.eventService.openEdit();
   }
 
+  chooseColor(id_importance:number):string{
+    if(id_importance==1)
+      return "#0284b4";
+    else if(id_importance==2)
+      return "#c86c30";
+    else if(id_importance==3)
+      return "#00ee71";
+  }
+
   buildClickedEvent(event){
     console.log('event');
     console.log(event);
+    this.clickedEvent.id_event=event.id_event,
     this.clickedEvent.title=event.title;
     this.clickedEvent.info=event.info;
     this.clickedEvent.startTime={
@@ -115,8 +130,6 @@ export class InterviewsComponent implements OnInit {
     this.clickedEvent.color=event.id_importance;
     this.clickedEvent.candidate=[event.id_candidate];
     this.clickedEvent.interviewer=[event.id_interviewer];
-    // this.clickedEvent.candidate=event.candSurname+" "+event.candName;
-    // this.clickedEvent.interviewer=event.lastName+' '+event.firstName;
   }
 
   findCorrespondentEvent(clickedEvent):any{
@@ -148,7 +161,7 @@ export class InterviewsComponent implements OnInit {
     this.eventService.getEvents().subscribe( data=>{
       this.addedEvents=data;
       for(let i=0;i<this.addedEvents.length;i++){
-        this.addedEvents[i].start=this.addedEvents[i].dateStart;
+        this.addedEvents[i].start=this.addedEvents[i].dateStart.split("T")[0]+"T"+this.addedEvents[i].timeStart;
       }
       this.ucCalendar.fullCalendar('refetchEvents');
     });
@@ -162,7 +175,6 @@ export class InterviewsComponent implements OnInit {
           arr.push({id:data[i].id_interviewer, name:data[i].firstName+" "+data[i].lastName});
         }
         this.selectInterviewerOptions=arr;
-        console.log(this.selectInterviewerOptions);
       });
   }
 
