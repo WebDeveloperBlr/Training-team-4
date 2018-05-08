@@ -202,7 +202,7 @@ export class InterviewsComponent implements OnInit {
 
 
     let b:any=new Date(model.event.start._d);
-    b.setDate(b.getDate());
+    b.setDate(b.getDate()+1);
     b=b.toISOString().split("T")[0];
     console.log("this is b " +b);
     // let dateStart=model.event.start._d.toISOString().split("T")[0];
@@ -213,8 +213,7 @@ export class InterviewsComponent implements OnInit {
       timeStart:a
     });
 
-     setTimeout(()=>{ this.refetchEvents();
-     console.log(this.addedEvents);}
+     setTimeout(()=>{ this.refetchEvents();}
      ,100);
   }
 }
