@@ -3,6 +3,7 @@
   [startDate]="startDate"
   (refetchEvents)="refetchEvents()"></app-popup-new>
 <app-popup-edit
+  (refetchEvents)="refetchEvents()"
   [selectInterviewerOptions]="selectInterviewerOptions"
   [selectIntervieweeOptions]="selectIntervieweeOptions"
   [lol]="lola"
@@ -15,6 +16,7 @@
     (eventClick)="eventClick($event.detail)"
     (eventDrop)="updateEvent($event.detail)"
     (eventResize)="updateEvent($event.detail)"
-    (clickButton)="clickButton($event.detail)">
+    (clickButton)="clickButton($event.detail)"
+    (eventDrop)="onDrop($event.detail)">
   </ng-fullcalendar>
 </div>

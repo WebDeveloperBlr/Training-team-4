@@ -35,14 +35,10 @@ export class InterviewsComponent implements OnInit {
       this.getInterviewers();
       this.getCandidates();
       this.addedEvents=data;
-      console.log(data);
-      console.log("before");
-      console.log(this.addedEvents[0].start);
       for(let i=0;i<this.addedEvents.length;i++){
         this.addedEvents[i].start=this.addedEvents[i].dateStart.split("T")[0]+"T"+this.addedEvents[i].timeStart;
         this.addedEvents[i].color=this.chooseColor(this.addedEvents[i].id_importance);
       }
-      console.log("after");
       console.log(this.addedEvents[0].start);
       this.calendarOptions ={
         firstDay: 1,
@@ -59,8 +55,8 @@ export class InterviewsComponent implements OnInit {
           month: 'month',
           week: 'week',
           day: 'day',
-          // listWeek: 'listWeek',
-          // listDay: 'listDay'
+          listWeek: 'week list',
+          listDay: 'day list'
       },
       height: 550,
         defaultView: 'month',
@@ -72,7 +68,7 @@ export class InterviewsComponent implements OnInit {
       displayEventTime: true,
         timezone: 'local',
         editable: true,
-        droppable: true,
+        droppable:true,
         navLinks: true,
         eventSources: [
         {
@@ -106,7 +102,7 @@ export class InterviewsComponent implements OnInit {
     if(id_importance==1)
       return "#0284b4";
     else if(id_importance==2)
-      return "#c86c30";
+      return "#ee0e44";
     else if(id_importance==3)
       return "#00ee71";
   }
@@ -162,6 +158,7 @@ export class InterviewsComponent implements OnInit {
       this.addedEvents=data;
       for(let i=0;i<this.addedEvents.length;i++){
         this.addedEvents[i].start=this.addedEvents[i].dateStart.split("T")[0]+"T"+this.addedEvents[i].timeStart;
+        this.addedEvents[i].color=this.chooseColor(this.addedEvents[i].id_importance);
       }
       this.ucCalendar.fullCalendar('refetchEvents');
     });
@@ -190,5 +187,9 @@ export class InterviewsComponent implements OnInit {
 
   lolIncr(){
     this.lola++;
+  }
+
+  onDrop(model:any){
+    console.log(model.event.start._d.toISOString());
   }
 }

@@ -103,26 +103,26 @@ server.get("/getCandidates",function(req,res,next){
 });
 
 server.post("/updateEvent",function(req,res,next){
-  res.end();
-  // connection.query(' ' +
-  //   'update event ' +
-  //   'set ' +
-  //   'dateStart="'+req.body.start.split(`T`)[0]+'", ' +
-  //   '  timeStart="'+req.body.start.split(`T`)[1]+'", ' +
-  //   '  dateEnd="'+req.body.end.split(`T`)[0]+'", ' +
-  //   '  timeEnd="'+req.body.end.split(`T`)[1]+'", ' +
-  //   '  id_interviewer='+req.body.interviewer+', ' +
-  //   '  info="'+req.body.info+'", ' +
-  //   '  place="'+req.body.place+'", ' +
-  //   '  isRepeatable='+req.body.repeat+', ' +
-  //   '  id_importance='+(req.body.colorIndex+1)+', ' +
-  //   '  title="'+req.body.title+'", ' +
-  //   '  isVacant='+req.body.isVacant+', ' +
-  //   '  allDay='+req.body.allDay+' ' +
-  //   'where id_event='+req.body.id+';',function(err,results){
-  //   if (err) throw err;
-  //   res.end();
-  // });
+  connection.query(' ' +
+    'update event ' +
+    'set ' +
+    '  dateStart="'+req.body.dateStart+'", ' +
+    '  timeStart="'+req.body.timeStart+'", ' +
+    '  dateEnd="'+req.body.dateStart+'", ' +
+    '  timeEnd="'+req.body.timeStart+'", ' +
+    '  id_interviewer='+req.body.id_interviewer+', ' +
+    '  info="'+req.body.info+'", ' +
+    '  place="'+req.body.place+'", ' +
+    '  isRepeatable='+true+', ' +
+    '  id_importance='+req.body.id_importance+', ' +
+    '  title="'+req.body.title+'" ,' +
+    '  isVacant='+true+', ' +
+    '  allDay='+false+',' +
+    '  id_candidate='+req.body.id_candidate+
+    '  where id_event='+req.body.id_event+';',function(err,results){
+    if (err) throw err;
+    res.end();
+  });
 });
 
 server.get("/getNewCandidates",candidatesController.getNewCandidates);

@@ -42,7 +42,7 @@ server.get('/HR-app', function handler(req, res, next) {
     sendFile(req, res, next, '/HR-app.html');
   else
     sendFile(req, res, next, '/login.html');
-  
+
 });
 
 server.get('/vacancies__schedule', function handler(req, res, next) {
@@ -205,6 +205,7 @@ server.post("/updateEvent",function(req,res,next){
     res.end();
   });
 });
+
 
 
 server.get('/candidates', candidatesController.all);

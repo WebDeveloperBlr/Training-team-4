@@ -14,6 +14,8 @@ import {EventService} from "../../event.service";
 })
 export class PopupEditComponent implements OnChanges,OnInit {
 
+  mes:string="lol";
+  @Output() refetchEvents =new EventEmitter();
   @Input() lol:any;
   @Input() clickedEvent:any;
   @Input() selectInterviewerOptions:IMultiSelectOption[];
@@ -107,7 +109,7 @@ export class PopupEditComponent implements OnChanges,OnInit {
       title:this.title.value,
       dateStart:this.date.value.year+"-"+this.date.value.month+"-"+this.date.value.day,
       timeStart:this.time.value.hour+":"+this.time.value.minute+":00",
-      id_importace:this.color.value,
+      id_importance:+this.color.value,
       info:this.info.value,
       place:this.place.value,
       id_candidate:this.selectIntervieweeModel[0],
@@ -115,14 +117,21 @@ export class PopupEditComponent implements OnChanges,OnInit {
     };
     console.log(updatedEvent);
     this.eventService.updateEvent(updatedEvent);
+    this.eventService.closeEdit();
+    setTimeout(()=>{this.emitEvent();},100);
   }
   onChange() {
-    console.log(this.selectInterviewerModel);
+    return;
+    // console.log(this.selectInterviewerModel);
   }
 
   onChangeInterviewee(){
-    console.log(this.selectIntervieweeModel);
+    return;
+    // console.log(this.selectIntervieweeModel);
   }
 
+  emitEvent(){
+    this.refetchEvents.emit(this.mes);
+  }
 
 }
