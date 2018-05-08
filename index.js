@@ -139,6 +139,13 @@ server.post('/updateEventDate',function(req,res,next){
   });
 });
 
+server.post("/deleteEvent",function(req,res,next){
+  connection.query('delete from event where id_event='+req.body.id_event+';',function(err,results){
+    if (err) throw err;
+    res.end();
+  })
+})
+
 server.get("/getNewCandidates",candidatesController.getNewCandidates);
 server.get("/getNextInterviews",eventsController.getNextInterviews);
 

@@ -108,7 +108,7 @@
     </div>
     <div class="popup-buttons">
       <button type="submit" class="btn btn-primary" [disabled]="!eventForm.valid">Submit</button>
-      <button type="submit" class="btn btn-warning" [disabled]="!eventService.showedEdit">Delete interview</button>
+      <button type="submit" class="btn btn-warning" (click)="deleteEvent()" [disabled]="!eventService.showedEdit">Delete interview</button>
     </div>
   </form>
 </div>

@@ -17,6 +17,7 @@ export class EventService {
   private getCandidatesURL="http://localhost:8080/getCandidates";
   private updateEventURL="http://localhost:8080/updateEvent";
   private updateEventDateURL="http://localhost:8080/updateEventDate";
+  private deleteEventURL="http://localhost:8080/deleteEvent";
 
   showedNew:boolean=false;
   showedEdit:boolean=false;
@@ -66,5 +67,9 @@ export class EventService {
 
   updateEventDate(event){
     this.http.post<any>(this.updateEventDateURL,event).subscribe(()=>{});
+  }
+
+  deleteEvent(id){
+    this.http.post<any>(this.deleteEventURL,{id_event:id}).subscribe(()=>{});
   }
 }
