@@ -5,6 +5,7 @@
     id="login-form"
     method="get"
     onsubmit="signUp()"
+    ngClass="{'less-padding': isError}"
     action="">
     <a class="createProfile__backToMain-link" routerLink="/login">
       <svg class="icon icon-ARROW ">
@@ -68,11 +69,13 @@
     <input
       [disabled]="!registerForm.valid"
       id="submitBtn"
-
+      ngClass="{'d-none': isError}"
       class="button login-form__submit"
       type="submit"
       value="Sign up">
-    <div id="alertMes" class="d-none unable-to-register opacity-0 alert alert-danger">
+    <div id="alertMes"
+         class="d-none unable-to-register opacity-0 alert alert-danger"
+         ngClass="{'d-none': !isError, opacity-0: !isError}">
       <div>Unable to register now.</div>
       <div>Please, try later.</div>
     </div>

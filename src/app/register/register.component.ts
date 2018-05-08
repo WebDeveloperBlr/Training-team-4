@@ -17,21 +17,20 @@ export class RegisterComponent implements OnInit {
   regInfo = {};
   regCount = 0;
 
-
+  isError: boolean;
 
   ngOnInit() {
   }
+  signUp() {
+
+  }
   loginInput() {}
 
-  /*
-
   showError() {
-    submitBtn.classList.add("d-none");
-    alertMes.classList.remove("d-none");
-    alertMes.classList.remove("opacity-0");
-    this.registerForm.classList.add("less-padding");
+    this.isError = true;
   }
 
+  /*
 form.onsubmit = function (event) {
   event.preventDefault();
   if(!ableToReg){     //check if the password isn't taken
