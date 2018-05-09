@@ -1,11 +1,9 @@
 var config = require('./config'),
-  restify = require('restify'),
-  mysql = require('mysql');
+  restify = require('restify');
 var candidatesController = require('./controllers/candidates');
 var vacanciesController = require('./controllers/vacancies');
 var fs = require('fs');
 
-var data = [];
 
 const server = restify.createServer({
   name: config.name,
@@ -25,18 +23,17 @@ server.listen(process.env.PORT || 8080, function () {
 
 
 //rest api to get all results
-server.get('/assets/*.*', restify.plugins.serveStatic({
-  directory: __dirname
+server.get('*.js', restify.plugins.serveStatic({
+  directory: __dirname + "/dist/"
 }));
 
 server.get('/', function handler(req, res, next) {
-  fs.readFile(__dirname + '/HR-app.html',
+  fs.readFile(__dirname + '/dist/index.html',
     function (err, data) {
       if (err) {
         next(err);
         return;
       }
-      res.header('Access-Control-Allow-Origin','*');
       res.write(data);
       res.end();
       next();

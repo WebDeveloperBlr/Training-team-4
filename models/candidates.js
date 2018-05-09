@@ -7,6 +7,7 @@ var connection = db.get;
 exports.all = function (limit, filter, cb) {
   var data = {};
   var error = [];
+  console.log(filter);
   try{
     filter = JSON.parse(filter);
   }
@@ -16,11 +17,12 @@ exports.all = function (limit, filter, cb) {
 
   var query = 'SELECT candidate.id_candidate,concat(per.firstName,\' \',per.secondName) \'name\',candidate.salary, pos.name "position", statusName.name "status" ' +
     'FROM `hr-app`.candidate ' +
+    'INNER JOIN candidateStatus cs ON cs.id_candidate=candidate.id_candidate ' +
+    'INNER JOIN statusName ON statusName.id_status = cs.id_status ' +
     'INNER JOIN candidatePosition cp ON cp.id_candidate = candidate.id_candidate ' +
-    'INNER JOIN statusName ON statusName.id_status = cp.id_status ' +
     'INNER JOIN position pos ON pos.id_position = cp.id_position ' +
     'INNER JOIN person per ON per.id_person = candidate.id_person ';
-  console.log(query);
+  console.log(filter);
 
   if (filter&&filter.name!==undefined) {
     query += 'WHERE ( ';
@@ -40,41 +42,16 @@ exports.all = function (limit, filter, cb) {
 
 
 };
-
-function extend(a, b){
-  for(var prop in b){
-    if(Object.prototype.toString.call(b[prop]) == '[object Array]' &&
-      Object.prototype.toString.call(a[prop]) == '[object Array]'){ // is array?
-      a[prop] = a[prop].concat(b[prop]);
-    } else {
-      if(b[prop] === Object(b[prop]) &&
-        a[prop] === Object(a[prop])){ // is object?
-        extend(a[prop], b[prop]);
-      }
-      else {
-        a[prop] = b[prop];
-      }
-    }
-  }
-}
-
-exports.getByID = function (id, position, cb) {
-  var data = {
-    docs: {
-      exp: [],
-      skills: []
-    }
-  };
+exports.getByID = function (id, cb) {
+  var data = {};
   var query = 'SELECT candidate.id_candidate,candidate.telephone,candidate.email,candidate.address,concat(per.firstName,\' \',per.secondName) "name",candidate.salary, pos.name "position", statusName.name "status" ' +
     '    FROM `hr-app`.candidate ' +
+    '    INNER JOIN candidateStatus cs ON cs.id_candidate=candidate.id_candidate ' +
+    '    INNER JOIN statusName ON statusName.id_status = cs.id_status ' +
     '    INNER JOIN candidatePosition cp ON cp.id_candidate = candidate.id_candidate ' +
-    '    INNER JOIN statusName ON statusName.id_status = cp.id_status ' +
     '    INNER JOIN position pos ON pos.id_position = cp.id_position ' +
     '    INNER JOIN person per ON per.id_person = candidate.id_person ' +
     ' WHERE candidate.id_candidate ='+id;
-  if(position){
-    query += ' AND cp.id_position = (select id_position from position where position.name = "'+position+'")';
-  }
   var query2 = 'SELECT experience.id_experience,experience.company, experience.dateStart, experience.dateEnd, experience.position, experience.info FROM `hr-app`.experience\n' +
     'inner join candidate on candidate.id_candidate = experience.id_candidate\n' +
     'where experience.id_candidate ='+id +
@@ -87,27 +64,23 @@ exports.getByID = function (id, position, cb) {
   var query4 = 'SELECT name FROM `hr-app`.statusName';
   var query5 = 'SELECT name FROM `hr-app`.position';
   var getAllSkills = 'SELECT name FROM `hr-app`.skills';
-  let queryCandidatePositions = 'select position.id_position ,position.name ' +
-    'from candidatePosition ' +
-    'inner join position on position.id_position = candidatePosition.id_position ' +
-    'where candidatePosition.id_candidate =' + id;
   var error = [];
 
   var promiseQuery1 = new Promise((res,rej)=>{
     connection.query(query, [id], function (error, results) {
-      extend(data.docs, results[0]);
+      data.docs = results;
       res();
     });
   });
   var promiseQuery2 = new Promise((res,rej)=>{
     connection.query(query2, [id], function (error, results) {
-      data.docs.exp = results;
+      data.exp = results;
       res();
     });
   });
   var promiseQuery3 = new Promise((res,rej)=>{
     connection.query(query3, [id], function (error, results) {
-      data.docs.skills = results;
+      data.skills = results;
       res();
     });
   });
@@ -129,14 +102,9 @@ exports.getByID = function (id, position, cb) {
       res();
     });
   });
-  let promiseCandidatePositions = new Promise((res, rej) => {
-    connection.query(queryCandidatePositions, (error, results) => {
-      data.docs.positions = results;
-      res();
-    })
-  });
 
-  Promise.all([promiseQuery1,promiseQuery2,promiseQuery3,promiseQuery4,promiseQuery5,promiseGetAllSkills, promiseCandidatePositions]).then(()=>{
+  Promise.all([promiseQuery1,promiseQuery2,promiseQuery3,promiseQuery4,promiseQuery5,promiseGetAllSkills]).then(()=>{
+    console.log(data);
     cb(error, data);
   });
 
@@ -156,15 +124,16 @@ exports.update = function (id, candidate, cb) {
     'inner join person on person.id_person = candidate.id_person ' +
     'inner join candidatePosition cp on cp.id_candidate = candidate.id_candidate ' +
     'inner join position p on p.id_position = cp.id_position ' +
-    'inner join statusName sn on sn.id_status = cp.id_status ' +
+    'inner join candidateStatus cs on cs.id_candidate = candidate.id_candidate ' +
+    'inner join statusName sn on sn.id_status = cs.id_status ' +
     'SET candidate.`salary`= ?, candidate.`telephone`= ?, ' +
     'candidate.`email`= ?, candidate.`address`= ?, ' +
     'person.`firstName`= ?,person.`secondName`= ?, ' +
-    'cp.id_status=(select statusName.id_status from statusName where statusName.name= ?) '+
-    'WHERE candidate.`id_candidate`= ? AND p.name = ?';
-  console.log(updateCandidate);
+    'cp.id_position=(select position.id_position from position where position.name = ?), ' +
+    'cs.id_status=(select statusName.id_status from statusName where statusName.name= ?) '+
+    'WHERE candidate.`id_candidate`= ?';
   var promiseUpdateCandidate = new Promise(function (res, rej) {
-    connection.query(updateCandidate, [candidate.salary,candidate.telephone, candidate.email, candidate.address, candidate.firstName, candidate.lastName, candidate.status, id, candidate.position], function (error, results) {
+    connection.query(updateCandidate, [candidate.salary,candidate.telephone, candidate.email, candidate.address, candidate.firstName, candidate.lastName, candidate.position, candidate.status, id], function (error, results) {
       if(error){
         errors=error;
       }
@@ -174,7 +143,7 @@ exports.update = function (id, candidate, cb) {
   promises.push(promiseUpdateCandidate);
 
 
-  if(candidate.newSkills){
+  if(candidate.newSkills.length>0){
     var addNewSkills = "";
     candidate.newSkills.forEach(function (item) {
       addNewSkills = 'insert into candidateSkills (candidateSkills.id_candidate, candidateSkills.id_skills) \n' +
@@ -190,7 +159,7 @@ exports.update = function (id, candidate, cb) {
       promises.push(promiseAddNewSkills);
     });
   }
-  if(candidate.oldSkills){
+  if(candidate.oldSkills.length>0){
     var deleteQuery;
     candidate.oldSkills.forEach(function (item) {
       deleteQuery = 'DELETE candidateSkills FROM candidateSkills \n' +
@@ -208,7 +177,7 @@ exports.update = function (id, candidate, cb) {
     });
   }
 
-  if(candidate.exp){
+  if(candidate.exp.length>0){
     var updateExpQuery = '';
     candidate.exp.forEach((item)=>{
       if(item.dateEnd){
@@ -243,7 +212,7 @@ exports.update = function (id, candidate, cb) {
     });
   }
 
-  if(candidate.newExp){
+  if(candidate.newExp.length>0){
     var addExpQuery;
     candidate.newExp.forEach(function (item) {
       addExpQuery = 'INSERT INTO experience (`company`, `dateStart`, `dateEnd`, `position`, `info`, `id_candidate`) ' +
@@ -260,7 +229,7 @@ exports.update = function (id, candidate, cb) {
     });
   }
 
-  if(candidate.oldExp){
+  if(candidate.oldExp.length>0){
     var deleteExpQuery;
     candidate.oldExp.forEach(function (item) {
       deleteExpQuery = 'DELETE experience FROM experience ' +
