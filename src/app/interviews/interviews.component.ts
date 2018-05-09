@@ -33,6 +33,7 @@ export class InterviewsComponent implements OnInit {
   lola:any=1;
   ngOnInit() {
     this.eventService.getEvents().subscribe(data => {
+      console.log(data);
       this.getInterviewers();
       this.getCandidates();
       this.addedEvents=data;

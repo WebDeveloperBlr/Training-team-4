@@ -54,17 +54,18 @@ server.get('/', function handler(req, res, next) {
 });
 
 server.get("/getEvents",function(req,res,next){
-  connection.query("SELECT id_event,dateStart,timeStart,dateEnd,timeEnd,e.id_interviewer,info,place,isRepeatable, e.id_importance,title,isVacant,name as importanceLevel,viewer.firstName,viewer.lastName,allDay,e.id_candidate,per.firstName as candName, per.secondName as candSurname \n" +
-    "from event e  \n" +
-    "INNER JOIN importance im  \n" +
-    "on e.id_importance=im.id_importance  \n" +
-    "INNER join interviewer viewer  \n" +
-    "on e.id_interviewer=viewer.id_interviewer \n" +
-    "INNER join candidate can \n" +
-    "on e.id_candidate=can.id_candidate\n" +
-    "INNER join person per \n" +
-    "on can.id_person=per.id_person;",function(err, results){
+  connection.query('SELECT id_event,dateStart,timeStart,dateEnd,timeEnd,e.id_interviewer,info,place,isRepeatable, e.id_importance,title,isVacant,name as importanceLevel,viewer.firstName,viewer.lastName,allDay,e.id_candidate,per.firstName as candName, per.secondName as candSurname  \n' +
+    'from event e   \n' +
+    'INNER JOIN importance im   \n' +
+    'on e.id_importance=im.id_importance   \n' +
+    'INNER join interviewer viewer   \n' +
+    'on e.id_interviewer=viewer.id_interviewer  \n' +
+    'left OUTER JOIN candidate can  \n' +
+    'on e.id_candidate=can.id_candidate \n' +
+    'left OUTER join person per  \n' +
+    'on can.id_person=per.id_person   ',function(err, results){
     if(err) throw err;
+
     res.end(JSON.stringify(results));
   });
 });
@@ -75,7 +76,7 @@ server.post("/eventCreate",function(req,res,next){
   var defInfo="No info yet";
   var defPlace="No place yet";
   connection.query('INSERT INTO `hr-app`.event(dateStart,dateEnd,title,timeStart,timeEnd,id_interviewer,info,place,isRepeatable,id_importance,isVacant,allDay,id_candidate)'+
-    'VALUES("'+req.body.start+'","'+req.body.end+'","'+req.body.title+'","'+defStart+'","'+defEnd+'","'+1+'","'+defInfo+'","'+defPlace+'","'+false+'","'+1+'","'+true+'","'+false+'","'+1+'");',function(err,results){
+    'VALUES("'+req.body.start+'","'+req.body.end+'","'+req.body.title+'","'+defStart+'","'+defEnd+'","'+1+'","'+defInfo+'","'+defPlace+'","'+false+'","'+1+'","'+true+'","'+false+'","'+0+'");',function(err,results){
     if (err) throw err;
     else res.end();
   });
@@ -144,7 +145,7 @@ server.post("/deleteEvent",function(req,res,next){
     if (err) throw err;
     res.end();
   })
-})
+});
 
 server.get("/getNewCandidates",candidatesController.getNewCandidates);
 server.get("/getNextInterviews",eventsController.getNextInterviews);
