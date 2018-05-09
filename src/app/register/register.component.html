@@ -2,7 +2,7 @@
   <form
     class="max-width-370px form-page__login-form"
     #registerForm="ngForm"
-    (ngSubmit)="signUp()">
+    (ngSubmit)="signUp(registerForm)">
     <a class="createProfile__backToMain-link" routerLink="/login">
       <svg class="icon icon-ARROW">
         <use xlink:href="../../assets/images/svg/symbol/sprite.svg#ARROW"></use>
@@ -79,5 +79,5 @@
       <div>Please, try later.</div>
     </div>
   </form>
-
+  <div>Registered successfully</div>
 </header>

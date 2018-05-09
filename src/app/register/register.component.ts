@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {UserLogin} from '../interfaces/UserLogin';
+import {AuthService} from '../auth.service';
+
 
 @Component({
   selector: 'app-register',
@@ -8,15 +10,16 @@ import {UserLogin} from '../interfaces/UserLogin';
 })
 export class RegisterComponent implements OnInit {
 
+  constructor(private authService:AuthService) { }
   userToRegister:UserLogin={
     login:"",
     password:""
   };
   repeatedPas:string="";
+  registered:number=2;
 
   equalPasswords:boolean=false;
   hasForbiddenSigns:boolean=false;
-  constructor() { }
   loginInp: string;
   passwordInp: string;
   paswordRepInp: string;
@@ -29,8 +32,17 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
   }
-  signUp() {
-      alert("signed");
+  signUp(registerForm:any) {
+      this.authService.signUp(this.userToRegister).subscribe((data)=>{
+        if(data==true)
+          this.registered=1;
+        else
+          this.registered=0;
+      });
+      alert("reset");
+      registerForm.resetForm();
+      this.equalPasswords=false;
+      this.hasForbiddenSigns=false;
   }
   loginInput() {}
 
@@ -53,5 +65,6 @@ export class RegisterComponent implements OnInit {
     else
     {this.hasForbiddenSigns=false;}
   }
+
 }
-// <div #popups class="login-form__text">Please, repeat your password</div><span class="decor opacity-0"></span>
+

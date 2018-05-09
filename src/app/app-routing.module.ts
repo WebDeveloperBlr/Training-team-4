@@ -9,13 +9,14 @@ import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
 
 const routes: Routes = [
-  {path:"register", component:RegisterComponent},
-  {path:"login", component:LoginComponent},
+  { path: "register", component:RegisterComponent},
+  { path: "login", component:LoginComponent},
   { path: '', redirectTo: '/candidates', pathMatch: 'full' },
   { path: 'candidates', component: CandidatesComponent },
   { path: 'candidates/:id', component: CandidateDetailComponent },
   { path: 'vacancies', component: VacanciesComponent},
-  { path: 'interviews', component:  InterviewsComponent,canActivate:[AuthGuardService] }
+  { path: 'interviews', component:  InterviewsComponent },
+  { path: '**',redirectTo: '/candidates', pathMatch: 'full'}
 ];
 
 
