@@ -39,15 +39,19 @@ export class PopupEditComponent implements OnChanges,OnInit {
       color:this.clickedEvent.color,
       info:this.clickedEvent.info
     });
-    this.selectIntervieweeModel=this.clickedEvent.candidate;
+    if(this.clickedEvent.candidate[0]!=0) {
+      this.selectIntervieweeModel = this.clickedEvent.candidate;
+    }
+    else{
+      this.selectIntervieweeModel=[];}
     this.selectInterviewerModel=this.clickedEvent.interviewer;
   }
   eventForm: FormGroup;
-  selectInterviewerModel: number[]=[1];
+  selectInterviewerModel: number[]=[];
   // selectInterviewerOptions: IMultiSelectOption[];
   selectInterviewerSettings: IMultiSelectSettings;
   selectInterviewerTexts: IMultiSelectTexts;
-  selectIntervieweeModel: number[]=[1];
+  selectIntervieweeModel: number[]=[];
   selectIntervieweeSettings: IMultiSelectSettings;
   selectIntervieweeTexts: IMultiSelectTexts;
 
@@ -115,6 +119,8 @@ export class PopupEditComponent implements OnChanges,OnInit {
       id_candidate:this.selectIntervieweeModel[0],
       id_interviewer:this.selectInterviewerModel[0]
     };
+    if(this.selectIntervieweeModel.length==0)
+      updatedEvent.id_candidate=0;
     this.eventService.updateEvent(updatedEvent);
     this.eventService.closeEdit();
     setTimeout(()=>{this.emitEvent();},100);
