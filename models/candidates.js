@@ -6,7 +6,8 @@ var connection = db.get;
 
 exports.all = function (limit, filter, cb) {
   var data = {};
-  var error = [];
+  var error = null;
+  let promises = [];
   try{
     filter = JSON.parse(filter);
   }
@@ -14,29 +15,51 @@ exports.all = function (limit, filter, cb) {
     filter = null;
   }
 
-  var query = 'SELECT candidate.id_candidate,concat(per.firstName,\' \',per.secondName) \'name\',candidate.salary, pos.name "position", statusName.name "status" ' +
+  var getAllStatusesQuery = 'select statusName.name from statusName;';
+  let promiseGetAllStatuses =  new Promise((res)=>{
+    connection.query(getAllStatusesQuery, (error, results) => {
+      if(error){
+        console.log(error);
+      }
+      data.allStatuses = results;
+      res();
+    });
+  });
+  promises.push(promiseGetAllStatuses);
+
+
+  var getCandidatesQuery = 'SELECT candidate.id_candidate,concat(per.firstName,\' \',per.secondName) \'name\',candidate.salary, pos.name "position", statusName.name "status" ' +
     'FROM `hr-app`.candidate ' +
     'INNER JOIN candidatePosition cp ON cp.id_candidate = candidate.id_candidate ' +
     'INNER JOIN statusName ON statusName.id_status = cp.id_status ' +
     'INNER JOIN position pos ON pos.id_position = cp.id_position ' +
     'INNER JOIN person per ON per.id_person = candidate.id_person ';
-  console.log(query);
-
   if (filter&&filter.name!==undefined) {
-    query += 'WHERE ( ';
-    query += '(per.firstName LIKE \'%' + filter.name + '%\' OR  per.secondName LIKE \'%' + filter.name + '%\')';
+    getCandidatesQuery += 'WHERE ( ';
+    getCandidatesQuery += '(per.firstName LIKE \'%' + filter.name + '%\' OR  per.secondName LIKE \'%' + filter.name + '%\')';
     if(filter.statusName&&filter.statusName!=='Any'){
-      query += 'AND statusName.name = \'' + filter.statusName + '\'';
+      getCandidatesQuery += 'AND statusName.name = \'' + filter.statusName + '\'';
     }
-    query += ")"
+    if(filter.position){
+      getCandidatesQuery += 'AND pos.name LIKE \'%' + filter.position + '%\'';
+    }
+    getCandidatesQuery += ")"
   }
-  connection.query('SELECT count(*) "count" FROM(' + query + 'group by id_candidate ) AS T;', function (error, results) {
-    data.count = results[0].count;
-    connection.query(query + 'group by id_candidate ORDER BY id_candidate ASC LIMIT ' + limit + ';', function (error, results) {
-      data.docs = results;
-      cb(error, data);
+
+  let promiseGetCandidates =  new Promise((res)=>{
+    connection.query('SELECT count(*) "count" FROM(' + getCandidatesQuery + 'group by id_candidate ) AS T;', function (error, results) {
+      data.count = results[0].count;
+      connection.query(getCandidatesQuery + 'group by id_candidate ORDER BY id_candidate ASC LIMIT ' + limit + ';', function (error, results) {
+        data.docs = results;
+        res();
+      });
     });
   });
+  promises.push(promiseGetCandidates);
+
+  Promise.all(promises).then( () => {
+    cb(error, data);
+  } );
 
 
 };
@@ -65,11 +88,8 @@ exports.getByID = function (id, position, cb) {
       skills: []
     }
   };
-  var query = 'SELECT candidate.id_candidate,candidate.telephone,candidate.email,candidate.address,concat(per.firstName,\' \',per.secondName) "name",candidate.salary, pos.name "position", statusName.name "status" ' +
+  var query = 'SELECT candidate.id_candidate,candidate.telephone,candidate.email,candidate.address,concat(per.firstName,\' \',per.secondName) "name",candidate.salary ' +
     '    FROM `hr-app`.candidate ' +
-    '    INNER JOIN candidatePosition cp ON cp.id_candidate = candidate.id_candidate ' +
-    '    INNER JOIN statusName ON statusName.id_status = cp.id_status ' +
-    '    INNER JOIN position pos ON pos.id_position = cp.id_position ' +
     '    INNER JOIN person per ON per.id_person = candidate.id_person ' +
     ' WHERE candidate.id_candidate ='+id;
   if(position){
@@ -87,15 +107,19 @@ exports.getByID = function (id, position, cb) {
   var query4 = 'SELECT name FROM `hr-app`.statusName';
   var query5 = 'SELECT name FROM `hr-app`.position';
   var getAllSkills = 'SELECT name FROM `hr-app`.skills';
-  let queryCandidatePositions = 'select position.id_position ,position.name ' +
+  let queryCandidatePositions = 'select position.id_position ,position.name, statusName.name "status" ' +
     'from candidatePosition ' +
     'inner join position on position.id_position = candidatePosition.id_position ' +
-    'where candidatePosition.id_candidate =' + id;
+    'inner join statusName on statusName.id_status = candidatePosition.id_status ' +
+    'where candidatePosition.deleted=0 AND candidatePosition.id_candidate =' + id;
+  console.log(queryCandidatePositions);
   var error = [];
 
   var promiseQuery1 = new Promise((res,rej)=>{
     connection.query(query, [id], function (error, results) {
-      extend(data.docs, results[0]);
+      if(results && results[0]){
+        extend(data.docs, results[0]);
+      }
       res();
     });
   });
@@ -154,17 +178,16 @@ exports.update = function (id, candidate, cb) {
   var errors = null;
   var updateCandidate = 'UPDATE `candidate` ' +
     'inner join person on person.id_person = candidate.id_person ' +
-    'inner join candidatePosition cp on cp.id_candidate = candidate.id_candidate ' +
-    'inner join position p on p.id_position = cp.id_position ' +
-    'inner join statusName sn on sn.id_status = cp.id_status ' +
     'SET candidate.`salary`= ?, candidate.`telephone`= ?, ' +
     'candidate.`email`= ?, candidate.`address`= ?, ' +
-    'person.`firstName`= ?,person.`secondName`= ?, ' +
-    'cp.id_status=(select statusName.id_status from statusName where statusName.name= ?) '+
-    'WHERE candidate.`id_candidate`= ? AND p.name = ?';
-  console.log(updateCandidate);
+    'person.`firstName`= ?,person.`secondName`= ? ' +
+    'WHERE candidate.`id_candidate`= ?';
+  console.log(candidate);
   var promiseUpdateCandidate = new Promise(function (res, rej) {
-    connection.query(updateCandidate, [candidate.salary,candidate.telephone, candidate.email, candidate.address, candidate.firstName, candidate.lastName, candidate.status, id, candidate.position], function (error, results) {
+    connection.query(updateCandidate,
+      [candidate.salary,candidate.telephone, candidate.email,
+        candidate.address, candidate.firstName, candidate.lastName, id],
+      function (error, results) {
       if(error){
         errors=error;
       }
@@ -178,7 +201,7 @@ exports.update = function (id, candidate, cb) {
     var addNewSkills = "";
     candidate.newSkills.forEach(function (item) {
       addNewSkills = 'insert into candidateSkills (candidateSkills.id_candidate, candidateSkills.id_skills) \n' +
-        'values ('+id+',(select id_skills from skills where skills.name = \''+item+'\'));\n';
+        'values ('+id+',(select id_skills from skills where skills.name = \''+item.name+'\'));\n';
       var promiseAddNewSkills = new Promise((res,rej)=>{
         connection.query(addNewSkills, function (error, results) {
           if(error){
@@ -194,7 +217,7 @@ exports.update = function (id, candidate, cb) {
     var deleteQuery;
     candidate.oldSkills.forEach(function (item) {
       deleteQuery = 'DELETE candidateSkills FROM candidateSkills \n' +
-        'WHERE candidateSkills.id_candidate = '+id+' and candidateSkills.id_skills=(select skills.id_skills from skills where skills.name="'+item+'")\n' +
+        'WHERE candidateSkills.id_candidate = '+id+' and candidateSkills.id_skills=(select skills.id_skills from skills where skills.name="'+item.name+'")\n' +
         ';';
       var promiseDeleteOldSkills = new Promise((res,rej)=>{
         connection.query(deleteQuery, function (error, results) {
@@ -229,7 +252,6 @@ exports.update = function (id, candidate, cb) {
           'WHERE experience.id_experience=' + item.id_experience + ';';
       }
 
-      console.log(updateExpQuery);
       var promiseUpdateExp = new Promise((res, rej)=>{
         connection.query(updateExpQuery, function (error, results) {
           if(error){
@@ -274,6 +296,63 @@ exports.update = function (id, candidate, cb) {
         });
       });
       promises.push(promiseDeleteOldExp);
+    });
+  }
+
+  if(candidate.newPositions && candidate.newPositions.length > 0){
+    candidate.newPositions.forEach( (newPos) => {
+      let addPositionQuery = 'insert into candidatePosition (`id_candidate`,`id_position`,`id_status`) ' +
+        'values (' + id + ', ' +
+        '(select position.id_position from position where position.name= "'+ newPos.name +'"), ' +
+        '(select statusName.id_status from statusName where statusName.name = "'+newPos.status+'") ' +
+        ');';
+      let promiseAddPosition = new Promise( (res, rej) => {
+        connection.query(addPositionQuery, function (error, results) {
+          if(error){
+            errors=error;
+          }
+          res();
+        });
+      } );
+      promises.push(promiseAddPosition);
+    });
+  }
+
+  if(candidate.positions && candidate.positions.length > 0){
+    candidate.positions.forEach( (position, index) => {
+      let updatePositionQuery = 'UPDATE candidate ' +
+        'Inner join candidatePosition cp on cp.id_candidate = candidate.id_candidate ' +
+        'set cp.id_status = (select id_status from statusName where statusName.name =?) ' +
+        'where candidate.id_candidate=? AND cp.id_position =? ';
+      let promiseUpdatePosition = new Promise( (res, rej) => {
+        connection.query(updatePositionQuery,[position.status, id, position.id_position], function (error, results) {
+          if(error){
+            console.log(error);
+          }
+          res();
+        })
+      });
+      promises.push(promiseUpdatePosition);
+    });
+  }
+
+  if(candidate.oldPositions && candidate.oldPositions.length > 0 && candidate.oldPositions.length < candidate.positions.length){
+    candidate.oldPositions.forEach( (oldPos) => {
+      let removePositionQuery = 'update candidatePosition set candidatePosition.deleted = 1 ' +
+        'where candidatePosition.id_position = ' +
+        '(select position.id_position from position where position.name= "'+ oldPos.name +'") AND ' +
+        'candidatePosition.id_candidate = ' + id +
+        ' ;';
+      console.log(removePositionQuery);
+      let promiseRemovePosition = new Promise( (res, rej) => {
+        connection.query(removePositionQuery, function (error, results) {
+          if(error){
+            errors=error;
+          }
+          res();
+        });
+      } );
+      promises.push(promiseRemovePosition);
     });
   }
 

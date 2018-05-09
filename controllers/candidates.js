@@ -11,7 +11,6 @@ exports.all = function (req, res) {
   Candidates.all(limit, req.query.filter, function (err, docs) {
     if (err) {
       console.log(err);
-      return res.sendStatus(500);
     }
     res.send(docs);
   });
@@ -27,7 +26,6 @@ exports.getById = function (req, res) {
   })
 };
 exports.create = function (req, res) {
-  res.header('Access-Control-Allow-Origin','*');
   var candidate = {
     firstName: req.body.firstName,
     lastName: req.body.lastName,
@@ -48,7 +46,6 @@ exports.create = function (req, res) {
   })
 };
 exports.update = function (req, res) {
-  res.header('Access-Control-Allow-Origin','*');
   /*var candidate = {
     firstName: req.body.docs[0].firstName||"",
     lastName: req.body.docs[0].lastName||"",
@@ -79,7 +76,6 @@ exports.update = function (req, res) {
   })
 };
 exports.delete = function (req, res) {
-  res.header('Access-Control-Allow-Origin','*');
   Candidates.delete(req.params.id, function (err, docs) {
     if (err) {
       console.log(err);

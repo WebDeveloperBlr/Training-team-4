@@ -8,7 +8,7 @@ import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 @Injectable()
 export class VacanciesService {
 
-  private URL = 'http://localhost:8080/vacancies';
+  private URL = 'http://localhost:8080/vacanciesAsync';
   cache = {};
   data = new BehaviorSubject(undefined);
   currentOffset: number;

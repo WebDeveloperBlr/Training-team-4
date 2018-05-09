@@ -13,14 +13,14 @@
         <div class="candidate-profile__cv-wrapper">
           <span class="candidate-profile__cv-status-label">Status: </span>
           <span class="candidate-profile__cv-status" *ngIf="!activeEdit">
-            {{data.docs.status}}
+            {{activePosition.status}}
           </span>
           <ng-select ngClass="custom-cand-details"
                      [items]="data.allStatuses"
                      bindLabel="name"
                      bindValue="name"
                      placeholder="Select value"
-                     [(ngModel)]="candidate.status"
+                     [(ngModel)]="activePosition.status"
                      *ngIf="activeEdit"></ng-select>
         </div>
         <div class="candidate-profile__img-preview">
@@ -45,9 +45,10 @@
                          bindLabel="name"
                          bindValue="name"
                          placeholder="Select value"
-                         [(ngModel)]="candidate.position"
+                         [ngModel]="activePosition.name"
                          *ngIf="activeEdit"
-                         (change)="changeProfile()"
+                         #positionSelect
+                         (change)="changePosition(positionSelect)"
               ></ng-select>
               <div class="add-button" (click)="openAddPositionModal(addPositionModal)" >
                 <svg class="icon icon-PENCIL ">
@@ -79,7 +80,7 @@
           </div>
           <div class="candidate-profile__candidate-wrapper__left-col" *ngIf="!activeEdit">
 
-            <span class="candidate-profile__candidate-text candidate-position" *ngIf="!activeEdit">{{data.docs.position}}</span>
+            <span class="candidate-profile__candidate-text candidate-position" *ngIf="!activeEdit">{{activePosition.name}}</span>
             <span class="candidate-profile__candidate-text candidate-name" *ngIf="!activeEdit">{{data.docs.name}}</span>
             <span class="candidate-profile__candidate-text candidate-salary" *ngIf="!activeEdit">{{data.docs.salary}}$</span>
           </div>
@@ -135,7 +136,7 @@
                   </div>
                 </div>
                 <div class="skills-modal__items-wrapper">
-                  <div class="skills-modal__item" *ngFor="let item of candidate.positions; index" (click)="deletePosition()">
+                  <div class="skills-modal__item" *ngFor="let item of candidate.positions; let i = index" (click)="deletePosition(item.name, i)">
                     <span class="skills-modal__item-text">{{item.name}}</span>
                   </div>
                 </div>

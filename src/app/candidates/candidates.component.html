@@ -1,4 +1,4 @@
 <section class="vacancies-tab" id="candidates-tab">
-  <app-filter-bar (onChanged)="filterData()"></app-filter-bar>
+  <app-filter-bar *ngIf="data && data.allStatuses" [data]="data" (onChanged)="filterData()"></app-filter-bar>
   <app-grid [data]="data" (changePage)="getCandidates()"></app-grid>
 </section>

@@ -1467,12 +1467,12 @@ hr-app__candidates-item-link {
 
 .table--header-col {
   white-space: nowrap;
-  cursor: pointer;
+
 }
 
-.table--header-col:not(:last-child):after {
+/*.table--header-col:not(:last-child):after {
   content: "▼";
-}
+}*/
 
 .hr-app__table-editor {
   border-top: 1px solid #e6e6e6;

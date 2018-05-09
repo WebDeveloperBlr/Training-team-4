@@ -9,6 +9,7 @@ import { take } from 'rxjs/operator/take';
 import { CandidateService } from '../../candidate.service';
 import { Candidate } from '../../candidate';
 import { Experience} from '../../Experience';
+import { CandidatePosition} from '../../position';
 
 @Component({
   selector: 'app-candidate-detail',
@@ -22,6 +23,7 @@ export class CandidateDetailComponent implements OnInit {
   candidate: Candidate;
   id = +this.route.snapshot.paramMap.get('id');
   newExp: Experience = new Experience();
+  activePosition: any;
   editPositionActive;
 
 
@@ -36,49 +38,66 @@ export class CandidateDetailComponent implements OnInit {
     this.getCandidate();
   }
 
+  candidateClearEdit(): void{
+    this.candidate.oldExp = new Array<any>();
+    this.candidate.newExp = new Array<any>();
+    this.candidate.oldSkills = new Array<any>();
+    this.candidate.newSkills = new Array<any>();
+    this.candidate.oldPositions = new Array<any>();
+    this.candidate.newPositions = new Array<any>();
+  }
+
   getCandidate(): void {
     this.candidateService.getCandidate(this.id)
       .subscribe((data: any) => {
         if(data && data.docs){
-          data.docs.exp.forEach(item => {
-            item.dateStart = this.stringToDate(item.dateStart);
-            if(item.dateEnd){
-              item.dateEnd = this.stringToDate(item.dateEnd);
-            }
-          });
           this.data = data;
           this.candidate = data.docs;
-          this.candidate.oldExp = new Array<any>();
-          this.candidate.newExp = new Array<any>();
-          this.candidate.oldSkills = new Array<any>();
-          this.candidate.newSkills = new Array<any>();
+          this.activePosition = this.candidate.positions[0];
+          this.candidateClearEdit();
         }
       });
   }
 
   addPosition(): void {
-    if(!this.contains(this.candidate.positions, this.editPositionActive)){
-      this.candidate.positions.push(this.editPositionActive);
-      this.candidate.newPositions.push(this.editPositionActive);
+    let newPos: CandidatePosition = new CandidatePosition();
+    newPos = { id_position: null, name: this.editPositionActive,  status: "New" };
+
+    if(this.editPositionActive && !this.contains(this.candidate.positions, this.editPositionActive)){
+      this.candidate.positions.push(newPos);
+      this.candidate.newPositions.push(newPos);
+      this.candidate.oldPositions.forEach( (item, index) => {
+        if (item.name === newPos.name) {
+          this.candidate.oldPositions.splice(index, 1);
+        }
+      });
     }
   }
 
+  deletePosition(position, index): void{
+    let oldPos = { name: position };
+    this.candidate.oldPositions.push(oldPos);
+    console.log(index);
+    if(this.candidate.positions[index]){
+      this.candidate.positions.splice(index, 1);
+    }
+
+    this.candidate.newPositions.forEach( (item, ind) => {
+      if (item.name === oldPos.name) {
+        this.candidate.newPositions.splice(ind, 1);
+      }
+    });
+  }
+
   onChangeTo(item: Date, index: number){
-    console.log(item);
     this.candidate.exp[index].dateEnd = item;
   }
   onChangeFrom(item: Date, index: number){
-    console.log(item + " " + index);
     this.candidate.exp[index].dateStart = item;
   }
 
-  changeProfile(): void {
-    this.candidateService.getCandidate(this.id, this.candidate.position)
-      .subscribe((data: any) => {
-        this.data = data;
-        this.candidate = data.docs;
-        console.log(this.candidate);
-      });
+  changePosition(item: any): void {
+    this.activePosition = item.selectedItems[0].value;
   }
 
   stringToDate(str: string): Date{
@@ -132,7 +151,6 @@ export class CandidateDetailComponent implements OnInit {
           cand.oldSkills.push({name: item.name});
         }
       });
-
     }
   }
 
@@ -187,10 +205,10 @@ export class CandidateDetailComponent implements OnInit {
   saveData(): void {
     this.splitName();
     this.updateCandidateSkills();
-    this.candidateService.update(this.id, this.candidate);
     console.log(this.candidate);
+    this.candidateService.update(this.id, this.candidate);
+    this.candidateClearEdit();
     this.activeEdit = false;
   }
-
 
 }

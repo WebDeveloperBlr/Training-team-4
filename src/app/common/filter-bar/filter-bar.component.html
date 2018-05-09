@@ -22,6 +22,12 @@
         </div>
       </div>
       <div class="hr-app__filters-bar__filter-item">
+        <div class="hr-app__filters-bar__select-text">Position</div>
+        <div class="hr-app__filters-bar__input-wrap">
+          <input class="hr-app__filters-bar__input" (input)="changePosition($event)" type="text"/>
+        </div>
+      </div>
+      <div class="hr-app__filters-bar__filter-item">
         <div class="hr-app__filters-bar__select-text">Status</div>
         <ng-select ngClass="custom" [items]="statusData"
                    bindLabel="name"

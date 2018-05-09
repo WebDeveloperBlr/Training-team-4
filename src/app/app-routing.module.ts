@@ -7,8 +7,8 @@ import {VacanciesComponent} from './vacancies/vacancies.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/candidates', pathMatch: 'full' },
-  { path: 'candidates', component: CandidatesComponent },
   { path: 'candidates/:id', component: CandidateDetailComponent },
+  { path: 'candidates', component: CandidatesComponent },
   { path: 'vacancies', component: VacanciesComponent}
 ];
 

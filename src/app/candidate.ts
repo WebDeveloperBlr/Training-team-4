@@ -1,15 +1,14 @@
 import { Experience } from './Experience';
+import { CandidatePosition } from './position';
 
 export class Candidate {
     id_candidate: number;
     name: string;
     lastName: string;
     firstName: string;
-    position: string;
-    positions: Array<any>;
-    newPositions: Array<any>;
+    positions: Array<CandidatePosition>;
+    newPositions: Array<CandidatePosition>;
     oldPositions: Array<any>;
-    status: string;
     exp: Array<Experience>;
     telephone: string;
     address: string;

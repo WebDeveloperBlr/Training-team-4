@@ -12,7 +12,8 @@ import {catchError} from 'rxjs/operators';
 
 @Injectable()
 export class CandidateService {
-  private URL = 'http://localhost:8080/candidates';
+  //private URL = 'http://localhost:4200/candidates';
+  private URL = 'http://localhost:8080/candidatesAsync';
   public cache;
   public currentOffset: number;
   public currentLimit: number;
@@ -31,7 +32,6 @@ export class CandidateService {
       if( filterObj ) {
         params = params.append('filter', JSON.stringify(filterObj));
       }
-
       this.http.get(this.URL,{ params: params }).subscribe(
         (data: any) => {
           this.data.next(data);
@@ -50,8 +50,7 @@ export class CandidateService {
       headers: new HttpHeaders({'Content-Type': 'application/json'})
     };
     console.log(candidate);
-    //this.http.put(this.URL + '/' + id, candidate);
-
+    this.http.put(this.URL + '/' + id, candidate).subscribe();
   };
 
  /* getMockCandidates(limit: number = 10, offset: number = 1, filterObj?: any): Observable<any> {
