@@ -135,7 +135,7 @@ function Person(element, id) {
     self.data.oldSkills = [];
     $(self.skillsWrapper).find('.skills__elements__decoration').each(function (index, el) {
       var hasSkill = false;
-      self.data.skills.forEach(function (item) {
+      self.data.docs.skills.forEach(function (item) {
         if ($(el).text() === item.name) {
           hasSkill = true;
         }
@@ -144,7 +144,7 @@ function Person(element, id) {
         self.data.newSkills.push($(el).text());
       }
     });
-    self.data.skills.forEach(function (item) {
+    self.data.docs.skills.forEach(function (item) {
       var hasSkill = false;
       $(self.skillsWrapper).find('.skills__elements__decoration').each(function (index, el) {
         if ($(el).text() === item.name) {
@@ -206,14 +206,14 @@ function Person(element, id) {
       var toInput = $(el).find('[data-attr="to"]');
       if ($(fromInput).length > 0) {
         $(fromInput).removeClass('d-none');
-        $(fromInput).jqxDateTimeInput('val', sqlToJsDate(self.data.exp[ind].dateStart, ","));
+        $(fromInput).jqxDateTimeInput('val', sqlToJsDate(self.data.docs.exp[ind].dateStart, ","));
       }
       if ($(toInput).length > 0) {
         $(toInput).removeClass('d-none');
-        if (!self.data.exp[ind].dateEnd) {
+        if (!self.data.docs.exp[ind].dateEnd) {
           $(toInput).jqxDateTimeInput('val', null);
         } else {
-          $(toInput).jqxDateTimeInput('val', sqlToJsDate(self.data.exp[ind].dateEnd, ","));
+          $(toInput).jqxDateTimeInput('val', sqlToJsDate(self.data.docs.exp[ind].dateEnd, ","));
         }
       }
     });
@@ -434,7 +434,7 @@ function Person(element, id) {
   this.fillExperience = function () {
     var values;
     $(self.rowsWrapper).html("");
-    this.data.exp.forEach(function (el) {
+    this.data.docs.exp.forEach(function (el) {
       values = [sqlToJsDate(el.dateStart) + ' - ' + sqlToJsDate(el.dateEnd), el.position, el.company, el.info];
       self.addExperienceRow(values);
     });
@@ -451,7 +451,7 @@ function Person(element, id) {
   };
   this.fillSkills = function () {
     var row = '';
-    this.data.skills.forEach(function (el) {
+    this.data.docs.skills.forEach(function (el) {
       row += '<span class="skills__elements__decoration">' + el.name + '</span>';
     });
     $(this.skillsWrapper).html(row);
@@ -473,14 +473,15 @@ function Person(element, id) {
     });
   };
   this.fillFields = function () {
-    $(this.positionField).html(self.data.docs[0].position);
-    $(this.nameField).html(self.data.docs[0].name);
-    $(this.breadcrumbField).html(self.data.docs[0].name);
-    $(this.salaryField).html(self.data.docs[0].salary + "$");
-    $(this.telephoneField).html(self.data.docs[0].telephone);
-    $(this.emailField).html(self.data.docs[0].email);
-    $(this.addressField).html(self.data.docs[0].address);
-    $(this.statusField).html(self.data.docs[0].status);
+    console.log(self.data);
+    $(this.positionField).html(self.data.docs.position);
+    $(this.nameField).html(self.data.docs.name);
+    $(this.breadcrumbField).html(self.data.docs.name);
+    $(this.salaryField).html(self.data.docs.salary + "$");
+    $(this.telephoneField).html(self.data.docs.telephone);
+    $(this.emailField).html(self.data.docs.email);
+    $(this.addressField).html(self.data.docs.address);
+    $(this.statusField).html(self.data.docs.status);
     this.fillExperience();
     this.fillSkills();
   };

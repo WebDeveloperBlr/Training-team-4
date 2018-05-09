@@ -2,29 +2,32 @@
 const db = require('../db');
 var connection = db.get;
 exports.all = function(limit, filter, cb) {
-//  console.log(filter);
-    var data = {};
-    var query
-    filter = undefined;
-    if(filter){
-      query = 'SELECT position.name \'position\', vacancy.requirements, vacancy.workExperience,vacancy.salary\n' + 'FROM `hr-app`.vacancy \n' + 'INNER JOIN `hr-app`.vacancyPosition ON vacancyPosition.id_vacancy=vacancy.id_vacancy \n' + 'INNER JOIN position ON position.id_position=vacancyPosition.id_position ' + 'WHERE (' + 'position.name LIKE \'%' + filter[0][0]||'' + '%\'';
 
-    if (filter[1][0] && filter[1][1]) {
-        query += 'AND vacancy.workExperience >= \'' + filter[1][0] + '\'' + 'AND vacancy.workExperience < \'' + filter[1][1] + '\'';
-    }
-    if (filter[2][0] !== "") {
-        query += 'AND vacancy.salary >= ' + filter[2][0];
-    }
-    if (filter[3][0] !== "") {
-        query += 'AND vacancy.salary <= ' + filter[3][0];
-    }
-    query += ') group by vacancy.id_vacancy';
+  try{
+    filter = JSON.parse(filter);
+  }
+  catch(e){
+    filter = null;
+  }
+  console.log(filter);
+    var data = {};
+    var query;
+    if(filter && filter.positionName !== undefined){
+      console.log('fired');
+      query = 'SELECT position.name \'position\', vacancy.requirements, vacancy.workExperience,vacancy.salary\n' + 'FROM `hr-app`.vacancy \n' + 'INNER JOIN `hr-app`.vacancyPosition ON vacancyPosition.id_vacancy=vacancy.id_vacancy \n' + 'INNER JOIN position ON position.id_position=vacancyPosition.id_position ' + 'WHERE (' + 'position.name LIKE \'%' + filter.positionName + '%\'';
+      if (filter.exp && filter.exp.from) {
+          query += 'AND vacancy.workExperience >= \'' + filter.exp.from + '\'';
+      }
+      if (filter.exp && filter.exp.to) {
+          query += 'AND vacancy.workExperience <= \'' + filter.exp.to + '\'';
+      }
+      query += ') group by vacancy.id_vacancy';
     }else{
       query = 'SELECT position.name \'position\', vacancy.requirements, vacancy.workExperience,vacancy.salary\n' + 'FROM `hr-app`.vacancy \n' + 'INNER JOIN `hr-app`.vacancyPosition ON vacancyPosition.id_vacancy=vacancy.id_vacancy \n' + 'INNER JOIN position ON position.id_position=vacancyPosition.id_position group by vacancy.id_vacancy';
     }
 
     connection.query('SELECT count(*) "count" FROM(' + query + ') AS T;', function(error, results) {
-      //  console.log(results);
+        console.log(query);
         data.count = results[0].count;
         connection.query(query + ' ORDER BY vacancy.id_vacancy ASC LIMIT ' + limit + ';', function(error, results) {
             data.docs = results;

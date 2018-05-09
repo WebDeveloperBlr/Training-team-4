@@ -63,7 +63,7 @@
           </form>
         </div>
         <div class="hr-app-section__right-bar__icon-panel-wrap">
-          <svg id="right-bell" class="icon icon-BELL "  data-btn-menu>
+          <svg class="icon icon-BELL "  data-btn-menu>
             <use xlink:href="assets/images/svg/symbol/sprite.svg#BELL"></use>
           </svg>
           <svg class="icon icon-exit ">
@@ -75,7 +75,7 @@
         <div class="hr-app__filters-bar" id="vacancies-filters-bar">
           <div class="hr-app__filters-bar__header-wrapper">
             <h3 class="hr-app__filters-bar__header">Vacancies</h3>
-            <button class="btn btn-info"><a class="see-schedule-btn" href="/vacancies__schedule">See schedule</a></button>
+            <button class="btn btn-info"><a class="see-schedule-btn" href="vacancies__schedule.html">See schedule</a></button>
             <button class="hr-app__filters-bar__add-profile-button"><span>+</span></button>
           </div>
           <div class="hr-app__filters-bar__wrap">
@@ -156,7 +156,7 @@
         <div class="hr-app__filters-bar" id="candidates-filters-bar">
           <div class="hr-app__filters-bar__header-wrapper">
             <h3 class="hr-app__filters-bar__header hr-app-section&#45;&#45;header">Candidates</h3>
-            <button class="btn btn-info"><a class="see-schedule-btn" href="/vacancies__schedule">See schedule</a></button>
+            <button class="btn btn-info"><a class="see-schedule-btn" href="vacancies__schedule.html">See schedule</a></button>
             <button class="hr-app__filters-bar__add-profile-button"><span>+</span></button>
           </div>
           <div class="hr-app__filters-bar__wrap">
@@ -169,6 +169,21 @@
             </div>
             <div class="hr-app__filters-bar__fields-wrapper" id="candidates-filters-bar-collapse"
                  data-parent="#hr-app__table">
+              <div class="hr-app__filters-bar__filter-item">
+                <div class="hr-app__filters-bar__select-text">Name</div>
+                <div class="hr-app__filters-bar__input-wrap">
+                  <input class="hr-app__filters-bar__input" type="text"/>
+                </div>
+              </div>
+              <div class="hr-app__filters-bar__filter-item">
+                <div class="hr-app__filters-bar__select-text">Age</div>
+                <div class="hr-app__filters-bar__input-wrap justify-content-between"><span
+                    class="hr-app__filters-bar__input-wrap__text">from</span>
+                  <input class="hr-app__filters-bar__input small&#45;&#45;input" type="text" maxlength="2"/><span
+                      class="hr-app__filters-bar__input-wrap__text">to</span>
+                  <input class="hr-app__filters-bar__input small&#45;&#45;input" type="text" maxlength="2"/>
+                </div>
+              </div>
               <div class="hr-app__filters-bar__filter-item">
                 <div class="hr-app__filters-bar__select-text">Status</div>
                 <select class="hr-app__filters-bar__select" data-attr="filter-item">
@@ -444,23 +459,25 @@
 
     </div>
   </section>
-  <div id="notificationMenu" class="right-col" data-menu>
+  <div class="right-col" data-menu>
     <div class="right-col__item">
       <h2 class="right-col__title">New candidates</h2>
-      <div id="notifsContainer" class="notifications custom-scroll" data-candidates></div>
-      <button id="viewCandsBtn" class="show-more notifications__show-more" data-show="candidates">View All</button>
+      <div class="notifications custom-scroll" data-candidates></div>
+      <button class="show-more notifications__show-more" data-show="candidates">View All</button>
     </div>
 
     <div class="right-col__item">
       <h2 class="right-col__title">Next interviews</h2>
-      <div id="interview-container" class="notifications custom-scroll" data-notifications></div>
-      <button id="viewInterviewsBtn" class="show-more notifications__show-more" data-show="notifications">View All</button>
+      <div class="notifications custom-scroll" data-notifications></div>
+      <button class="show-more notifications__show-more" data-show="notifications">View All</button>
     </div>
   </div>
 </section>
 <script src="assets/js/libs.min.js"></script>
 <script src="assets/js/candidateProfile.js"></script>
 <script src="assets/js/main.js"></script>
-<script src="assets/js/notifications.js"></script>
+<script src="assets/js/app.js"></script>
+
+
 </body>
 </html>
