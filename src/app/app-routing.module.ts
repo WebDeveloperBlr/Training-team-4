@@ -7,16 +7,28 @@ import { InterviewsComponent } from './interviews/interviews.component';
 import {AuthGuardService} from './auth-guard.service';
 import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
+import {HomeComponent} from './home/home.component';
 
 const routes: Routes = [
   { path: "register", component:RegisterComponent},
   { path: "login", component:LoginComponent},
+
   { path: '', redirectTo: '/candidates', pathMatch: 'full' },
-  { path: 'candidates', component: CandidatesComponent },
-  { path: 'candidates/:id', component: CandidateDetailComponent },
-  { path: 'vacancies', component: VacanciesComponent},
-  { path: 'interviews', component:  InterviewsComponent },
+  { path: 'candidates', component: HomeComponent,
+    children:[{path:"",component:CandidatesComponent}]},
+  { path: 'vacancies', component: HomeComponent,
+    children:[{path:"",component:VacanciesComponent}]},
+  { path: 'interviews', component: HomeComponent,
+    children:[{path:"",component:InterviewsComponent}]},
+  { path: 'candidates/:id', component: HomeComponent,
+    children:[{path:"",component:CandidateDetailComponent}]},
   { path: '**',redirectTo: '/candidates', pathMatch: 'full'}
+
+  // { path: '', redirectTo: '/candidates', pathMatch: 'full' },
+  // { path: 'candidates', component: CandidatesComponent },
+  // { path: 'candidates/:id', component: CandidateDetailComponent },
+  // { path: 'vacancies', component: VacanciesComponent},
+  // { path: 'interviews', component:  InterviewsComponent },
 ];
 
 
