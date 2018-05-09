@@ -6,8 +6,10 @@ import { VacanciesComponent } from './vacancies/vacancies.component';
 import { InterviewsComponent } from './interviews/interviews.component';
 import {AuthGuardService} from './auth-guard.service';
 import {LoginComponent} from './login/login.component';
+import {RegisterComponent} from './register/register.component';
 
 const routes: Routes = [
+  {path:"register", component:RegisterComponent},
   {path:"login", component:LoginComponent},
   { path: '', redirectTo: '/candidates', pathMatch: 'full' },
   { path: 'candidates', component: CandidatesComponent },

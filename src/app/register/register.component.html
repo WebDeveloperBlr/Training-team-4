@@ -1,12 +1,8 @@
 <header class="header">
   <form
-    class="form-page__login-form"
+    class="max-width-370px form-page__login-form"
     #registerForm="ngForm"
-    id="login-form"
-    method="get"
-    onsubmit="signUp()"
-    ngClass="{'less-padding': isError}"
-    action="">
+    (ngSubmit)="signUp()">
     <a class="createProfile__backToMain-link" routerLink="/login">
       <svg class="icon icon-ARROW">
         <use xlink:href="../../assets/images/svg/symbol/sprite.svg#ARROW"></use>
@@ -17,12 +13,13 @@
       <label class="login-form__label" for="userLogin">Login</label>
       <div class="login-form__field-wrapper">
         <input
-          (ngModel)="loginInp"
-          (keyup)="loginInput()"
-          #loginInp="ngModel"
+          [class.red-border]="hasForbiddenSigns"
+          [(ngModel)]="userToRegister.login"
+          (input)="checkOnForbiddenSigns()"
           autocomplete="off"
           class="login-form__input"
           type="text"
+          #loginInp="ngModel"
           name="loginInp"
           id="userLogin"
           placeholder="Login"
@@ -32,18 +29,20 @@
           id="login-tip"
           class="login-form__text">Please, enter your login</div><span id="decor" class="decor opacity-0"></span>
       </div>
+      <div *ngIf="hasForbiddenSigns && loginInp.dirty" class="alert-danger alert-danger-fix fix width-90">
+        Use numbers,letters and underline sign</div>
       <label class="login-form__label" for="userPassword">Password</label>
       <div class="login-form__field-wrapper">
         <input
-          (keyup)="loginInput()"
-          [ngModel]="passwordInp"
-          #passwordInp="ngModel"
+          (input)="checkIfEqual()"
+          [(ngModel)]="userToRegister.password"
           name="passwordInp"
           class="login-form__input input--valid-check"
           type="password"
-          id="userPassword"
+          #passwordInp
           placeholder="Password"
           minlength="5"
+          id="userPassword"
           maxlength="24"
           required>
         <div #popups class="login-form__text">Please, enter your password</div><span class="decor opacity-0"></span>
@@ -51,8 +50,9 @@
       <label class="login-form__label" for="userRepPassword">Repeat password</label>
       <div class="login-form__field-wrapper">
         <input
-          (keyup)="loginInput()"
-          [ngModel]="paswordRepInp"
+          [class.red-border]="!equalPasswords"
+          (input)="checkIfEqual()"
+          [(ngModel)]="repeatedPas"
           #paswordRepInp="ngModel"
           name="paswordRepInp"
           class="login-form__input input--valid-check"
@@ -62,19 +62,19 @@
           minlength="5"
           maxlength="24"
           required>
-        <div #popups class="login-form__text">Please, repeat your password</div><span class="decor opacity-0"></span>
       </div>
+      <div *ngIf="!equalPasswords && paswordRepInp.dirty" class="width-90 alert-danger alert-danger-fix">Passwords aren't equal</div>
     </div>
     <input
-      [disabled]="!registerForm.valid"
+      [disabled]="!registerForm.valid || !equalPasswords"
+      [class.disabled-submit]="!registerForm.valid || !equalPasswords ||hasForbiddenSigns"
       id="submitBtn"
       ngClass="{'d-none': isError}"
       class="button login-form__submit"
       type="submit"
       value="Sign up">
     <div id="alertMes"
-         class="d-none unable-to-register opacity-0 alert alert-danger"
-         ngClass="{'d-none': !isError, 'opacity-0': !isError}">
+         class="d-none unable-to-register opacity-0 alert alert-danger">
       <div>Unable to register now.</div>
       <div>Please, try later.</div>
     </div>
