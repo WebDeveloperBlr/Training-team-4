@@ -13,16 +13,21 @@ const routes: Routes = [
   { path: "register", component:RegisterComponent},
   { path: "login", component:LoginComponent},
 
-  { path: '', redirectTo: '/candidates', pathMatch: 'full' },
+  { path: '', redirectTo: '/candidates', pathMatch: 'full',
+    canActivate:[AuthGuardService], },
   { path: 'candidates', component: HomeComponent,
+    canActivate:[AuthGuardService],
     children:[{path:"",component:CandidatesComponent}]},
   { path: 'vacancies', component: HomeComponent,
+    canActivate:[AuthGuardService],
     children:[{path:"",component:VacanciesComponent}]},
   { path: 'interviews', component: HomeComponent,
+    canActivate:[AuthGuardService],
     children:[{path:"",component:InterviewsComponent}]},
   { path: 'candidates/:id', component: HomeComponent,
+    canActivate:[AuthGuardService],
     children:[{path:"",component:CandidateDetailComponent}]},
-  { path: '**',redirectTo: '/candidates', pathMatch: 'full'}
+  { path: '**',redirectTo: '/login', pathMatch: 'full'}
 
   // { path: '', redirectTo: '/candidates', pathMatch: 'full' },
   // { path: 'candidates', component: CandidatesComponent },
