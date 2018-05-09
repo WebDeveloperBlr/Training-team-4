@@ -33,6 +33,11 @@ import { InterviewsComponent } from './interviews/interviews.component';
 import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
 import { PopupNewComponent } from './interviews/popup-new/popup-new.component';
 import { PopupEditComponent } from './interviews/popup-edit/popup-edit.component';
+import {AuthService} from './auth.service';
+import {AuthGuardService} from './auth-guard.service';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+
 
 @NgModule({
   declarations: [
@@ -53,7 +58,9 @@ import { PopupEditComponent } from './interviews/popup-edit/popup-edit.component
     NotificationsBarComponent,
     InterviewsComponent,
     PopupNewComponent,
-    PopupEditComponent
+    PopupEditComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -72,7 +79,9 @@ import { PopupEditComponent } from './interviews/popup-edit/popup-edit.component
     MessageService,
     PaginationComponent,
     VacanciesService,
-    EventService
+    EventService,
+    AuthService,
+    AuthGuardService
   ],
   bootstrap: [AppComponent]
 })

@@ -1,0 +1,83 @@
+<header class="header">
+  <form
+    class="form-page__login-form"
+    #registerForm="ngForm"
+    id="login-form"
+    method="get"
+    onsubmit="signUp()"
+    ngClass="{'less-padding': isError}"
+    action="">
+    <a class="createProfile__backToMain-link" routerLink="/login">
+      <svg class="icon icon-ARROW">
+        <use xlink:href="../../assets/images/svg/symbol/sprite.svg#ARROW"></use>
+      </svg>
+    </a>
+    <h4 class="header-4">Registration</h4>
+    <div class="login-form__inputs-wrapper">
+      <label class="login-form__label" for="userLogin">Login</label>
+      <div class="login-form__field-wrapper">
+        <input
+          (ngModel)="loginInp"
+          (keyup)="loginInput()"
+          #loginInp="ngModel"
+          autocomplete="off"
+          class="login-form__input"
+          type="text"
+          name="loginInp"
+          id="userLogin"
+          placeholder="Login"
+          required>
+        <div
+          #arrow
+          id="login-tip"
+          class="login-form__text">Please, enter your login</div><span id="decor" class="decor opacity-0"></span>
+      </div>
+      <label class="login-form__label" for="userPassword">Password</label>
+      <div class="login-form__field-wrapper">
+        <input
+          (keyup)="loginInput()"
+          [ngModel]="passwordInp"
+          #passwordInp="ngModel"
+          name="passwordInp"
+          class="login-form__input input--valid-check"
+          type="password"
+          id="userPassword"
+          placeholder="Password"
+          minlength="5"
+          maxlength="24"
+          required>
+        <div #popups class="login-form__text">Please, enter your password</div><span class="decor opacity-0"></span>
+      </div>
+      <label class="login-form__label" for="userRepPassword">Repeat password</label>
+      <div class="login-form__field-wrapper">
+        <input
+          (keyup)="loginInput()"
+          [ngModel]="paswordRepInp"
+          #paswordRepInp="ngModel"
+          name="paswordRepInp"
+          class="login-form__input input--valid-check"
+          type="password"
+          id="userRepPassword"
+          placeholder="Password"
+          minlength="5"
+          maxlength="24"
+          required>
+        <div #popups class="login-form__text">Please, repeat your password</div><span class="decor opacity-0"></span>
+      </div>
+    </div>
+    <input
+      [disabled]="!registerForm.valid"
+      id="submitBtn"
+      ngClass="{'d-none': isError}"
+      class="button login-form__submit"
+      type="submit"
+      value="Sign up">
+    <div id="alertMes"
+         class="d-none unable-to-register opacity-0 alert alert-danger"
+         ngClass="{'d-none': !isError, 'opacity-0': !isError}">
+      <div>Unable to register now.</div>
+      <div>Please, try later.</div>
+    </div>
+  </form>
+
+</header>
