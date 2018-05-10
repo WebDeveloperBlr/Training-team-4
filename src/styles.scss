@@ -1379,6 +1379,8 @@ hr-app__candidates-item-link {
   flex-grow: 1;
   text-align: center;
   height: 100%;
+  display: flex;
+  align-items: center;
 }
 
 @media (min-width: 515px) {
@@ -1598,7 +1600,7 @@ hr-app__candidates-item-link {
 }
 
 .table-row--big {
-  min-height: 75px;
+  height: 121px;
 }
 
 @media (max-width: 515px) {
@@ -1708,6 +1710,7 @@ hr-app__candidates-item-link {
     text-align: left;
     display: inline-block;
     margin-left: 35%;
+
   }
 }
 
