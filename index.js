@@ -16,7 +16,7 @@ var session=require("express-session");
 
 const cors = corsMiddleware({
   preflightMaxAge: 5, //Optional
-  origins: ['http://localhost:4200'],
+  origins: ['http://localhost:4200', 'http://localhost:8080'],
   allowHeaders: ['application/json'],
   credentials:true
 });
@@ -59,7 +59,8 @@ server.get('/', function handler(req, res, next) {
 });
 
 server.get("/getEvents",function(req,res,next){
-  connection.query('SELECT id_event,dateStart,timeStart,dateEnd,timeEnd,e.id_interviewer,info,place,isRepeatable, e.id_importance,title,isVacant,name as importanceLevel,viewer.firstName,viewer.lastName,allDay,e.id_candidate,per.firstName as candName, per.secondName as candSurname  \n' +
+  connection.query('SELECT id_event,dateStart,timeStart,dateEnd,timeEnd,e.id_interviewer,info,place,' +
+    'isRepeatable, e.id_importance,title,isVacant,name as importanceLevel,viewer.firstName,viewer.lastName,allDay,e.id_candidate,per.firstName as candName, per.secondName as candSurname  \n' +
     'from event e   \n' +
     'INNER JOIN importance im   \n' +
     'on e.id_importance=im.id_importance   \n' +
@@ -73,6 +74,18 @@ server.get("/getEvents",function(req,res,next){
 
     res.end(JSON.stringify(results));
   });
+});
+server.get('*', function handler(req, res, next) {
+  fs.readFile(__dirname + '/dist/index.html',
+    function (err, data) {
+      if (err) {
+        next(err);
+        return;
+      }
+      res.write(data);
+      res.end();
+      next();
+    });
 });
 
 server.post("/eventCreate",function(req,res,next){
@@ -217,14 +230,14 @@ server.get("/logOut",function(req,res,next){
 server.get("/getNewCandidates",candidatesController.getNewCandidates);
 server.get("/getNextInterviews",eventsController.getNextInterviews);
 
-server.get('/candidates', candidatesController.all);
-server.get('/vacancies', vacanciesController.all);
-server.get('/candidates/:id', candidatesController.getById);
+server.get('/candidatesAsync', candidatesController.all);
+server.get('/vacanciesAsync', vacanciesController.all);
+server.get('/candidatesAsync/:id', candidatesController.getById);
+
 
 
 //rest api to create a new record into mysql database
-server.post('/', candidatesController.create);
-server.put('/candidates/:id', candidatesController.update);
-server.del('/:id', candidatesController.delete);
+
+server.put('/candidatesAsync/:id', candidatesController.update);
 
 

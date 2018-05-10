@@ -361,10 +361,10 @@ input:focus:-ms-input-placeholder {
 }
 
 .createProfile__backToMain-link {
-  position: relative;
-  left: 0px;
-  top:-10px;
-  border: 1px solid #503c46;
+  position: absolute;
+  left: 30px;
+  top: 30px;
+  border: 1px solid #ebebeb;
   width: 30px;
   height: 30px;
 }
@@ -1469,12 +1469,12 @@ hr-app__candidates-item-link {
 
 .table--header-col {
   white-space: nowrap;
-  cursor: pointer;
+
 }
 
-.table--header-col:not(:last-child):after {
+/*.table--header-col:not(:last-child):after {
   content: "▼";
-}
+}*/
 
 .hr-app__table-editor {
   border-top: 1px solid #e6e6e6;
@@ -1848,11 +1848,11 @@ hr-app__candidates-item-link {
 }
 
 .candidate-profile__img-preview {
-  max-width: 150px;
+  max-width: 170px;
   height: auto;
   align-self: left;
   border: 1px solid #EBEBEB;
-  margin-bottom: 1em;
+  margin-bottom: 10px;
 }
 
 @media (max-width: 1024px) {
@@ -1870,32 +1870,67 @@ hr-app__candidates-item-link {
     border-radius: 50%;
   }
 }
+.candidate-profile__candidate-position, .candidate-profile__candidate-name, .candidate-profile__candidate-salary{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.candidate-profile__candidate-name, .candidate-profile__candidate-salary, .contact-info__telephone, .contact-info__email, .contact-info__address{
+  >span:not(.candidate-profile__candidate-label){
+    margin-left: 10px;
+  }
+  .candidate-profile__candidate-label{
+    margin-right: 10px;
+  }
+}
+.candidate-profile__candidate-wrapper{
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+.candidate-profile__candidate-wrapper__left-col{
+  display: flex;
+  flex-direction: column;
+  flex-grow: 2;
+
+}
+.candidate-profile__candidate-wrapper__row:first-child {
+  margin-top: 10px;
+}
+.candidate-profile__candidate-wrapper__one-row{
+  display: flex;
+  flex-basis: 100%;
+}
+.candidate-profile__candidate-text{
+  margin-left: 10px;
+  margin-bottom: 5px;
+  color: #343434;
+}
+.candidate-profile__candidate-wrapper__right-col{
+  display: flex;
+  flex-direction: column;
+  flex-basis: 70%;
+}
 
 .candidate-profile__candidate-position {
   color: #595959;
   font-size: 14px;
   font-weight: 300;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+
 }
 
 .candidate-profile__candidate-name {
   color: #343434;
   font-weight: 500;
   font-size: 16px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+
 }
 
 .candidate-profile__candidate-salary {
   color: #343434;
   font-size: 18px;
   font-weight: 300;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+
 }
 
 @media (max-width: 1024px) {
@@ -2307,15 +2342,21 @@ textarea {
   flex-grow: 0;
 }
 
+cands-input-properties--ml{
+  margin-left: 30px;
+}
+
 .cands-input-properties {
   display: block;
-  max-width: 180px;
+  max-width: 170px;
   width: 100%;
   min-height: 25px;
   font-size: 13px;
   border-radius: 2px;
   color: #343434;
   padding: 0 10px;
+  border: none;
+  border-bottom: 1px solid #e6e6e6;
 }
 
 @media (min-width: 516px) {
@@ -2563,9 +2604,8 @@ input:-ms-input-placeholder {
   background-color: #EBEBEB;
 }
 
-#vacancies-tab {
-  min-height: 90px;
-  overflow: hidden;
+.vacancies-tab{
+  overflow: scroll;
 }
 
 #calendar {
@@ -2930,13 +2970,13 @@ input:-ms-input-placeholder {
   transition: all .5s ease;
 }
 .candidate-profile__date-inputs-wrapper{
+  margin-top: 2px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 .candidate-profile__date-label{
   margin-right: 5px;
-  margin-bottom: 5px;
   font-weight: 300;
   font-size: 14px;
   color: #343434;
@@ -3179,6 +3219,83 @@ app-candidates{
 app-interviews{
   margin:20px 40px;
 }
+.candidate-profile__candidate-wrapper__position-text{
+  font-size: 13px;
+  font-weight: 400;
+  margin-left: 10px;
+}
+app-vacancies{
+  height: 100%;
+  overflow: auto;
+}
+.ngx-datepicker-calendar-container{
+  z-index: 99;
+}
+.ngx-datepicker-container[_ngcontent-c6] .ngx-datepicker-input[_ngcontent-c6]{
+  border: none!important;
+  padding-top: 0!important;
+  padding-bottom: 0!important;
+  margin-bottom: 7px;
+  cursor: pointer;
+}
+.ng-select-container{
+  font-size: 15px;
+}
+.ng-select {
+  &:not(.ng-touched){
+    .ng-select-container{
+      padding-top: 0;
+    }
+  }
+  &.custom-cand-details, &.custom-cand-details-main{
+    width: 100%;
+    min-width: 170px;
+    max-width: 170px;
+    position: relative;
+    font-size: 14px;
+    font-weight: 300;
+    .ng-dropdown-panel .ng-dropdown-panel-items {
+      .ng-option.ng-option-selected .ng-option-label{
+        font-weight: 400;
+      }
+      .ng-option{
+        padding: 5px 10px;
+      }
+    }
+
+    &.ng-touched{
+      .ng-select-container{
+        padding-top: 5px;
+      }
+    }
+    .ng-select-container{
+      font-size: 13px;
+      color: #343434;
+      font-weight: 400;
+      max-height: 25px!important;
+      height: 25px!important;
+      min-height: 25px;
+      border: none;
+      border-bottom: 1px solid #e6e6e6;
+      border-radius: 2px;
+      .ng-clear{
+        display: none;
+      }
+    }
+  }
+
+}
+.candidate-profile__candidate-wrapper__position-text{
+  font-size: 13px;
+  font-weight: 400;
+  margin-left: 10px;
+}
+
+
+
+
+
+
 
 
 

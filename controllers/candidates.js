@@ -20,7 +20,7 @@ exports.all = function (req, res) {
 };
 exports.getById = function (req, res) {
   // res.header('Access-Control-Allow-Origin','*');
-  Candidates.getByID(req.params.id, function (err, docs) {
+  Candidates.getByID(req.params.id, req.query.position, function (err, docs) {
     if (err.length>0) {
       console.log(err[0]);
       return res.send(err[0]);
@@ -50,25 +50,7 @@ exports.create = function (req, res) {
   })
 };
 exports.update = function (req, res) {
-  // res.header('Access-Control-Allow-Origin','*');
-  var candidate = {
-    firstName: req.body.docs[0].firstName||"",
-    lastName: req.body.docs[0].lastName||"",
-    position: req.body.docs[0].position||"",
-    address: req.body.docs[0].address||"",
-    email: req.body.docs[0].email||"",
-    telephone: req.body.docs[0].telephone||"",
-    salary: req.body.docs[0].salary||"",
-    status: req.body.docs[0].status||"",
-    newSkills: req.body.newSkills||[],
-    oldSkills: req.body.oldSkills||[],
-    exp: req.body.exp||[],
-    newExp: req.body.newExp||[],
-    oldExp: req.body.oldExp||[]
-  };
-
- // console.log(candidate);
-  //console.log(req.body.docs);
+  var candidate = req.body;
   Candidates.update(req.params.id, candidate, function (err, docs) {
     if (err) {
       console.log(err);

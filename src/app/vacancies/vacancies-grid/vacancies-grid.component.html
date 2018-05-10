@@ -1,11 +1,11 @@
 <div class="hr-app__table" *ngIf='data && data.count' id="hr-app__table">
 
   <div class="table--row hr-app__table__header-row">
-    <div class="hr-app__table-col table--header-col col--position" id="table--header-col--pos">Position</div>
-    <div class="hr-app__table-col table--header-col col--requirements" id="table--header-col--pos">Requirements</div>
-    <div class="hr-app__table-col table--header-col col--work experience" id="table--header-col--pos">Work Experience
+    <div class="hr-app__table-col table--header-col col--position" >Position</div>
+    <div class="hr-app__table-col table--header-col col--requirements" >Requirements</div>
+    <div class="hr-app__table-col table--header-col col--work experience" >Work Experience
     </div>
-    <div class="hr-app__table-col table--header-col col--view candidates" id="table--header-col--pos">View Candidates
+    <div class="hr-app__table-col table--header-col col--view candidates" >View Candidates
     </div>
   </div>
   <div class="hr-app__table__row table--row table-row--big" *ngFor="let item of data.docs">
@@ -19,7 +19,8 @@
     <div class="hr-app__table-col">
       <div class="hr-app__table-col__advantages">{{item.workExperience}} years</div>
     </div>
-    <div class="hr-app__table-col"><a class="hr-app__table-col__button" href="vacancies/undefined">View Candidates</a>
+    <!--<div class="hr-app__table-col"><a class="hr-app__table-col__button"  routerLink="/candidates?currentPage=1&limit=10&filter=%7B%22name%22:%22%22,%22position%22:%22{{item.position}}%22,%22statusName%22:%22Any%22%7D">View Candidates</a>-->
+    <div class="hr-app__table-col"><a class="hr-app__table-col__button"  [routerLink]="['/candidates']" [queryParams]="{position: item.position}">View Candidates</a>
     </div>
   </div>
 

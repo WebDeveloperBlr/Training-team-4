@@ -1,3 +1,51 @@
 .date-label{
   white-space: nowrap;
 }
+.candidate-position{
+  font-weight: 300;
+  font-size: 14px;
+}
+.candidate-profile__hr-app__candidate-preview{
+  .add-button{
+    color: #c2c2c2;
+    border-radius: 0;
+    top: 0;
+    height: 100%;
+    margin: 0;
+    position: absolute;
+    left: 100%;
+    width: 20px;
+    margin-left: -15px;
+    .icon{
+      transform: rotate(-155deg);
+      fill: #707070;
+      margin-bottom: -1px;
+      &:hover{
+        fill: #fff;
+      }
+    }
+  }
+  .candidate-profile__candidate-wrapper__row{
+    position: relative;
+    margin-bottom: 5px;
+  }
+}
+.modal-header{
+  border: none;
+  border-bottom: 1px solid #e6e6e6;
+}
+.modal-content{
+  border: none;
+}
+.position-input-wrapper{
+  display: flex;
+  justify-content: flex-start;
+  .add-button{
+    font-size: 13px;
+    font-weight: 400;
+    max-height: 25px;
+    width: 45px;
+    margin-top: 0px;
+  }
+}
+

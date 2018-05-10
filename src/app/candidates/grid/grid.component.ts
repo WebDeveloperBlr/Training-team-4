@@ -36,15 +36,6 @@ export class GridComponent implements OnInit {
   ngOnInit() {
     this.offset = this.cs.currentOffset;
     this.limit = this.cs.currentLimit;
-      this.getCandidates();
-  }
-
-  getCandidates(limit: number = 10, offset: number  = 1): void {
-    //this.data = this.cs.getCandidates().subscribe((candidates) => this.data = candidates);
-    /*this.cs.getMockCandidates(limit, offset).subscribe((data) => {
-      this.data = data;
-        console.log(data);
-    });*/
   }
 
 }

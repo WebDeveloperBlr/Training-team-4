@@ -22,12 +22,9 @@
         </div>
       </div>
       <div class="hr-app__filters-bar__filter-item">
-        <div class="hr-app__filters-bar__select-text">Age</div>
-        <div class="hr-app__filters-bar__input-wrap justify-content-between"><span
-          class="hr-app__filters-bar__input-wrap__text">from</span>
-          <input class="hr-app__filters-bar__input small&#45;&#45;input" type="text" maxlength="2"/><span
-            class="hr-app__filters-bar__input-wrap__text">to</span>
-          <input class="hr-app__filters-bar__input small&#45;&#45;input" type="text" maxlength="2"/>
+        <div class="hr-app__filters-bar__select-text">Position</div>
+        <div class="hr-app__filters-bar__input-wrap">
+          <input class="hr-app__filters-bar__input" (input)="changePosition($event)" type="text"/>
         </div>
       </div>
       <div class="hr-app__filters-bar__filter-item">

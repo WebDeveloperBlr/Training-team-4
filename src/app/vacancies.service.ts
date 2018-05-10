@@ -8,7 +8,7 @@ import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 @Injectable()
 export class VacanciesService {
 
-  private URL = 'http://localhost:8080/vacancies';
+  private URL = 'http://localhost:8080/vacanciesAsync';
   cache = {};
   data = new BehaviorSubject(undefined);
   currentOffset: number;
@@ -23,6 +23,9 @@ export class VacanciesService {
       params = params.append('currentPage', offset.toString());
       params = params.append('limit', limit.toString());
       if(filterObj) {
+        if(filterObj.positionName === 'Any'){
+          filterObj.positionName = '';
+        }
         params = params.append('filter', JSON.stringify(filterObj));
       }
 

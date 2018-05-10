@@ -37,6 +37,7 @@ import {AuthService} from './auth.service';
 import {AuthGuardService} from './auth-guard.service';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { NgbdatepickerpopupComponent } from './common/ngbdatepickerpopup/ngbdatepickerpopup.component';
 
 
 
@@ -61,7 +62,8 @@ import { RegisterComponent } from './register/register.component';
     PopupNewComponent,
     PopupEditComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    NgbdatepickerpopupComponent
   ],
   imports: [
     BrowserModule,
