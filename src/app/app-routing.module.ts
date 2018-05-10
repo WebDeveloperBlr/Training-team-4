@@ -27,7 +27,7 @@ const routes: Routes = [
   { path: 'candidates/:id', component: HomeComponent,
     canActivate:[AuthGuardService],
     children:[{path:"",component:CandidateDetailComponent}]},
-  { path: '**',redirectTo: '/login', pathMatch: 'full'}
+  { path: '**',redirectTo: '/candidates', pathMatch: 'full'}
 
   // { path: '', redirectTo: '/candidates', pathMatch: 'full' },
   // { path: 'candidates', component: CandidatesComponent },

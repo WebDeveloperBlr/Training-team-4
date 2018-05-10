@@ -78,6 +78,7 @@
       <div>Unable to register now.</div>
       <div>Please, try later.</div>
     </div>
+    <div *ngIf="registered==1" class="alert-success message">Signed up successfully</div>
+    <div *ngIf="registered==0" class="alert-danger  message">Failed to sign up. This login is already used</div>
   </form>
-  <div>Registered successfully</div>
 </header>

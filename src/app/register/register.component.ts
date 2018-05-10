@@ -39,7 +39,6 @@ export class RegisterComponent implements OnInit {
         else
           this.registered=0;
       });
-      alert("reset");
       registerForm.resetForm();
       this.equalPasswords=false;
       this.hasForbiddenSigns=false;

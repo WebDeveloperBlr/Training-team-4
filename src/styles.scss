@@ -360,10 +360,10 @@ input:focus:-ms-input-placeholder {
 }
 
 .createProfile__backToMain-link {
-  position: absolute;
-  left: 30px;
-  top: 30px;
-  border: 1px solid #ebebeb;
+  position: relative;
+  left: 0px;
+  top:-10px;
+  border: 1px solid #503c46;
   width: 30px;
   height: 30px;
 }

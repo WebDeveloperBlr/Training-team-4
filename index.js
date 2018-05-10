@@ -11,13 +11,15 @@ var bcrypt = require('bcrypt');
 const saltRounds = 10;
 var session=require("express-session");
 
+
+
+
 const cors = corsMiddleware({
   preflightMaxAge: 5, //Optional
   origins: ['http://localhost:4200'],
-  allowHeaders: ['application/json']
+  allowHeaders: ['application/json'],
+  credentials:true
 });
-
-
 
 
 const server = restify.createServer({
@@ -150,6 +152,14 @@ server.post("/deleteEvent",function(req,res,next){
   })
 });
 
+server.get("/checkPermission",function(req,res,next){
+  console.log(req.session.access);
+  if(req.session.access)
+    res.end('true');
+  else
+    res.end("false");
+});
+
 server.post("/registration", function (req, res, next) {
   var hashedPassword;
   bcrypt.hash(req.body.password, saltRounds, function (err, hash) {
@@ -175,12 +185,13 @@ server.post("/registration", function (req, res, next) {
 });
 
 server.post("/authentication", function (req, res, next) {
+  console.log(req.session.access);
   connection.query("SELECT * FROM `hr-app`.Authentication", function (err, queryResults) {
     queryResults.forEach(function (row, i, results) {
       if (req.body.userLogin == row.login){
         if(bcrypt.compareSync(req.body.userPassword, row.password)){
-          console.log(row.login + "  " + "logged in");
           req.session.access = true;
+          console.log("logged in");
           res.end("true");
         }else{
           // console.log("false inner");

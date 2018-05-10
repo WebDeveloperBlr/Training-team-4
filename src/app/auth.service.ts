@@ -11,27 +11,25 @@ export class AuthService {
 
   signUpURL="http://localhost:8080/registration";
   signInURL="http://localhost:8080/authentication";
-  isLoggedIn = false;
+  checkPermissionURL="http://localhost:8080/checkPermission";
+  isLoggedIn:string="false";
 
   // store the URL so we can redirect after logging in
   redirectUrl: string;
 
-  login(): Observable<boolean> {
-    return of(true).pipe(
-      delay(1000),
-      tap(val => this.isLoggedIn = false)
-    );
+
+  checkPermission(){
+
+    return this.http.get<any>(this.checkPermissionURL,{withCredentials:true});
   }
 
-  logout(): void {
-    this.isLoggedIn = false;
-  }
+// .subscribe((answer)=>{this.isLoggedIn=answer})
 
   signUp(user):Observable<any>{
-    return this.http.post<any>(this.signUpURL,{password:user.password,login:user.login});
+    return this.http.post<any>(this.signUpURL,{password:user.password,login:user.login},{withCredentials:true});
   }
 
   signIn(user):Observable<any>{
-    return this.http.post<any>(this.signInURL,{userLogin:user.login,userPassword:user.password});
+    return this.http.post<any>(this.signInURL,{userLogin:user.login,userPassword:user.password},{withCredentials:true});
   }
 }
