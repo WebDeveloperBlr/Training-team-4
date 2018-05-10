@@ -13,6 +13,7 @@ export class AuthService {
   signUpURL="http://localhost:8080/registration";
   signInURL="http://localhost:8080/authentication";
   checkPermissionURL="http://localhost:8080/checkPermission";
+  logOutURL="http://localhost:8080/logOut";
   isLoggedIn:string="false";
 
   // store the URL so we can redirect after logging in
@@ -32,5 +33,9 @@ export class AuthService {
 
   signIn(user):Observable<any>{
     return this.http.post<any>(this.signInURL,{userLogin:user.login,userPassword:user.password},{withCredentials:true});
+  }
+
+  logOut(){
+    this.http.get<any>(this.logOutURL,{withCredentials:true}).subscribe(()=>{});
   }
 }

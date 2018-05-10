@@ -207,6 +207,13 @@ server.post("/authentication", function (req, res, next) {
   });
 });
 
+server.get("/logOut",function(req,res,next){
+  console.log("request");
+  console.log("log out kuka "+req.session.access);
+  req.session.access=false;
+  res.end();
+});
+
 server.get("/getNewCandidates",candidatesController.getNewCandidates);
 server.get("/getNextInterviews",eventsController.getNextInterviews);
 
