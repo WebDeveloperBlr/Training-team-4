@@ -7,14 +7,19 @@ var fs = require('fs');
 const db = require('./db');
 var connection = db.get;
 const corsMiddleware = require('restify-cors-middleware');
+var bcrypt = require('bcrypt');
+const saltRounds = 10;
+var session=require("express-session");
+
+
+
 
 const cors = corsMiddleware({
   preflightMaxAge: 5, //Optional
   origins: ['http://localhost:4200'],
-  allowHeaders: ['application/json']
+  allowHeaders: ['application/json'],
+  credentials:true
 });
-
-
 
 
 const server = restify.createServer({
@@ -28,7 +33,7 @@ server.use(cors.actual);
 server.use(restify.plugins.acceptParser(server.acceptable));
 server.use(restify.plugins.queryParser());
 server.use(restify.plugins.bodyParser());
-
+server.use(session({ secret: 'really beautiful august sunrise', cookie: { maxAge: null }}));
 
 server.listen(process.env.PORT || 8080, function () {
   console.log('%s listening at %s', server.name, server.url);
@@ -145,6 +150,68 @@ server.post("/deleteEvent",function(req,res,next){
     if (err) throw err;
     res.end();
   })
+});
+
+server.get("/checkPermission",function(req,res,next){
+  console.log("permission");
+  console.log(req.session.access);
+  if(req.session.access)
+    res.end('true');
+  else
+    res.end("false");
+});
+
+server.post("/registration", function (req, res, next) {
+  var hashedPassword;
+  bcrypt.hash(req.body.password, saltRounds, function (err, hash) {
+    if (err)
+      throw err;
+    else {
+      hashedPassword = hash;
+      connection.query('INSERT INTO `hr-app`.Authentication VALUES ("' + req.body.login + '","' + hashedPassword + '",1);', function (err, results) {
+        if (err) {
+          try{
+          }catch(err){
+          }
+          console.log("user already exists");
+          res.end("false");
+
+        } else {
+          req.session.access=true;
+          res.end("true");
+        }
+      });
+    }
+  });
+});
+
+server.post("/authentication", function (req, res, next) {
+  console.log("authentication");
+  connection.query("SELECT * FROM `hr-app`.Authentication", function (err, queryResults) {
+    queryResults.forEach(function (row, i, results) {
+      if (req.body.userLogin == row.login){
+        if(bcrypt.compareSync(req.body.userPassword, row.password)){
+          req.session.access = true;
+          console.log("logged in");
+          res.end("true");
+        }else{
+          // console.log("false inner");
+          res.end("false");
+        }
+      }
+      if(i==queryResults.length-1 && !req.session.access){
+        // console.log("false outer");
+        res.end("false");
+      }
+    });
+  });
+});
+
+server.get("/logOut",function(req,res,next){
+  console.log("request");
+  console.log("log out kuka "+req.session.access);
+  req.session.access=false;
+  res.end();
 });
 
 server.get("/getNewCandidates",candidatesController.getNewCandidates);

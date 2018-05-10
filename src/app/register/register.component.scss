@@ -1,0 +1,44 @@
+.ng-invalid:not(form){
+  border:1px solid #a94442 !important;
+  border-left: 5px solid #a94442 !important;
+}
+
+.ng-valid[required], .ng-valid.required  {
+  border:1px solid #42A948;
+  border-left: 5px solid #42A948; /* green */
+}
+
+.ng-pristine[required], .ng-pristine.required  {
+  border:1px solid #a9a89b;
+  border-left: 5px solid #a9a89b; /* green */
+}
+
+.alert-danger-fix{
+  border-radius:5px;
+  margin-top: -12px;
+  padding: 2px 3px;
+}
+
+
+.disabled-submit{
+  opacity:0.5;
+}
+
+.fix{margin-top:-12px;
+  width:100%;}
+
+.max-width-370px{
+  max-width:370px;
+}
+
+.red-border{
+  border:1px solid #a94442 !important ;
+  border-left: 5px solid #a94442 !important ;
+}
+
+.message{
+  border-radius:10px;
+  padding:10px 10px;
+  margin-top:10px;
+  text-align:center;
+}

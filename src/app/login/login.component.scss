@@ -1,0 +1,23 @@
+.ng-invalid:not(form){
+  border:1px solid #a94442;
+  border-left: 5px solid #a94442;
+}
+
+.ng-valid[required], .ng-valid.required  {
+  border:1px solid #42A948;
+  border-left: 5px solid #42A948; /* green */
+}
+
+.ng-pristine[required], .ng-pristine.required  {
+  border:1px solid #a9a89b;
+  border-left: 5px solid #a9a89b; /* green */
+}
+.disabled-submit{
+  opacity:0.5;
+}
+
+.fix{
+  padding:5px 10px;
+  border-radius: 10px;
+  text-align: center;
+}
