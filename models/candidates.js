@@ -263,9 +263,9 @@ exports.getNewCandidates=function(callback){
     "on c.id_candidate=cP.id_candidatePosition " +
     "INNER JOIN position ps " +
     "on cP.id_position=ps.id_position " +
-    "inner JOIN candidateStatus cS " +
-    "on c.id_candidate=cS.id_candidate " +
-    "where cS.id_status=5;",function(err, results){
+    // "inner JOIN candidateStatus cS " +
+    // "on c.id_candidate=cS.id_candidate " +
+    " where cP.id_status=5;",function(err, results){
     if(err) throw err;
     callback(results);
   })

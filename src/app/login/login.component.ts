@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
   onSubmit(){
       this.authService.signIn(this.user).subscribe((data) => {
         if(data==true){
-          this.router.navigate(["/candidates"]);
+          this.router.navigate(["/interviews"]);
         }else {
           this.mistake=true;
           this.router.navigate(["/login"]);

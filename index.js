@@ -59,7 +59,8 @@ server.get('/', function handler(req, res, next) {
 });
 
 server.get("/getEvents",function(req,res,next){
-  connection.query('SELECT id_event,dateStart,timeStart,dateEnd,timeEnd,e.id_interviewer,info,place,isRepeatable, e.id_importance,title,isVacant,name as importanceLevel,viewer.firstName,viewer.lastName,allDay,e.id_candidate,per.firstName as candName, per.secondName as candSurname  \n' +
+  connection.query('SELECT id_event,dateStart,timeStart,dateEnd,timeEnd,e.id_interviewer,info,place,' +
+    'isRepeatable, e.id_importance,title,isVacant,name as importanceLevel,viewer.firstName,viewer.lastName,allDay,e.id_candidate,per.firstName as candName, per.secondName as candSurname  \n' +
     'from event e   \n' +
     'INNER JOIN importance im   \n' +
     'on e.id_importance=im.id_importance   \n' +
@@ -76,12 +77,13 @@ server.get("/getEvents",function(req,res,next){
 });
 
 server.post("/eventCreate",function(req,res,next){
+  console.log("create");
   var defStart="09:00:00";
   var defEnd="10:00:00";
   var defInfo="No info yet";
   var defPlace="No place yet";
-  connection.query('INSERT INTO `hr-app`.event(dateStart,dateEnd,title,timeStart,timeEnd,id_interviewer,info,place,isRepeatable,id_importance,isVacant,allDay,id_candidate)'+
-    'VALUES("'+req.body.start+'","'+req.body.end+'","'+req.body.title+'","'+defStart+'","'+defEnd+'","'+1+'","'+defInfo+'","'+defPlace+'","'+false+'","'+1+'","'+true+'","'+false+'","'+0+'");',function(err,results){
+  connection.query('INSERT INTO `dima`.event(dateStart,dateEnd,title,timeStart,timeEnd,id_interviewer,info,place,isRepeatable,id_importance,isVacant,allDay,id_candidate)'+
+    'VALUES("'+req.body.start+'","'+req.body.end+'","'+req.body.title+'","'+defStart+'","'+defEnd+'","'+1+'","'+defInfo+'","'+defPlace+'","'+false+'","'+1+'","'+true+'","'+false+'","'+1+'");',function(err,results){
     if (err) throw err;
     else res.end();
   });
