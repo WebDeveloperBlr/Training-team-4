@@ -153,6 +153,7 @@ server.post("/deleteEvent",function(req,res,next){
 });
 
 server.get("/checkPermission",function(req,res,next){
+  console.log("permission");
   console.log(req.session.access);
   if(req.session.access)
     res.end('true');
@@ -185,7 +186,7 @@ server.post("/registration", function (req, res, next) {
 });
 
 server.post("/authentication", function (req, res, next) {
-  console.log(req.session.access);
+  console.log("authentication");
   connection.query("SELECT * FROM `hr-app`.Authentication", function (err, queryResults) {
     queryResults.forEach(function (row, i, results) {
       if (req.body.userLogin == row.login){

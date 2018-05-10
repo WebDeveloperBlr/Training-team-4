@@ -48,13 +48,13 @@
       [disabled]="!loginForm.valid"
       id="submitBtn"
       class="button login-form__submit"
-      type="button"
-      (click)="onSubmit()"
+      type="submit"
+      (ngSubmit)="onSubmit()"
       value="Sign in"
       [disabled]="!loginForm.form.valid"
-      routerLink="/candidates"
       [class.disabled-submit]="!loginForm.valid || !loginForm.form.valid"
       >
+    <div class="alert-danger fix" *ngIf="mistake">Either login or password are incorrect</div>
     <a class="login-form__no-account-link header-link"
       routerLink="/register">
       Sign up

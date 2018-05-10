@@ -26,6 +26,8 @@ export class AuthGuardService implements CanActivate{
   //   // return this.checkLogin(url);
   // }
   canActivate(route:ActivatedRouteSnapshot, state:RouterStateSnapshot):Observable<boolean> {
+    console.log(state);
+    console.log(route.routeConfig.path);
     return this.authService.checkPermission().map((auth) => {
       if (auth) {
         console.log('authenticated');
